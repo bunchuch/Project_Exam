@@ -1,13 +1,81 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+@font-face {
+    font-family: 'Poppins' ;
+    src: url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500&display=swap');
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@layer base {
+    body {
+        font-family: 'Roboto', sans-serif;
+    }
 }
+
+@layer components {
+
+
+    /* loginForm */
+    .loginSection{
+       @apply bg-gray-50 dark:bg-gray-900
+    }
+
+    .lginContainer{
+        @apply flex flex-col items-center justify-center mx-auto md:h-screen lg:py-0
+    }
+
+    .loginBackgroundContainer {
+     @apply w-full md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700
+    }
+    .btn-login {
+        @apply  w-full bg-blue-800 rounded-md
+         text-white  focus:ring-4 focus:outline-none 
+         font-medium text-sm px-5 py-3 text-center 
+    }
+
+    .inputBox{
+       @apply  text-gray-900  border-blue-500 border-b-[1px]
+        sm:text-sm block w-full py-3 dark:bg-gray-700
+         dark:border-gray-600 dark:placeholder-gray-400
+          dark:text-white
+    }
+
+    .paraStyle{
+        @apply text-sm text-center font-light text-gray-500 dark:text-gray-400
+    }
+
+    /* sectionOneStyle */
+    .sectionOne_Colunm{
+        @apply overflow-hidden rounded-sm 
+        }
+     
+    .section_grid{
+       @apply py-10 px-5 grid grid-flow-row  rounded-md border-[1px]
+    }
+    .description{
+        @apply font-semibold text-lg mb-2 py-4  border-b-[1px]
+    }
+    .paraStyleLandingpage{
+        @apply space-x-2 space-y-2 
+    }
+    .learn_moreLink{
+        @apply py-5 text-yellow-800 font-semibold text-sm
+    }
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
