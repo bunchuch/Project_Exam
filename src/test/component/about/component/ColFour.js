@@ -19,7 +19,7 @@ const descArea = [{
 function ColFour({img,title,desc}){
     return <>
                 <div className="basis-1/2">
-                <img className="object-fill w-112 h-auto mx-auto " src={img}/>
+                <img className="object-cover w-full  h-auto mx-auto " src={img}/>
                 </div>
 
                 <div className="basis-1/2 text-start px-5 items-center py-10 space-y-6">

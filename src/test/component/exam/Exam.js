@@ -1,11 +1,7 @@
 import React from "react"
-
-import "../LandingPage/Herosection/Hero.css"
 import Navbar from "../Navbar/Navbar"
-import ExmaHeader from "./header"
-import Statusbar from "./statusbar"
-import Answer from "./taskbox"
-import QuestionCols from "./QuestionCols"
+import ExamStatus from "./component/ExamStatus"
+import QuestionBox from "./component/QuestionBox"
 
 
 
@@ -14,16 +10,16 @@ function ExamSide({data}) {
    <Navbar></Navbar>
    <div className=" bg-white min-h-screen box-border font-inter tracking-normal">
       <div className="container mx-auto p-2  right-0 left-1">
-         <div className="xl:flex xl:flex-cols justify-between  mx-2 my-2 md:max-lg:flex-col md:flex md:flex-row">
-            {/*ExamSide*/}
+         <div className="xl:flex xl:flex-cols justify-between 
+          mx-2 my-2 md:max-lg:flex-col md:flex md:flex-row">
+          
             <div className="w-full px-2">
+            <QuestionBox isNone={false}></QuestionBox>
                {/* header */}
-              <ExmaHeader title="Vocalulary" type="Multiple Chocie" grade="English "></ExmaHeader>
-               <QuestionCols/>
             </div>
-            <div className=" w-full basis-1/3 sm:order-2  border-gray-200 
+            <div className=" w-full basis-1/3 sm:order-2  border-gray-200 raletive
              rounded-[5px] h-[50%] overflow-auto trackig-normal mx-2 space-y-2">
-               <Statusbar></Statusbar>
+              <ExamStatus ></ExamStatus>
             </div>
            
             {/* selction Status */}

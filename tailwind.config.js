@@ -1,10 +1,11 @@
 /** @type {import('tailwindcss').Config} */
+const colors = require("tailwindcss/colors");
 module.exports = {
   content: ["./src/**/*.{html,js}"],
   theme: {
 
     backgroundImage:{
-      'hero-image' : 'url("https://st4.depositphotos.com/5501600/21385/i/600/depositphotos_213852208-stock-photo-abstract-blue-digital-background-technology.jpg")',
+      'hero-image' : 'url("https://xqsuperschool.org/rethinktogether/wp-content/uploads/sites/5/2021/05/pexels-pixabay-267885.jpg")',
       
     },
     screens: {

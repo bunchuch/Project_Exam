@@ -1,5 +1,4 @@
-import Left from "./Left"
-import Right from "./Right"
+import SectionContainer from "./SectionContainer"
 import { sectionTwoData } from "../../../../data/data"
 
 
@@ -12,9 +11,20 @@ const SectionTwo =({data})=>{
     return <div className="divide-y container mx-auto">
     {
 data.map((value)=><>
-            {value.one.map((items)=><Left key={items.id} title={items.header} desc={items.Description} img={items.img}/>)}
-           {value.two.map((items)=><Right key={items.id} title={items.header} desc={items.Description} img={items.img}/>)}
-           {value.three.map((items)=><Left key={items.id} title={items.header} desc={items.Description} img={items.img}/>)}
+            {value.one.map((items)=><SectionContainer 
+            key={items.id} title={items.header} 
+            desc={items.Description}
+             img={items.img}/>)}
+
+           {value.two.map((items)=><SectionContainer 
+           key={items.id} title={items.header} 
+           desc={items.Description}
+            img={items.img} isRight={true}/>)}
+            
+           {value.three.map((items)=><SectionContainer
+            key={items.id} title={items.header} 
+            desc={items.Description} 
+            img={items.img}/>)}
      </>)
     }
     </div>

@@ -1,15 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 
 
-function Banner({img,title,desc}){
-return <>
-<img className="object-cover w-80 h-52" src={img}/>
-                <div className="space-y-2">
-                <h1 className="text-[20px] font-bold">{title}</h1>
+
+const ShowStatue = ({isStatus,text})=>{
+    return <div>{
+        isStatus?(
+            <div className="bg-green-200 px-2 py-[2px]  text-[12px]
+             text-center rounded-full font-semibold ">{text}</div>
+        ):(
+        <></>
+        )
+        }
+ 
+    </div>
+}
+
+
+function Banner({img,title,desc,status,statusText}){
+
+
+
+return <div>
+<img className="object-cover w-48 h-32" src={img}/>
+                <div className=" flex space-x-2 mt-10 items-center">
+                <h1 className="text-[18px] tracking-wide font-bold">{title}</h1>
+        <ShowStatue isStatus={status} text={statusText}></ShowStatue>
+                
+                </div>
+                <div className="my-4">
                 <p className="text-[16px]">{desc} </p>
                 </div>
 
-</>
+</div>
 }
 
 export default Banner
