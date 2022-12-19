@@ -19,33 +19,134 @@
 
 
     /* loginForm */
-    .loginSection{
-       @apply bg-gray-50 dark:bg-gray-900
+    .Section_login_oneStyle_1{
+       @apply  dark:bg-gray-900 bg-blue-50
     }
 
-    .lginContainer{
+    .loginform_Styletwo_2{
         @apply flex flex-col items-center justify-center mx-auto md:h-screen lg:py-0
     }
 
-    .loginBackgroundContainer {
-     @apply w-full md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700
+    .loginform_stylethree_3 {
+     @apply w-full md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700 relative
     }
-    .btn-login {
-        @apply  w-full bg-blue-800 rounded-md
+    .loginform_style_line_left_4{
+      @apply bg-blue-900 px-[17%] py-[2px] absolute translate-x-10 translate-y-10 bottom-14 rounded-bl-[2px]
+    }
+    .loginform_style_line_right_5{
+        @apply bg-yellow-400 px-[25%] py-[2px] absolute translate-x-10  translate-y-10 right-20 bottom-14  rounded-br-[2px]
+    }
+    .loginform_main_style_box_6{
+        @apply p-6 space-y-1 md:space-y-3  my-5 mx-10 bg-white sm:p-8 rounded-sm
+    }
+    .loginform_header_style_box_7{
+        @apply text-xl 
+        font-medium leading-tight mb-2 tracking-tight text-gray-900 md:text-2xl dark:text-white 
+    }
+
+    .loginform_paragraph_style_box_8{
+        @apply font-medium
+    }
+
+    .loginform_form_style_box_9{
+        @apply space-y-4 md:space-y-6 my-6  mt-10
+    }
+    .loginform_lable_style_box_10{
+        @apply block mb-2 text-sm font-medium text-gray-900
+        dark:text-white
+    }
+    .loginform_error_paragraph_style_box_11{
+        @apply text-[10px] my-[5px] font-extralight
+    }
+    .loginform_button_style_box_13 {
+        @apply  w-full bg-blue-800 rounded-sm
          text-white  focus:ring-4 focus:outline-none 
          font-medium text-sm px-5 py-3 text-center 
     }
 
-    .inputBox{
-       @apply  text-gray-900  border-blue-500 border-b-[1px]
-        sm:text-sm block w-full py-3 dark:bg-gray-700
+
+
+    .loginform_input_style_box_12{
+       @apply  text-gray-900  border-slate-900  bg-gray-100
+        sm:text-sm block w-full py-3 rounded-sm px-2 dark:bg-gray-700
          dark:border-gray-600 dark:placeholder-gray-400
-          dark:text-white
+          dark:text-white text-[20px] font-medium tracking-wider
     }
 
     .paraStyle{
-        @apply text-sm text-center font-light text-gray-500 dark:text-gray-400
+        @apply text-sm text-start font-light  dark:text-gray-400 text-blue-500
     }
+
+
+
+    /*login form style*/
+
+
+    /* Registration */
+
+.registration_container_style--01{
+@apply container mx-auto max-w-[100rem] py-4
+}
+.divstlye_registrationOfheader_style--01-1{
+    @apply px-6 py-2 text-base 
+}
+.registration_header_style--headertext--02{
+    @apply font-medium text-xl relative leading-tight
+}
+.regist_inputstlye-style-forminput-02{
+    @apply  border border-gray-300
+     text-gray-900 text-sm rounded-sm focus:ring-blue-500
+      focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
+       dark:border-gray-600
+     dark:placeholder-gray-400
+      dark:text-white dark:focus:ring-blue-500
+       dark:focus:border-blue-500
+}
+.registration_box_style--basisstyle-03{
+@apply basis-1/2 px-4 py-2
+}
+.regist_headerOftype_style--header-box--04{
+    @apply font-medium leading-tight text-base mt-0 mb-2 text-purple-700 border-b-[1px] border-purple-100
+}
+
+.flexofinputtpye_registration_flex-style--04{
+    @apply flex space-x-4 py-2
+}
+.regist_lablestyle-style-05{
+   @apply text-base font-medium leading-relaxed mt-0  text-gray-800 text-[12px]
+}
+
+.regist_textarea-style0-06{
+    @apply block p-2.5 mt-2 w-full text-sm text-gray-900
+      rounded-sm border border-gray-300
+      focus:ring-blue-500 focus:border-blue-500
+       dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
+     dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500
+}
+.regist_btnstyle-submint-07{
+    @apply inline-block px-6 py-2.5
+     bg-purple-700 text-white font-medium text-xs 
+     leading-tight uppercase rounded shadow-md
+      hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700
+       focus:shadow-lg focus:outline-none focus:ring-0
+     active:bg-blue-800 active:shadow-lg transition 
+     duration-150 ease-in-out
+}
+
+.select_gender-rigstration-form_style-02{
+    @apply border
+    text-gray-900 text-sm rounded-sm
+    focus:ring-blue-500
+     focus:border-blue-500 block w-full p-2.5
+      dark:bg-gray-700
+       dark:border-gray-600
+       dark:placeholder-gray-400
+       dark:text-white
+        dark:focus:ring-blue-500
+        dark:focus:border-blue-500
+}
+    
+    /* Registration */
 
     /* sectionOneStyle */
     .sectionOne_Colunm{

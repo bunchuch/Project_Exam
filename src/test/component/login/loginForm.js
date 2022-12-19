@@ -1,55 +1,27 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
+// import axios from axios;
+import {omit} from "lodash"
+import { validateForm } from "./vailidate"
 
-const Header = (props) => {
+
+
+
+const Paragram = (props) => {
     return <>
-    <h1 class="text-xl leading-tight mb-2 tracking-tight
-     text-gray-900 md:text-2xl dark:text-white">
-    {props.text}</h1>
-    <p>{props.text2}</p>
+        <a href="#" className="text-[12px] ">{props.text}</a>
     </>
 }
 
-const InputLable = (props) =>{
-    return  <label for={props.for} 
-    class="block mb-2 text-sm font-medium text-gray-900
-     dark:text-white">
-        {props.text}</label>
-}
-
-const InputBox = (props)=>{
-    return <input type={props.type} 
-    name={props.name} id="email" 
-    className="inputBox" placeholder={props.placeholder} 
-    required=""/>
-}
-
-
-const FormLogin = () =>{
-    return  <form class="space-y-4 md:space-y-6 my-6" action="#">
-    <div>
-        <InputLable for="username" text="Username"></InputLable>
-        <InputBox placeholder="Username" type="email"></InputBox>
-    </div>
-    <div>
-       <InputLable for="password" text="Password"></InputLable>
-       <InputBox placeholder="password" type="password"></InputBox>
-    </div>
-    <div className="mt-2"></div>
-    <button type="submit" class="btn-login">Sign in</button>
-    <p class="paraStyle">
-     <a href="#" class="atagstyle"> Get Help with Signing In</a>
-    </p>
-</form>
-}
-
-const Paragram = (props) =>{
-    return <>
-    <p>{props.text}</p>
-    </>
-}
-
-const Footerdescription = (props)=>{
-    return <span className="flex mt-10 space-x-4 text-gray-400">
+//Footersdescription loginform or any form
+const Footerdescription = (props) => {
+    return <span className="flex space-x-4 text-blue-900 items-center">
+        <div className="flex space-x-2 items-center">
+            <div className="bg-gray-200 rounded-full px-2 py-2 items-center">
+                <img className="object-cover h-5 w-5"
+                    src="https://img.icons8.com/color/48/null/infinity.png" alt="icon" />
+            </div>
+            <Paragram text="@2022 TestQiuz" />
+        </div>
         <Paragram text={props.privacy}></Paragram>
         <Paragram text={props.security}></Paragram>
         <Paragram text={props.contact}></Paragram>
@@ -57,20 +29,147 @@ const Footerdescription = (props)=>{
 }
 
 
-const LoginForm = () =>{
-    return <section class="loginSection bg-white">
-    <div className="lginContainer">
-        <div class="loginBackgroundContainer">
-            <div class="p-6 space-y-1 md:space-y-3 m-10 bg-white sm:p-8 border-[1px] rounded-md">
-                <Header text="Sign In" text2="Enter you Personal Account"></Header>
-                <div className="mt-10">
-                <FormLogin></FormLogin>
+const LoginForm = (props) => {
+    const [color, setColor] = useState('gray')
+    const [isSumbit, setIsSubmit] = useState(false)
+    const [formErrors, setFormErrors] = useState({})
+    const [user, setUserDetails] = useState({
+        username: '',
+        password: ''
+    })
+
+
+
+ 
+
+    const validate = (event,name,value)=>{
+        switch (name) {
+            case 'username':
+                if(!value){
+                    setFormErrors(
+                       { ...formErrors,username:"username invaild"}
+                    )
+                }else{
+                    let newObj = omit(formErrors,"username")
+                    setFormErrors(newObj)
+                }
+                break;
+                case 'password':
+                    if(!new RegExp(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/).test(value)){
+                        setFormErrors({
+                            ...formErrors, password:"passowrd invaild"
+                        })
+                    }else{
+                        let newObj = omit(formErrors,"password")
+                        setFormErrors(newObj)
+                    }
+                    break;
+                    default:
+                    break;
+        }
+    }
+
+    const handleOnchange = (event) => {
+        const name = event.currentTarget.name
+        const value = event.currentTarget.value
+        setUserDetails(values => ({
+            ...user,
+            [name]: value
+        }
+        ))
+
+        validate(name,event,value)
+    }
+
+    const handleOnsubmit = (event) => {
+        if(event) event.preventDefault()
+        setFormErrors(validateForm(user))
+        
+        if(Object.keys(formErrors).length === 0 && Object.keys(user).length !=0){
+            alert("hello world")
+        }else{
+            alert("There is an Error")
+        }
+
+    }
+
+    //check login form and return new page if vailidation is successful
+    //use axios http library to return
+    useEffect(() => {
+        if (Object.keys(formErrors).length === 0 && isSumbit) {
+            console.log(user)
+            // axios.post('https:')
+
+        }
+    }, [formErrors])
+
+    return <section className="Section_login_oneStyle_1">
+        <div className="loginform_Styletwo_2">
+            <div className="loginform_stylethree_3 ">
+                <div className="loginform_style_line_left_4"></div>
+                <div className="loginform_style_line_right_5"></div>
+                <div className="loginform_main_style_box_6 ">
+                    {
+                        user.username ? (
+                            <>
+                                <h1 className="loginform_header_style_box_7">
+                                    {
+                                        `Hi ! ${user.username}`}</h1>
+                                <p className="loginform_paragraph_style_box_8">Nice to meet you 😎</p>
+                            </>
+                        ) : (
+                            <>
+                                <h1 className="loginform_header_style_box_7">
+                                    Log In   </h1>
+                                <p className="loginform_paragraph_style_box_8">Enter your Personal Account</p>
+                            </>
+                        )
+                    }
+                    <div className="mt-10">
+                        <form onSubmit={handleOnsubmit} className="loginform_form_style_box_9" action="#">
+                            {/* username input area */}
+                            <div>
+                                <label htmlFor="Username"
+                                    className="loginform_lable_style_box_10">
+                                    Username</label>
+                                < input type="text" onChange={handleOnchange}
+                                    value={user.username || ""}
+                                    name="username" id="username"
+                                    className="loginform_input_style_box_12"
+                                    required="" />
+                                    {formErrors.username && <p className="text-red-500 text-[12px] py-2 font-medium line-none">{formErrors.username}</p>}
+
+                            </div>
+                            {/* passowrd input area */}
+                            <div>
+                                <label htmlFor="Username"
+                                    className="loginform_lable_style_box_10">
+                                    Password</label>
+                                <input type="password"
+                                    onChange={handleOnchange}
+                                    name="password"
+                                    value={user.password || ""}
+                                    className="loginform_input_style_box_12"
+                                    required="" />
+                                {
+                                  formErrors.password && <p className="text-red-500 text-[12px] py-2 font-medium line-none">{formErrors.password}</p>
+                                }
+                            </div>
+                            <p className="loginform_error_paragraph_style_box_11 font-medium text-[12px] text-blue-900">
+                                <a href="#" className="atagstyle">I am a teacher</a>
+                            </p>
+                            <button type="submit" className="loginform_button_style_box_13">Log in</button>
+
+                            <p className="paraStyle text-center">
+                                <a href="#" className="atagstyle"> Get Help with Signing In</a>
+                            </p>
+                        </form>
+                    </div>
                 </div>
             </div>
+            <Footerdescription privacy="Term Privacy" security="security" contact="contact us"></Footerdescription>
         </div>
-   <Footerdescription privacy="Term Privacy" security="security" contact="contact us"></Footerdescription>
-    </div>
-  </section>
+    </section>
 }
 
 
