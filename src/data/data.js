@@ -21,7 +21,7 @@ const sectionTwoData = [
                 "id": "003",
                 "img":"https://ouch-cdn2.icons8.com/nou9zptArgjdRq-eetLlrFPEkWlLUMk9a_z9QzDI2tA/rs:fit:512:384/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9wbmcvMzEy/L2Q2MWM3ZDI5LWYy/NDctNGE2Yi05Nzcx/LTJjZTVmM2M2YzY3/YS5wbmc.png",
                 "header":"Problem Sovling Skill",
-                "Description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro beatae error laborum ab amet sunt recusandae? Reiciendis natus perspiciatis optio."
+                "Description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit.consectetur adipisicing elit.consectetur adipisicing elit. Porro beatae error laborum ab amet sunt recusandae? Reiciendis natus perspiciatis optio."
                 }]
 
             }

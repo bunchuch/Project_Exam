@@ -1,134 +1,54 @@
 import React, { useState } from "react";
-import { Question } from "../../../../data/data";
+import { BiBookAlt, BiHappyAlt, BiEditAlt,BiCheck } from "react-icons/bi";
+import Checkbox from "../../Checkbox";
+import Icon from "../../Icon";
 
-const TestTitle = ["Grammar","Lisenting","Reading","Writing"]
-const TestType = [ "Multiple Choice", "Fill in Blank", "Mactching World"]
-
-//render type of question
-const RenderType = ({test,number,question,type})=>{
-        if (test === TestTitle[0]){
-            return (
-                <div className="flex px-4">
-                <h1 className="font-bold">{number} 01.</h1>
-            <p>{question} Review important concepts and explore new topics—the options are endless with</p>
-            {}
+ export default function QuestionBox (){
+    return <div className=" mt-2 rounded-sm   py-4 w-full h-auto space-y-4">
+      <div className="flex space-x-1 items-center">
+        <Icon name={<BiBookAlt></BiBookAlt>}></Icon>
+      <article className=" md:flex items-center space-x-2 tracking-wide">
+       <h1 className="font-semibold leading-none text-sm ">  {"Lisenting"}</h1>
+         <p className="text-[10px] md:text-sm text-gray-800">recommand for use headephone or hearphone for best expreicese</p>
+      </article>
+      </div>
+     {/* use map function mapping data from api */}
+   <div className="bg-white border rounded-sm tracking-wider">
+      <div className="mx-2  px-4 py-4 space-y-6 ">
+         <p className="font-medium text-[14px]">Try to complete Answer blow / {"Lisenting"} 
+         / {"Multiple Choice"} / {" 5 point"}</p>
+         <div className="space-y-2">
+         <h1 className ="text-xl trackgin-wide font-medium ">Question {"number"}</h1>
+         <p className="text-md text-gray-800">Which Countries will join the EU in january 2007?</p>
+      </div>
+      <div className="inline-flex flex-col ">
+       <Checkbox Text="Bulgaria" onchange=""/>
+       <Checkbox Text="Poland" oncahnge=""/>
+       <Checkbox Text="Turkey" onchage=""/>
+       <Checkbox Text="Romaia" onchage=""/>
+      </div>
+      <div className="flex flex-col md:flex-row
+       justify-between md:items-center mt-[10px]">
+      <div className="inline-flex mt-10 md:mt-0 space-x-2 order-last md:-order-last  rounded-md">
+         <div className="md:border-[1px] md:rounded-full space-x-1 flex md:py-1.5 md:px-2">
+         <Icon name ={<BiHappyAlt/>}></Icon>
+            <p className="text-[12px] text-gray-500"></p>
+         </div>
+         <div className="md:border-[1px] space-x-1 rounded-full flex md:py-1.5 
+         px-2 md:bg-green-500 md:text-white">
+            <Icon name ={<BiCheck/>}></Icon>
+            <p className="text-[12px] ">Correct</p>
             </div>
-            )
-        }else if(test === TestTitle[1]){
-return (
-    <div className="flex px-4">
-    <h1 className="font-bold">{number} 01.</h1>
-<p>{question} Review important concepts and explore new topics—the options are endless with</p>
-{}
-</div>
-)
-        }else if (test === TestTitle[2]){
-            return (
-                <div className="flex px-4">
-                <h1 className="font-bold">{number} 01.</h1>
-            <p>{question} Review important concepts and explore new topics—the options are endless with</p>
-            {}
+            <div className="md:border-[1px] space-x-1 md:rounded-full flex md:px-2 md:py-1.5">
+            <Icon name ={<BiEditAlt/>}></Icon>
+            <p className="text-[12px] text-gray-500 ">Orangize by PUC takmaun</p>
             </div>
-            )
-        }else if(test === TestTitle[3]){
-           return(
-            <>
-            <div className="flex px-4">
-            <h1 className="font-bold">{number} 01.</h1>
-        <p>{question} Review important concepts and explore new topics—the options are endless with</p>
-        </div>
-        {
-            type === TestType[0] &&(
-             <div className="">There Many correct Answer</div>)
-                
-            }
-            </>
-           )
-         
-            
-        }
-   
-}
-
-
-
-
-//qestion box
-function QuestionBox ({number,question,isNone}){
-   
-    const [titleTest, setTitle] = useState("")
-    const [getTestType, setType] = useState('')
-    return <>
-    <div className="flex flex-col space-y-10">
-        <div className="header flex space-x-3 border-b-[1px] pb-5 ">
-           <HeaderTitle title="English Intermedia"    />
-
-               <div className="border-[1px] px-3 py-2 font-medium text-[14px]
-             rounded-full">
-             Teacher : Miss. Voch Chea</div>
-
-                <div className="border-[1px] px-3 py-2 font-medium text-[14px]
-             rounded-full
-             hover:bg-blue-200 hover:text-blue-900 hover:border-blue-200">  
-                Grade 4</div>
-              <SelectOption Name="Test" title={TestTitle} event={(e)=>{
-
-                const selectType = e.target.value
-                setTitle(selectType)
-              }} />
-
-              <SelectOption Name="Type" title={TestType} event={(e)=>{
-                const selectType = e.target.value; 
-                 setType(selectType)}}/>
-        </div>
-        
-
-{
-    isNone?(
-        <div>
-
-            <h1>Request for Exam</h1>
-        </div>   
-    ):(
-        <div className=" w-full px-2 py-4 rounded-md border-[1px] space-y-3">
-        <div className="font font-medium text-[16px] 
-        px-4 flex justify-between text-center
-         items-center">
-            <div className="flex flex-row space-x-2">
-            <h1>Try to Complete Your Question</h1> <div className="bg-yellow-200 rounded-full text-[14px] px-2 ">
-                {titleTest}</div>
-            </div>
-         
-             <h1 className="font-medium text-[12px] text-blue-700 tracking-wide px-4">{getTestType}</h1>
+         </div>
+         <button className="bg-blue-800 px-4 py-2 rounded-[4px] text-[14px] 
+         font-medium text-white">Answer</button>
+         </div>
+      </div>
+      
+   </div>
     </div>
-     <RenderType test={titleTest} type={getTestType}></RenderType>
-    </div>
-    )
- 
-
-}
-       
-    </div>
-    </>
-}
-
-
-    function SelectOption({event, title,Name}) {
-      return (<div className="border-[1px] px-3 py-2 font-medium text-[14px]
-             rounded-full ">  
-              {Name}
-                <select className="px-5 mx-2 focus:none" onChange={event}>
-                   {(title).map(value => <option value={value}>{value}</option>)}
-                </select>
-                </div>);
-    }
-
-
-
-    function HeaderTitle({title}) {
-        return (<div className="border-[1px] px-3 py-2 font-medium text-[14px]
-               rounded-full
-               hover:bg-blue-200 hover:text-blue-900 hover:border-blue-200">  
-                 <p>{title}</p></div>);
-      }
-  export default QuestionBox
+ } 

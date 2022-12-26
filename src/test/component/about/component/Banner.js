@@ -16,11 +16,11 @@ const ShowStatue = ({isStatus,text})=>{
 }
 
 
-function Banner({img,title,desc,status,statusText}){
+function Banner({img,title,desc,status,statusText,style}){
 
 
 
-return <div>
+return <div className={style}>
 <img className="object-cover w-48 h-32" src={img}/>
                 <div className=" flex space-x-2 mt-10 items-center">
                 <h1 className="text-[18px] tracking-wide font-bold">{title}</h1>

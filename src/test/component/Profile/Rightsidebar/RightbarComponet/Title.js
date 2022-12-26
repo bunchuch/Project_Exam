@@ -3,8 +3,8 @@ import React from "react";
 
 export default 
 function Title({ text }) {
-    return (<div className="py-3 mt-5">
-        <h1 className="font-medium text-[16px]">{text}</h1>
+    return (<div className="py-3 mt-2">
+        <h1 className="line-none  text-[14px]">{text}</h1>
     </div>);
 
 }

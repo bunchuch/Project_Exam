@@ -1,40 +1,41 @@
 import React from "react";
 
+const number = [1,2,3,4,5,6,7,9]
 
 
 function ExamStatus ({data}){
-return<>
-<div className="flex w-full flex-col space-y-4">
-    {/* Exam Progress status */}
-    <div className=" flex px-4 py-4 w-full bg-white border-[1px] flex-row justify-between items-center rounded-md">
-        <div className="">Progress bar </div>
-        <div className="">Progress bar </div>
-        <div className="">Progress bar </div>
-    </div>
+return <nav aria-label="Page navigation example" className=" flex   justify-center py-4 bg-white">
+  <ul class="grid grid-cols-10  md:inline-flex items-center  md:space-x-2 justify-center">
+    <li>
+      <a href="#" class="block  sm:px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border
+       border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800
+        dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+        <span class="sr-only">Previous</span>
+        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1
+           0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+      </a>
+    </li>
+   {
+    number.map((number)=> <li>
+    <a href="#" class="px-3 py-2 leading-tight text-gray-600 bg-white border border-gray-300
+     hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700
+      dark:hover:text-white">{number}</a>
+  </li>
+    )
+   }
+    <li>
+      <a href="#" class="block px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg
+       hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700
+        dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+        <span class="sr-only">Next</span>
+        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+      </a>
+    </li>
+  </ul>
+</nav>
 
-
-{/*Exam status bar*/}
-    <div className="border-[1px] rounded-md">
-<div className=" border-b-[1px] mx-1 px-2 py-4">
-<h1 className=" font-medium text-[16px]">Exam status</h1>
-</div>
-<div className="px-4 py-4 space-y-2">
-   <button onClick={()=>alert("click on")}><h1 className="uppercase font-medium text-[14px]">Writing</h1></button>
-    <div className="bg-gray-100 px-4 py-2 grid grid-cols-4 gap-4 rounded-md">
-<button className="bg-white px-4 py-2 rounded-full">{1}</button>
-    </div>
-</div>
-
-
-
-
-
-
-
-    </div>
-</div>
-
-</>
 }
 
 

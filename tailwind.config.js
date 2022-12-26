@@ -3,13 +3,10 @@ const colors = require("tailwindcss/colors");
 module.exports = {
   content: ["./src/**/*.{html,js}"],
   theme: {
-
-    backgroundImage:{
-      'hero-image' : 'url("https://xqsuperschool.org/rethinktogether/wp-content/uploads/sites/5/2021/05/pexels-pixabay-267885.jpg")',
-      
-    },
+   
     screens: {
       'xs': '480px',
+      
       'sm': '640px',
       // => @media (min-width: 640px) { ... }
 
@@ -26,7 +23,12 @@ module.exports = {
       // => @media (min-width: 1536px) { ... }
     },
 
-    extend: {},
+    extend: {
+      fontFamily:{
+        roboto : "'Roboto',serif",
+        ubuntu : "'ubuntu',serif",
+      }
+    },
   },
   plugins: [],
 }

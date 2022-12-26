@@ -2,31 +2,15 @@ import React, { useEffect, useState } from "react"
 // import axios from axios;
 import {omit} from "lodash"
 import { validateForm } from "./vailidate"
+import SmallFooter from "../Footer/smallFooter"
 
 
 
 
-const Paragram = (props) => {
-    return <>
-        <a href="#" className="text-[12px] ">{props.text}</a>
-    </>
-}
+
 
 //Footersdescription loginform or any form
-const Footerdescription = (props) => {
-    return <span className="flex space-x-4 text-blue-900 items-center">
-        <div className="flex space-x-2 items-center">
-            <div className="bg-gray-200 rounded-full px-2 py-2 items-center">
-                <img className="object-cover h-5 w-5"
-                    src="https://img.icons8.com/color/48/null/infinity.png" alt="icon" />
-            </div>
-            <Paragram text="@2022 TestQiuz" />
-        </div>
-        <Paragram text={props.privacy}></Paragram>
-        <Paragram text={props.security}></Paragram>
-        <Paragram text={props.contact}></Paragram>
-    </span>
-}
+
 
 
 const LoginForm = (props) => {
@@ -137,7 +121,9 @@ const LoginForm = (props) => {
                                     name="username" id="username"
                                     className="loginform_input_style_box_12"
                                     required="" />
-                                    {formErrors.username && <p className="text-red-500 text-[12px] py-2 font-medium line-none">{formErrors.username}</p>}
+                                    {formErrors.username && 
+                                    <p className="text-red-500 text-[12px] py-2 font-medium line-none">
+                                        {formErrors.username}</p>}
 
                             </div>
                             {/* passowrd input area */}
@@ -152,7 +138,8 @@ const LoginForm = (props) => {
                                     className="loginform_input_style_box_12"
                                     required="" />
                                 {
-                                  formErrors.password && <p className="text-red-500 text-[12px] py-2 font-medium line-none">{formErrors.password}</p>
+                                  formErrors.password && <p className="text-red-500 text-[12px] py-2 font-medium line-none">
+                                    {formErrors.password}</p>
                                 }
                             </div>
                             <p className="loginform_error_paragraph_style_box_11 font-medium text-[12px] text-blue-900">
@@ -167,7 +154,7 @@ const LoginForm = (props) => {
                     </div>
                 </div>
             </div>
-            <Footerdescription privacy="Term Privacy" security="security" contact="contact us"></Footerdescription>
+           <SmallFooter></SmallFooter>
         </div>
     </section>
 }

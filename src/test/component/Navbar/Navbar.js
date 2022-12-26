@@ -10,8 +10,8 @@ import PageComponet from "./ListComponet"
 const Navbar = ({style}) =>{
     return (
 
-       < nav  className={style}>
-        <div class="container px-6 py-[5px] mx-auto md:flex md:justify-between md:items-center">
+       < nav  className="bg-slate-900 text-white relative">
+        <div class="container px-6 py-[5px] mx-auto md:flex md:justify-between md:items-center   ">
             <div class="flex items-center justify-between">
                 <div className="flex flex-row justify-between space-x-2">
                 <img src="https://img.icons8.com/color/48/null/infinity.png" className="object-fill " alt="logo"/>
@@ -29,7 +29,7 @@ const Navbar = ({style}) =>{
             
             </div>
            
-            <div  class="xl:flex xl:items-center  sm:justify-between sm:flex">
+            <div  class="flex md:items-center md:justify-between md:flex">
               
                     <PageComponet name="Home" img="https://img.icons8.com/sf-regular/25/1D10B2/home-page.png"/>
                     <PageComponet name="About us" img="https://img.icons8.com/windows/25/1D10B2/info-popup.png"/>
@@ -40,7 +40,9 @@ const Navbar = ({style}) =>{
                 
             </div>
 
-            <a href="#" className="bg-white text-slate-900 items-center  py-1 rounded-full border-[1px] px-2 hover:bg-blue-400 hover:text-white">Sign Up</a>
+            <a href="#" className="text-white
+             bg-blue-700 hover:bg-blue-800 focus:ring-4
+              focus:ring-blue-300 font-medium rounded-sm text-sm px-5 py-2 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Sign Up</a>
         </div>
     </nav>
     )

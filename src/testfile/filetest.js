@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react"
 
 import Input from "./Input"
+import ResponeTest from "./ResponeTest"
 
 const InputFeild = ()=>{
     const [data,setData]= useState({
@@ -96,6 +97,7 @@ setEmotional(`${Emotion.happy}`)
         </NumberContext.Provider>
 
         <InputFeild></InputFeild>
+        <ResponeTest></ResponeTest>
         </div>
     )
 }
