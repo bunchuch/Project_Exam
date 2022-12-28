@@ -1,8 +1,10 @@
 
 import React, { useEffect, useState } from "react"
+import Dropdown from "./Dropdown"
 
 import Input from "./Input"
 import ResponeTest from "./ResponeTest"
+import Timer from "./Timer"
 
 const InputFeild = ()=>{
     const [data,setData]= useState({
@@ -61,6 +63,7 @@ export default function FileTest(){
     const [emontional,setEmotional] = useState()
     const [staute, setStatue] = useState('what about your feeling right now ?')
     const [styleEmotional ,setStyle] = useState(style.happy)
+    const [count,setCount] = useState(45)
     
 
     
@@ -70,6 +73,7 @@ const handleOnclickSad  = (event)=>{
     
    
 }
+
 
 
 useEffect(()=>{
@@ -98,6 +102,9 @@ setEmotional(`${Emotion.happy}`)
 
         <InputFeild></InputFeild>
         <ResponeTest></ResponeTest>
+        <Dropdown></Dropdown>
+       <Timer></Timer>
+        <p>{count}</p>
         </div>
     )
 }

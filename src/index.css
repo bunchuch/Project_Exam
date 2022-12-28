@@ -22,11 +22,11 @@
 
     /* loginForm */
     .Section_login_oneStyle_1{
-       @apply  dark:bg-gray-900 bg-blue-50
+       @apply  dark:bg-gray-900 bg-gray-50 
     }
 
     .loginform_Styletwo_2{
-        @apply flex flex-col items-center justify-center mx-auto md:h-screen lg:py-0
+        @apply flex flex-col items-center justify-center mx-auto h-screen md:h-screen lg:py-0
     }
 
     .loginform_stylethree_3 {
@@ -39,7 +39,7 @@
         @apply bg-yellow-400 px-[25%] py-[2px] absolute translate-x-10  translate-y-10 right-20 bottom-14  rounded-br-[2px]
     }
     .loginform_main_style_box_6{
-        @apply p-6 space-y-1 md:space-y-3  my-5 mx-10 bg-white sm:p-8 rounded-sm
+        @apply p-6 space-y-1 md:space-y-3  my-5 md:mx-10  md:bg-white md:p-8 rounded-sm
     }
     .loginform_header_style_box_7{
         @apply text-xl 
@@ -69,8 +69,8 @@
 
 
     .loginform_input_style_box_12{
-       @apply  text-gray-900  border-slate-900  bg-gray-100
-        sm:text-sm block w-full py-3 rounded-sm px-2 dark:bg-gray-700
+       @apply  text-gray-900 rounded-[4px]  border-slate-900  bg-gray-100
+        sm:text-sm block w-full py-2  md:py-3  px-2 dark:bg-gray-700
          dark:border-gray-600 dark:placeholder-gray-400
           dark:text-white text-[20px] font-medium tracking-wider
     }

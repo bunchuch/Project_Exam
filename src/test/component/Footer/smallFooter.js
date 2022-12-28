@@ -28,7 +28,7 @@ export default function SmallFooter  (props)  {
                     src="https://img.icons8.com/color/48/null/infinity.png" alt="icon" />
             </div>
             <div className="">
-                <Icon name={<BiCopyright/>}></Icon>
+                <Icon Size="1.2rem" name={<BiCopyright/>}></Icon>
             </div>
         </div>
       {

@@ -1,4 +1,6 @@
 
+
+
 const sectionTwoData = [
     {
       "one" :[ 
@@ -73,14 +75,12 @@ const personalinfo = [
         "fname":"Martin",
         "lname": "June",
          "info": [
-            {"title":"level", "desc" : "1", "icon": "https://img.icons8.com/metro/26/1A1BAD/medium-connection.png" },  
+            {"title":"level", "desc" : "1", "icon": "BiCool" },  
             { "title":"Grade", "desc" : "Englis", "icon" : "https://img.icons8.com/material-outlined/26/1A1BAD/school-building.png",},
             { "title":"Age",    "desc" : "12",     "icon" :   "https://img.icons8.com/windows/32/1A1BAD/birthday-date.png",},
             {   "title":"Roll","desc" : "Student","icon"  :   "https://img.icons8.com/material-outlined/32/1A1BAD/school.png", } ] ,
 
-         "descritption": [{ "id":"01", "header":"Hello Wrold😍👩🏻","desc" : " Headings must have content and the content must  be accessible by a screen reader Headings"+
-                     " must have content and the content must be accessible by a screen reader Headings must"+
-                     " have content and the content must be accessible by a screen reader"
+         "descritption": [{ "id":"01", "header":"Hello Wrold😍👩🏻","desc" : " Headings must have content and the content must  be accessible by a screen reader Headings",
                      }], 
         "PersonalArchivement" : [ 
             { "id": "01",  "title": "Top 1 English Speaking",  "summary": "Who is the best of English Speaking at 01-Jun-2022 at ABC Internation School"  },

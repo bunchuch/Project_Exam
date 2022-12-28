@@ -154,7 +154,10 @@ const LoginForm = (props) => {
                     </div>
                 </div>
             </div>
-           <SmallFooter></SmallFooter>
+            <div className="hidden md:block">
+            <SmallFooter></SmallFooter>
+            </div>
+          
         </div>
     </section>
 }
