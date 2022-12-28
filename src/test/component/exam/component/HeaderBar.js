@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import {BiLayer,BiBarChartAlt2,BiBookReader,BiCaretDown,BiFilterAlt,
+import {BiLayer,BiBarChartAlt2,
     BiCategoryAlt,
-    BiChevronDown,BiChalkboard ,BiCool} from "react-icons/bi";
+    BiChevronDown,BiLibrary ,BiUserVoice, BiBookOpen,BiFontColor} from "react-icons/bi";
+    import {TbWriting} from "react-icons/tb"
+import { Link } from "react-router-dom";
 import Icon from "../../Icon";
 import Timer from "./../../././././../../testfile/Timer";
 
@@ -14,8 +16,8 @@ const handleOnclick = ()=>{
 
     return <div className="tracking-wider">
      <button onClick={handleOnclick} id="states-button" data-dropdown-toggle="dropdown-states"
-      className="flex-shrink-0 z-10 inline-flex items-center py-1 px-2 text-sm font-medium text-[12px] text-center
-       text-gray-500 bg-gray-100 border border-gray-300 rounded-lg hover:bg-gray-200 focus:ring-4
+      className="flex-shrink-0 z-10 inline-flex items-center py-1 px-2 text-sm  text-[14px] text-center
+       text-gray-600   hover:bg-gray-200 focus:ring-4
         focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700
          dark:text-white dark:border-gray-600 " type="button">
             <div className=" flex space-x-2">
@@ -42,15 +44,16 @@ const handleOnclick = ()=>{
 function HeaderList ({icon,title}){
     return <>
        <li class="mr-2 px-1.5 md:px-0">
-                <a href="#" class="inline-flex font-medium md:font-normal text-blue-400  items-center md:space-x-2
+            <Link>
+             <a href="#" class="inline-flex font-medium md:font-normal md:text-gray-600  text-blue-400  items-center md:space-x-2
                 py-4 md:px-2 rounded-t-lg border-b-2 border-transparent
                  hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300
                   cursor-not-allowed">
-                    <div className="hidden md:flex">
+                   <div className="hidden md:flex">
                       {icon}
                     </div>
                     <div>{title}</div>
-                      </a>
+                      </a></Link>
             </li>
     </>
 }
@@ -62,24 +65,17 @@ const type = ["Listening","Speaking","Vocabulary","Writing"]
 const QuestionType = [ "MultipleChoice","Fill in blank","Match Word"]
 
     return     <div class=" text-sm py-1.5 border-b md:p-0  text-center text-gray-800
-     bg-white  border-gray-200 dark:text-gray-400 dark:border-gray-700">
+      border-gray-200 dark:text-gray-400 dark:border-gray-700">
         <ul class="flex flex-col md:flex-wrap md:flex-row -mb-px md:justify-between">
             <div className="flex flex-wrap -mb-px order-1 border-b-[1px] md:border-none ">
-         <HeaderList icon={  <Icon Size="1.2rem" name={<BiBarChartAlt2/>}></Icon>} title="English Intermedia"/>
-         <HeaderList icon ={  <Icon Size="1.2rem" name={<BiChalkboard/>}></Icon>} title="Grade 4"/>
-         <HeaderList icon={     <Icon Size="1.2rem" name={<BiLayer></BiLayer>}></Icon>} title="M4L4"/>
-         <HeaderList icon= {<Icon Size="1.2rem" name={<BiCool/>}></Icon>} title="Mrs.Voch Chea"/>
+         <HeaderList icon={  <Icon Size="1.2rem" name={<BiUserVoice/>}></Icon>} title="Listenngin"/>
+         <HeaderList icon ={  <Icon Size="1.2rem" name={<BiFontColor/>}></Icon>} title="Vocabulary"/>
+         <HeaderList icon={     <Icon Size="1.2rem" name={<BiLibrary/>}></Icon>} title="Grammer"/>
+         <HeaderList icon= {<Icon Size="1.2rem" name={<BiBookOpen/>}></Icon>} title="Reading"/>
+         <HeaderList icon= {<Icon Size="1.2rem" name={<TbWriting/>}></Icon>} title="Writing"/>
          
             </div>
-            <div className="flex order-last md:order-2 md:justify-center md:items-center ">
-              <div className="">
-              <Timer/>
-              </div>
-            </div>
    <div className="flex items-center px-2 justify-center md:justify-center order-2 md:order-last py-4 md:py-0 ">
-       <li className="mr-2 ">
-                <Dropdown Size="1.2rem" name="Exam Role" List={type}></Dropdown>
-            </li>
             <li className="mr-2">
                 <Dropdown Size="1.2rem" name="Qustion Type" List={QuestionType} ></Dropdown>
             </li>

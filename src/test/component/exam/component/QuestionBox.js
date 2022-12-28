@@ -1,9 +1,37 @@
 import React, { useState } from "react";
 import { BiBookAlt, BiHappyAlt, BiEditAlt,BiCheck } from "react-icons/bi";
+import { IconContext } from "react-icons/lib";
 import Checkbox from "../../Checkbox";
 import Icon from "../../Icon";
 
- export default function QuestionBox (){
+
+
+const CorrectStatus =({answer})=>{
+
+const [change, setChange] = useState({
+   style : "md:border-[1px] space-x-1 rounded-full flex md:py-1.5 px-2 md:bg-green-500 md:text-white",
+   text : "Correct",
+   icon : <IconContext.Provider value= {{color:"#ffff",Size:"1.2rem"}}><BiCheck/>  </IconContext.Provider>
+})
+   return <>
+   {
+      answer?(
+<div className={change.style}>
+         {change.icon}
+            <p className="text-[11px] ">{change.text}</p>
+            </div>
+      ):(
+         <></>
+      )
+   }
+     
+   
+   </>
+}
+
+
+ export default function QuestionBox ({number,question,type}){
+   let AnswerCorrect = true; 
 const handleOnAnswer  = (event)=>{
    alert("Submit succesfully")
 }
@@ -17,13 +45,13 @@ const handleOnAnswer  = (event)=>{
       </article>
       </div>
      {/* use map function mapping data from api */}
-   <div className="bg-white border rounded-[4px] tracking-wider">
+   <div className="bg-white border rounded-[4px] tracking-wide">
       <div className="mx-2  px-4 py-4 space-y-6 ">
          <p className="font-medium text-[14px]">Try to complete Answer blow / {"Lisenting"} 
          / {"Multiple Choice"} / {" 5 point"}</p>
          <div className="space-y-2">
-         <h1 className ="text-xl trackgin-wide font-medium ">Question {"number"}</h1>
-         <p className="text-md text-gray-800">Which Countries will join the EU in january 2007?</p>
+         <h1 className ="text-md trackgin-wide font-medium ">Question {"number"}</h1>
+         <p className="text-[14px] text-gray-800">Which Countries will join the EU in january 2007?</p>
       </div>
       <div className="inline-flex flex-col ">
        <Checkbox Text="Bulgaria" onchange=""/>
@@ -34,15 +62,10 @@ const handleOnAnswer  = (event)=>{
       <div className="flex flex-col md:flex-row
        justify-between md:items-center mt-[10px]">
       <div className="inline-flex mt-10 md:mt-0 space-x-2 order-last md:-order-last  rounded-md">
-         <div className="md:border-[1px] md:rounded-full space-x-1 flex md:py-1.5 md:px-2">
-         <Icon Size="1.2rem" name ={<BiHappyAlt/>}></Icon>
-            <p className="text-[12px] text-gray-500"></p>
-         </div>
-         <div className="md:border-[1px] space-x-1 rounded-full flex md:py-1.5 
-         px-2 md:bg-green-500 md:text-white">
-            <Icon Size="1.2rem" name ={<BiCheck/>}></Icon>
-            <p className="text-[12px] ">Correct</p>
-            </div>
+       
+        <CorrectStatus answer={false}/>
+         
+       
             <div className="md:border-[1px] space-x-1 md:rounded-full flex md:px-2 md:py-1.5">
             <Icon Size="1.2rem" name ={<BiEditAlt/>}></Icon>
             <p className="text-[12px] text-gray-500 ">Orangize by PUC takmaun</p>
