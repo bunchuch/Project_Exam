@@ -168,6 +168,61 @@
         @apply py-5 text-yellow-800 font-semibold text-sm
     }
 
+/*headerbarof exam*/
+
+.maindiv {
+    @apply tracking-wider
+}
+
+.buttondropdown{
+    @apply flex-shrink-0 z-10 inline-flex items-center py-1 px-2 text-sm  text-[14px] text-center
+    text-gray-600   hover:bg-gray-200 focus:ring-4
+     focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700
+      dark:text-white dark:border-gray-600 
+}
+.buttondropdown-flex-style{
+    @apply flex space-x-2
+}
+
+.dropdownpanel-style{
+  @apply z-10 relative dark:bg-gray-700
+
+}
+
+.dropdownlist-style{
+    @apply py-2 divide-y-[1px] mt-2 mx-auto text-sm text-gray-700 rounded-md border-[1px]
+    dark:text-gray-200 bg-white md:w-[15rem] right-3 absolute 
+}
+
+.headerlist-style {
+    @apply mr-2 px-1.5 md:px-0
+}
+.atagheaderlist-style{
+    @apply inline-flex font-medium md:font-normal
+    md:text-gray-600  text-blue-400  items-center md:space-x-2
+      py-4 md:px-2 rounded-t-lg border-b-2 border-transparent
+       hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300
+}
+
+.headerbar-main-style {
+    @apply text-sm py-1.5 border-b md:p-0  text-center text-gray-800
+    border-gray-200 dark:text-gray-400 dark:border-gray-700
+}
+.ultag-headerbar-style {
+    @apply flex flex-col md:flex-wrap md:flex-row -mb-px md:justify-between
+}
+.divtag-hearlist-style{
+@apply flex flex-wrap -mb-px order-1 border-b-[1px] md:border-none 
+}
+
+.dropList-Link-style {
+    @apply inline-flex text-[12px] w-full px-4 py-1.5 text-gray-800 tracking-wide
+}
+.divtag-dropdown-button-style{
+    @apply flex items-center px-2 justify-center md:justify-center order-2 md:order-last py-4 md:py-0 
+}
+
+
 
 
 }

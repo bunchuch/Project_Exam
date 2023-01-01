@@ -5,7 +5,10 @@ import Dropdown from "./Dropdown"
 import Input from "./Input"
 import ResponeTest from "./ResponeTest"
 import Timer from "./Timer"
-
+import Test2 from "./test2"
+import Loader from "../components/Loader"
+import TestRute from "./route"
+import { useNavigate } from "react-router-dom"
 const InputFeild = ()=>{
     const [data,setData]= useState({
     })
@@ -84,6 +87,9 @@ const handleOnclickHappy = (event) => {
 setStatue('I feeling happy ! cloud we have a little party ... ')
 setEmotional(`${Emotion.happy}`)
 }
+
+
+const navigate = useNavigate()
     return (
         <div className={styleEmotional}>
 
@@ -104,6 +110,7 @@ setEmotional(`${Emotion.happy}`)
         <ResponeTest></ResponeTest>
         <Dropdown></Dropdown>
        <Timer></Timer>
+      <TestRute/>
         <p>{count}</p>
         </div>
     )
