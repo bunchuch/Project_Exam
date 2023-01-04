@@ -1,10 +1,25 @@
 import React from "react";
+import { useContext } from "react";
+import ThemeContext from "./ThmenContext";
 
 
-export default function ResponeTest({style}){
-    return <>
-    <div className={style}>
+
+
+function ThemedButton() {
+    const theme = useContext(ThemeContext)
+    return (
+      <button style={{ background: theme.background, color: theme.foreground }}>
+        I am styled by theme context!
+      </button>
+    );
+  }
+
+
+
+export default function Element  (props){
+    return <div>
+        <ThemedButton/>
     </div>
-    <p className="text-md sm:font-bold sm:text-2xl sm:text-blue-900 sm:bg-blue-200 sm:w-20 px-2 py-1.5">Hello world</p>
-    </>
+
 }
+

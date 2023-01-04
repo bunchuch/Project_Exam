@@ -1,14 +1,20 @@
 import React from "react"
 
 
+import { styleAudio } from "../style/style"
+
 
 export default function Audio({audio}){
-    return <>
-<div className="w-full rounded-[4px]  border-[1px] border-purple-200 ">
-    <audio className="w-full bg-gray-100  " controlsList="nodownload" controls>
-     <source src={audio} type="audio/mpeg" />
+    return <>{
+      audio?(<>
+      <div className={styleAudio.main}>
+    <audio className={styleAudio.audio} controlsList="nodownload" controls>
+      <source  src={audio} type="audio/mpeg" />
     </audio>
   </div>
+      </>):(<></>)
+    }
+
     
     </>
 }

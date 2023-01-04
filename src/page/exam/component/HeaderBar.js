@@ -11,9 +11,9 @@ import Icon from "../../../components/Icon";
 
 
 //headerlist-tag-list each items-function-components
-function HeaderList ({icon,title,link}){
+function HeaderList ({icon,title,link,value}){
     return <>
-       <li className="headerlist-style">
+       <li value={value} className="headerlist-style">
             <Link to={link} >
              <a href="#" className="atagheaderlist-style">
                    <div className="hidden md:flex">
@@ -36,22 +36,18 @@ export default function HeaderBar () {
     return <div className="headerbar-main-style">
              <ul class="ultag-headerbar-style">
               <div className="divtag-hearlist-style">
-              <HeaderList link="listening" 
-              icon={ <Icon Size="1.2rem" name={<BiUserVoice/>}></Icon>} title="Listennging"/>
+              <HeaderList value="listening" link="listening" 
+              icon={ <Icon Size="1.2rem" name={<BiUserVoice/>}></Icon>} title="Listening"/>
               <HeaderList 
               icon ={ <Icon Size="1.2rem" name={<BiFontColor/>}></Icon>} title="Vocabulary"/>
               <HeaderList 
               icon={ <Icon Size="1.2rem" name={<BiLibrary/>}></Icon>} title="Grammer"/>
               <HeaderList
               icon= {<Icon Size="1.2rem" name={<BiBookOpen/>}></Icon>} title="Reading"/>
-              <HeaderList link="writing"
+              <HeaderList value="writing" link="writing"
               icon= {<Icon Size="1.2rem" name={<TbWriting/>}></Icon>} title="Writing"/>
                   </div>
-   <div className="divtag-dropdown-button-style">
-            <li className="mr-2">
-                <Dropdown icon={<Icon Size="1.2rem" name={<BiCategoryAlt/>}/>} name="Qustion Type"/>
-            </li>
-</div>    
+     
         </ul>
     </div>
   }
