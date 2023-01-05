@@ -1,49 +1,43 @@
 
 import React, { useEffect, useState } from "react"
-import Dropdown from "./Dropdown"
-
-import Input from "./Input"
-import ResponeTest from "./ResponeTest"
 import Timer from "./Timer"
-import Test2 from "./test2"
-import Loader from "../components/Loader"
-import TestRute from "./route"
 import { useNavigate } from "react-router-dom"
-import ChangeColors from "./ChangeColor"
+
 import FillBlanks from "./fillblanks"
 import TestApi from "./testApi"
+import UseContexTest from "./UseText"
 
 
 
-const InputFeild = ()=>{
-    const [data,setData]= useState({
-    })
-    const [account,setAccount] = useState ({
-        username : '',
-        email  : ''
-    })
+// const InputFeild = ()=>{
+//     const [data,setData]= useState({
+//     })
+//     const [account,setAccount] = useState ({
+//         username : '',
+//         email  : ''
+//     })
 
-    const handleChange = (event)=>{
-        const value = event.target.value
-        const name = event.target.name
-       setData (data =>({...data ,[name]:value}))
-    }
-    const handleOnsubmit = (event)=>{
-        event.preventDefault()
-        setAccount({
-            username : 'voch',
-            Email: 'Voch@email.com',
-        })
-        console.log(account)
-        console.log(data)
-    }
-    return <form onSubmit={handleOnsubmit}>
-       <Input name="fname" value={data.fname} onChange={handleChange}/>
-        <Input name="lname" value={data.lname} onChange={handleChange}/>
-        <label>{data.fname}</label>
-        <button type="submit">Click</button>
-    </form>
-}
+//     const handleChange = (event)=>{
+//         const value = event.target.value
+//         const name = event.target.name
+//        setData (data =>({...data ,[name]:value}))
+//     }
+//     const handleOnsubmit = (event)=>{
+//         event.preventDefault()
+//         setAccount({
+//             username : 'voch',
+//             Email: 'Voch@email.com',
+//         })
+//         console.log(account)
+//         console.log(data)
+//     }
+//     return <form onSubmit={handleOnsubmit}>
+//        <Input name="fname" value={data.fname} onChange={handleChange}/>
+//         <Input name="lname" value={data.lname} onChange={handleChange}/>
+//         <label>{data.fname}</label>
+//         <button type="submit">Click</button>
+//     </form>
+// }
 
 
 
@@ -116,15 +110,14 @@ const navigate = useNavigate()
         }>Happy</button>
         <DisplayEmotional></DisplayEmotional>
         </NumberContext.Provider> 
-         <InputFeild></InputFeild>
-        <ResponeTest></ResponeTest>
-        <Dropdown></Dropdown>
-     
-       <Timer></Timer>
-    <TestRute/>
-     <ChangeColors/>\
+        
+
+<UseContexTest/>
+
+       {/* <Timer></Timer>
+  
      <TestApi/>
-       <FillBlanks></FillBlanks>
+       <FillBlanks></FillBlanks> */}
         </div>
     )
 }

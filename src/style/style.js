@@ -39,8 +39,9 @@ const styleInstruction = {
 
 
 const styleAudio = {
-    "main" : "w-full rounded-[4px]  border-[1px] bg-purple-900 border-purple-200 ",
-    "audio" : "w-full bg-gray-100 "
+    "main" : "w-full rounded-[4px]  border-[1px] bg-white border-gray-200 ",
+    "audio" : "w-full bg-gray-100 ",
+    "title_audio": "text-[14px] py-2 mx-2 font-medium"
   }
   
 
@@ -72,9 +73,28 @@ const styleError404 = {
 const styleRenderQuestion = {
     "divtag-header" : "flex justify-between items-center",
     "header-question-number" : "text-md trackgin-wide font-medium",
-    "header-categories-question" : "text-[12px] font-bold bg-purple-200 rounded-sm px-[3px] text-purple-800",
+    "badges" : "bg-purple-100 text-purple-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-purple-900 dark:text-purple-300",
     "ptag_question": "text-[14px] text-gray-800 mt-4",
     "divtag-groupInput": "inline-flex flex-col"
 }
 
-module.exports = {styleWriting, styleError404 ,styleGroupInput,styleAudio, styleNavbar, styleInstruction,styleLoader,styleRenderQuestion}
+const styleExamStatus = {
+  "main": "md:mt-10 ",
+  "header-title" : "font-medium text-[14px]  md:text-[14px] text-gray-900 my-2 border-b-[1px]  border-gray-200 tracking-wide",
+  "divtag-style" : "",
+  "rule_exam-style" : " ",
+  "ul-tag" : "grid grid-cols-10 gap-4 justify-self-center md:grid-cols-4 md:gap-2 border-dashed border-[1px] bg-white mt-4 border-gray-400 rounded-[4px] md:py-4 p-2 md:px-4 ",
+  "li-tag" : " ",
+  "a-tag" :  "md:px-3 md:py-2 py-2 px-2  leading-tight text-gray-900 bg-white border rounded-md border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
+  
+
+}
+
+module.exports = {styleWriting, styleError404 ,
+    styleGroupInput,styleAudio, styleNavbar, 
+    styleInstruction,styleLoader,
+    styleRenderQuestion,
+    styleExamStatus,
+
+
+}

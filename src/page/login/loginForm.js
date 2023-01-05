@@ -3,13 +3,8 @@ import React, { useEffect, useState } from "react"
 import {omit} from "lodash"
 import { validateForm } from "./vailidate"
 import SmallFooter from "../../components/Footer/smallFooter"
-
-
-
-
-
-
-//Footersdescription loginform or any form
+import { useSelector, useDispatch } from 'react-redux'
+import authSlice, { authActions } from "../../redux/auth-slice"
 
 
 
@@ -19,6 +14,7 @@ const LoginForm = ({setNavbar}) => {
         setNavbar(true)
     },[])
 
+    const dispatch = useDispatch()
 
     const [color, setColor] = useState('gray')
     const [isSumbit, setIsSubmit] = useState(false)
@@ -72,6 +68,9 @@ const LoginForm = ({setNavbar}) => {
     }
 
     const handleOnsubmit = (event) => {
+
+dispatch(authActions.login)
+        
         if(event) event.preventDefault()
         setFormErrors(validateForm(user))
         

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {BiLibrary,BiCategoryAlt ,BiUserVoice, BiBookOpen,BiFontColor} from "react-icons/bi";
+import {BiLibrary,BiBarChartAlt ,BiUserVoice, BiBookOpen,BiFontColor} from "react-icons/bi";
 import {TbWriting} from "react-icons/tb"
 import {  BrowserRouter as Router,  Route,  Link,  useParams,  useRouteMatch,  Outlet} from "react-router-dom";
 
@@ -16,10 +16,10 @@ function HeaderList ({icon,title,link,value}){
        <li value={value} className="headerlist-style">
             <Link to={link} >
              <a href="#" className="atagheaderlist-style">
-                   <div className="hidden md:flex">
+                   <div className="">
                       {icon}
                     </div>
-                    <div>{title}</div>
+                    <div className="hidden md:block">{title}</div>
                       </a></Link>
             </li>
     </>
@@ -47,8 +47,14 @@ export default function HeaderBar () {
               <HeaderList value="writing" link="writing"
               icon= {<Icon Size="1.2rem" name={<TbWriting/>}></Icon>} title="Writing"/>
                   </div>
+                
      
         </ul>
+        <div className="order-last mt-2 md:bg-gray-50 md:mt-0 border-none my-2 md:my-0">
+                    <HeaderList value="Levle" title="Level" icon={<Icon Size="1.2rem" 
+                    name={<BiBarChartAlt/>}/>} ></HeaderList>
+                  </div>
+        
     </div>
   }
 

@@ -47,22 +47,22 @@ export default function Lisenting ({question}){
 question={value.question} categories={value.categories} 
 Type={Type}/>
          }
-       <div className="flex  md:flex-row
-        justify-end md:items-center mt-[10px]">
-          <button  className="bg-purple-800 px-4 py-2 rounded-[4px] text-[14px] 
-          font-medium text-white">Answer</button>
-          </div> 
+      
        </div>
     </div>
+    
     </div>
 
 </>
+
       )}
     
       </>)
-   
-   
       } 
-      
+       <div className="block md:flex-row
+        justify-start md:items-center mt-[10px]">
+          <button  className="bg-purple-800 w-32 px-4 py-2 rounded-[4px] text-[14px] 
+          font-medium text-white">Answer</button>
+          </div> 
     </>
   }

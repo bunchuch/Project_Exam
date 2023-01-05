@@ -8,9 +8,10 @@ import {BrowserRouter, Routes, Route,Switch} from 'react-router-dom'
 import FileTest from "./testfile/filetest"
 import Registration from './page/regisignsterForm/Registration';
 import Loader from './components/Loader';
-import Input from './testfile/Input';
 import ErrorPage from './components/ErrorPage';
 import TaskArea from './page/exam/component/QuestionBox'
+import { useSelector } from 'react-redux'
+
 
 
 const LazyLoader = React.lazy(()=> import("./page/exam/Exam"))
@@ -22,6 +23,12 @@ const LazyLoaderListening = React.lazy(()=> import("./page/exam/component/Listen
 
 
 const App =()=>{
+const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+const isloadding = useSelector(state => state.loading.loader)
+console.log(isLoggedIn)
+console.log(isLoggedIn)
+
+
 const [title, setTitle] = useState()
   let [isNavbarHidden, setIsNavBarHidden] = useState(false)
   let [isFootBig, setIsFooter] = useState(false)
@@ -32,10 +39,14 @@ setTitle(document.title = "Exam Application")
   },[])
 
   return <div>
+    {isloadding && <Loader/>}
     <BrowserRouter>
     { isNavbarHidden ? null : <Navbar/>}
    <Routes>
-    <Route path='/login' element={<LoginForm setNavbar={setIsNavBarHidden} />}></Route>
+ { !isLoggedIn && <Route path='/login'
+   element={<LoginForm setNavbar={setIsNavBarHidden} />}/> }
+
+{isLoggedIn && <Route path='/profile' element={<Profile/>}></Route>}
     <Route path='/author/registration' element={<Registration></Registration>}></Route>
     <Route path='/exam' errorElement={<ErrorPage/>} element={
     <React.Suspense fallback={<Loader/>}>
@@ -54,12 +65,12 @@ setTitle(document.title = "Exam Application")
 </Route>
    <Route path='*' element={<ErrorPage setNavbar={setIsNavBarHidden}></ErrorPage>}/>
     <Route path='/' errorElement={<ErrorPage/>} element={<Mainpage/>}></Route>
-    <Route path='/profile' element={<Profile/>}></Route>
+  
     <Route path='/about' element={<About></About>}></Route>
-    <Route path='/testfile/:element' element ={<FileTest></FileTest>}>
-      <Route path ="number" element={<Loader/>}/>
-      <Route path='input' element={<TaskArea/>}/>
-      </Route>
+    {/*
+    tesfile
+    */}
+    <Route path='/testfile' element ={<FileTest></FileTest>}></Route>
    </Routes>
    </BrowserRouter>
     

@@ -1,4 +1,4 @@
-import React from "react"
+import React, { createContext, useState } from "react"
 
 
 import FillBlanks from "./FillBlank/FillBlank"
@@ -9,17 +9,18 @@ import { styleRenderQuestion } from "../../../style/style"
 
 
 export default function RenderQuestion({ type, question, categories, clude, number }) {
-    return <>
+    const [numberQuestion ,setNumber] = useState([{...number}])
+    return < >
         <div>
             <div className={styleRenderQuestion["divtag-header"]}>
                 <h1 className={styleRenderQuestion["header-question-number"]}>Question {number}</h1>
-                <h2 className={styleRenderQuestion["header-categories-question"]}>{categories}</h2>
+                <span className={styleRenderQuestion.badges}>{categories}</span>
             </div>
             {
                 ( categories === "Fill in blank") && (
                     <FillBlanks 
                     sentence={question} 
-                    clude={clude} />
+                    clude={clude} type={type} />
                 )
             }
             {   (categories === "multiple Chocice") && (<>

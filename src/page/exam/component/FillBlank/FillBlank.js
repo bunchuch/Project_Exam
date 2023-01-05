@@ -23,12 +23,15 @@ export default function FillBlanks(props) {
     const regExp = "<"
 
     const reactaStringReplace = reactStringReplace(props.sentence, regExp, (macth, i) =>
-    (<span className={styleFillBlank["spantag-style"]}>
+    (
+    
+         <span className={styleFillBlank["spantag-style"]}>
         <select className={styleFillBlank.selectbox}>
             <option value="selcetd"></option>
             {props.clude.map((value) => <option key={value} value={value}>{value}</option>)}
         </select>
-    </span>))
+    </span>
+  ))
     return <div className={styleFillBlank["divtag-style-main"]}>
         <div className={styleFillBlank["divtag-ul_list"]}>
             <ul className={styleFillBlank.ul_style}>

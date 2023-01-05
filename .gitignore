@@ -4,8 +4,9 @@
 /node_modules
 /.pnp
 .pnp.js
-/src/data
-/src/testfile
+
+data/data.js
+test/*
 
 
 # testing
