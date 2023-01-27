@@ -17,11 +17,6 @@ export default function Writing (){
  const [showimage ,setShowwimage] = useState()
  const [count,setCount] = useState()
  const [alert,setAlert] = useState(null)
-
-
-
-
-
 const[selectedFile, setSelectFile] = useState(null)
 
 const preventCopyPast = (e: ClipboardEvent<HTMLInputElement>)=>{
