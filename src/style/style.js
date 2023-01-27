@@ -1,8 +1,8 @@
 
 const styleGroupInput = {
-    "main": "flex items-center  py-2 rounded-[5px] xl:text-[15px] md:mb-2 sm:text-md ",
-    "input-style": " text-blue-600 md:w-5 md:h-5 bg-gray-100 focus:ring-blue-500 dark:focus:ring-blue-600 cursor-pointer dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600",
-    "label-style": " ml-2  font-medium text-[14px] text-gray-900 dark:text-gray-300",
+    "main": "flex items-center py-2 rounded-[5px] xl:text-[15px] md:mb-2 sm:text-md ",
+    "input-style": " text-purple-800 w-5 h-5 bg-purple-900 focus:ring-purple-800 dark:focus:ring-purple-800 cursor-pointer dark:ring-offset-gray-800 focus:ring-2 dark:bg-purple-700 dark:border-gray-600",
+    "label-style": " ml-2 font-medium md:text-[14px] text-[12.5px] text-gray-900 dark:text-gray-300",
  }
 
 const styleNavbar = {
@@ -30,24 +30,24 @@ const styleLoader = {
 
 
 const styleInstruction = {
-    "main" : "flex space-x-1 items-center py-4 md:py-0",
-    "article": " md:flex items-center md:space-x-2 tracking-wide",
+    "main" : "flex  text-purple-900 py-2 md:bg-gray-50 space-x-1 items-center md:py-2 px-2 rounded-[4px]",
+    "article": "md:flex space-x-0 items-center md:space-x-2 tracking-wide",
     "header": "font-semibold leading-none text-sm ",
-    "paragrah": "text-[12px] md:text-sm text-gray-800"
+    "paragrah": "text-[12px] hidden md:block md:text-sm text-gray-800"
   }
   
 
 
 const styleAudio = {
-    "main" : "w-full rounded-[4px]  border-[1px] bg-white border-gray-200 ",
+    "main" : "w-full rounded-[4px] mt-3 shadow-sm shadow-gray-500/10 bg-white",
     "audio" : "w-full bg-gray-100 ",
     "title_audio": "text-[14px] py-2 mx-2 font-medium"
   }
   
 
 const styleWriting = {
-    "main" : "rounded-[4px] w-full h-auto space-y-4",
-    "container" : "w-full mb-4 border border-gray-200 rounded-[4px] bg-gray-50 dark:bg-gray-700 dark:border-gray-600 ",
+    "main" : "rounded-[4px] w-full h-auto space-y-2",
+    "container" : "w-full shadow-sm shadow-gray-500/10 rounded-[4px] bg-gray-50 dark:bg-gray-700 dark:border-gray-600 ",
     "divtag2" : " px-2 py-4 relative",
     "divtag3 " : " px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800",
     "divtag4" : " flex pl-0 space-x-1 sm:pl-2",
@@ -79,13 +79,13 @@ const styleRenderQuestion = {
 }
 
 const styleExamStatus = {
-  "main": "md:mt-10 ",
-  "header-title" : "font-medium text-[14px]  md:text-[14px] text-gray-900 my-2 border-b-[1px]  border-gray-200 tracking-wide",
+  "main": "md:mt-10",
+  "header-title" : "font-medium text-[14px] md:text-[14px] my-1 tracking-wide bg-purple-900 py-1 px-2 bg-purple-800 text-white",
   "divtag-style" : "",
   "rule_exam-style" : " ",
-  "ul-tag" : "grid grid-cols-10 gap-4 justify-self-center md:grid-cols-4 md:gap-2 border-dashed border-[1px] bg-white mt-4 border-gray-400 rounded-[4px] md:py-4 p-2 md:px-4 ",
-  "li-tag" : " ",
-  "a-tag" :  "md:px-3 md:py-2 py-2 px-2  leading-tight text-gray-900 bg-white border rounded-md border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
+  "ul-tag" : " py-2 px-4 grid grid-cols-10 lg:grid-cols-5 shadow-sm shadow-gray-500/10 bg-white border-gray-400 rounded-[4px] ",
+  "li-tag" : "bg-blue-100",
+  "a-tag" :  "leading-tight text-gray-900 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
   
 
 }

@@ -9,9 +9,8 @@ import FileTest from "./testfile/filetest"
 import Registration from './page/regisignsterForm/Registration';
 import Loader from './components/Loader';
 import ErrorPage from './components/ErrorPage';
-import TaskArea from './page/exam/component/QuestionBox'
+import TaskArea from './page/exam/component/TaskArea'
 import { useSelector } from 'react-redux'
-
 
 
 const LazyLoader = React.lazy(()=> import("./page/exam/Exam"))
@@ -23,10 +22,7 @@ const LazyLoaderListening = React.lazy(()=> import("./page/exam/component/Listen
 
 
 const App =()=>{
-const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
-const isloadding = useSelector(state => state.loading.loader)
-console.log(isLoggedIn)
-console.log(isLoggedIn)
+
 
 
 const [title, setTitle] = useState()
@@ -39,29 +35,26 @@ setTitle(document.title = "Exam Application")
   },[])
 
   return <div>
-    {isloadding && <Loader/>}
     <BrowserRouter>
     { isNavbarHidden ? null : <Navbar/>}
    <Routes>
- { !isLoggedIn && <Route path='/login'
-   element={<LoginForm setNavbar={setIsNavBarHidden} />}/> }
+<Route path='/login'
+   element={<LoginForm setNavbar={setIsNavBarHidden} />}/> 
 
-{isLoggedIn && <Route path='/profile' element={<Profile/>}></Route>}
-    <Route path='/author/registration' element={<Registration></Registration>}></Route>
-    <Route path='/exam' errorElement={<ErrorPage/>} element={
+ <Route path='/profile' element={<Profile/>}></Route>
+    <Route path='/author/registration' element={<Registration>
+    </Registration>}></Route>
+    <Route path='/exam' errorElement={<ErrorPage/>}
+     element={
     <React.Suspense fallback={<Loader/>}>
       <LazyLoader/>
     </React.Suspense>}>
-      <Route path='writing' element={
-      <React.Suspense fallback={<Loader/>}>
-        <LazyLoaderWriting/>
-      </React.Suspense>
-   }></Route>
-      <Route path='listening' element={
+      <Route path=':type' element={
         <React.Suspense fallback={<Loader/>}>
-          <LazyLoaderListening/>
+          <LazyLoader/>
         </React.Suspense>
       }></Route>
+
 </Route>
    <Route path='*' element={<ErrorPage setNavbar={setIsNavBarHidden}></ErrorPage>}/>
     <Route path='/' errorElement={<ErrorPage/>} element={<Mainpage/>}></Route>
@@ -70,7 +63,7 @@ setTitle(document.title = "Exam Application")
     {/*
     tesfile
     */}
-    <Route path='/testfile' element ={<FileTest></FileTest>}></Route>
+    <Route path='/testfile/:type' element ={<FileTest></FileTest>}></Route>
    </Routes>
    </BrowserRouter>
     

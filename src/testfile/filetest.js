@@ -1,12 +1,10 @@
 
 import React, { useEffect, useState } from "react"
 import Timer from "./Timer"
-import { useNavigate } from "react-router-dom"
-
+import { useNavigate, useParams } from "react-router-dom"
 import FillBlanks from "./fillblanks"
-import TestApi from "./testApi"
-import UseContexTest from "./UseText"
-
+import { useDispatch, useSelector } from "react-redux"
+import { Readings } from "../data/data"
 
 
 // const InputFeild = ()=>{
@@ -62,6 +60,18 @@ function DisplayEmotional(){
 
 
 
+function HeaderBar (){
+    return <div>
+        <ul>
+            <li value="about">
+               about
+                
+               </li>
+            <li value="home">Home</li>
+        </ul>
+    </div>
+}
+
 
 
 export default function FileTest(){
@@ -81,6 +91,9 @@ const handleOnclickSad  = (event)=>{
 
 
 
+
+
+
 useEffect(()=>{
     document.title = emontional + staute
     if(emontional === undefined){
@@ -92,6 +105,19 @@ const handleOnclickHappy = (event) => {
 setStatue('I feeling happy ! cloud we have a little party ... ')
 setEmotional(`${Emotion.happy}`)
 }
+
+
+const handleOnsubmint =(e)=>{
+    e.preventDefalut()
+}
+
+
+
+
+const type = useParams()
+console.log(type)
+
+const Queston = useSelector((state) => state.question)
 
 
 const navigate = useNavigate()
@@ -111,13 +137,11 @@ const navigate = useNavigate()
         <DisplayEmotional></DisplayEmotional>
         </NumberContext.Provider> 
         
-
-<UseContexTest/>
-
-       {/* <Timer></Timer>
-  
-     <TestApi/>
-       <FillBlanks></FillBlanks> */}
+        <FillBlanks></FillBlanks>
+       
+     
+     <HeaderBar/>
+     
         </div>
     )
 }

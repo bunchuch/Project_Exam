@@ -18,7 +18,7 @@ export default function ErrorPage({setNavbar,setFooter}){
 	<div className={styleError404.container}>
 		<div className={styleError404.tag3}>
 			<h2 className={styleError404.header}>
-				<span className="sr-only">Error</span>404
+				<img className="w-80 object-contain" src="https://craftwork-images.b-cdn.net/wp-content/uploads/edd/27.png"/>
 			</h2>
 			<p className={styleError404.paragrh}>Sorry, we couldn't find this page.</p>
 			<p className={styleError404.paragrah2}>But dont worry,

@@ -91,93 +91,245 @@ const personalinfo = [
 
 ]
 
+const Writing = {
+        "id" : "01",
+        "type" : "none",
+        "number-word" : "100",
+        "clude" : [
+            {
+                "id" : "01" , "choice" : "Describe three advantages of living aboard",
+                "id" : "02" , "choice" : "Describe three advantages of traveling aboard",
+                "id" : "03" , "choice" : "Describe you happay memory in life",
+            }
+        ]
+}
 
-const Question = [
-    {
+const Readings = {
+
+    "multiple chocice" : [
+        {
+            "id":"01",
+            "type":"checkbox",
+            "text": "React finds out what changes have been made, and changes only what needs to be changed."+
+                    " React finds out what changes have been made, and changes only what needs to be changed."+
+                 " You will learn the various aspects of how React does this in the rest of this tutorial."+
+                 " React finds out what changes have been made, and changes only what needs to be changed."+
+                   " You will learn the various aspects of how React does this in the rest of this tutorial. "+    
+                      "You will learn the various aspects of how React does this in the rest of this tutorial."+
+                     " React finds out what changes have been made, and changes only what needs to be changed."+
+                    " React finds out what changes have been made, and changes only what needs to be changed."+
+                     "React finds out what changes have been made, and changes only what needs to be changed."+
+                     "React finds out what changes have been made, and changes only what needs to be changed.",
+            "header" : "reading a book is good time",
+            "categories": "multiple Chocice",
+            "question":["what is the capital of Uruguay is ...?"],
+            "clude":[
+                {"id":"01", "choice":"reading can help you feel less iritated" },
+                {"id":"02", "choice":"More people are enjoying a books and turing off the television" },
+                {"id":"03", "choice":"Books can incrase your awareness and help you to be open-minded." },
+                {"id":"04", "choice":"Choosing book is no more diffucult than slecting a film" }
+            ]
         
-        "id":"01",
-        "type":"radio",
-        "audio": "https://www.123listening.com/freeaudio/adjectives1-1.mp3",
-        "categories": "multiple Chocice",
-        "question":["what is the capital of Uruguay"],
-        "clude":[
-            {"id":"01", "choice":"Montery" },
-            {"id":"02", "choice":"New Uruguay" },
-            {"id":"03", "choice":"Motevideo" },
-            {"id":"04", "choice":"Panama City" }
-        ]
-    
-    },
-
-    {
-    
-        "id":"02",
-        "type":"radio",
-        "categories": "multiple Chocice",
-        "audio": "",
-        "question":["The examination of every human social interaction on a small scale describes"],
-        "clude":[
-            {"id":"01", "choice":"functionalism" },
-            {"id":"02", "choice":"macrosociology" },
-            {"id":"03", "choice":"cultural anthropology" },
-            {"id":"04", "choice":"microsociology" }
-        ]
-    
-    },
-
-    {
-    
-        "id":"03",
-        "type":"checkbox",
-        "categories": "multiple Chocice",
-        "audio": "",
-        "question":["You send an email to the worng address. what should you do?"],
-        "clude":[
-            {"id":"01", "choice":"infrom your manager and together determine the best courese of action" },
-            {"id":"02", "choice":"Tell a trusted colleague, get their advice and follow it immediately" },
-            {"id":"03", "choice":"Resend the email to the correct address" },
-            {"id":"04", "choice":"Don't take any action and hope the recipient igonres the email" }
-        ]
-    
-    },
-
-    {
-    
-        "id":"04",
-        "type":"checkbox",
-        "audio": "",
-        "categories": "multiple Chocice",
-        "question":["You send an email to the worng address. what should you do?"],
-        "clude":[
-            {"id":"01", "choice":"infrom your manager and together determine the best courese of action" },
-            {"id":"02", "choice":"Tell a trusted colleague, get their advice and follow it immediately" },
-            {"id":"03", "choice":"Resend the email to the correct address" },
-            {"id":"04", "choice":"Don't take any action and hope the recipient igonres the email" }
-        ]
-    
-    }
-    ,
-
-    
-    {
-        "id":"05",
-        "audio": "https://www.123listening.com/freeaudio/adjectives1-1.mp3",
-        "categories":"Fill in blank",
-        "type" : "option",
-        "question" :["C++ is a < programming language. It has <, object-oriented and generic programming features, while also providing < for low-level memory <"],
-        "clude": ["imperative","facilities","manipulation","general-purpose"]
-    },
-    {
-        "id":"06",
-        "audio": "",
-        "categories":"Fill in blank",
-        "type" : "input",
-        "question" :["C## is a < programming language. It has <,", "object-oriented and generic programming features", "while also providing < for low-level memory <"],
-        "clude": ["imperative","facilities","manipulation","general-purpose","Clude coloux","couse of","use time"]
-    }
-]
+        }
+    ]
 
 
+}
+
+const Listening = {
+
+    "id":"01",
+    "type" : "Listenning",
+    "multiple chocice" : [
+        {
+            "id":"01",
+            "type":"checkbox",
+            "audio": "https://www.123listening.com/freeaudio/adjectives1-1.mp3",
+            "categories": "multiple Chocice",
+            "question":["what is the capital of Uruguay is ...?"],
+            "clude":[
+                {"id":"01", "choice":"Montery" },
+                {"id":"02", "choice":"New Uruguay" },
+                {"id":"03", "choice":"Motevideo" },
+                {"id":"04", "choice":"Panama City" }
+            ]
+        
+        },
+
+        {
+    
+            "id":"02",
+            "type":"checkbox",
+            "categories": "multiple Chocice",
+            "audio": "",
+            "question":["The examination of every human social interaction on a small scale describes...?"],
+            "clude":[
+                {"id":"01", "choice":"functionalism" },
+                {"id":"02", "choice":"macrosociology" },
+                {"id":"03", "choice":"cultural anthropology" },
+                {"id":"04", "choice":"microsociology" }
+            ]
+        
+        },
 
 
-  module.exports = {sectionTwoData, sectionOneData,personalinfo, Question}
+        {
+            "id":"03",
+            "type":"checkbox",
+            "categories": "multiple Chocice",
+            "audio": "",
+            "question":["Karl is upset because..?"],
+            "clude":[
+                {"id":"01", "choice":"his application are due" },
+                {"id":"02", "choice":"his train was dlayed" },
+                {"id":"03", "choice":"he was late getting to school" },
+                
+            ]
+
+        },
+        {
+            "id":"04",
+            "type":"checkbox",
+            "audio": "",
+            "categories": "multiple Chocice",
+            "question":["The women suggests that karl...?"],
+            "clude":[
+                {"id":"01", "choice":"Knock on his advisor's door" },
+                {"id":"02", "choice":"delay his appointment" },
+                {"id":"03", "choice":"switch appointment with someone" },
+                
+            ]
+        },
+        
+
+
+    ],
+
+    "Fill in Blank" : [
+        
+            {
+                "id":"01",
+                "audio": "https://www.123listening.com/freeaudio/adjectives2-2.mp3",
+                "categories":"Fill in blank",
+                "type" : "input",
+                "question" :["Attending the < is a great <, but planning ahead is a good idea. Hundreds of < of people attend each year, so you’ll need to book < and tickets for popular shows in < . But don’t plan too much! You’ll find out about great, little-known shows and performers while you are there, and you’ll be < if you are too busy to attend."],
+                "clude": ["festival","thousands","experience","disappointed","accommodation","advance"]
+            },
+            {
+                "id":"02",
+                "audio": "",
+                "categories":"Fill in blank",
+                "type" : "input",
+                "question" :["We get it. Learning the meaning of the many words that make up the < can seem overwhelming. Take away the nerves and make it simple and easy to < with the use of our sentence maker."+
+        
+                "Your Dictionary < to make learning as < as possible, no matter what your age or understanding is. And our sentence examples are no different."+
+                
+                "We understand that sometimes the best way to truly understand a new concept is to see it used in an example. With the help of our useful tool, you can be one step ahead with < the complexity and workings of English vocabulary."+
+                
+                "With an increased < of how words can be used, you can make your writing come to life with an arsenal of words of varying < and meanings."+
+                
+               " Simply type the word into the sentence generator and we’ll do the rest"],
+                "clude": ["understand","English language","stress-free","understanding","grasping","couse of","difficulties","strives"]
+            }
+        
+        
+    ]
+}
+
+// const Question = [
+//     {
+        
+//         "id":"01",
+//         "type":"checkbox",
+//         "audio": "https://www.123listening.com/freeaudio/adjectives1-1.mp3",
+//         "categories": "multiple Chocice",
+//         "question":["what is the capital of Uruguay"],
+//         "clude":[
+//             {"id":"01", "choice":"Montery" },
+//             {"id":"02", "choice":"New Uruguay" },
+//             {"id":"03", "choice":"Motevideo" },
+//             {"id":"04", "choice":"Panama City" }
+//         ]
+    
+//     },
+
+//     {
+    
+//         "id":"02",
+//         "type":"checkbox",
+//         "categories": "multiple Chocice",
+//         "audio": "",
+//         "question":["The examination of every human social interaction on a small scale describes"],
+//         "clude":[
+//             {"id":"01", "choice":"functionalism" },
+//             {"id":"02", "choice":"macrosociology" },
+//             {"id":"03", "choice":"cultural anthropology" },
+//             {"id":"04", "choice":"microsociology" }
+//         ]
+    
+//     },
+
+//     {
+    
+//         "id":"03",
+//         "type":"checkbox",
+//         "categories": "multiple Chocice",
+//         "audio": "",
+//         "question":["You send an email to the worng address. what should you do?"],
+//         "clude":[
+//             {"id":"01", "choice":"infrom your manager and together determine the best courese of action" },
+//             {"id":"02", "choice":"Tell a trusted colleague, get their advice and follow it immediately" },
+//             {"id":"03", "choice":"Resend the email to the correct address" },
+//             {"id":"04", "choice":"Don't take any action and hope the recipient igonres the email" }
+//         ]
+    
+//     },
+
+//     {
+    
+//         "id":"04",
+//         "type":"checkbox",
+//         "audio": "",
+//         "categories": "multiple Chocice",
+//         "question":["You send an email to the worng address. what should you do?"],
+//         "clude":[
+//             {"id":"01", "choice":"infrom your manager and together determine the best courese of action" },
+//             {"id":"02", "choice":"Tell a trusted colleague, get their advice and follow it immediately" },
+//             {"id":"03", "choice":"Resend the email to the correct address" },
+//             {"id":"04", "choice":"Don't take any action and hope the recipient igonres the email" }
+//         ]
+    
+//     }
+//     ,
+
+    
+//     {
+//         "id":"05",
+//         "audio": "https://www.123listening.com/freeaudio/adjectives2-2.mp3",
+//         "categories":"Fill in blank",
+//         "type" : "input",
+//         "question" :["Attending the < is a great <, but planning ahead is a good idea. Hundreds of < of people attend each year, so you’ll need to book < and tickets for popular shows in < . But don’t plan too much! You’ll find out about great, little-known shows and performers while you are there, and you’ll be < if you are too busy to attend."],
+//         "clude": ["festival","thousands","experience","disappointed","accommodation","advance"]
+//     },
+//     {
+//         "id":"06",
+//         "audio": "",
+//         "categories":"Fill in blank",
+//         "type" : "input",
+//         "question" :["We get it. Learning the meaning of the many words that make up the < can seem overwhelming. Take away the nerves and make it simple and easy to < with the use of our sentence maker."+
+
+//         "Your Dictionary < to make learning as < as possible, no matter what your age or understanding is. And our sentence examples are no different."+
+        
+//         "We understand that sometimes the best way to truly understand a new concept is to see it used in an example. With the help of our useful tool, you can be one step ahead with < the complexity and workings of English vocabulary."+
+        
+//         "With an increased < of how words can be used, you can make your writing come to life with an arsenal of words of varying < and meanings."+
+        
+//        " Simply type the word into the sentence generator and we’ll do the rest"],
+//         "clude": ["understand","English language","stress-free","understanding","grasping","couse of","difficulties","strives"]
+//     }
+// ]
+
+
+
+
+  module.exports = {sectionTwoData, sectionOneData,personalinfo,Readings,  Listening}

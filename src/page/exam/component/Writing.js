@@ -24,11 +24,12 @@ export default function Writing (){
 
 const[selectedFile, setSelectFile] = useState(null)
 
-
 const preventCopyPast = (e: ClipboardEvent<HTMLInputElement>)=>{
- e.preventDefault();
- setAlert("Not Allow to copy and past")
-}
+        e.preventDefault();
+        setAlert("Not Allow to copy and past")
+       }
+
+
 
 
 
@@ -67,12 +68,19 @@ console.log(err)
   }
  }
 
-    return   <div className={styleWriting.main}>   
-    <Instruction
-    header="Writing"
-    desc="You can use the paper"
-     icon = {<TbWriting/>}></Instruction>  
- <p className="text-red-500 font-medium text-[14px]
+    return   <div className={styleWriting.main}>     
+  <div className="text-[14px] bg-white py-2 rounded-[4px] shadow-sm shadow-cyan-500/10">
+    <ol className="text-gray-800 tracking-wider pl-5  space-y-1 list-decimal list-inside">
+        <li>
+            Describe three advantages of living aboard
+        </li>
+        <li>Describe three advantages of traveling aboard</li>
+        <li>Describe you happay memory in life</li>
+        
+    </ol>
+  </div>
+
+  <p className="text-red-500 font-medium text-[14px]
   bg-red-200 rounded-[4px] px-2">{alert}</p>
 <form>
    <div className={styleWriting.container}>
@@ -96,9 +104,6 @@ console.log(err)
        </div>
        
        <div className={styleWriting.divtag5}>
-           <button type="submit" className={styleWriting["btn-style"]}>
-                Upload
-           </button>
            <div className={styleWriting.divtag4}>
     <label className={styleWriting["label-style"]}>
         <Icon name={<BiImage/>} Size="1.5rem" />
