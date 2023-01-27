@@ -94,11 +94,13 @@ const personalinfo = [
 
 const Question = [
     {
-    
+        
         "id":"01",
         "type":"radio",
-        "question":"what is the capital of Uruguay",
-        "choice":[
+        "audio": "https://www.123listening.com/freeaudio/adjectives1-1.mp3",
+        "categories": "multiple Chocice",
+        "question":["what is the capital of Uruguay"],
+        "clude":[
             {"id":"01", "choice":"Montery" },
             {"id":"02", "choice":"New Uruguay" },
             {"id":"03", "choice":"Motevideo" },
@@ -111,8 +113,10 @@ const Question = [
     
         "id":"02",
         "type":"radio",
-        "question":"The examination of every human social interaction on a small scale describes",
-        "choice":[
+        "categories": "multiple Chocice",
+        "audio": "",
+        "question":["The examination of every human social interaction on a small scale describes"],
+        "clude":[
             {"id":"01", "choice":"functionalism" },
             {"id":"02", "choice":"macrosociology" },
             {"id":"03", "choice":"cultural anthropology" },
@@ -125,8 +129,10 @@ const Question = [
     
         "id":"03",
         "type":"checkbox",
-        "question":"You send an email to the worng address. what should you do?",
-        "choice":[
+        "categories": "multiple Chocice",
+        "audio": "",
+        "question":["You send an email to the worng address. what should you do?"],
+        "clude":[
             {"id":"01", "choice":"infrom your manager and together determine the best courese of action" },
             {"id":"02", "choice":"Tell a trusted colleague, get their advice and follow it immediately" },
             {"id":"03", "choice":"Resend the email to the correct address" },
@@ -139,14 +145,35 @@ const Question = [
     
         "id":"04",
         "type":"checkbox",
-        "question":"You send an email to the worng address. what should you do?",
-        "choice":[
+        "audio": "",
+        "categories": "multiple Chocice",
+        "question":["You send an email to the worng address. what should you do?"],
+        "clude":[
             {"id":"01", "choice":"infrom your manager and together determine the best courese of action" },
             {"id":"02", "choice":"Tell a trusted colleague, get their advice and follow it immediately" },
             {"id":"03", "choice":"Resend the email to the correct address" },
             {"id":"04", "choice":"Don't take any action and hope the recipient igonres the email" }
         ]
     
+    }
+    ,
+
+    
+    {
+        "id":"05",
+        "audio": "https://www.123listening.com/freeaudio/adjectives1-1.mp3",
+        "categories":"Fill in blank",
+        "type" : "option",
+        "question" :["C++ is a < programming language. It has <, object-oriented and generic programming features, while also providing < for low-level memory <"],
+        "clude": ["imperative","facilities","manipulation","general-purpose"]
+    },
+    {
+        "id":"06",
+        "audio": "",
+        "categories":"Fill in blank",
+        "type" : "input",
+        "question" :["C## is a < programming language. It has <,", "object-oriented and generic programming features", "while also providing < for low-level memory <"],
+        "clude": ["imperative","facilities","manipulation","general-purpose","Clude coloux","couse of","use time"]
     }
 ]
 

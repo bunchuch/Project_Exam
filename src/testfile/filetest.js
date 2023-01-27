@@ -9,6 +9,12 @@ import Test2 from "./test2"
 import Loader from "../components/Loader"
 import TestRute from "./route"
 import { useNavigate } from "react-router-dom"
+import ChangeColors from "./ChangeColor"
+import FillBlanks from "./fillblanks"
+import TestApi from "./testApi"
+
+
+
 const InputFeild = ()=>{
     const [data,setData]= useState({
     })
@@ -62,6 +68,8 @@ function DisplayEmotional(){
 
 
 
+
+
 export default function FileTest(){
     const [emontional,setEmotional] = useState()
     const [staute, setStatue] = useState('what about your feeling right now ?')
@@ -81,6 +89,9 @@ const handleOnclickSad  = (event)=>{
 
 useEffect(()=>{
     document.title = emontional + staute
+    if(emontional === undefined){
+        document.title = "🎏"
+    }
 },[emontional])
 
 const handleOnclickHappy = (event) => {
@@ -91,7 +102,7 @@ setEmotional(`${Emotion.happy}`)
 
 const navigate = useNavigate()
     return (
-        <div className={styleEmotional}>
+        <div>
 
    
         <NumberContext.Provider value={emontional}>
@@ -104,14 +115,16 @@ const navigate = useNavigate()
             handleOnclickHappy
         }>Happy</button>
         <DisplayEmotional></DisplayEmotional>
-        </NumberContext.Provider>
-
-        <InputFeild></InputFeild>
+        </NumberContext.Provider> 
+         <InputFeild></InputFeild>
         <ResponeTest></ResponeTest>
         <Dropdown></Dropdown>
+     
        <Timer></Timer>
-      <TestRute/>
-        <p>{count}</p>
+    <TestRute/>
+     <ChangeColors/>\
+     <TestApi/>
+       <FillBlanks></FillBlanks>
         </div>
     )
 }

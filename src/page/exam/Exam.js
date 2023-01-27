@@ -3,6 +3,7 @@ import { Outlet, useSearchParams } from "react-router-dom"
 import SmallFooter from "../../components/Footer/smallFooter"
 import ExamStatus from "./component/ExamStatus"
 import HeaderBar from "./component/HeaderBar"
+import QuestionBox from "./component/QuestionBox"
 
 
 
@@ -26,10 +27,10 @@ function Exam({data}) {
       <HeaderBar></HeaderBar>
       <div className="flex lg:flex-row flex-col">
          <div className="w-full order-last md:order-1">
-         <Outlet/>
+       <QuestionBox/>
          </div>
    
-      <div className="lg:w-[460px] lg:order-last mx-4">
+      <div className="lg:w-[460px] lg:order-last md:mx-4">
       <ExamStatus></ExamStatus>
       </div>
       

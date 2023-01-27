@@ -1,17 +1,118 @@
-import React from "react";
+import React, { useEffect,ClipboardEvent, useState } from "react";
+import axios from 'axios';
+import { BiImage, BiPen } from "react-icons/bi";
+import Icon from "../../../components/Icon";
+import Instruction from "../../../components/Instruction";
+import { TbWriting } from "react-icons/tb";
+
+import { styleWriting } from "../../../style/style";
+
+
 
 
 
 export default function Writing (){
-    return   <div class="flex items-center justify-center md:mt-14 rounded-[4px]   md:py-4 w-full h-auto space-y-4">
-        <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-[1px] bg-white border-gray-300 border-dashed rounded-[4px] cursor-pointer  dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-            <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                <svg aria-hidden="true" class="w-10 h-10 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
-                <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
-                <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
+ const [images, setImages] = useState([])
+ const [imageURLs, setImagesURLs] = useState([])
+ const [showimage ,setShowwimage] = useState()
+ const [count,setCount] = useState()
+ const [alert,setAlert] = useState(null)
+
+
+
+
+
+const[selectedFile, setSelectFile] = useState(null)
+
+
+const preventCopyPast = (e: ClipboardEvent<HTMLInputElement>)=>{
+ e.preventDefault();
+ setAlert("Not Allow to copy and past")
+}
+
+
+
+ useEffect(()=>{
+    if(images.length < 1) return;
+    const newImageUrls = []
+    images.forEach(image=> newImageUrls.push(URL.createObjectURL(image)))
+    setImagesURLs(newImageUrls)
+ },[images])
+
+ function onImageChange(e){
+    setImages([...e.target.files])
+ }
+
+
+
+ const handleUpload = async (event)=>{
+  event.preventDefault()
+  const formData = new FormData()
+  formData.append('selectedFile',selectedFile)
+  try{
+ const response = await axios ({
+    method : "post",
+    url : "#",
+    data : formData,
+    headers:{'Content-Type': "multipart/form-data"},
+ })
+
+if(response){
+    alert("succefully upload")
+}
+alert('error upload')
+
+  }catch(err){
+console.log(err)
+  }
+ }
+
+    return   <div className={styleWriting.main}>   
+    <Instruction
+    header="Writing"
+    desc="You can use the paper"
+     icon = {<TbWriting/>}></Instruction>  
+ <p className="text-red-500 font-medium text-[14px]
+  bg-red-200 rounded-[4px] px-2">{alert}</p>
+<form>
+   <div className={styleWriting.container}>
+       <div className={styleWriting["divtag3 "]}>
+       {
+        imageURLs?(
+            <div className={styleWriting.divtag2}>
+            {imageURLs.map(imte=>
+               <img className="w-20 h-20" src={imte}/>)}
             </div>
-            <input id="dropzone-file" type="file" class="hidden" />
-        </label>
+        ):(
+            <></>
+        )
+    }
+           <textarea  maxLength={1000} spellCheck="false" id="comment" rows="10" 
+           className={styleWriting.textarea} onCopy={(e)=>preventCopyPast(e)} 
+           onPaste={(e)=> preventCopyPast(e)}
+            placeholder="Write here..." required>
+                 </textarea>
+                
+       </div>
+       
+       <div className={styleWriting.divtag5}>
+           <button type="submit" className={styleWriting["btn-style"]}>
+                Upload
+           </button>
+           <div className={styleWriting.divtag4}>
+    <label className={styleWriting["label-style"]}>
+        <Icon name={<BiImage/>} Size="1.5rem" />
+                   <input id="dropzone-file" type="file" accept="image/*"
+                    onChange={onImageChange} className="hidden" />  
+    </label>
+           </div>
+       </div>
+   </div>
+</form>
+
+
+      
+      
     </div> 
     
 

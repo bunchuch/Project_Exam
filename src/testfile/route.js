@@ -1,5 +1,5 @@
 import React from "react"
-import { BrowserRouter as Router,Switch,Link,Route,useParams,useRouteMatch,useNavigate, Outlet } from "react-router-dom"
+import { BrowserRouter as Router,Switch,Link,Route,useParams,useRouteMatch,useNavigate, Outlet, useOutletContext } from "react-router-dom"
 
 
 
@@ -13,13 +13,23 @@ export default function TestRute(){
         }}>Go back</button>
         <ul>
             <li>
-                <Link to= "/testfile/number">Home</Link>
+                <Link to= "/testfile/element">Home</Link>
             </li>
             <li>
                 <Link to ="/testfile/input">input</Link>
             </li>
         </ul>
         <hr></hr>
-        <Outlet/>
+        <Outlet context={{number:"world"}}/>
     </div>
+}
+
+
+function Book(){
+    const {id} = useParams()
+    const context = useOutletContext()
+
+    return <>
+    <h1>{id} there {context.hello}</h1>
+    </>
 }
