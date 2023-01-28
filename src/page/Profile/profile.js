@@ -31,7 +31,7 @@ const items = personalinfo.map((value)=>
 
     return <>
         <div className=" bg-white-50 min-h-screen box-border font-inter tracking-wide">
-            <div className="container mx-auto p-2 max-w-8xl right-0 left-1 py-2">
+            <div className="mx-auto p-2 max-w-[100rem] right-0 left-1 py-2">
             <Headertag></Headertag>
                 <div className="flex flex-col md:flex-row md:mx-2 my-2 ">
                 

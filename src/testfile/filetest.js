@@ -1,49 +1,41 @@
 
 import React, { useEffect, useState } from "react"
-import Dropdown from "./Dropdown"
-
-import Input from "./Input"
-import ResponeTest from "./ResponeTest"
 import Timer from "./Timer"
-import Test2 from "./test2"
-import Loader from "../components/Loader"
-import TestRute from "./route"
-import { useNavigate } from "react-router-dom"
-import ChangeColors from "./ChangeColor"
+import { useNavigate, useParams } from "react-router-dom"
 import FillBlanks from "./fillblanks"
-import TestApi from "./testApi"
+import { useDispatch, useSelector } from "react-redux"
+import { Readings } from "../data/data"
 
 
+// const InputFeild = ()=>{
+//     const [data,setData]= useState({
+//     })
+//     const [account,setAccount] = useState ({
+//         username : '',
+//         email  : ''
+//     })
 
-const InputFeild = ()=>{
-    const [data,setData]= useState({
-    })
-    const [account,setAccount] = useState ({
-        username : '',
-        email  : ''
-    })
-
-    const handleChange = (event)=>{
-        const value = event.target.value
-        const name = event.target.name
-       setData (data =>({...data ,[name]:value}))
-    }
-    const handleOnsubmit = (event)=>{
-        event.preventDefault()
-        setAccount({
-            username : 'voch',
-            Email: 'Voch@email.com',
-        })
-        console.log(account)
-        console.log(data)
-    }
-    return <form onSubmit={handleOnsubmit}>
-       <Input name="fname" value={data.fname} onChange={handleChange}/>
-        <Input name="lname" value={data.lname} onChange={handleChange}/>
-        <label>{data.fname}</label>
-        <button type="submit">Click</button>
-    </form>
-}
+//     const handleChange = (event)=>{
+//         const value = event.target.value
+//         const name = event.target.name
+//        setData (data =>({...data ,[name]:value}))
+//     }
+//     const handleOnsubmit = (event)=>{
+//         event.preventDefault()
+//         setAccount({
+//             username : 'voch',
+//             Email: 'Voch@email.com',
+//         })
+//         console.log(account)
+//         console.log(data)
+//     }
+//     return <form onSubmit={handleOnsubmit}>
+//        <Input name="fname" value={data.fname} onChange={handleChange}/>
+//         <Input name="lname" value={data.lname} onChange={handleChange}/>
+//         <label>{data.fname}</label>
+//         <button type="submit">Click</button>
+//     </form>
+// }
 
 
 
@@ -68,6 +60,18 @@ function DisplayEmotional(){
 
 
 
+function HeaderBar (){
+    return <div>
+        <ul>
+            <li value="about">
+               about
+                
+               </li>
+            <li value="home">Home</li>
+        </ul>
+    </div>
+}
+
 
 
 export default function FileTest(){
@@ -87,6 +91,9 @@ const handleOnclickSad  = (event)=>{
 
 
 
+
+
+
 useEffect(()=>{
     document.title = emontional + staute
     if(emontional === undefined){
@@ -98,6 +105,19 @@ const handleOnclickHappy = (event) => {
 setStatue('I feeling happy ! cloud we have a little party ... ')
 setEmotional(`${Emotion.happy}`)
 }
+
+
+const handleOnsubmint =(e)=>{
+    e.preventDefalut()
+}
+
+
+
+
+const type = useParams()
+console.log(type)
+
+const Queston = useSelector((state) => state.question)
 
 
 const navigate = useNavigate()
@@ -116,15 +136,12 @@ const navigate = useNavigate()
         }>Happy</button>
         <DisplayEmotional></DisplayEmotional>
         </NumberContext.Provider> 
-         <InputFeild></InputFeild>
-        <ResponeTest></ResponeTest>
-        <Dropdown></Dropdown>
+        
+        <FillBlanks></FillBlanks>
+       
      
-       <Timer></Timer>
-    <TestRute/>
-     <ChangeColors/>\
-     <TestApi/>
-       <FillBlanks></FillBlanks>
+     <HeaderBar/>
+     
         </div>
     )
 }

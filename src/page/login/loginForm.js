@@ -5,20 +5,13 @@ import { validateForm } from "./vailidate"
 import SmallFooter from "../../components/Footer/smallFooter"
 
 
-
-
-
-
-//Footersdescription loginform or any form
-
-
-
 const LoginForm = ({setNavbar}) => {
 
     useEffect(()=>{
         setNavbar(true)
     },[])
 
+ 
 
     const [color, setColor] = useState('gray')
     const [isSumbit, setIsSubmit] = useState(false)
@@ -72,6 +65,8 @@ const LoginForm = ({setNavbar}) => {
     }
 
     const handleOnsubmit = (event) => {
+
+        
         if(event) event.preventDefault()
         setFormErrors(validateForm(user))
         

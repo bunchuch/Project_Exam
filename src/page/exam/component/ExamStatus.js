@@ -1,81 +1,110 @@
-import React, { useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { BiTime } from "react-icons/bi";
 import Icon from "../../../components/Icon";
 import Timer from "../../../testfile/Timer";
+import { styleExamStatus } from "../../../style/style";
+import Badges from "../../../components/Badges";
+import { TbTable } from "react-icons/tb";
 
 
 
-const number = [1,2,3,4,5,6,7,9]
 
-function Title (props){
-return <h1 className="font-medium text-[14px] 
-md:text-[14px] text-gray-900 my-2 border-b-[1px]
- border-gray-200 tracking-wide">{props.text}</h1>
+const number = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+
+
+
+function ListBox({title,componet,style}){
+  return <div className="">
+    <div className="py-2 md:block hidden">
+   <h1 className="font-medium text-[12px] text-gray-800">{title}</h1>
+    </div>
+  
+  {componet}
+  </div>
+}
+
+export default function ExamStatus ({data}){
+  const [hidden,setHidden] =
+   useState('relative bg-white py-2')
+const [iconSize, setIconSize] = useState("2.5rem")
+useEffect(()=>{
+  window.addEventListener('resize',resizeBy)
+ 
+  return ()=>{
+    window.removeEventListener('resize',resizeBy)
+ 
+  }
+},[])
+
+
+
+const resizeBy = ()=>{
+  if(window !== undefined){
+    let windowWight = window.innerWidth
+    windowWight < 764  ? setIconSize('2rem') : setIconSize('2.5rem')
+    windowWight < 764 ? setHidden("relative") : setHidden("text-gray-800 bg-white rounded-[4px] px-3 py-4 font-base text-sm shadow-sm")
+  }
 }
 
 
-function ExamStatus ({data}){
 
-  const [hidden,setHidden] = useState('border-[1px] border-blue-500 text-gray-800 border-dashed mt-4 bg-blue-100  rounded-[4px] px-3 py-4 font-base text-sm relative')
-
-
-  useEffect(()=>{
-    if(window.innerWidth > 700){
-      setHidden('block border-[1px] border-blue-500 text-gray-800 border-dashed mt-4 bg-blue-100  rounded-[4px] px-3 py-4 font-base text-sm relative')
-    }
-  })
-return <div className="md:mt-10  ">
+return <div className="lg:my-10 space-y-3 md:space-x-0 ">
 {/* 
    Timer Loading */}
-  <div className="md:my-4">
-<Title text="Timer"/>
-<div className="flex items-center justify-center
-  border-dashed border-[1px] bg-white border-gray-400 rounded-[4px]">
-<Timer></Timer>
-<Icon name={<BiTime/>} Size="1.5rem"/>
-</div>
- 
-</div>
+   <ListBox title="Timer" componet={
+    <div className=" justify-center py-2 shadow-purple-500/10 shadow-sm items-center rounded-[4px] bg-white flex ">
+      <div className="bg-white w-full flex justify-center items-center space-x-2">
+      <Icon name={<BiTime/>} Size={iconSize}/>
+      <div>
+        <h2 className="font-medium text-[14px]">Time Left</h2>
+         </div>
+      </div>
+ <div className="m-0 flex justify-center p-0 w-full">
+ <Timer time= {45}></Timer>
+  </div>
+
+  </div>
+   }/>
 
 {/* Exam status or process */}
-<div className="md:my-2 ">
-<Title text="Exam status"/>
-<ul className="grid grid-cols-10 gap-4
- md:grid-cols-4 md:gap-2 border-dashed border-[1px] bg-white mt-4 border-gray-400 rounded-[4px] md:py-4 p-2 md:px-4">
-  {
-    number.map((value)=><li key={value} className="my-2">
-      <a href="#" class="md:px-3 md:py-2 py-2 px-2  leading-tight text-gray-900 bg-white border rounded-md
-       border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800
-        dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">{value}</a>
-    </li>
-    )
-  }
 
-</ul>
-</div>
+<ListBox title="Exam status" componet={
+  <ul className={styleExamStatus["ul-tag"]}>
+   {
+     number.map((value)=><li key={value} className="my-2">
+      <div className="md:w-10 py-2 flex justify-center bg-gray-50 border-[1px] rounded-sm">
+      <a href="#" className={styleExamStatus["a-tag"]}>{value}</a>
+      </div>
+   
+     </li>
+     )
+   }
+ 
+ </ul>
+}/>
+
+
 
 {/* Rule of Exam */}
-<div  style={{Color:"red"}}>
-<Title text="Rule of Exam"/>
+<ListBox title="Description" componet={
   <article className={hidden}>
-       
-       <div className="md:hidden block absolute right-0 top-0 px-2 bg-blue-300 ">
-  <button onClick={()=>{
+        
+       <div className="md:hidden block absolute right-0 top-0 px-2 bottom-0  ">
+  <button className="bg-gray-300 px-2 rounded-full" onClick={()=>{
     setHidden('hidden')
   }} >X</button>
 </div>    
-        <ol class="px-2  space-y-1 list-decimal list-inside">
-            <li>You might feel like you are being really "organized" o</li>
-            <li>Nested navigation in UIs is a bad idea too, keep things as flat as possible.</li>
-            <li>Nesting tons of folders in your source code is also not helpful.</li>
-        </ol>
+        <p className="px-2 text-gray-800 space-y-1 text-[14px] my-4 ">
+           Make sure you are completed all the answer before click on submit button
+          
+        </p>
  
 </article>
-</div>
+
+}/>
+
 
 </div>
 }
 
-
-export default ExamStatus

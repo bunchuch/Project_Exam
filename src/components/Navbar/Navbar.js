@@ -3,6 +3,7 @@ import React, { useEffect } from "react"
 
 import PageComponet from "./ListComponet"
 import { styleNavbar } from "../../style/style"
+import { useSelector } from "react-redux"
 
 
 
@@ -10,6 +11,10 @@ import { styleNavbar } from "../../style/style"
 
 
 const Navbar = ({style,setNavbar}) =>{
+
+const IsLoggIn = useSelector( state=> state.auth.isLoggIn)
+
+
     return (
 
        < nav  className={styleNavbar.navStyle}>
@@ -36,7 +41,13 @@ const Navbar = ({style,setNavbar}) =>{
                     <PageComponet name="Contact us" img="https://img.icons8.com/material-outlined/25/1D10B2/address-book.png"/>
             </div>
 <div>
-<a href="#" className={styleNavbar["atag-nav-list-style"]}>Sign Up</a>
+    {
+        !IsLoggIn && <a href="#" className={styleNavbar["atag-nav-list-style"]}>Sign Up</a>
+
+    }
+    {
+        IsLoggIn && <div>Bunnara</div>
+    }
 </div>
           
         </div>

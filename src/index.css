@@ -195,28 +195,28 @@
 }
 
 .headerlist-style {
-    @apply md:mr-2 md:px-1.5 px-0 border-[1px] sm:mr-3 mr-[2px] rounded-full 
+    @apply md:mr-2 md:px-1.5 px-0 sm:mr-3 mr-[2px] rounded-md list-none 
 }
 .atagheaderlist-style{
-    @apply inline-flex font-normal justify-between
-    md:text-gray-600   text-[12px]  border-[1px] rounded-lg px-[4px]  md:text-[14px] items-center md:space-x-2
-    py-[1px] md:bg-gray-50  md:px-2 rounded-t-lg border-b-2 border-transparent
-       hover:text-gray-600  dark:hover:text-gray-300 cursor-pointer 
+    @apply inline-flex font-normal
+    md:text-gray-600 text-[14px] rounded-lg px-[4px] md:text-[14px] items-center md:space-x-2
+    py-[1px] md:px-2 rounded-t-lg border-b-2 border-transparent
+       hover:text-gray-600 hover:font-medium  dark:hover:text-gray-300 cursor-pointer 
 }
 
 .headerbar-main-style {
-    @apply text-sm py-1.5 border-b md:p-0  text-center text-gray-800
-    border-gray-200 dark:text-gray-400 dark:border-gray-700 md:mt-5
+    @apply flex md:flex justify-between items-center text-sm py-1.5 md:max-w-[70rem] mx-auto md:p-0  text-center text-gray-800
+    border-gray-200 dark:text-gray-400 dark:border-gray-700 md:mt-2
 }
 .ultag-headerbar-style {
-    @apply flex flex-col md:flex-wrap md:flex-row -mb-px md:justify-between md:py-2
+    @apply flex justify-between w-full py-2  md:flex-wrap md:flex-row -mb-px md:justify-between md:py-2
 }
 .divtag-hearlist-style{
 @apply flex flex-wrap -mb-px order-1 md:border-b-[1px] md:border-none 
 }
 
 .dropList-Link-style {
-    @apply inline-flex text-[12px] w-full px-4 py-1.5 text-gray-800 tracking-wide
+    @apply inline-flex  text-[12px] w-full px-4 py-1.5 text-gray-800 tracking-wide
 } 
 .divtag-dropdown-button-style{
     @apply flex items-center px-2 justify-center md:justify-center order-2 md:order-last py-4 md:py-0 
