@@ -15,14 +15,10 @@ import { useSelector } from 'react-redux'
 const LazyLoader = React.lazy(()=> import("./page/exam/Exam"))
 
 const App =()=>{
-
-
-
 const [title, setTitle] = useState()
   let [isNavbarHidden, setIsNavBarHidden] = useState(false)
   let [isFootBig, setIsFooter] = useState(false)
-
-
+  
   useEffect(()=>{
 setTitle(document.title = "Exam Application")
   },[])
