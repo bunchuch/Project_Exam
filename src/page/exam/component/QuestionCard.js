@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import Audio from "../../../components/Audio";
 import GroupInput from "../../../components/GroupInput";
-import Badges from "../../../components/Badges";
-import FillBlanks from "./FillBlank/FillBlank";
-import { useParams } from "react-router-dom";
-import Instruction from "../../../components/Instruction";
+import FillBlanks from "./FillBlank/FillBlank"
 import { ReadingCard } from "../../../components/ReadingCard";
 import Writing from "./Writing";
 import Stepper from "../../../components/Stepper";
+
+
+
+
+
 
 export default function QuestionCard ({question, onChange, type}){
     
   
   const [questions, setQuestion] = useState([])
     // feature random question
+
  const shuffleArray = (array)=>{
   let i = array.length -1
   for(; i>0;i--){
@@ -30,15 +32,13 @@ export default function QuestionCard ({question, onChange, type}){
 
 //  random all the question but number is also random
 
-console.log(type)
-
- const myQuestion = [] 
     return (
-      
+     
         type === "writing" ? (
           <Writing/>
         ) : (
           <div>
+
             <Stepper/>
     {question.map((items,index)=><>
     {
@@ -53,14 +53,26 @@ console.log(type)
       )
     }
     {
-      type=== "vocabulary" && (
-        <div>Vocabulary</div>
+      type === "vocabulary" && (
+        <ul className="flex flex-wrap mt-1
+         rounded-[4px] shadow-sm shadow-cyan-500/10 justify-center bg-white py-4  px-4 ">
+        {
+          items.clude.map((i)=>
+          <div className="flex flex-row">
+<p className="border-[1px] rounded-[4px] mx-2 my-2 py-2 px-2">{i}</p>
+          </div>
+      
+        )
+        }
+        </ul>
       )
-    }
+
+        
+}
 
     {
       type === "grammar" && (
-        <div>Grammar</div>
+      <></>
       )
     }
     <div className="bg-white shadow-sm shadow-gray-500/10 rounded-[4px] tracking-wide mt-3">

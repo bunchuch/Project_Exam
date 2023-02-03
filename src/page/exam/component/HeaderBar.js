@@ -1,42 +1,35 @@
 import React, { useEffect, useState } from "react";
-import {BiLibrary,BiBarChartAlt ,BiUserVoice, BiBookOpen,BiFontColor} from "react-icons/bi";
+import {BiLibrary,BiUserVoice, BiBookOpen,BiFontColor} from "react-icons/bi";
+import {IoBriefcaseOutline} from "react-icons/io5"
 import {TbWriting} from "react-icons/tb"
-import {  BrowserRouter as Router,  Route,  Link,  useParams,  useRouteMatch,  Outlet} from "react-router-dom";
-
-import Dropdown from "../../../components/Dropdown";
+import {Link} from "react-router-dom";
 import Icon from "../../../components/Icon";
-import Lisenting from "./Listening";
+
 
 
 
 
 
 //headerlist-tag-list each items-function-components
-function HeaderList ({icon,title,link,value}){
+function HeaderList ({icon,title,link,onClick}){
     return <>
-       <li  onClick={(event)=>{console.log(value)}} className="headerlist-style">
+       <button onClick={onClick}  className="headerlist-style">
             <Link to={`/exam/${link}`} >
-             <a href="#" className="atagheaderlist-style">
+             <p className="atagheaderlist-style">
                    <div className="hidden md:block">
                       {icon}
                     </div>
                     <div className=" md:block">{title}</div>
-                      </a></Link>
-            </li>
+                      </p></Link>
+            </button>
     </>
 }
 
 
 //main Header exam bar 
-export default function HeaderBar () {
+export default function HeaderBar ({onClick}) {
 
     const [stickyClass, setStickyClass] = useState('headerbar-main-style relative')
-
-    
-
-    const [count,setCount] = useState(0)
-
-
 
     useEffect(()=>{
       window.addEventListener('scroll',stickNavbar)
@@ -57,23 +50,23 @@ export default function HeaderBar () {
     return <div className={`${stickyClass}`}>
              <ul class="ultag-headerbar-style">
               <div className="divtag-hearlist-style">
-              <HeaderList value="listening" link="listening" 
-              icon={ <Icon Size="1.2rem" name={<BiUserVoice/>}></Icon>}  title="Listening"/>
+              <HeaderList link="listening" 
+              icon={ <Icon Size="1.2rem" color="#591c87" name={<BiUserVoice/>}></Icon>} onClick={onClick}  title="Listening"/>
               <HeaderList 
-              icon ={ <Icon Size="1.2rem" name={<BiFontColor/>}></Icon>} value="vocabulary" link="vocabulary"  title="Vocabulary"/>
+              icon ={ <Icon Size="1.2rem" color="#591c87" name={<BiFontColor/>}></Icon>} onClick={onClick}   link="vocabulary"  title="Vocabulary"/>
               <HeaderList 
-              icon={ <Icon Size="1.2rem" name={<BiLibrary/>}></Icon>} value="grammar" link="grammar" title="Grammer"/>
+              icon={ <Icon Size="1.2rem" color="#591c87" name={<BiLibrary/>}></Icon>} onClick={onClick}  link="grammar" title="Grammer"/>
               <HeaderList
-              icon= {<Icon Size="1.2rem" name={<BiBookOpen/>}></Icon>} value="reading" link="reading" title="Reading"/>
+              icon= {<Icon Size="1.2rem" color="#591c87" name={<BiBookOpen/>}></Icon>} onClick={onClick}   link="reading" title="Reading"/>
               <HeaderList value="writing" link="writing"
-              icon= {<Icon Size="1.2rem" name={<TbWriting/>}></Icon>}   title="Writing"/>
+              icon= {<Icon Size="1.2rem" color="#591c87" name={<TbWriting/>}></Icon>}    title="Writing"/>
                   </div>
                 
      
         </ul>
-        <div className="order-last cursor-not-allowed mt-2 md:mt-0 border-none my-2 md:my-0">
-                    <HeaderList value="Levle" title="Level" icon={<Icon Size="1.2rem" 
-                    name={<BiBarChartAlt/>}/>} ></HeaderList>
+        <div className="order-last cursor-not-allowed mt-2 md:mt-0 border-none flex items-center justify-center my-2 md:my-0 ">
+                    <HeaderList value="Levle" title="Level" icon={<Icon Size="1.2rem" color ="#591c87" 
+                    name={<IoBriefcaseOutline/>}/>} ></HeaderList>
                   </div>
         
     </div>
@@ -83,5 +76,5 @@ export default function HeaderBar () {
   
 
 
-  //droplink of question type
+
 

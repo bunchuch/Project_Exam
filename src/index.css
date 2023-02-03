@@ -176,7 +176,7 @@
 
 .buttondropdown{
     @apply flex-shrink-0 z-10 inline-flex items-center py-1 px-2 text-sm  text-[14px] text-center
-    text-gray-600   hover:bg-gray-200 focus:ring-4
+    text-gray-600 
      focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700
       dark:text-white dark:border-gray-600 
 }
@@ -190,8 +190,8 @@
 }
 
 .dropdownlist-style{
-    @apply py-2 divide-y-[1px] mt-2 mx-auto text-sm text-gray-700 rounded-md border-[1px]
-    dark:text-gray-200 bg-white md:w-[15rem] right-3 absolute 
+    @apply py-2 divide-y-[1px] mt-2 mx-auto text-gray-700 rounded-[4px] border-[1px]
+    dark:text-gray-200 bg-white w-[20rem] md:w-[10rem] right-5 top-4 md:top-0 md:right-3 absolute shadow-cyan-500/10 shadow-sm
 }
 
 .headerlist-style {

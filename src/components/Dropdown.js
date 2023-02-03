@@ -15,7 +15,7 @@ function DropdownList ({name,target_url}){
    </>
      }
 
-export default function Dropdown ({name,icon}){
+export default function Dropdown ({name,icon,list}){
     const [dropdown, setDropdown] = useState(false)
  const handleOnclick = ()=>{
        setDropdown(!dropdown)
@@ -25,9 +25,7 @@ export default function Dropdown ({name,icon}){
       data-dropdown-toggle="dropdown-states"
        className="buttondropdown " type="button">
              <div className="buttondropdown-flex-style">
-           {icon} <div>
              {name}
-                 </div>  <Icon Size="1.2rem" name={<BiChevronDown/>}/>
              </div>
      </button>
    {
@@ -37,9 +35,11 @@ export default function Dropdown ({name,icon}){
         <div className="text-start px-2 font-base text-[12px]">
      <h1 className="">List of exam</h1>
      </div>
-   <DropdownList name="📃 Mulitple Choice" target_url="/main"></DropdownList>
-   <DropdownList name="📰 Fill in the blank"></DropdownList>
-   <DropdownList name="📜 Matching Word"></DropdownList>
+ {
+  list.map((value)=>
+  <DropdownList name={value}/>
+  )
+ }
    </ul>
  </div>
      </>):

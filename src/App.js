@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Navbar from './components/Navbar/Navbar'
 import Mainpage from "./page/Home/LandingPage/mainPage"
 import LoginForm from "./page/login/loginForm"
-import About from "./page/about/About"
+import About from "./page/about/about"
 import Profile from "./page//Profile/profile"
 import {BrowserRouter, Routes, Route,Switch} from 'react-router-dom'
 import FileTest from "./testfile/filetest"
@@ -14,8 +14,7 @@ import { useSelector } from 'react-redux'
 
 
 const LazyLoader = React.lazy(()=> import("./page/exam/Exam"))
-const LazyLoaderWriting = React.lazy(()=>import("./page/exam/component/Writing"))
-const LazyLoaderListening = React.lazy(()=> import("./page/exam/component/Listening"))
+
 
 
 
@@ -63,7 +62,7 @@ setTitle(document.title = "Exam Application")
     {/*
     tesfile
     */}
-    <Route path='/testfile/:type' element ={<FileTest></FileTest>}></Route>
+    <Route path='/testfile/:categories' element ={<FileTest></FileTest>}></Route>
    </Routes>
    </BrowserRouter>
     

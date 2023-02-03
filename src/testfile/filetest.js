@@ -1,11 +1,13 @@
 
 import React, { useEffect, useState } from "react"
-import Timer from "./Timer"
+import Timer from "../components/Timer"
 import { useNavigate, useParams } from "react-router-dom"
 import FillBlanks from "./fillblanks"
 import { useDispatch, useSelector } from "react-redux"
 import { Readings } from "../data/data"
-
+import { questionAction } from "../redux/questionSlice"
+import Staff from "./Staff"
+import { ReadingCard } from "../components/ReadingCard"
 
 // const InputFeild = ()=>{
 //     const [data,setData]= useState({
@@ -90,10 +92,6 @@ const handleOnclickSad  = (event)=>{
 }
 
 
-
-
-
-
 useEffect(()=>{
     document.title = emontional + staute
     if(emontional === undefined){
@@ -114,10 +112,6 @@ const handleOnsubmint =(e)=>{
 
 
 
-const type = useParams()
-console.log(type)
-
-const Queston = useSelector((state) => state.question)
 
 
 const navigate = useNavigate()
@@ -125,9 +119,9 @@ const navigate = useNavigate()
         <div>
 
    
-        <NumberContext.Provider value={emontional}>
+        {/* <NumberContext.Provider value={emontional}>
         <DisplayEmotional></DisplayEmotional>
-       
+       <h1>Hello there</h1>
         <p>{staute}</p>
         <button className="bg-blue-400 px-6 py-2 rounded-md mx-auto text-white "
          onClick={handleOnclickSad}>SAD</button>
@@ -138,10 +132,10 @@ const navigate = useNavigate()
         </NumberContext.Provider> 
         
         <FillBlanks></FillBlanks>
-       
-     
-     <HeaderBar/>
-     
+     <HeaderBar/> */}
+     {/* <ReadingCard sentence="my mon is good" header="my name"></ReadingCard> */}
+    <Staff/> 
+   
         </div>
     )
 }
