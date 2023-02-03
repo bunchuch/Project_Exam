@@ -12,7 +12,7 @@ import Badges from "../../../components/Badges";
 import { questionAction } from "../../../redux/questionSlice";
 import Stepper from "../../../components/Stepper";
 import { useParams } from "react-router-dom";
-import Reading from "./Reading";
+
 
 
 
