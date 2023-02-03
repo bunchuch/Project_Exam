@@ -5,9 +5,7 @@
 /.pnp
 .pnp.js
 /src/data
-/src/testfile
 src/data
-src/testfile
 # testing
 /coverage
 
