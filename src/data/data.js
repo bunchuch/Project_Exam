@@ -92,20 +92,21 @@ const personalinfo = [
 ]
 
 const Writing = {
-        "id" : "01",
+     
+    "multiple chocice":  [ { "id" : "01",
         "type" : "none",
         "number-word" : "100",
         "clude" : [
-            {
-                "id" : "01" , "choice" : "Describe three advantages of living aboard",
-                "id" : "02" , "choice" : "Describe three advantages of traveling aboard",
-                "id" : "03" , "choice" : "Describe you happay memory in life",
-            }
+                { "id" : "01" , "choice" : "Describe three advantages of living aboard"},
+                {"id" : "02" ,  "choice" : "Describe three advantages of traveling aboard"},
+                {"id" : "03" ,  "choice" : "Describe you happay memory in life"},
+            
         ]
+    }
+    ]
 }
 
 const Readings = {
-
     "multiple chocice" : [
         {
             "id":"01",
@@ -122,7 +123,92 @@ const Readings = {
                      "React finds out what changes have been made, and changes only what needs to be changed.",
             "header" : "reading a book is good time",
             "categories": "multiple Chocice",
-            "question":["what is the capital of Uruguay is ...?"],
+            "question":["what is the capital of Uruguay is_____?"],
+            "clude":[
+                {"id":"01", "choice":"reading can help you feel less iritated" },
+                {"id":"02", "choice":"More people are enjoying a books and turing off the television" },
+                {"id":"03", "choice":"Books can incrase your awareness and help you to be open-minded." },
+                {"id":"04", "choice":"Choosing book is no more diffucult than slecting a film" }
+            ]
+        
+        },
+
+        {
+            "id":"02",
+            "type":"checkbox",
+            "header" : "reading a book is good time",
+            "categories": "multiple Chocice",
+            "question":["what is the capital of Uruguay is_____?"],
+            "clude":[
+                {"id":"01", "choice":"reading can help you feel less iritated" },
+                {"id":"02", "choice":"More people are enjoying a books and turing off the television" },
+                {"id":"03", "choice":"Books can incrase your awareness and help you to be open-minded." },
+                {"id":"04", "choice":"Choosing book is no more diffucult than slecting a film" }
+            ]
+        
+        },
+        {
+            "id":"03",
+            "type":"checkbox",
+            "header" : "reading a book is good time",
+            "categories": "multiple Chocice",
+            "question":["what is the capital of Uruguay is_____?"],
+            "clude":[
+                {"id":"01", "choice":"reading can help you feel less iritated" },
+                {"id":"02", "choice":"More people are enjoying a books and turing off the television" },
+                {"id":"03", "choice":"Books can incrase your awareness and help you to be open-minded." },
+                {"id":"04", "choice":"Choosing book is no more diffucult than slecting a film" }
+            ]
+        
+        },
+        {
+            "id":"03",
+            "type":"checkbox",
+            "header" : "reading a book is good time",
+            "categories": "multiple Chocice",
+            "question":["what is the capital of Uruguay is_____?"],
+            "clude":[
+                {"id":"01", "choice":"reading can help you feel less iritated" },
+                {"id":"02", "choice":"More people are enjoying a books and turing off the television" },
+                {"id":"03", "choice":"Books can incrase your awareness and help you to be open-minded." },
+                {"id":"04", "choice":"Choosing book is no more diffucult than slecting a film" }
+            ]
+        
+        },
+        {
+            "id":"03",
+            "type":"checkbox",
+            "header" : "reading a book is good time",
+            "categories": "multiple Chocice",
+            "question":["what is the capital of Uruguay is_____?"],
+            "clude":[
+                {"id":"01", "choice":"reading can help you feel less iritated" },
+                {"id":"02", "choice":"More people are enjoying a books and turing off the television" },
+                {"id":"03", "choice":"Books can incrase your awareness and help you to be open-minded." },
+                {"id":"04", "choice":"Choosing book is no more diffucult than slecting a film" }
+            ]
+        
+        },
+        {
+            "id":"03",
+            "type":"checkbox",
+            "header" : "reading a book is good time",
+            "categories": "multiple Chocice",
+            "question":["what is the capital of Uruguay is_____?"],
+            "clude":[
+                {"id":"01", "choice":"reading can help you feel less iritated" },
+                {"id":"02", "choice":"More people are enjoying a books and turing off the television" },
+                {"id":"03", "choice":"Books can incrase your awareness and help you to be open-minded." },
+                {"id":"04", "choice":"Choosing book is no more diffucult than slecting a film" }
+            ]
+        
+        },
+        {
+            "id":"03",
+            "type":"checkbox",
+            "header" : "reading a book is good time",
+            "categories": "multiple Chocice",
+            "question":["what is the capital of Uruguay is_____?"],
             "clude":[
                 {"id":"01", "choice":"reading can help you feel less iritated" },
                 {"id":"02", "choice":"More people are enjoying a books and turing off the television" },
@@ -131,13 +217,126 @@ const Readings = {
             ]
         
         }
+
     ]
 
 
 }
 
-const Listening = {
+const Grammar = {
+    "multiple chocice" : [
+        {
+            "id" : "01",
+            "type" : "checkbox",
+            "categories": "multiple Chocice",
+            "question" : ["If you_____ to my advice in firt place, you______in a mess right now"],
+            "clude":[
+               { "id" : "1","choice": "listen/wouldn't be"},
+              { "id" : "2", "choice" : "had listend/wouldn't been" },
+              { "id" : "3", "choice" : "had/listend/wouldn't be" },
+              { "id" : "4", "choice" : "listend wouldn't be" }
+            ]
+        },
+        {
+            "id" : "02",
+            "type" : "checkbox",
+            "categories": "multiple Chocice",
+            "question" : ["If i _______ French in high school, I______ more job opportunities now."],
+            "clude":[
+               { "id" : "1","choice": "had taken/ would have"},
+              { "id" : "2", "choice" : "had taken/would not have" },
+              { "id" : "3", "choice" : "had not taken/would have had" },
+              { "id" : "4", "choice" : "taken/ would had" }
+            ]
+        },
+        {
+            "id" : "03",
+            "type" : "checkbox",
+            "categories": "multiple Chocice",
+            "question" : ["If she______ in the United State. she_____a visa to work here."],
+            "clude":[
+               { "id" : "1","choice": "had be born/ would have"},
+              { "id" : "2", "choice" : "had taken/would not have" },
+              { "id" : "3", "choice" : "had not taken/would have had" },
+              { "id" : "4", "choice" : "taken/ would had" }
+            ]
+        },
+        {
+            "id" : "04",
+            "type" : "checkbox",
+            "categories": "multiple Chocice",
+            "question" : ["If i _______ French in high school, I______ more job opportunities now."],
+            "clude":[
+               { "id" : "1","choice": "had taken/ would have"},
+              { "id" : "2", "choice" : "had taken/would not have" },
+              { "id" : "3", "choice" : "had not taken/would have had" },
+              { "id" : "4", "choice" : "taken/ would had" }
+            ]
+        },
+        {
+            "id" : "05",
+            "type" : "checkbox",
+            "categories": "multiple Chocice",
+            "question" : ["If he______after the car thief, he_____today"],
+            "clude":[
+               { "id" : "1","choice": "hadn't run/ would probably be alive"},
+              { "id" : "2", "choice" : "had run/would probably be alive" },
+              { "id" : "3", "choice" : "hadn't ran/would not probably be alive" },
+              { "id" : "4", "choice" : "hadn't ran/ would probably be alive" }
+            ]
+        }
+    ]
+}
 
+const Vocabulary = {
+    "id" : "01",
+    "type" : "Vocabulary",
+    "Fill in blank" : [
+        {
+            "id":"01",
+            "categories":"Fill in blank",
+            "clude": ["confused","stay out trouble","respeed","unfair","acceptable","undifferent","keep  in touch"],
+            "type" : "input",
+            "question" :["To get a promotion, you'd better work hard and show < for your boss."],
+           
+        },
+        {
+            "id":"02",
+            "categories":"Fill in blank",
+            "type" : "input",
+            "question" :["I sometime get< about how and when to use past simple and pressent ferfect. Teacher said that I had to paractice doing more excrcise to get better."],
+            "clude" : []
+           
+        },
+        {
+            "id":"02",
+            "categories":"Fill in blank",
+            "type" : "input",
+            "question" :["Before Jame left to work in his company's branch in Japan, he < a special trainning program"],
+            "clude" : []
+           
+        },
+        {
+            "id":"02",
+            "categories":"Fill in blank",
+            "type" : "input",
+            "question" :["James is moving to a new neighorhood, but her friends hope she will <"],
+            "clude" : []
+           
+        },
+        {
+            "id":"02",
+            "categories":"Fill in blank",
+            "type" : "input",
+            "question" :["James is moving to a new neighorhood, but her friends hope she will <"],
+            "clude" : []
+           
+        },
+    ]
+    
+}
+
+const Listening = {
     "id":"01",
     "type" : "Listenning",
     "multiple chocice" : [
@@ -146,7 +345,7 @@ const Listening = {
             "type":"checkbox",
             "audio": "https://www.123listening.com/freeaudio/adjectives1-1.mp3",
             "categories": "multiple Chocice",
-            "question":["what is the capital of Uruguay is ...?"],
+            "question":["what is the capital of Uruguay is _____?"],
             "clude":[
                 {"id":"01", "choice":"Montery" },
                 {"id":"02", "choice":"New Uruguay" },
@@ -162,7 +361,7 @@ const Listening = {
             "type":"checkbox",
             "categories": "multiple Chocice",
             "audio": "",
-            "question":["The examination of every human social interaction on a small scale describes...?"],
+            "question":["The examination of every human social interaction on a small scale describes______?"],
             "clude":[
                 {"id":"01", "choice":"functionalism" },
                 {"id":"02", "choice":"macrosociology" },
@@ -178,7 +377,7 @@ const Listening = {
             "type":"checkbox",
             "categories": "multiple Chocice",
             "audio": "",
-            "question":["Karl is upset because..?"],
+            "question":["Karl is upset because______?"],
             "clude":[
                 {"id":"01", "choice":"his application are due" },
                 {"id":"02", "choice":"his train was dlayed" },
@@ -192,7 +391,7 @@ const Listening = {
             "type":"checkbox",
             "audio": "",
             "categories": "multiple Chocice",
-            "question":["The women suggests that karl...?"],
+            "question":["The women suggests that karl______?"],
             "clude":[
                 {"id":"01", "choice":"Knock on his advisor's door" },
                 {"id":"02", "choice":"delay his appointment" },
@@ -201,39 +400,137 @@ const Listening = {
             ]
         },
         
+        {
+    
+            "id":"02",
+            "type":"checkbox",
+            "categories": "multiple Chocice",
+            "audio": "",
+            "question":["The examination of every human social interaction on a small scale describes______?"],
+            "clude":[
+                {"id":"01", "choice":"functionalism" },
+                {"id":"02", "choice":"macrosociology" },
+                {"id":"03", "choice":"cultural anthropology" },
+                {"id":"04", "choice":"microsociology" }
+            ]
+        
+        },
 
-
+        {
+            "id":"04",
+            "type":"checkbox",
+            "audio": "",
+            "categories": "multiple Chocice",
+            "question":["The women suggests that karl______?"],
+            "clude":[
+                {"id":"01", "choice":"Knock on his advisor's door" },
+                {"id":"02", "choice":"delay his appointment" },
+                {"id":"03", "choice":"switch appointment with someone" },
+                
+            ]
+        },
+        {
+            "id":"04",
+            "type":"checkbox",
+            "audio": "",
+            "categories": "multiple Chocice",
+            "question":["The women suggests that karl______?"],
+            "clude":[
+                {"id":"01", "choice":"Knock on his advisor's door" },
+                {"id":"02", "choice":"delay his appointment" },
+                {"id":"03", "choice":"switch appointment with someone" },
+                
+            ]
+        },
+        {
+            "id":"04",
+            "type":"checkbox",
+            "audio": "",
+            "categories": "multiple Chocice",
+            "question":["The women suggests that karl______?"],
+            "clude":[
+                {"id":"01", "choice":"Knock on his advisor's door" },
+                {"id":"02", "choice":"delay his appointment" },
+                {"id":"03", "choice":"switch appointment with someone" },
+                
+            ]
+        },
+        {
+            "id":"04",
+            "type":"checkbox",
+            "audio": "",
+            "categories": "multiple Chocice",
+            "question":["The women suggests that karl______?"],
+            "clude":[
+                {"id":"01", "choice":"Knock on his advisor's door" },
+                {"id":"02", "choice":"delay his appointment" },
+                {"id":"03", "choice":"switch appointment with someone" },
+                
+            ]
+        },
+        {
+            "id":"04",
+            "type":"checkbox",
+            "audio": "",
+            "categories": "multiple Chocice",
+            "question":["The women suggests that karl______?"],
+            "clude":[
+                {"id":"01", "choice":"Knock on his advisor's door" },
+                {"id":"02", "choice":"delay his appointment" },
+                {"id":"03", "choice":"switch appointment with someone" },
+                
+            ]
+        },
     ],
 
-    "Fill in Blank" : [
+    // "Fill in Blank" : [
         
-            {
-                "id":"01",
-                "audio": "https://www.123listening.com/freeaudio/adjectives2-2.mp3",
-                "categories":"Fill in blank",
-                "type" : "input",
-                "question" :["Attending the < is a great <, but planning ahead is a good idea. Hundreds of < of people attend each year, so you’ll need to book < and tickets for popular shows in < . But don’t plan too much! You’ll find out about great, little-known shows and performers while you are there, and you’ll be < if you are too busy to attend."],
-                "clude": ["festival","thousands","experience","disappointed","accommodation","advance"]
-            },
-            {
-                "id":"02",
-                "audio": "",
-                "categories":"Fill in blank",
-                "type" : "input",
-                "question" :["We get it. Learning the meaning of the many words that make up the < can seem overwhelming. Take away the nerves and make it simple and easy to < with the use of our sentence maker."+
+    //         {
+    //             "id":"01",
+    //             "audio": "https://www.123listening.com/freeaudio/adjectives2-2.mp3",
+    //             "categories":"Fill in blank",
+    //             "type" : "input",
+    //             "question" :["To get a promotion, you'd better work hard and show < for your boss."],
+    //             "clude": ["respect", "confused","respect"]
+    //         },
+    //         {
+    //             "id":"02",
+    //             "audio": "",
+    //             "categories":"Fill in blank",
+    //             "type" : "input",
+    //             "question" :["James is moving to new neighborhood, but her firend hope she will <"
+    //             ],
+    //             "clude": ["respect", "confused","respect"]
+    //         },
+    //         {
+    //             "id":"03",
+    //             "audio": "",
+    //             "categories":"Fill in blank",
+    //             "type" : "input",
+    //             "question" :["Ever Eric changed and sometimes never listen to any recommandations from other <."
+    //             ],
+    //             "clude": ["respect", "confused","respect"]
+    //         },
+    //         {
+    //             "id":"04",
+    //             "audio": "",
+    //             "categories":"Fill in blank",
+    //             "type" : "input",
+    //             "question" :["I sometimes get < about how and when use past simple and present perfect. Teacher said that I had to practice doing mre excerices to get better."
+    //             ],
+    //             "clude": ["respect", "confused","respect"]
+    //         },
+    //         {
+    //             "id":"05",
+    //             "audio": "",
+    //             "categories":"Fill in blank",
+    //             "type" : "input",
+    //             "question" :["Before Jame left to work in his company's branch in Japan, he < a spacial tranning program."],
+    //             "clude": ["respect", "confused","respect"]
+    //         },
         
-                "Your Dictionary < to make learning as < as possible, no matter what your age or understanding is. And our sentence examples are no different."+
-                
-                "We understand that sometimes the best way to truly understand a new concept is to see it used in an example. With the help of our useful tool, you can be one step ahead with < the complexity and workings of English vocabulary."+
-                
-                "With an increased < of how words can be used, you can make your writing come to life with an arsenal of words of varying < and meanings."+
-                
-               " Simply type the word into the sentence generator and we’ll do the rest"],
-                "clude": ["understand","English language","stress-free","understanding","grasping","couse of","difficulties","strives"]
-            }
         
-        
-    ]
+    // ]
 }
 
 // const Question = [
@@ -332,4 +629,4 @@ const Listening = {
 
 
 
-  module.exports = {sectionTwoData, sectionOneData,personalinfo,Readings,  Listening}
+  module.exports = {sectionTwoData, sectionOneData,personalinfo,Readings, Listening, Grammar,Vocabulary,Writing}

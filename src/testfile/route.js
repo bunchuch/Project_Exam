@@ -20,7 +20,7 @@ export default function TestRute(){
             </li>
         </ul>
         <hr></hr>
-        <Outlet context={{number:"world"}}/>
+      
     </div>
 }
 

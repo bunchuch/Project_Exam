@@ -1,23 +1,17 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { useEffect, useState, useTransition } from "react";
 import { Link } from "react-router-dom";
 import { BiTime } from "react-icons/bi";
 import Icon from "../../../components/Icon";
-import Timer from "../../../testfile/Timer";
+import Timer from "../../../components/Timer";
 import { styleExamStatus } from "../../../style/style";
-import Badges from "../../../components/Badges";
-import { TbTable } from "react-icons/tb";
 
 
-
-
-const number = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
-
-
+const number = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
 
 function ListBox({title,componet,style}){
   return <div className="">
-    <div className="py-2 md:block hidden">
-   <h1 className="font-medium text-[12px] text-gray-800">{title}</h1>
+    <div className="md:block hidden py-1">
+   <h1 className="font-medium text-[14px] text-gray-800">{title}</h1>
     </div>
   
   {componet}
@@ -27,9 +21,13 @@ function ListBox({title,componet,style}){
 export default function ExamStatus ({data}){
   const [hidden,setHidden] =
    useState('relative bg-white py-2')
+const [fixed, setFixed] = useState(true)
+
+
 const [iconSize, setIconSize] = useState("2.5rem")
 useEffect(()=>{
   window.addEventListener('resize',resizeBy)
+  window.addEventListener('scroll',fixedComponet)
  
   return ()=>{
     window.removeEventListener('resize',resizeBy)
@@ -37,7 +35,13 @@ useEffect(()=>{
   }
 },[])
 
-
+const fixedComponet = () =>{
+ if(window.scrollY >= 110 ){
+  setFixed(true)
+ }else {
+  setFixed(false)
+ }
+}
 
 const resizeBy = ()=>{
   if(window !== undefined){
@@ -49,43 +53,46 @@ const resizeBy = ()=>{
 
 
 
-return <div className="lg:my-10 space-y-3 md:space-x-0 ">
-{/* 
+return <div className={fixed ? "md:top-20 top-[52.5px] z-10 lg:fixed lg:w-[300px] transition duration-150 ease-in-out " : "lg:my-6 my-0 -top-20 space-y-0 md:space-y-2" }>
+{/*  
    Timer Loading */}
-   <ListBox title="Timer" componet={
-    <div className=" justify-center py-2 shadow-purple-500/10 shadow-sm items-center rounded-[4px] bg-white flex ">
-      <div className="bg-white w-full flex justify-center items-center space-x-2">
-      <Icon name={<BiTime/>} Size={iconSize}/>
-      <div>
-        <h2 className="font-medium text-[14px]">Time Left</h2>
+
+      
+    <ListBox title="Exam status" componet={
+         <div className="flex md:block md:shadow-sm md:shadow-gray-500/10 bg-white">
+       <div className="md:order-first md:w-full bg-orange-400 md:text-slate-900 rounded-t-[4px]
+         md:bg-purple-500 order-last  ">
+    <div className=" md:py-2  flex items-center md:shadow-purple-500/10 md:shadow-sm rounded-t-[4px] ">
+      <div className="hidden md:flex w-full justify-center items-center space-x-2">
+      <Icon name={<BiTime/>} color="white" Size={iconSize}/>
+      <div className="hidden md:block">
+        <h2 className="font-medium text-white text-[14px]">Time Left</h2>
          </div>
       </div>
- <div className="m-0 flex justify-center p-0 w-full">
- <Timer time= {45}></Timer>
+ <div className="mt-1.5 md:mt-0 px-2 flex items-center justify-center  p-0 w-full">
+ <Timer initialMinute = {45} nitialSeconds={23}></Timer>
   </div>
 
   </div>
+</div>
+<div className="w-full  md:order-last order-1 md:py-0 bg-white overflow-x-auto md:overflow-hidden">
+<ul className={styleExamStatus["ul-tag"]}>
+ {
+   data.map((value,index)=><li key={value} className="">
+    <div className="md:py-4 py-2 px-4 flex justify-center bg-gray-50 hover:bg-yellow-100 border-[1px] rounded-sm">
+    <a href="#" >{index+1}</a>
+    </div>
+ 
+   </li>
+   )
+ }
+
+</ul>
+</div>
+</div>
    }/>
 
-{/* Exam status or process */}
-
-<ListBox title="Exam status" componet={
-  <ul className={styleExamStatus["ul-tag"]}>
-   {
-     number.map((value)=><li key={value} className="my-2">
-      <div className="md:w-10 py-2 flex justify-center bg-gray-50 border-[1px] rounded-sm">
-      <a href="#" className={styleExamStatus["a-tag"]}>{value}</a>
-      </div>
-   
-     </li>
-     )
-   }
- 
- </ul>
-}/>
-
-
-
+  
 {/* Rule of Exam */}
 <ListBox title="Description" componet={
   <article className={hidden}>

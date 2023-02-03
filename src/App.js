@@ -14,8 +14,7 @@ import { useSelector } from 'react-redux'
 
 
 const LazyLoader = React.lazy(()=> import("./page/exam/Exam"))
-const LazyLoaderWriting = React.lazy(()=>import("./page/exam/component/Writing"))
-const LazyLoaderListening = React.lazy(()=> import("./page/exam/component/Listening"))
+
 
 
 
@@ -63,7 +62,7 @@ setTitle(document.title = "Exam Application")
     {/*
     tesfile
     */}
-    <Route path='/testfile/:type' element ={<FileTest></FileTest>}></Route>
+    <Route path='/testfile/:categories' element ={<FileTest></FileTest>}></Route>
    </Routes>
    </BrowserRouter>
     

@@ -7,12 +7,12 @@ const styleGroupInput = {
 
 const styleNavbar = {
     "navStyle" : " bg-white text-slate-900 md:shadow-orange-100 py-2 border-b-[1px] md:border-none md:py-0 md:bg-slate-900 md:text-white",
-    "container" : "flex justify-between items-center mx-[2px]   md:mx-[70px] md:py-[3px] md:flex text-sm md:justify-between md:items-center   ",
+    "container" : "flex justify-between items-center py-[5px]  mx-4 md:mx-[70px] md:py-[px] md:flex text-sm md:justify-between md:items-center   ",
     "container2": "flex items-center justify-between",
    "conatiner3" : " flex flex-row justify-between space-x-2", 
-    "img-style" : "object-fill",
+    "img-style" : "object-fill md:w-10 md:h-10 h-8 w-8",
     "divtag-stlye-three": " flex flex-row justify-between space-x-2",
-    "atag-style-nav": " text-2xl font-bold transition-colors duration-300 transform dark:text-white lg:text-2xl hover:text-gray-700 dark:hover:text-gray-300",
+    "atag-style-nav": " md:text-[20px] text-[18px]  font-bold transition-colors duration-300 transform dark:text-white lg:text-xl md:tracking-wide hover:text-gray-700 dark:hover:text-gray-300",
     "divtag-style-four": " hidden md:items-center md:justify-between md:flex",
     "atag-nav-list-style": " text-white bg-blue-700 hover:bg-blue-800 focus:ring-4  focus:ring-blue-300 font-medium rounded-sm  px-3 py-2 mr-2 mb-2   dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none    dark:focus:ring-blue-800",
 }
@@ -30,7 +30,7 @@ const styleLoader = {
 
 
 const styleInstruction = {
-    "main" : "flex  text-purple-900 py-2 md:bg-gray-50 space-x-1 items-center md:py-2 px-2 rounded-[4px]",
+    "main" : "flex  text-purple-900 py-2 md:bg-gray-50 space-x-1 items-center md:py-2  rounded-[4px]",
     "article": "md:flex space-x-0 items-center md:space-x-2 tracking-wide",
     "header": "font-semibold leading-none text-sm ",
     "paragrah": "text-[12px] hidden md:block md:text-sm text-gray-800"
@@ -39,7 +39,7 @@ const styleInstruction = {
 
 
 const styleAudio = {
-    "main" : "w-full rounded-[4px] mt-3 shadow-sm shadow-gray-500/10 bg-white",
+    "main" : "w-full rounded-[4px] mt-3 bg-orange-200 text-center font-ubuntu shadow-sm shadow-cyan-500/10 bg-white",
     "audio" : "w-full bg-gray-100 ",
     "title_audio": "text-[14px] py-2 mx-2 font-medium"
   }
@@ -83,7 +83,7 @@ const styleExamStatus = {
   "header-title" : "font-medium text-[14px] md:text-[14px] my-1 tracking-wide bg-purple-900 py-1 px-2 bg-purple-800 text-white",
   "divtag-style" : "",
   "rule_exam-style" : " ",
-  "ul-tag" : " py-2 px-4 grid grid-cols-10 lg:grid-cols-5 shadow-sm shadow-gray-500/10 bg-white border-gray-400 rounded-[4px] ",
+  "ul-tag" : " py-0  flex  md:grid md:grid-rows md:grid-cols-5 flex bg-white border-gray-400 md:rounded-[4px] ",
   "li-tag" : "bg-blue-100",
   "a-tag" :  "leading-tight text-gray-900 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
   

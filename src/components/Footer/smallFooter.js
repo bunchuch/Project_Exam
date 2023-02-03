@@ -1,10 +1,10 @@
 import {BiCopyright, BiListCheck} from "react-icons/bi"
 import {Link} from "react-router-dom"
 import Icon from "../Icon"
-const FoostList = (props) => {
+const FoostList = (props, key) => {
     return <>
        <Link>
-       </Link> <a href={props.link} className="text-[12px] ">{props.text}</a>
+       </Link> <a key={key} href={props.link} className="text-[12px] ">{props.text}</a>
     </>
 }
 
@@ -32,7 +32,7 @@ export default function SmallFooter  (props)  {
             </div>
         </div>
       {
-        footerList.map((items)=><FoostList link={items.link} text={items.text}/>)
+        footerList.map((items, key)=><FoostList key={key} link={items.link} text={items.text}/>)
       }
     </span>
 }

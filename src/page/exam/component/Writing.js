@@ -2,16 +2,13 @@ import React, { useEffect,ClipboardEvent, useState } from "react";
 import axios from 'axios';
 import { BiImage, BiPen } from "react-icons/bi";
 import Icon from "../../../components/Icon";
-import Instruction from "../../../components/Instruction";
-import { TbWriting } from "react-icons/tb";
-
 import { styleWriting } from "../../../style/style";
 
 
 
 
 
-export default function Writing (){
+export default function Writing ({data}){
  const [images, setImages] = useState([])
  const [imageURLs, setImagesURLs] = useState([])
  const [showimage ,setShowwimage] = useState()
@@ -23,10 +20,6 @@ const preventCopyPast = (e: ClipboardEvent<HTMLInputElement>)=>{
         e.preventDefault();
         setAlert("Not Allow to copy and past")
        }
-
-
-
-
 
  useEffect(()=>{
     if(images.length < 1) return;
@@ -66,11 +59,9 @@ console.log(err)
     return   <div className={styleWriting.main}>     
   <div className="text-[14px] bg-white py-2 rounded-[4px] shadow-sm shadow-cyan-500/10">
     <ol className="text-gray-800 tracking-wider pl-5  space-y-1 list-decimal list-inside">
-        <li>
-            Describe three advantages of living aboard
-        </li>
-        <li>Describe three advantages of traveling aboard</li>
-        <li>Describe you happay memory in life</li>
+     {
+        data.map((items,key)=><li key={items.id}>{items.choice}</li>)
+     }
         
     </ol>
   </div>
