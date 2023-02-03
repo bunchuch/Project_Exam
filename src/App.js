@@ -19,7 +19,7 @@ const App =()=>{
 const [title, setTitle] = useState()
   let [isNavbarHidden, setIsNavBarHidden] = useState(false)
   let [isFootBig, setIsFooter] = useState(false)
-
+  
   useEffect(()=>{
 setTitle(document.title = "Exam Application")
   },[])
