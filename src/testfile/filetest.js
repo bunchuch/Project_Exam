@@ -121,7 +121,7 @@ const navigate = useNavigate()
    
         {/* <NumberContext.Provider value={emontional}>
         <DisplayEmotional></DisplayEmotional>
-       
+       <h1>Hello there</h1>
         <p>{staute}</p>
         <button className="bg-blue-400 px-6 py-2 rounded-md mx-auto text-white "
          onClick={handleOnclickSad}>SAD</button>
