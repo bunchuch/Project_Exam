@@ -30,11 +30,8 @@ export default function Dropdown ({name,icon,list}){
      </button>
    {
      dropdown ? (<>
-      <div id="dropdown-states" className="dropdownpanel-style">
-     <ul class="dropdownlist-style" aria-labelledby="states-button">
-        <div className="text-start px-2 font-base text-[12px]">
-     <h1 className="">List of exam</h1>
-     </div>
+      <div id="dropdown-states" >
+     <ul class="absolute right-4 z-20 w-56 py-2 mt-2 overflow-hidden origin-top-right bg-white rounded-md shadow-xl dark:bg-gray-800" aria-labelledby="states-button">
  {
   list.map((value)=>
   <DropdownList name={value}/>

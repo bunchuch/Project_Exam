@@ -37,28 +37,22 @@ const sectionOneData = [
      "Writing" : [ { "id": "001",
         "icon": "https://ouch-cdn2.icons8.com/RZi98ls6dltk9nWZ1_SNLJQgbyacBQ9WmBjqRvjxxCw/rs:fit:512:384/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9wbmcvNzE4/L2NkZWFlZDJjLWIz/MDYtNDZjNy1hNTA5/LWI5ZGViMGVhN2Uw/Ny5wbmc.png",
         "header":"Writing",
-        "Description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. "
+        "Description":"Listening is so important that many top employers provide listening skills training for their employees. This is not surprising when you consider that good listening skills can lead to better customer satisfaction, greater productivity with fewer mistakes, and increased sharing of information that in turn can lead to more creative and innovative work.",
+        
         } ],
-
-      "Speaking" : [  {
-            "id": "002",
-            "icon":"https://ouch-cdn2.icons8.com/A3Ns94XMqa_51xCyiRnmh0MuvtCZEXWQj5ZFVNL0zAA/rs:fit:512:512/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9wbmcvNzY2/LzcwMzgwNjQ2LTMx/MGUtNDNkMC05NmE1/LWMzYzBiYWE0ZjI5/MC5wbmc.png",
-            "header":"Speaking",
-            "Description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. "
-            }],
 
          "Lisenting" : [   {
                 "id": "003",
                 "icon":"https://ouch-cdn2.icons8.com/mKTUYA5xSk11T2e6VyldCtqX9XaKI-X6cqpCloaRXwI/rs:fit:512:384/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9wbmcvNjA2/LzJkYWQ0NDk0LTBh/ZGUtNDAzOC04ZmZh/LWFjMzYyM2YyZmRl/Ny5wbmc.png",
                 "header":"Lisenting",
-                "Description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. "
+                "Description":"Listening is so important that many top employers provide listening skills training for their employees. This is not surprising when you consider that good listening skills can lead to better customer satisfaction, greater productivity with fewer mistakes, and increased sharing of information that in turn can lead to more creative and innovative work.",
                 }],
 
            "Vocalulary" : [    {
                     "id": "004",
                     "icon":"https://cdni.iconscout.com/illustration/premium/thumb/working-on-laptop-4301648-3575320.png",
                     "header":"Vocalulary",
-                    "Description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. "
+                    "Description":"Listening is so important that many top employers provide listening skills training for their employees. This is not surprising when you consider that good listening skills can lead to better customer satisfaction, greater productivity with fewer mistakes, and increased sharing of information that in turn can lead to more creative and innovative work.",
                     }],
 
                 }
