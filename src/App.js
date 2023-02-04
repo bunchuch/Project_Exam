@@ -9,8 +9,7 @@ import FileTest from "./testfile/filetest"
 import Registration from './page/regisignsterForm/Registration';
 import Loader from './components/Loader';
 import ErrorPage from './components/ErrorPage';
-import TaskArea from './page/exam/component/TaskArea'
-import { useSelector } from 'react-redux'
+
 
 
 const LazyLoader = React.lazy(()=> import("./page/exam/Exam"))
@@ -21,7 +20,7 @@ const [title, setTitle] = useState()
   let [isFootBig, setIsFooter] = useState(false)
   
   useEffect(()=>{
-setTitle(document.title = "Exam Application")
+  setTitle(document.title = "Exam Application")
   },[])
 
   return <div>

@@ -37,8 +37,8 @@ const list = ["class","profile","find","logout"]
             </div>
            
             <div  className={styleNavbar["divtag-style-four"]}>
-                    <PageComponet name="Home" img="https://img.icons8.com/sf-regular/25/1D10B2/home-page.png"/>
-                    <PageComponet name="About us" img="https://img.icons8.com/windows/25/1D10B2/info-popup.png"/>
+                    <PageComponet link= "/" name="Home" img="https://img.icons8.com/sf-regular/25/1D10B2/home-page.png"/>
+                    <PageComponet link="/about" name="About us" img="https://img.icons8.com/windows/25/1D10B2/info-popup.png"/>
                     <PageComponet name="Contact us" img="https://img.icons8.com/material-outlined/25/1D10B2/address-book.png"/>
             </div>
 <div>

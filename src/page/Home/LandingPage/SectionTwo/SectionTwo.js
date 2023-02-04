@@ -16,15 +16,8 @@ data.map((value)=><>
             desc={items.Description}
              img={items.img}/>)}
 
-           {value.two.map((items)=><SectionContainer 
-           key={items.id} title={items.header} 
-           desc={items.Description}
-            img={items.img} isRight={true}/>)}
-            
-           {value.three.map((items)=><SectionContainer
-            key={items.id} title={items.header} 
-            desc={items.Description} 
-            img={items.img}/>)}
+         
+        
      </>)
     }
     </div>

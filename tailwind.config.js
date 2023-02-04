@@ -27,6 +27,7 @@ module.exports = {
       fontFamily:{
         roboto : "'Roboto',serif",
         ubuntu : "'ubuntu',serif",
+        teko : "'Teko',serif",
       }
     },
   },
