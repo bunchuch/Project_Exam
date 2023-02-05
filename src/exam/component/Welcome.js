@@ -11,64 +11,59 @@ export default function Welcome (){
     const loaddings = useSelector((state)=> state.quizs)
 
   
-    return  <section className="relative 2xl:top-44 md:top-10
-   top-[4rem]
+    return  <section className="relative 2xl:top-[10rem] md:top-[4rem]
+   sm:top-[4rem] top-[9rem]
     flex justify-center items-center mx-3 p-4 md:mx-auto">
-         <div className="bg-white max-w-6xl md:mx-auto px-6 py-5 rounded shadow-md shadow-gray-100 ">
-       <div className="flex py-2 items-center ">
-       <h2 className="text-[16px] font-semibold text-gray-800 font-roboto md:text-[20px]">
-       📝 Examinations</h2>
-       </div>
+      <div>
+      <div className="bg-white rounded-xl
+          max-w-sm md:mx-auto px-4 py-7
+           font-sans shadow-md shadow-gray-100 ">
+       <h2 className="text-[18px] tracking-wide font-sans 
+       text-center font-bold text-gray-800 md:text-[28px]">
+       &#128209; Examinations Rule</h2>
+       
        <span>
-    <p className=" mt-1 text-sm text-gray-900 ">
-       <h1 className="font-semibold text-gray-800 
-        md:text-purple-800 md:text-[16px] text-[14px]">
-        Action taken against you</h1>
        <span>
-       Failure to obey any of the following
-     rules may result in your exam being removed and disciplinary <br></br>
-    <ol className="pl-5 grid border-[1px] border-dashed border-gray-400
-     rounded gap-2 mt-2 overflow-y-auto
-      py-1.5 md:h-72 h-52 md  list-decimal list-inside">
+    <ul className="pl-5 grid 
+      py-1.5 mt-3 ">
     {
       <> {examRule.map((i,index)=><li key={i.id} 
-      className=" rounded-lg px-2 text-purple-900">{i.text}</li>)}</>
+      className=" flex items-center ">
+         <div className="bg-yellow-300 text-center rounded-full flex justify-center
+          font-semibold items-center w-7 h-7">
+            <p className="text-[16px] p-4">{index+1}</p>
+         </div>
+      
+         <p className="md:text-[16px] text-sm  text-slate-800 my-2 2xl:my-3 md:mx-4 mx-2 font-sans">
+            {i.text}
+            </p>  
+         
+         </li>)}</>
    
     }
-    </ol>
+    </ul>
     </span>      
-        </p>
         </span>
-        <hr className="my-5 hidden border-gray-400 " />
-    <div className="flex flex-row items-center w-full  justify-between mt-4  shrink-0">
-    <div class="flex">
-    <input onChange={(e)=> setAbleBtn(!ableBtn)} id="default-checkbox" type="checkbox"
-     value="" className="w-4 h-4 text-blue-600
-     bg-gray-100 border-gray-300 rounded focus:ring-purple-500 
-       focus:ring-2"/>
-    <label for="default-checkbox"
-     className={`ml-2 ${ ableBtn ?  "truncate md:w-full w-20" : "block"} 
-     text-sm  text-gray-900 `}>I agree with the
-   terms and conditions.</label>
-</div>
+      
+    <div className="w-full mt-4 px-4 ">
 
-{
- ableBtn ? (
     <button onClick={()=> {dispatch(loadding())
     } }
-     className="rounded relative inline-flex group items-center
-     justify-center px-3 py-1.5 text-[14px] font-roboto 
-     cursor-pointer bg-purple-800 text-white
-      active:bg-purple-600 active:shadow-none">
-          Go to the Exam !
+     className="rounded-md w-full px-3 py-1.5  text-[14px] md:text-[18px] font-sans
+     cursor-pointer bg-yellow-400 text-slate-900 tracking-wide font-semibold
+      active:bg-yellow-200 active:shadow-none">
+          Got it!
        </button>
- ) : (
-    null
- )
-}
-    
+    </div>
+  
+    </div>
+    <div 
+            className="login-section-bg rounded-br-xl
+             rounded-bl-xl bg-yellow-800 py-2 w-full">
+
+</div>
+      </div>
       
-    </div>
-    </div>
+    
 </section>
 }

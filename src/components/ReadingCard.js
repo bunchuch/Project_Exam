@@ -20,15 +20,18 @@ const handleOnclick = () =>{
 
     return  <>
    {
-    sentence ? <>
-<Modal info={true} size="large" showModals={true} text={"Press to open file "}>
-  <h1 className=" rounded-md px-2  font-semibold py-1.5
-    tex-center text-purple-800">🧾 Reading</h1>
+    sentence ? <div className="">
+    <p className="text-[16px] tracking-wide font-normal font-sans">
+      Click on image to see full screen</p>
+<Modal info={true} size="large" showModals={true} type="image" text={sentence}>
+  <h1 className=" rounded-xl px-2  font-semibold py-1.5
+    tex-center text-purple-800">Reading</h1>
     {sentence ? <img className="object-cover " src={sentence}/> 
     : <SmallSpinner></SmallSpinner>}
   
 </Modal>
-    </> : <Loader></Loader>
+
+    </div> : <SmallSpinner/>
    }
 
 

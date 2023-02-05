@@ -10,25 +10,18 @@ const Heropage =({text ,header , des , img})=>{
 
 const HeroImage = ({text ,header , des , img})=>{
   return (
-	<>
-<section className={`${img} bg-cover
- relative to-blue-500 bg-gray-50
+	<div className="container mx-auto md:px-0 px-2">
+<section className={`${img} bg-cover relative inset-0 rounded-xl top-0 md:top-10 shadow-md
+ to-blue-500 
   dark:bg-gray-800 dark:text-gray-100 text-slate-900 
-md:mt-0 md:mx-0
- h-[25rem] flex`}>
+md:mt-0 mx-0
+ h-[25rem] `}>
   {text ? <>
     <div className="hidden md:flex max-w-3xl md:px-0 px-6  mx-auto justify-center flex-col">
 <article className="text-center drop-shadow-md shadow-gray-900">
 <h1 className="md:text-[50px]   font-roboto text-white text-shadow shadow-gray-200 font-medium">{header}</h1>
 
-<div className="w-82 py-1 space-x-3 px-6 border-purple-800 border-[4px] text-slate-900 
-rounded-lg flex justify-center items-center  bg-purple-50 ">
-  <p>📖</p>
-<p className="md:text-[20px] space-x-2 tracking-wider text-[20px] font-roboto text-center">
-  {des}
-  </p>
-  <p>📖</p>
-</div>
+
 
 
   
@@ -39,7 +32,7 @@ rounded-lg flex justify-center items-center  bg-purple-50 ">
 	
 	
 </section>
-	</>
+	</div>
 	
   )
 }

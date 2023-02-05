@@ -21,12 +21,8 @@ const footerList = [
 export default function SmallFooter  (props)  {
 
 
-    return <span className=" md:flex space-x-4 text-blue-900 items-center">
+    return <span className=" md:flex space-x-4 text-blue-900 items-center container mx-auto">
         <div className="flex space-x-2 items-center">
-            <div className=" px-2 py-2 items-center">
-                <img className="object-cover h-5 w-5"
-                    src="https://img.icons8.com/color/48/null/infinity.png" alt="icon" />
-            </div>
             <div className="">
                 <Icon Size="1.2rem" name={<BiCopyright/>}></Icon>
             </div>

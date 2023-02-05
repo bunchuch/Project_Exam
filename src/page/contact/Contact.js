@@ -10,7 +10,7 @@ import Footer from "../../components/Footer/Footer"
 import "../../style/style.css"
 import { Card } from "../../components/Card"
 import Heropage from "../../components/Herosection/Hero"
-
+import {FcMindMap, FcPhone, FcServices, FcSms} from "react-icons/fc"
 
 export default function Contact () {
    
@@ -18,7 +18,7 @@ export default function Contact () {
     return (
         <section data-aos="fade-in"  className="bg-white dark:bg-gray-900">
           <Heropage img="contact-hero"></Heropage>
-        <div className="max-w-7xl  px-6 py-12 mx-auto">
+        <div className="container mx-auto  px-6 py-12 mt-10 font-sans">
             <div className="">    
                 <h1 className="mt-2 text-2xl font-semibold text-gray-800 md:text-3xl dark:text-white">Get in touch</h1>
             </div>
@@ -30,11 +30,11 @@ export default function Contact () {
             <div className="grid grid-cols-1 gap-12 mt-5 md:mt-10 md:grid-cols-2 lg:grid-cols-3">
               {
                 contact.map((i=><>
-                { i.Email.map((x)=><Card title={x.title} desc={x.desc} icons={<HiOutlineMail/>} chilren={x.contact}/>) }
-                { i.Office.map((x)=><Card title={x.title} desc={x.desc} icons={<TfiMapAlt/>} chilren={x.contact}/>) }
-                { i.Phone.map((x)=><Card title={x.title} desc={x.desc} icons={<BiPhoneCall/>} chilren={x.contact}/>) }
-                { i.Phone.map((x)=><Card title={x.title} desc={x.desc} icons={<FiFacebook/>} chilren={x.contact}/>) }
-                { i.Phone.map((x)=><Card title={x.title} desc={x.desc} icons={<RiTelegramLine/>} chilren={x.contact}/>) }
+                { i.Email.map((x)=><Card title={x.title} desc={x.desc} icons={<FcSms/>} chilren={x.contact}/>) }
+                { i.Office.map((x)=><Card title={x.title} desc={x.desc} icons={<FcMindMap/>} chilren={x.contact}/>) }
+                { i.Phone.map((x)=><Card title={x.title} desc={x.desc} icons={<FcPhone/>} chilren={x.contact}/>) }
+                { i.Phone.map((x)=><Card title={x.title} desc={x.desc} icons={<FcSms/>} chilren={x.contact}/>) }
+                { i.Phone.map((x)=><Card title={x.title} desc={x.desc} icons={<FcSms/>} chilren={x.contact}/>) }
                
                 </>))
               }

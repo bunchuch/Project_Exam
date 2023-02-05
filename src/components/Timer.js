@@ -40,18 +40,18 @@ import { useLocalStorage } from '../exam/hook/userLocalStorage';
         <div className=''>
         { minutes === 0 && seconds === 0
             ? <div 
-            className='py-1.5 px-2 md:px-2 text-[12px]  md:text-[14px] space-x-2 
-            flex items-center rounded bg-yellow-200'>
+            className='py-1.5 px-2 md:px-2 text-[12px] font-sans md:text-[14px] space-x-2 
+            flex items-center rounded-full bg-yellow-200'>
                 <p className='text-yellow-700  '>
                     😌 Opps... Time is Out</p></div>
             : <div className={`py-1.5 px-2 md:px-1.5 space-x-2 flex items-center
              ${ minutes <= 5 ? 'bg-red-500 text-white':"bg-purple-800 text-white" }
-             border-yellow-500 rounded  `}>
+             border-yellow-500 rounded-full  `}>
                     <div className='h-5 w-5 md:h-6 md:w-6'>
                     <Icon name={<FcAlarmClock/>}></Icon>
                     </div>
-                    <p className='md:block hidden font-roboto'>Time Left</p>
-                  <h1 className='font-medium md:font-none '>
+                    <p className='md:block hidden font-mono'>Time Left</p>
+                  <h1 className='font-medium md:font-none font-mono '>
                      {minutes}:{seconds < 10 ?  `0${seconds}` : seconds}</h1> 
              </div> 
         }

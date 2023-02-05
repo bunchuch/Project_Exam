@@ -14,6 +14,10 @@ import { Render } from './Render'
 import { QuestionRender } from './exam/component/QuestionRender'
 import { useSelector } from 'react-redux'
 import { Loader } from './components/load/Loader'
+import SmallFooter from './components/Footer/smallFooter'
+import Footer from './components/Footer/Footer'
+import { GetHelpWithSigning } from './page/login/resetAccount'
+
 
 
 
@@ -29,21 +33,22 @@ console.log(loading)
   useEffect(()=>{
   const title  = location.pathname.slice(1,
                 location.pathname.length)
-  const getTitle =  title.replace("/", " | ")
+  const getTitle =  title.replace("/", " - ")
   document.title = getTitle
   },[location.pathname])
 
   return <div className='App'>
    
    {
-    location.pathname !== '/login' && <Navbar/>
+    location.pathname == '/login' ? <></> : <Navbar/> 
+    && location.pathname == "/login/reset-account" ? <></> : <Navbar/>
    }
   
  { loading && <><Loader/></>}  
 <Routes>
 <Route path='/login'
    element={<LoginForm  />}/> 
-
+<Route path='/login/reset-account' element={<GetHelpWithSigning/>}/>
  <Route path='/profile' element={
 <ProtectedRoute>
 <Profile/>
@@ -75,9 +80,7 @@ console.log(loading)
     </Route>
     <Route path='/file/:name' element ={<Render/>}></Route>
    </Routes>
- 
-    
-  
+   
   </div>
 }
 

@@ -117,7 +117,7 @@ const sectionTwoData = [
 const sectionOneData = [
     {
      "Writing" : [ { "id": "001",
-        "icon": "https://ouch-cdn2.icons8.com/RZi98ls6dltk9nWZ1_SNLJQgbyacBQ9WmBjqRvjxxCw/rs:fit:512:384/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9wbmcvNzE4/L2NkZWFlZDJjLWIz/MDYtNDZjNy1hNTA5/LWI5ZGViMGVhN2Uw/Ny5wbmc.png",
+        "icon": "https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/76785/how-to-clipart-md.png",
         "header":"What do you get with Writing?",
         "Description":"Listening is so important that many top employers provide listening skills.",
         "key1title": "what Do you get with us?",
@@ -131,7 +131,7 @@ const sectionOneData = [
 
          "Lisenting" : [   {
                 "id": "003",
-                "icon":"https://ouch-cdn2.icons8.com/mKTUYA5xSk11T2e6VyldCtqX9XaKI-X6cqpCloaRXwI/rs:fit:512:384/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9wbmcvNjA2/LzJkYWQ0NDk0LTBh/ZGUtNDAzOC04ZmZh/LWFjMzYyM2YyZmRl/Ny5wbmc.png",
+                "icon":"https://cdni.iconscout.com/illustration/premium/thumb/industry-regulation-6771685-5649971.png?f=webp",
                 "header":"What do you get with Lisenting",
                 "Description":"Listening is so important that many top employers provide listening skills training for their employees.",
                 "key1title": "what Do you get with us?",
@@ -193,16 +193,11 @@ const personalinfo = [
 const examRule = [
   {id:1 , text : "Make sure that you are prepared for the exam", },
   {id:2 , text :  "You will not be allowed to leave the exam room during the exam.", },
-  {id:3 , text : " An exam is a race against time, try to be quick, but careful",} ,
-  {id:4 , text :   "If you have any difficulty with the exam, raise your hand and wait for the invigilator to respond",} ,
-  {id:5 , text : "Only the equipment which is necessary for the exam should be kept on the desk.", } ,
+  {id:3 , text : " An exam is a race against time,try to be quick, but careful",} ,
   {id:6 , text :  "Keep silent during exams.", } ,
-  {id:7 , text :   " Be careful that you mark multiple choice answers properly. Incorrect entries may lose you marks.", } ,
   {id:8 , text :    "If you have time when you finish the exam, check your answers.", } ,
   {id:9 , text :  "If you have finished the exam in time and wait. Do not disturb others", } ,
-  {id:10 , text :   "When the exam ends the invigilator calls “TIMEIS OVER. Submit Your Task or "+
-  " Exam”. Please Submit all your Answer immediately and wait.", } ,
-  {id:11 , text :  " Leave the class quietly and do not loiter in front of the class", } ,
+ 
 
 ]
 

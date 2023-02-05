@@ -1,10 +1,11 @@
 
 import React, { useState } from "react";
-import { BiCircle,BiX } from "react-icons/bi";
+import { BiCircle,BiX,  } from "react-icons/bi";
+import {MdZoomOut, MdZoomOutMap} from "react-icons/md"
 import Icon from "./Icon";
 
 
-const Modal = ({showModals, description,children,info,text,event ,size }) => {
+const Modal = ({showModals, description,children,info,text,event ,size, type }) => {
     const [showModal, setShowModal] = useState(false);
    
 const handleSize = (size) => {
@@ -24,16 +25,26 @@ const handleSize = (size) => {
       <>{
         showModals ? 
         <button
-        className="rounded border-1  inline-flex group items-center
-        hover:border-purple-200
-        justify-center px-4  py-2 m-1 cursor-pointer bg-gray-100 text-gray-600
-         active:bg-gray-200 active:shadow-none"
+        className={type === "image" ? modalStyle.mainBtnImage 
+        : modalStyle.mainBtnText}
         type="button"
         onClick={() => setShowModal(true)}
       >
-        <span className=" w-0 h-0  bg-white rounded-full 
-       opacity-10"></span>
-      <span className="">{text}</span>
+        {
+          
+          type === "image" ?
+          <div className="bg-blue-100 h-[7rem]  w-full  ">
+          <img className="w-full h-[7rem] 2xl:h-[10rem] object-cover" src={text}/>
+          <div className="w-6 h-6 shadow-sm shadow-gray-300 -top-[1rem]  relative 
+           bg-purple-800 rounded-full p-1 ">
+          <Icon name={<MdZoomOutMap/>} color="white" />
+          </div>
+          
+          </div>
+          : <p>
+            {text}
+          </p>
+        }
       </button>
         : <></>
       }
@@ -45,14 +56,14 @@ const handleSize = (size) => {
              overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full
                             flex justify-center items-cente outline-none focus:outline-none">
             <div className="relative w-auto md:my-4 top-20 md:mx-auto">
-              <div className="rounded  relative flex flex-col w-full
+              <div className="rounded-xl  relative flex flex-col w-full
                bg-white outline-none focus:outline-none">
               <div className={`relative w-full h-full ${handleSize(size)} md:h-auto`}>
         <div className="relative ">
             <button 
             onClick={()=>setShowModal(false)}
             type="button" className="absolute md:top-3 right-4 top-4  md:right-2.5 text-gray-400
-             bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg bg-purple-100 
+             bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-full bg-purple-100 
              text-sm p-1.5 ml-auto inline-flex items-center
             " data-modal-hide="popup-modal">
                 <div className="w-4 h-4 flex justify-center items-center">
@@ -101,6 +112,21 @@ const handleSize = (size) => {
       </>
     );
   };
+
+
+const modalStyle = {
+  "main" : "",
+  "mainBtnText" : "rounded-xl border-1  inline-flex group items-center"
+  +"hover:border-purple-200 "
+  +"justify-center px-4  py-2 m-1 cursor-pointer bg-gray-100 text-gray-600"+
+   "active:bg-gray-200 active:shadow-none",
+  "mainBtnImage": "rounded-xl border-1 w-full inline-flex group items-center"+
+  "hover:border-purple-200 border-[1px] border-gray-200 hover:contrast-50 "+
+  "justify-center  py-2  mt-3 cursor-pointer bg-gray-100 text-gray-600"+
+   "active:bg-gray-200 active:shadow-none",
+
+};
+
   
   export default Modal;
   

@@ -11,7 +11,7 @@ export default function ErrorPage({type}){
   }
 
     return <Container>
-<div className="h-screen w-screen top-0 flex items-center">
+<div className="h-screen w-screen top-0 flex items-center font-mono">
 	<div className="container mx-auto flex flex-col md:flex-row items-center justify-center px-5 text-gray-700">
    		<div className="max-w-md md:order-1 order-2 justify-center">
       		<div className="text-5xl font-dark font-bold">404</div>
@@ -24,12 +24,12 @@ export default function ErrorPage({type}){
           onClick={()=> handleNavigator()}
           className="px-4 inline py-2 text-sm font-medium leading-5
            shadow text-white transition-colors duration-150 border
-            border-transparent rounded border-1 tracking-wide focus:outline-none focus:shadow-outline-blue
-             bg-purple-800 active:bg-purple-600 hover:bg-purple-700">back to homepage</button>
+            border-transparent rounded-full border-1 tracking-wide focus:outline-none focus:shadow-outline-blue
+             bg-purple-800 active:bg-purple-600 hover:bg-purple-700">back</button>
     </div>
       <div className="max-w-lg  md:order-2 order-1">
         <p className="text-[100px]">
-        😴
+         &#128564;
         </p>
    
     </div>
@@ -40,3 +40,7 @@ export default function ErrorPage({type}){
 	</Container>
 
 }
+
+
+
+

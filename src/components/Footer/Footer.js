@@ -1,11 +1,10 @@
 import React from "react";
 import Icon from "../Icon";
-import {BsFacebook,BsTelegram} from "react-icons/bs"
-import {HiOutlineMail} from "react-icons/hi"
+import { RiFacebookCircleLine, RiMailAddFill, RiTelegramFill } from "react-icons/ri"
 import { Link } from "react-router-dom";
 
-const file = [{"icon": <BsFacebook></BsFacebook>},
- {"icon": <BsTelegram/>}, {"icon":<HiOutlineMail/>}]
+const file = [{"icon": <RiFacebookCircleLine/>},
+ {"icon": <RiTelegramFill/>}, {"icon":<RiMailAddFill/>}]
 const quickLink = [  { "name" : "Home",     "link" : "/home"  },
                     {  "name" : "Who We Are",     "link" : "/about" },
                      {   "name" : "Our Philosophy","link" : "/about" }]
@@ -15,8 +14,8 @@ const TalkWithus = [  { "name" : "Contact us",     "link" : "/contact"  },
 
 export default function Footer(){
     return (
-        <footer className="bg-[#142544] dark:bg-gray-900 text-white tracking-wider">
-        <div className="container px-6 py-12 mx-auto">
+        <footer className=" tracking-wider md:py-6 md:px-1 px-0 md:mt-0  mt-2 font-mono">
+        <div className="container px-6 py-12 bg-gray-100 rounded-xl text-purple-700 mx-auto ">
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-4">
                 <div className="sm:col-span-2">
                     <div className="justify-between space-y-2">
@@ -29,17 +28,17 @@ export default function Footer(){
                 </a>
                 <div className="flex space-x-3 py-4">
                     {
-                        file.map(item=><Icon name={item.icon} Size="1.6rem" color="#e5e7eb"></Icon>)
+                        file.map(item=><Icon name={item.icon} Size="1.6rem" color="purple"></Icon>)
                     }
                 </div>
                 <div>
-                <p class="text-sm text-gray-200">© Copyright 2023. All Rights Reserved.</p>
+                <p class="text-sm text-purple-600">© Copyright 2023. All Rights Reserved.</p>
                 </div>
             </div>
                 </div>
     
                 <div>
-                    <p className="font-semibold  dark:text-white font-roboto tracking-wider">Quick Link</p>
+                    <p className="font-semibold  dark:text-white  tracking-wider">Quick Link</p>
                     <div className="flex flex-col items-start mt-5 space-y-2">
                         {quickLink.map(item =><Link to={item.link}>
                             <a className=" text-sm transition-colors duration-300 dark:text-gray-300

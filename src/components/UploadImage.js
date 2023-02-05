@@ -1,9 +1,9 @@
 import React from "react";
 import { useEffect,useState,useRef } from "react";
 import Icon from "./Icon";
-import {BiCloudUpload} from "react-icons/bi"
 import Tooltip from "./Button/Tooltip";
-import { Form } from "react-router-dom";
+import { FcUpload } from "react-icons/fc";
+import {AiOutlineDelete} from "react-icons/ai"
 
 const UploadImages = ({onsubmit}) => {
   const [selectedImages, setSelectedImages] = useState([]);
@@ -30,27 +30,23 @@ const UploadImages = ({onsubmit}) => {
 
   return (
     <form onSubmit={onsubmit} className = "">
-      <div className="flex flex-wrap space-x-2 ">
-        {selectedImages &&
-          selectedImages.map((image, index) => {
-            return (
-              <div key={image} className="p-2">
+      <div className="flex flex-wrap py-2 overflow-y-auto h-52 2xl:h-80  relative  ">
+        {selectedImages != null &&
+          selectedImages.map((image, index) => 
+              <div key={image} className="relative">
                 <img className="md:w-32 w-20
-                 h-20 object-cover rounded md:h-36" src={image} alt="upload" />
-                <button className="bg-red-500 
-                px-2 mt-1 py-1 text-[10px] md:text-[14px] rounded shadow-sm text-white "
+                 h-20 object-cover mx-2 rounded-md md:h-[10rem]" 
+                 src={image} alt="upload" />
+                <button className="bg-red-500 h-7 w-7 -top-4 relative
+                px-1 mt-1  text-[10px] md:text-[14px] rounded-full shadow-sm text-slate "
                  onClick={() => deleteHandler(image)}>
-                  Delete
+                  <Icon color="white" name={<AiOutlineDelete/>}/>
                 </button>
               </div>
-            );
-          })}
-      </div>
-<hr className="border-1 border-gray-200"></hr>
-<div className="flex justify-between items-center py-2 ">
-
-
-      <label>
+            
+          )   }
+<div>
+<label>
         <input className="hidden"
           type="file"
           name="images"
@@ -58,29 +54,35 @@ const UploadImages = ({onsubmit}) => {
           multiple
           accept="image/png , image/jpeg, image/webp"
         />
-        <span className="bg-gray-100 flex border-[1px] border-dashed border-gray-200 
-        px-2 py-1.5 rounded text-gray-900
-         text-[14px] font-medium space-x-1 cursor-pointer">
-              <Icon name={<BiCloudUpload/>} Size="1.2rem" color="#11221d"></Icon>
-            <div className="flex flex-shrink-0">
-            Choose the File
-            </div>
+        <span className="md:w-32 md:h-[10rem] h-20 w-20 bg-purple-50
+         flex border-[1px] border-dashed border-gray-400 
+        px-2  rounded-md text-gray-900
+         text-[14px] font-medium space-x-1 cursor-pointer justify-center items-center">
+          <div className="w-10 h-10">
+          <Icon name={<FcUpload/>} ></Icon>
+          </div>
+             
+           
           
         </span>
       </label>
+</div>
+      </div>
+<div className="">
       {selectedImages.length > 0 &&
-        (selectedImages.length > 10 ? (
+        (selectedImages.length > 5 ? (
           <p className="error">
             You can't upload more than 10 images! <br />
             <span>
-              please delete <b> {selectedImages.length - 10} </b> of them{" "}
+              please delete <b> {selectedImages.length - 5} </b> of them{" "}
             </span>
           </p>
         ) : (
-            <Tooltip right={true} tooltip="Are your Sure ?">
+          <div className="">
+            <Tooltip tooltip="Are your Sure ?">
           <button
             className="bg-purple-900 
-            px-3 py-2 rounded text-white text-[14px] font-medium" 
+            px-3 py-2 rounded-full font-sans text-white text-[14px] font-medium" 
             onClick={() => {
             alert(selectedImages)
             }}
@@ -89,6 +91,7 @@ const UploadImages = ({onsubmit}) => {
             {selectedImages.length === 1 ? "" : "s"}
           </button>
           </Tooltip>
+          </div>
         ))} 
 </div>
     </form>

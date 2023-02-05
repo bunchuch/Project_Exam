@@ -1,5 +1,4 @@
 import Icon from "./Icon"
-import { styleInstruction } from "../style/style"
 import {FcIdea} from "react-icons/fc"
 
 
@@ -9,7 +8,7 @@ const descrition = {
    
   },
   "reading" : {
-    "desc" : "Reading the text and choose the correct answere bleow",
+    "desc" : "Reading the text and choose the correct answers below",
    
   },
   "vocabulary" : {
@@ -46,3 +45,9 @@ export default function Instruction ({headers}){
     
     
  }
+
+ const styleInstruction = {
+  "article": "flex md:py-5 py-4   items-center space-x-1 md:space-x-3 items-center md:space-x-2 tracking-wide",
+  "header": "font-semibold leading-none text-sm ",
+  "paragrah": "text-[16px] text-purple-700 md:text-[16px] md:w-full w-80 truncate text-gray-800"
+}

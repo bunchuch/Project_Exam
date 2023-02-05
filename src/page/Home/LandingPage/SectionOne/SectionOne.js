@@ -3,13 +3,13 @@ import Banner from "../../../../components/Banner";
 
 
 const SectionOne = ({ data }) => {
-    return <section className="p-0 md:p-5 sm:p-0  ">
-        <div className="md:mt-10 mt-0 md:py-5 ">
-            <div className=" grid grid-row-2 gap-2 ">
+    return <section className="p-0  sm:p-0 ">
+        <div className="md:mt-10 mt-0 md:py-5">
+            <div className=" grid grid-cols gap-2 ">
     {
          data.map((value)=><>
-        {value.Lisenting.map((listining)=><div className=" ">
-        <div key={listining.key} className=""> 
+        {value.Lisenting.map((listining)=><div className="text-white my-6 font-sans ">
+        <div key={listining.key} className="md:bg-gray-100 bg-white  rounded-xl shadow-md shadow-gray-100"> 
             <Banner
             orderFirst={true}
              title={listining.header} 
@@ -18,7 +18,7 @@ const SectionOne = ({ data }) => {
         </div>
         </div>)}
         {value.Writing.map((writing)=><div className="">
-        <div key={writing.key} className=" ">
+        <div key={writing.key} className="md:bg-gray-100 bg-white shadow-gray-100 rounded-xl mb-6 font-sans">
             <Banner 
             style="flex "
             title={writing.header}
@@ -29,7 +29,7 @@ const SectionOne = ({ data }) => {
         </div>
         </div>)}
         {value.Vocalulary.map((vocalulary)=><div className="">
-        <div key={vocalulary.key} className=" ">
+        <div key={vocalulary.key} className=" rounded-xl bg-white md:bg-gray-100 shadow-gray-100 font-sans ">
             <Banner 
             orderFirst={true}
             style="flex"

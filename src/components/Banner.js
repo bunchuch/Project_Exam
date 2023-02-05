@@ -1,10 +1,9 @@
 
 import React, { useEffect, useState } from "react";
-import { icons } from "react-icons";
-import { BiChart,BiBadgeCheck, BiCool, BiCheck } from "react-icons/bi";
 import Icon from "./Icon";
 import Aos from "aos";
 import 'aos/dist/aos.css'
+import { FcAbout, FcAddColumn, FcAdvertising, FcBullish } from "react-icons/fc";
 
 const MyList =  ({title, desc,icons}) => {
     return   <div className="md:flex mx-0 md:items-start md:-mx-4
@@ -31,10 +30,11 @@ function Banner({img,title,desc,status,statusText,style, orderFirst,keyOne,keyTw
   useEffect(()=>{
     Aos.init({duration:2000})
   },[])
-return <section data-aos="fade-up" className="bg-white dark:bg-gray-900 ">
+return <section data-aos="fade-up" className=" dark:bg-gray-900 ">
 <div className="container md:px-6 md:mt-0 mt-4 md:py-10 mx-auto ">
     <div className="lg:flex lg:items-center ">
-        <div className={ orderFirst ? "w-full order-first space-y-12 lg:w-1/2 ": "w-full order-last md:space-y-12 lg:w-1/2" }>
+        <div className={ orderFirst ? "w-full order-first space-y-12 lg:w-1/2 "
+        : "w-full order-last md:space-y-12 lg:w-1/2" }>
             <div>
                 <h1 className="md:text-2xl text-xl 
                  font-semibold text-gray-800 capitalize lg:text-3xl dark:text-white">{title}</h1>
@@ -46,9 +46,9 @@ return <section data-aos="fade-up" className="bg-white dark:bg-gray-900 ">
                 </div>
             </div>
            <div className ="grid 2xl:grid-cols-2 grid-rows-2 grid-flow-row gap-2 md:gap-4">
-          <MyList title={title} desc={desc} icons={<BiCool/>}/>
-          <MyList title={title} desc={desc} icons={<BiChart/>}/>
-          <MyList title={title} desc={desc} icons={<BiBadgeCheck/>}/>
+          <MyList title={title} desc={desc} icons={<FcBullish/>}/>
+          <MyList title={title} desc={desc} icons={<FcAddColumn/>}/>
+          <MyList title={title} desc={desc} icons={<FcAdvertising/>}/>
            </div>
           
 
@@ -58,7 +58,7 @@ return <section data-aos="fade-up" className="bg-white dark:bg-gray-900 ">
 
         <div className={ orderFirst ? "hidden lg:flex  lg:items-center order-first lg:w-1/2 lg:justify-center":
          " hidden lg:flex lg:items-center  lg:w-1/2 lg:justify-center "}>
-            <div className={orderFirst ? "bg-purple-800 rounded-lg" : "bg-red-500  rounded-lg"}>
+            <div className="">
             <img className="w-[28rem] h-[28rem] object-cover xl:w-[20rem] xl:h-[25rem]" 
             src={img} alt={img}/>
             </div>

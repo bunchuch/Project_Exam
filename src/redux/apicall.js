@@ -136,7 +136,8 @@ export const apiCallSlics = createSlice({
 },
 
 [toggleCompleteAsync.fulfilled] : (state ,action) => {
-    const index = state.questions.findIndex((i) => i.id ==  action.payload.todo.completed )
+    const index = state.questions.findIndex((i) => 
+    i.id ==  action.payload.todo.completed )
     state[index].completed = action.payload.todo.completed
 
         }

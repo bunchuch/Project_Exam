@@ -1,11 +1,40 @@
 .main_background{
     background-image:
-     url("https://cdn.nrf.com/sites/default/files/styles/crop_1440_700/public/2021-03/shutterstock_658847998.jpg?itok=S6aLTAcl");
+     url("https://www.wcpss.net/cms/lib/NC01911451/Centricity/Domain/4/1-20230803-DSCF3200-Enhanced-NR-HighRes.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover; 
     height:500px;
     position: relative;
+  }
+
+   .exam-section-bg{
+    background-image: url("../../public/purple-bg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+
+
+   }
+   .welcome-section-bg{
+    background-image: url("../../public/red-bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+   }
+   .login-section-bg{
+    background-image: url("../../public/bg-yellow.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+   }
+
+   .red-section-bg{
+    background-image: url("../../public/red-bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+   }
+  .bg-login{
+    background-image: url("../../public/bg-login.png");
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 
 
@@ -44,8 +73,8 @@
   }
 
 .contact-hero{
-  background-image: linear-gradient(rgba(232, 231, 233, 0.898), rgba(202, 202, 202, 0.829)),
-  url("https://cheeswrights.com/wp/wp-content/uploads/contact-hero-1.jpg");
+  background-image:
+  url("https://i0.wp.com/businessday.ng/wp-content/uploads/2021/01/Untitled-design-2021-01-26T153614.153.png?fit=700%2C400&ssl=1");
  background-position: center;
  background-repeat: no-repeat;
  height:500px;
@@ -82,12 +111,13 @@
 audio::-webkit-media-controls-panel{
   background-color: #f3f4f6;
   z-index: 0;
-
   position: relative;
-  border-radius: 0%;
+ 
  
 
 }
+
+
 
 
 
