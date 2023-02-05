@@ -6,23 +6,19 @@ import { useDispatch, useSelector } from "react-redux"
 import Welcome from "./component/Welcome"
 import { QuizCard } from "./component/QuizCard"
 import { examstyle } from "../style/style"
-
 import { getQuestionAsync} from "../redux/apicall"
 import { useParams } from "react-router-dom"
+import { Loader } from "../components/load/Loader"
 
-import { Loader } from "../components/Loader"
+
 
 export default function TestFile (){
 
 const dispatch = useDispatch()
 const loadding = useSelector((state)=> state.quizs.loadding)
-
 const {name} = useParams()
-const [get ,setGet] = useState()
-const [show ,setShow] = useState(false)
 const quiz = useSelector((state)=> state.quizs)
 
-let item = []
 useEffect(() => {
     try{
         dispatch(getQuestionAsync())
@@ -32,14 +28,14 @@ useEffect(() => {
  
 }, [dispatch]);
 
-
+console.log(quiz.page)
 return <> 
   <Container>
     {
 
       loadding ? (<>
       
-      <div className={examstyle.quiz.main}>
+      <div className={examstyle.quiz.main2}>
 <div className={ name ? "flex md:gap-2" : " gap-1 flex md:gap-2 justify-end w-full"}>
         <Timer initialMinute = {45} nitialSeconds={23}></Timer>    
 </div>        

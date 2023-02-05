@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { Loader } from "./components/Loader";
+import { Loader } from "./components/load/Loader";
 import { examStatusStyle, examstyle } from "./style/style";
 import Container from "./components/Container";
 import Instruction from "./components/Instruction";

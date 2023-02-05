@@ -36,7 +36,7 @@ export default function Instruction ({headers}){
         <p className={styleInstruction.paragrah}>
            { header === "LISTENING" && descrition.listening.desc}
           { header === "READING" && descrition.reading.desc}
-          { header === "GRAMMER" && descrition.grammer.desc}
+          { header === "GRAMMAR" && descrition.grammer.desc}
           { header === "VOCABULARY" && descrition.vocabulary.desc}
           { header === "WRITING" && descrition.writining.desc}
           

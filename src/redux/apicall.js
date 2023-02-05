@@ -1,11 +1,18 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { FaSadCry } from "react-icons/fa";
 
+const initialState = {
+    loadding : false,
+    pending : false,
+    task : [],
+    questions : null,
+    page : 1,
+    Error : null,
+}
 
 
 export const getQuestionAsync = createAsyncThunk("quiz/getQuestionAsync",
-async ()=> {
+async (state)=> {
     const quiz = await axios("http://localhost:7000/todos").then((respones)=> {
         return respones.data 
     })
@@ -52,12 +59,22 @@ if (!quizName){
 
 })
 
-const initialState = {
-    loadding : false,
-    pending : false,
-    task : [],
-    questions : null,
-}
+export const getQuestionNameAsyncID = createAsyncThunk("quiz/getQuestionNameAsyncID", 
+async(payload)=> {
+    const quizID = await axios.get(`http://localhost:7000/todos/${payload.name}?qid=${payload.page}`).then((respone)=>{
+        return respone.data
+    })
+
+
+    if(!quizID){
+        console.log("Not found paget")
+    }
+
+    return {quizID}
+        
+})
+
+
 
 
 export const apiCallSlics = createSlice({
@@ -78,6 +95,14 @@ export const apiCallSlics = createSlice({
 			state.push(todo);
 		}
     },
+    increment: (state) => {
+        state.page += 1
+      },
+
+    decrement: (state) => {
+        state.page -= 1
+      },
+
 
     extraReducers: {
  [getQuestionAsync.pending] : (state)=>{
@@ -106,14 +131,18 @@ export const apiCallSlics = createSlice({
     state.pending = true
 },
 
-        [toggleCompleteAsync.fulfilled] : (state ,action) => {
-            const index = state.findIndex( (i) => i.id ==  action.payload.todo.completed )
-            state[index].completed = action.payload.todo.completed
+[getQuestionNameAsyncID.fulfilled] : (state,action)=>{
+ state.questions = action.payload.quizID
+},
+
+[toggleCompleteAsync.fulfilled] : (state ,action) => {
+    const index = state.findIndex( (i) => i.id ==  action.payload.todo.completed )
+    state[index].completed = action.payload.todo.completed
 
         }
     }
 })
 
 
-export const {addTodo, loadding} = apiCallSlics.actions
+export const {addTodo, loadding,increment,decrement} = apiCallSlics.actions
 export default apiCallSlics.reducer

@@ -5,8 +5,6 @@ import About from "./page/about/About"
 import LoginForm from "./page/login/loginForm"
 import Profile from "./page//Profile/profile"
 import {BrowserRouter, Routes, Route,useLocation} from 'react-router-dom'
-import FileTest from "./exam/exam"
-import {Loader} from './components/Loader';
 import ErrorPage from './components/ErrorPage';
 import Contact from './page/contact/Contact'
 import { ProtectedRoute } from './auth/ProtectedRoute'
@@ -15,6 +13,7 @@ import { File } from './File'
 import { Render } from './Render'
 import { QuestionRender } from './exam/component/QuestionRender'
 import { useSelector } from 'react-redux'
+import { Loader } from './components/load/Loader'
 
 
 

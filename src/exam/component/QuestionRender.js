@@ -9,44 +9,70 @@ import { examstyle } from "../../style/style";
 import { buttonstyle } from "../../style/style";
 import { SmallSpinner } from "../../components/load/SmallSpinner";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-import { toggleCompleteAsync, getQuestionNameAsync } from "../../redux/apicall";
+import { useNavigate, useParams ,Link} from "react-router-dom";
+import { toggleCompleteAsync, getQuestionNameAsync, getQuestionNameAsyncID, increment } from "../../redux/apicall";
 import ExamStatus from "./ExamStaute";
 import Container from "../../components/Container";
-import { Loader } from "../../components/Loader";
+import { Loader } from "../../components/load/Loader";
 import { Input } from "../../components/Input";
 import Timer from "../../components/Timer";
 
 
 export const QuestionRender = ({showScore}) => {
-  const {name} = useParams()
+  const {name , qv } = useParams()
+  const test = useParams()
   const dispatch = useDispatch()
   const navigator = useNavigate()
   const quizId = useSelector((state)=> state.quizs)
   const [currentQuestion ,setCurrentQuestion] = useState(0)
   const [previous, setPrevious] = useState(false);
   const [load, setLoad] = useState(false);
-  const [id , setId] = useState(1)
+  const [id , setId] = useState(qv)
   const [check ,setChecked] = useState(false)
 
-  useEffect(()=>{
-      dispatch(getQuestionNameAsync({name}))
-  }, [dispatch])
 
-  const handleAnswerNext = () => {
-    const nextQuestion = currentQuestion +1
-    if(nextQuestion < quizId.questions.question.length){
-      setId(nextQuestion +1)
-      setPrevious(true)
-      setCurrentQuestion(nextQuestion)
-    }
+var qid= parseInt(qv)
+var page = quizId.page
+
+
+
+
+
+useEffect(()=>{
+  dispatch(getQuestionNameAsync({name}))
+}, [dispatch])
+
+
+
+
+
+
+
+
+
+const handleAnswerNext = () => {
+  const nextQuestion = currentQuestion +1
+  if(nextQuestion < quizId.questions.question.length){
+    setId(nextQuestion +1)
+    setPrevious(true)
+    setCurrentQuestion(nextQuestion)
   }
+
+}
+
+
+
+
+
+ 
+
+
+ 
   
   const handleAnswerOptionClickPrev = () => {
     const nextQuestion = currentQuestion - 1;
     if (nextQuestion < quizId.questions.question.length) {
       setTimeout(()=>{
-        setId(id -1)
         setLoad(true)
         setCurrentQuestion(nextQuestion)
         setTimeout(()=>{setLoad(false)},[600])
@@ -68,7 +94,11 @@ export const QuestionRender = ({showScore}) => {
     
   }
 
-  return <Container>{ quizId.pending ? <Loader></Loader> : <>
+  console.log(quizId)
+
+  return <Container>
+     {/* {JSON.stringify(quizId.questions)} */}
+    { quizId.pending ? <Loader></Loader> : <>
   <div className={examstyle.quiz.main}>
 <ExamStatus link={"/exam"} showQuestion={true} title={name}
 currentQuestion={quizId.questions === null ? [] : quizId.questions.question[currentQuestion]}
@@ -96,8 +126,10 @@ data={quizId.questions === null ? [] : quizId.questions.question }/>
         {
           name !== "Writing" && (<>
           <div className="flex space-x-2 mt-5 mx-5" >
-            <h1 className ="text-md trackgin-wide 
-            font-medium md:text-[18px]">{currentQuestion + 1}.</h1>
+            <h1 className ={`text-md trackgin-wide 
+            font-medium md:text-[18px] ${quizId.questions.type !== "MQC"
+             ? "bg-purple-200 px-2 py-1 w-8 rounded-xl text-purple-700 border-1 border-purple-700 " 
+            : ""}`}>{currentQuestion + 1}.</h1>
               <div className="text-gray-800
              font-medium md:text-[18px] ">
               { quizId.questions.type !== "MQC" ? "" 
@@ -139,15 +171,16 @@ data={quizId.questions === null ? [] : quizId.questions.question }/>
       {
         load ? <SmallSpinner></SmallSpinner> :  <Icon Size="1.2rem" name={<BiLeftArrowAlt/>} />
       }
-       <p>Previous</p>
+       <p>previous</p>
      </span>
      </a>):(<></>)
    }
    <a onClick={ handleAnswerNext }   
   className={buttonstyle.nextBtn}>
  <span className={examstyle.task.spanbtn}>
-   <p>Next </p>
-  <Icon Size="1.2rem" name={<BiRightArrowAlt/>} />
+   <p>next</p>
+   <div> <Icon Size="1.2rem" name={<BiRightArrowAlt/>} /></div>
+ 
 
   </span>
    </a>
@@ -157,15 +190,14 @@ data={quizId.questions === null ? [] : quizId.questions.question }/>
 <div className="px-2 bg-blue-200"></div>
 )
 }
-
-        
-
       </div> 
     }
 
  </div>
   
   </> }
+
+ 
 
   </Container>
 }

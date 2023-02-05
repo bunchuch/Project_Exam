@@ -13,6 +13,7 @@ import { SmallSpinner } from "./load/SmallSpinner";
 
 
 
+
 export default function Writing ({data}){
  const [images, setImages] = useState([])
  const [imageURLs, setImagesURLs] = useState([])
@@ -21,12 +22,15 @@ export default function Writing ({data}){
  const [alert,setAlert] = useState(null)
 const[selectedFile, setSelectFile] = useState(null)
 const [stateChange ,setState] = useState(false)
-
+const [showAlert,setShowAlert] = useState(false)
 
 const preventCopyPast = (e: ClipboardEvent<HTMLInputElement>)=>{
         e.preventDefault();
         setAlert("Not Allow to copy and past")
        }
+
+
+     
 
  useEffect(()=>{
     if(images.length < 1) return;

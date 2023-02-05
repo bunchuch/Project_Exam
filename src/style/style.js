@@ -1,10 +1,10 @@
 const examStatusStyle ={
-    "arrowTextstyle" : "font-ubuntu font-medium items-center space-x-2 flex flex-row uppercase",
-    "arrowstyle" : "cursor-pointer  text-purple-800  space-x-2 items-center rounded flex justify-between active:bg-purple-100",
+    "arrowTextstyle" : "tracking-wider font-medium items-center space-x-2 flex flex-row uppercase",
+    "arrowstyle" : "cursor-pointer px-2 text-purple-800  space-x-1.5 items-center rounded flex justify-between active:bg-purple-100",
     "mainStyle" : "py-4 md:px-2  px-4 overflow-auto",
-    "mainwhenfasle" : "w-full hidden relative z-10",
+    "mainwhenfasle" : "w-full hidden  z-10",
     "listyle" : {
-        "liststyle" : "md:py-2 py-1.5 px-2 md:px-3.5 rounded-md border-1 border-purple-400",
+        "liststyle" : "md:py-2 py-1.5 w-8 h-8  px-2 md:px-3.5 rounded border-1 border-purple-400",
         "ulstyle" : "inline-flex space-x-2 md:space-x-4 ",
         "active-unchecked" : "border-2 border-purple-500 bg-purple-200 text-purple-800 font-semibold",
         "active-checked"  : "border-2 border-green-600 bg-green-300 text-slate-800 ",
@@ -26,7 +26,9 @@ const buttonstyle = {
 
 const examstyle = {
     "quiz" : {
-        "main" : " bg-purple-50 sticky top-0 py-2 mx-auto max-w-6xl 2xl:py-5 md:px-0 md:py-2 px-4 flex "
+        "main" : " bg-purple-50 sticky top-[50px] py-2 mx-auto max-w-6xl 2xl:py-5 md:px-0 md:py-2 px-4 flex "
+        +" items-center justify-between dark:border-gray-700",
+        "main2" : " bg-purple-50 sticky top-0 py-2 mx-auto max-w-6xl 2xl:py-5 md:px-0 md:py-2 px-4 flex "
         +" items-center justify-between dark:border-gray-700",
         "quizboxdiv" : "max-w-6xl md:mt-7 mx-auto w-full",
         "quizboxgrid" : "grid w-full gap-2 p-2 xl:p-0 md:grid-cols-3 grid-cols-2 ",
@@ -51,7 +53,7 @@ const styleGroupInput = {
 
 const styleNavbar = {
     "navStyle-noneLoggin" : "bg-[#142544] border-gray-500 text-white md:py-0 ",
-    "navStyle-login": "bg-[#142544] text-white w-full md:shadow-orange-100  md:border-none md:py-0",
+    "navStyle-login": "fixed z-10 bg-[#142544] text-white w-full md:shadow-orange-100  md:border-none md:py-0",
     "container" : "flex justify-between items-center py-[10px]  mx-4 md:mx-[70px] md:py-[px] md:flex "
     +" text-sm md:justify-between md:items-center   ",
     "container2": "flex items-center justify-between",
@@ -86,14 +88,14 @@ const styleInstruction = {
   
 
 const styleAudio = {
-    "main" : "w-full rounded-lg text-center font-inter shadow-sm shadow-cyan-500/10 bg-white",
-    "audio" : "w-full bg-gray-100 ",
+    "main" : "w-full rounded text-center font-inter",
+    "audio" : "w-full bg-gray-100 relative rounded",
     "title_audio": "text-[14px] text-purple-900 mx-2 font-medium"
   }
   
 
 const styleWriting = {
-    "main" : "rounded-lg w-full h-auto space-y-2",
+    "main" : "rounded-lg w-full  space-y-2",
     "container" : "w-full shadow-gray-500/10 rounded-lg  ",
     "divtag2" : "py-4",
     "divtag3 " : "bg-white rounded-t-lg ",
