@@ -1,71 +1,71 @@
 import React, {useEffect, useState} from "react";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Link, } from "react-router-dom";
 import { columnsUser } from "../componet/ColumsItem";
 import { CiCirclePlus, CiUndo, CiUser } from "react-icons/ci";
 import Icon from "../../../components/Icon";
-import axios from "axios";
-import { Button, 
-    Table, 
-    Tooltip, 
-    Form,Input
-    ,Radio,Select,InputNumber
-    ,Switch, TreeSelect, Cascader,
-     DatePicker, message, Space, Tag
-    } from 'antd';
+import { Button, Table,Input,message  } from 'antd';
 import Header from "../../../components/Header";
-import { Loader } from "../../../components/load/Loader";
-
-
-
-const { TextArea } = Input;
-
+import { userGet } from "../../../api/user";
+import { useDispatch, useSelector } from "react-redux";
+import { loadingAction } from "../../../redux/loaderSlice";
+import { courseAction } from "../../../redux/courseSlice";
 const role = [ "Admin" , "Teacher", "Staff"]
 
 export default function User () {
 
     const [loading, setLoading] = useState(false);
     const [data ,setData] = useState()
-    
+    const [messageApi, contextHolder] = message.useMessage()
+    const dispatch = useDispatch()  
 
-
-    const ApiGet = async () => {
-      await axios.get("http://localhost:4000/user/").then(response => {
-        setData([...response.data.user])
-     
-    }).catch(err => console.log(err))
-    setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-     }
+    const GetUserInof = async () => {
+      try {
+         dispatch(loadingAction.ShowLoading())
+         const response = await userGet()
+         const teachername = response.data ? 
+         response.data.filter(i => i.role[0] == "teacher").map( i => i.name): null
+         dispatch(courseAction.addTeacher({teacher :teachername}))
+         if(response.data.length !== 0){
+          setData(response.data)
+         }else{
+          setData(null)
+          messageApi.open({
+            key : 'update',
+            type : "warning",
+            content : `${response.message}`
+          })
+         }
+         dispatch(loadingAction.HideLoading())
+      } catch (error) {
+        console.log(error)
+         messageApi.open({
+          key :"updatable",
+          type : 'error',
+          content : `${error}`
+         })
+         dispatch(loadingAction.HideLoading())
+      }
+    }
 
     useEffect(()=> {
-    ApiGet()
+    GetUserInof()
     }, [])
    
-      const start = () => {
+    const start = () => {
         setLoading(true);
-        
-        ApiGet()
-      
-      }
-
+        GetUserInof()
+        setTimeout(()=>{
+          setLoading(false)
+        },[2000])
      
       
-
+      }
 
     return <div className="">
-      {
-       loading ? <Loader></Loader> : null
-      }
+      {contextHolder}
             <div className="flex gap-3 py-2 justify-between">
               <Header icons={<CiUser/>} text="User"/>
-            
-    
             <div className="gap-2 flex">
-            <Select
-            value={"Filter"}>
-            {role.map(i =><Select.Option value={i}></Select.Option> )}
-             </Select>
               <Link to={`/dashboard/User/Add`} >
                 <Button icon={
                      <Icon Size={"1rem"} name={<CiCirclePlus/>}/>
@@ -73,13 +73,14 @@ export default function User () {
                  Add user
         </Button>
         </Link>
+
         <Button icon={<CiUndo/>} onClick={start} loading={loading}>
         Reload
         </Button>
             </div>
             </div>
        
-        <Table 
+        <Table bordered
          columns={columnsUser}
           dataSource={data} />
     </div>

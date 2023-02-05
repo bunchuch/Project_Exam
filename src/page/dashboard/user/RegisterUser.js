@@ -3,28 +3,16 @@ import axios from "axios";
 import { CiCircleChevLeft, CiCirclePlus} from "react-icons/ci";
 import { Link } from "react-router-dom";
 import Icon from "../../../components/Icon"
-import { Button,  
-    Form,Input
-    ,  Select,
-    Switch, 
-    message,
-    } from 'antd';
+import { Button,  Form,Input,  Select,Switch, message,} from 'antd';
 import Header from "../../../components/Header";
-    const { TextArea } = Input;
+import { regiseterUser } from "../../../api/user";
+import {loadingAction} from "../../../redux/loaderSlice"
+import { useDispatch } from 'react-redux';
+import NavigatorButton from "../../../components/navigatorButton";
+const { TextArea } = Input;
 
 
-
-
-
-export default function RegisterUser () {
-
-    const [form] = Form.useForm();
-    const [formLayout, setFormLayout] = useState('horizontal');
-    const onFormLayoutChange = ({ layout }) => {
-      setFormLayout(layout);
-    };
-  
-     
+export default function RegisterUser () {     
   
     const [name , setName] = useState()
     const [email ,setEmail] = useState()
@@ -33,40 +21,42 @@ export default function RegisterUser () {
     const [errMessage ,setErrorMessage] = useState('')
     const [messageApi, contextHolder] = message.useMessage()
     const key = 'updatable';
+    const dispatch = useDispatch()
   
   
-  
-    const handleSubmit = async e => {
-      e.preventDefault(e)
-      axios.post(`${process.env.REACT_APP_API_KEY}user/register`, {
+    const handleSubmit = async () => {
+      try {
+        // dispatch(loadingAction.ShowLoading())
+        const respone = await regiseterUser({
           name : name ,
-          email: email ,
-          password: password ,
-          role : role,
-          
-      }).then(response => {
-       
+          email : email,
+          password : password,
+          role : role
+        })
+        // dispatch(loadingAction.HideLoading())
+
+        if (respone){
+           messageApi.open({
+            key,
+            type : 'success',
+            content : `${respone.message}`
+           })
+        } else {
           messageApi.open({
-              key,
-              type : 'loading',
-              content: 'Loading ..'
-          });
-          setTimeout(()=>{
-              messageApi.open({
-                  key,
-                  type:'success',
-                  content: 'Loaded!',
-                  duration : 2
-              })
-          },[1000])
-      }).catch(error => {
-          messageApi.open({
-              key,
-              type : 'error',
-              content : `failed ${error.response.data.message}`
+            key,
+            type : 'error',
+            content : `failed ${respone.message}`
           })
-          setErrorMessage(error.response.data.message)
-      })
+        }
+
+      } catch (error) {
+        dispatch(loadingAction.HideLoading())
+        messageApi.open({
+          key,
+          type : 'error',
+          content : `failed ${error.message}`
+        })
+      }
     }
      
     const options = [{
@@ -93,16 +83,12 @@ export default function RegisterUser () {
   
   
       return<>
-        <Header icons={<CiCirclePlus/>} text="Add User"></Header>
-        <div className="bg-white rounded-md border-[1px] border-neutral-200 mt-2 p-3">
-                      <Link to={`/dashboard/User/`} >
-                      <Button className="flex items-center gap-2 border-none" 
-                      onClick={()=>navigator("/dashboard/User")}
-                     ><Icon Size="1rem" name={<CiCircleChevLeft/>}></Icon>back</Button>
-                       </Link>
+      <NavigatorButton/>
+        <div className="bg-white rounded-md border-[1px] border-neutral-200 p-3">
+        <Header icons={<CiCirclePlus/>} text="Add User"></Header>                      
         <div className="px-3 py-4 ">
-       <Form>
-          <div className="grid grid-cols-2 gap-3 my-2">
+       <Form layout="vertical">
+          <div className="grid grid-cols-2 gap-2 my-2">
           <Form.Item
           name="Username"
           label="Username"
@@ -151,7 +137,26 @@ export default function RegisterUser () {
            onChange={(e)=> setPassword(e.target.value)} />
         </Form.Item>
         
-        <Form.Item name="role" label="Role">
+        <Form.Item
+          name="Phone"
+          label="Phone number"
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+        rules={[{
+          required : true,
+          message : "Please Input Cuurect address"
+        }]}
+          name="address"
+          label="currect address"
+        >
+          <Input />
+        </Form.Item>
+
+        <Form.Item 
+        
+        name="role" label="Assign Role">
           <Select
         mode="multiple"
         style={{

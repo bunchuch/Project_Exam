@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { getQuestionAsync, getQuestionNameAsync } from "../redux/apicall";
 import { Link, Outlet, json, useParams } from "react-router-dom";
 import {Loader} from  "../components/load/Loader"
-import { Render } from "./Render";
-import { QuizCard } from "../page/exam/component/QuizCard";
-import Container  from "../components/Container";
-import Timer from "../components/Timer";
 import { TimerAction } from "../redux/TimerSlice";
-import { Pagination } from "antd";
-import { FaSadCry } from "react-icons/fa";
+import { Checkbox, Pagination, Select, Switch } from "antd";
+import { CloseOutlined } from '@ant-design/icons';
+import { Button, Card, Form, Input, Space, Typography,Radio ,Upload ,message} from 'antd';
+import { CiCirclePlus, CiExport, CiSaveUp1 } from "react-icons/ci";
+import Icon from "../components/Icon";
+// import { UploadOutlined } from '@ant-design/icon'
 
 
 
@@ -22,14 +21,58 @@ export const File = () =>{
   const[posts, setPosts] = useState([])
   const[total, setTotal] = useState('')
   const[page ,setPage] = useState(0)
+  const [values ,setValues] = useState()
+  const [check , setCheck] = useState()
   const [postPerpage ,setPostperPage] = useState(1) 
+  const onFinish = (values) => {
+    console.log('Received values of form:', values);
+  };
+ const disable = dispatch(TimerAction.disable({minutes :0}))
+    
+const [fileList, setFileList] = useState([]);
+  const [uploading, setUploading] = useState(false);
 
 
-  const disable = dispatch(TimerAction.disable({minutes :0}))
+
+  const handleUpload = async () => {
+    const formData = new FormData();
+    console.log(fileList)
+     fileList.forEach((file) => {
+      formData.append('file', file);
+      console.log(file)
+    });  
+    setUploading(true);
+   
+    // You can use any AJAX library you like
+
+    await axios.post(`${process.env.REACT_APP_API_KEY}question/test`, formData)
+    .then(res => {
+      setUploading(false)
+      message.success("upload successfully")
+      setFileList([]);
       
-console.log(disable)
-console.log(disableTimer)
-
+    }).catch(error =>{
+      setUploading(false)
+      message.error("upload unsuccessfully")
+      console.log(error)
+      setUploading(false)
+    } )
+    setUploading(false)
+  };
+  const props = {
+    onRemove: (file) => {
+      const index = fileList.indexOf(file);
+      const newFileList = fileList.slice();
+      newFileList.splice(index, 1);
+      setFileList(newFileList);
+    },
+    beforeUpload: (file) => {
+      setFileList([...fileList, file]);
+      return false;
+    },
+    fileList,
+   
+  };
 
   useEffect(()=>{
     const loader = async ()=>{
@@ -45,7 +88,7 @@ console.log(disableTimer)
   const indexOfLastPage = page + postPerpage
   const indexOfFirstPage = indexOfLastPage - postPerpage
   const currentPost = posts.slice(indexOfFirstPage , indexOfLastPage)
-
+  const [form] = Form.useForm();
   const handleChange =  (value) =>{
    <a href="/file/2"></a>
   }
@@ -56,35 +99,41 @@ console.log(disableTimer)
 
 
 
+
+
     return <>
-    <Timer initialMinute={2} initialSeconds={0}></Timer> 
      <button 
      disabled={disableTimer} 
      className={`${disableTimer ? "bg-blue-900" : "bg-red-400"} px-3
       hover:bg-slate-600 active:bg-purple-600 py-4 text-xl 
        m-11 rounded-lg text-white`}>click</button>
-
-<Loader></Loader>
-
 <div className="container mx-auto">
   <div className="flex justify-center">
-  <Pagination
+  {/* <Pagination
         onChange={handleChange}
         pageSize={1}
         total={total}
         showSizeChanger= {false}
         current={page}
-       ></Pagination>
+       ></Pagination> */}
   </div>
+    <>
+      <Upload listType="picture" {...props}>
+        <Button icon={<CiExport/>}>Select File</Button>
+      </Upload>
+      <Button
+        onClick={handleUpload}
+        disabled={fileList.length === 0}
+        style={{
+          marginTop: 16,
+        }}
+      >
+        upload
+        {/* {uploading ? 'Uploading' : 'Start Upload'} */}
+      </Button>
+    </>
 
- 
-  <Outlet/>
   
-       {/* {currentPost.map((value)=> <p className="bg-purple-50 p-4 rounded-md border">{value.title}</p>
-       
-       
-       
-       )} */}
   
 </div>
        

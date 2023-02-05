@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addAnswer } from "../redux/answerSlice";
-import FillBlanks from "../components/FillBlank"
 
 
 
@@ -121,7 +119,7 @@ export  const Render = () =>{
 
   return <div className="max-w-5xl mx-auto rounded-xl
                          border-[1px] mt-9 p-4 border-blue-200">
-    {/* {
+    {
       showScore ? <div className="flex flex-col justify-center  
                                   items-center space-y-3">
        <h1 className="text-center font-roboto 
@@ -130,7 +128,7 @@ export  const Render = () =>{
    <div>
     {
       api.map((x, key)=><>
-       <p className="bg-blue-100 text-blue-600
+       <p className="bg-yellow-300 text-blue-600
         rounded-md w-14 px-2">
           {x.type}
           </p>
@@ -141,7 +139,7 @@ export  const Render = () =>{
      
         {
           x.clude.map((i ,key)=> <div className={ i.selected ?
-          "bg-green-100 my-1 px-2 py-1.5 rounded-md text-green-700" 
+          "bg-red-500 my-1 px-2 py-1.5 rounded-md text-yellow-300" 
           : "mt-1 px-2 py-1.5"}>{
             i.title
             }</div>)
@@ -167,18 +165,14 @@ export  const Render = () =>{
       </div> : <>
       <h1 className="font-roboto text-[18px] 
       py-2">{currentQuestion +1} .{change}
-       {api[currentQuestion].type === 'blank'  ?
-        <FillBlanks values={api[currentQuestion]?.answer}
-         evnet={handleChange}
-         sentence={api[currentQuestion].question}/>
-          : api[currentQuestion].question} </h1>
+       </h1>
     <div className="flex flex-col ">
       {
         api[currentQuestion].type == "mcq" && <>
         {api[currentQuestion].clude.map((x, id)=> <>
            <label className="flex items-center">
            <input
-           className="w-5 h-5 text-blue-600 bg-gray-100
+           className="w-5 h-5 text-red-500 bg-gray-100
             border-gray-300 rounded focus:ring-blue-500"
            onChange={()=>handlecheckAns(x.id , api[currentQuestion].id)} 
            type="checkbox"
@@ -213,6 +207,6 @@ export  const Render = () =>{
       next
       </button> 
       </>
-    } */}
+    }
   </div>
 }

@@ -1,66 +1,74 @@
 import React from 'react';
-import CreateGroup from '../exam/CreateGroup';
-import Main from '../exam/Main';
-import McqCreate from '../exam/MqcCreate';
-import WritingCreate from '../exam/WritingCreate';
-import { Empty } from 'antd';
-
+import Group from '../Group/Group';
+import { Navigate } from 'react-router-dom';
+import { ReportExam } from '../examReport/examReport';
+import { QuizTable } from '../examReport/quizTable';
 
 export const TabExamItem =  [
     {
       key: 1,
-      label: 'Main',
-      children: <Main/>,
+      label: 'Group',
+      children: <Group/>,
     },
     {
       key: 2,
+      label: 'Add Student',
+      children: <Navigate state={{}} 
+      to="/dashboard/create-new-Student"/>,
+    },
+    {
+      key: 3,
       label: 'Create Group',
-      children: <CreateGroup/>,
+      children: <Navigate state={{}} 
+      to="/dashboard/create-new-group"/>,
+    },
+    {
+      key: 4,
+      label: 'Create Exam',
+      children: <Navigate state={{}} 
+       to="/dashboard/Group/create-exam"/>,
     },
   ];
 
 
-  export const TabCreateExam = [
+  export const GroupInfoTab = [
     {
       key: 1,
-      label: 'Multiple Choice',
-      children: <McqCreate/>,
+      label: 'Exam',
+      children: null,
     },
     {
       key: 2,
-      label: 'Fill in Blank',
-      children: <h1>Fill in blank</h1>,
+      label: 'Student',
+      children: null,
     },
     {
       key: 3,
-      label: 'Writing',
-      children: <WritingCreate/>,
+      label: 'Report',
+      children: null,
     },
-
+    
   ]
 
+  export const TabExam = [
+      {
+      key: 1,
+      label: 'Quiz',
+      children: <QuizTable/>,
+    },
+    {
+      key: 2,
+      label: 'Report',
+      children: <ReportExam/>,
+    }
+    ]
 
   export const CollapseItem = [
     {
       key : '1',
       label : '',
-      children : <McqCreate/>
+      children : null
     }
   ]
 
 
-  export const renderType = (type) => {
-
-    if (type === "Mqc"){
-        return <McqCreate/> 
-    } else if(type === "Blank"){
-        return <>Blank</>
-
-    }else if(type === "Writing"){
-        return <WritingCreate/>
-    }else{
-        return <Empty
-          description="create exam"/>
-    }
-
-}

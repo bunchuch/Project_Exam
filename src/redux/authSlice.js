@@ -1,31 +1,20 @@
 import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
 
-export const getUsersAsync = createAsyncThunk("quiz/getQuestionAsync",
-async (state)=> {
-    const users = await axios("http://localhost:4000/user/login").then((respones)=> {
-        return respones.data 
-    })
-
-    if(!users) {
-        return  "Not Found"
-    }
-
-    return {users}
-
-   
-}
-)
-
-
-export const authSlice = createSlice({
+const authSlice = createSlice({
     name : "auth",
     initialState:{
-        isLogIn: false,
+        isLogIn: " ",
+        token : '',
+        usernames : " ",
+        role : "",
     },
     reducers : {
+        roleBase : (state ,action) => {
+            state.role = action.payload.role
+        },
         login(state){
             state.isLogIn = true
+    
         },
         logout(state) {
             state.isLogIn = false
@@ -37,4 +26,4 @@ export const authSlice = createSlice({
 
 
 export const authAction = authSlice.actions
-export default authSlice
+export default authSlice.reducer

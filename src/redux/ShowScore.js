@@ -1,17 +1,20 @@
-import { buttonstyle } from "../style/style"
+import { createSlice } from "@reduxjs/toolkit";
+
+const showScoreSlice = createSlice({
+    name : 'show',
+    initialState : {
+        isShow : ''
+    },
+    reducers : {
+        onShow : (state,actions)=>{
+            state.isShow = false
+        },
+        hideShow(state){
+            state.isShow = true
+        }
+    }
+})
 
 
-export const showScore = (event)=>{
-    return (
-
-         <div className="relative">
-            <div className="inset-0 absoulte">
-                <div>
-                    <button onClick={event} className={buttonstyle.grenBtn}>
-                        Go To Main
-                    </button>
-                </div>
-            </div>
-         </div>
-    )
-}
+export const showAction = showScoreSlice.actions
+export default showScoreSlice.reducer

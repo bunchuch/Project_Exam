@@ -1,13 +1,12 @@
 import React, { useEffect, useState,useRef } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import "../../style/style.css"
-// import { Input } from "../../components/Input"
-import axios from "axios"
 import Cookies from "universal-cookie"
-import {Loader} from "../../components/load/Loader"
 import { useDispatch } from "react-redux"
 import { authAction } from "../../redux/authSlice"
-import { Input, Form } from "antd"
+import { Input , message} from "antd"
+import { login } from "../../api/user"
+import { loadingAction } from "../../redux/loaderSlice"
 
 
 const cookie = new Cookies
@@ -15,65 +14,77 @@ const cookie = new Cookies
 const LoginForm = () => {
     const inputRef = useRef(null)
     const navigator = useNavigate()
+    const {name} = useParams()
 
     const [username , setUsername] = useState()
     const [password ,setPassword] = useState()
     const [type ,setType] = useState(false)
-    const [message, setMessage] = useState(false)
+    const [erorr, setError] = useState(false)
     const [loader ,setLoader] = useState(false)
     const dispatch = useDispatch()
+    const [messageApi ,contextHolder] = message.useMessage()
     
     const handleSubmit = async e => {
-        setLoader(true)
-        e.preventDefault(e);
-        axios.post(`${process.env.REACT_APP_API_KEY}user/login`, {
-          name : username,
-          password : password,
-        }
-        )
-        .then((response)=> {
-            setLoader(true)
-             dispatch(authAction.login())
-            cookie.set("TOKEN", response.data.token , {
-              path: "/"
-              
-            });
-            if(response.data.role[0] === "student" ){
-                window.location.href = "/exam"
-            }else {
-              navigator("/dashboard")
+        e.preventDefault()
+        try {
+            dispatch(loadingAction.ShowLoading())
+            const response = await login({
+                name : username,
+                password : password
+            })  
+            
+            if (response.token !== undefined){ 
+               cookie.set('TOKEN', response?.token, {
+                path : '/'
+               })
+               cookie.set('Username', response.name)
+                window.location.href = "/dashboard"
+                dispatch(loadingAction.HideLoading())
+            }else{
+                setTimeout(()=>{
+                    messageApi.open({
+                        key : 'updatable',
+                        type : 'error',
+                        content : `user not exist`
+                    })
+                }, [1000])
+                
             }
-         
-         
-      }).catch((err)=> {
-        setMessage(true)
-        setTimeout(()=>{
-            setMessage(false)
-        }, [10000])
-          setLoader(false)
-        }) 
+            
+            dispatch(loadingAction.HideLoading())
 
+        } catch (error) {
+            messageApi.open({
+                key : 'updatable',
+                type : 'error',
+                content : `Invaild Credentails ${error}`
+            })
+            setError(true)
+            dispatch(loadingAction.HideLoading())
+            
+        }
     }
 
 return <section className="bg-neutral-50   inset-0 font-sans">
+    {contextHolder}
         <div className="flex items-center justify-center 
          h-screen">
-            {loader ? <Loader />: <></>}
             <div className="w-full  md:mx-auto md:max-w-[22rem] max-w-full
-            rounded-lg shadow-sm  shadow-neutral-200 md:bg-white md:border-[1px] border-neutral-50   ">{ 
+            rounded-lg md:shadow-sm  shadow-neutral-200 md:bg-white md:border-[1px]
+             border-neutral-50   ">{ 
                 <div> 
                   <div className=" space-y-1 md:space-y-3  my-2 p-2 md:p-6 text-gray-700 
                  ">
                 {
                     username ? (
-                        <div className="mx-3 md:mx-0 border-b-[1px] py-1.5 md:py-0 md:border-0">
+                        <>
                             <h1 className="text-xl font-sans
                             font-medium leading-tight tracking-tight md:text-2xl  ">
                                 {
                                     `${type ? "Greeting" : "Hello"} ! ${username}`}</h1>
-                            <p className="loginform_paragraph_style_box_8 font-sans">{type ? "How are doing?👋🏻"
+                            <p className="">{type ? "How are doing?👋🏻"
                             :"Nice to meet you 😎"}</p>
-                        </div>
+                        </>
                     ) : (
                         <>
                             <h1 className="text-xl font-medium font-sans
@@ -86,7 +97,7 @@ return <section className="bg-neutral-50   inset-0 font-sans">
                     )
                 }
                 <div className="md:px-2 px-4">
-                    <form 
+                    <form onSubmit={(e)=>handleSubmit(e)}
                     className="space-y-4 md:space-y-4 my-4 " action="#">
                         <label htmlFor="Username"
                                 className="block text-sm font-medium text-gray-900 ">
@@ -101,13 +112,13 @@ return <section className="bg-neutral-50   inset-0 font-sans">
                              <Input.Password  className="py-3"
                              onChange={e => setPassword(e.target.value)}/>
                         <div className="mt-5">
-                          {message ? <p className="text-sm font-medium text-red-500">Invaild credentails</p> : null}
+                          {erorr ? <p className="text-sm font-medium text-red-500">Invaild credentails</p> : null}
                         </div>
-                        <button onClick={(e)=> handleSubmit(e)} type="submit" 
+                        <input type="submit" value="Login"
                         className="w-full bg-[#0f3460]  text-white rounded-md
                                     focus:ring-4 focus:outline-none 
-                                    font-medium text-sm px-5 py-3  md:text-[16px] text-center">
-                                        Log In</button>
+                                    font-medium text-sm px-5 py-3  md:text-[16px] text-center"/>
+                                    
                         <p className="text-center">
                             <Link to={"/login/reset-account"}>
                             <a 

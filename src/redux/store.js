@@ -1,20 +1,31 @@
-
 import { configureStore} from "@reduxjs/toolkit"
+import {setupListeners} from "@reduxjs/toolkit/dist/query"
 import answerSlice from "./answerSlice"
-import { authSlice } from "./authSlice"
+import authSlice  from "./authSlice"
 import loaderSlice from "./loaderSlice"
-import apiReducer from "./apicall"
 import {TimerSlice} from "./TimerSlice"
+import { api } from "../api/api"
+import showScoreSlice from "./ShowScore"
+import courseSlice from "./courseSlice"
 
 const store = configureStore({
     reducer:{
         loader:loaderSlice,
         answer: answerSlice,
-        auth : authSlice.reducer,
-        quizs : apiReducer,
+        auth : authSlice,
+        show  : showScoreSlice,
         Time : TimerSlice.reducer,
-    }
+        course : courseSlice,
+        [api.reducerPath] : api.reducer
+
+    },
+
+    middleware : (getDefaultMiddleware)=>
+        getDefaultMiddleware().concat(api.middleware)
+    
 })
+
+setupListeners(store.dispatch);
 
 export default store
 

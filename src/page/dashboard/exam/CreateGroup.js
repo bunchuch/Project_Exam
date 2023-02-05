@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import { Button, Form, Input, Select, TimePicker, message } from "antd";
 import axios from "axios";
-
+import Header from "../../../components/Header";
+import { CiViewBoard } from "react-icons/ci";
+import { useNavigate} from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useForm } from "antd/es/form/Form";
+import { createGroup } from "../../../api/group";
+import NavigatorButton from "../../../components/navigatorButton";
 
 export default function CreateGroup () {
 const [group , setGoup] = useState('')
@@ -11,17 +17,14 @@ const [level ,setLevel] = useState('')
 const [time ,setTime] = useState([])
 const [messageApi, contextHolder] = message.useMessage()
 const key = 'updatable';
+const {Option} = Select
+const [form] = useForm()
+const teachername = useSelector(state => state.course.teacher)
 
-
-    const handleCreate = async (e) => {
-        e.preventDefault(e)
-       await axios.post("http://localhost:4000/group/create", {
-            group : group,
-            class : classe,
-            teacher : teacher,
-            level : level,
-            time : time,
-        }).then(respone => {
+const handleCreate = async (value) => {
+        try {
+            const request = await createGroup(value)
+            if(request){
                 messageApi.open({
                     key,
                     type : 'loading',
@@ -35,14 +38,21 @@ const key = 'updatable';
                         duration : 2
                     })
                 } ,[1000])
-        }).catch(err => {
-            console.log(err)
+            }else{
+                messageApi.open({
+                    key,
+                    type : 'error',
+                    content : `Failded name ${request.message}`
+                })
+            }
+
+        } catch (error) {
             messageApi.open({
                 key,
                 type : 'error',
-                content : `Failded name ${err.response.data.message}`
+                content : `Failded name ${error.message}`
             })
-        })
+        }
     }
 
     const handleChange = (time)=>{
@@ -54,28 +64,36 @@ const key = 'updatable';
         setLevel(value)
     }
     
-
-
-    return <div className="bg-white px-6 py-8 rounded-xl border border-neutral-200">
-     <Form>
+    return <>
+     <NavigatorButton/>
+    <div className="bg-white p-4  rounded-lg border border-neutral-200">
+     <Header icons={<CiViewBoard/>} text={"Create Group"}></Header>
+     <Form 
+     form={form}
+     onFinish={handleCreate} 
+      layout="vertical" className="mt-4">
         {contextHolder}
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 gap-3">
         <Form.Item name="group" label="Group">
-            <Input onChange={e => setGoup(e.target.value)}></Input>
+            <Input ></Input>
         </Form.Item>
 
-        <Form.Item name="Class" label="Class">
-            <Input onChange={e => setClasse(e.target.value)}></Input>
+        <Form.Item name="class" label="Class">
+            <Input ></Input>
         </Form.Item>
 
-        <Form.Item name="teacher" label="Teacher">
-            <Input onChange={e => setTeacher(e.target.value)}></Input>
+        <Form.Item name="teacher" label="Assign Teacher">
+            <Select>
+                {teachername ? teachername.map((i , k)  => <Option key={k} value={i}>
+                    {i}
+                </Option>)
+                : [] }
+            </Select>
         </Form.Item>
 
 
         <Form.Item name="level" label="Level">
            <Select
-            onChange={handleChangeSelect}
            options={[{label : 'Beginner', value: 'Beginner'},
             {label : 'Pre-Intermediate', value: 'Pre-Intermediate'},
             {label : 'Intermediate',value:'Intermediate',},{
@@ -86,20 +104,20 @@ const key = 'updatable';
            ></Select>
         </Form.Item>
 
-
-        <Form.Item name="Time" label="Time">
+        <Form.Item name="time" label="Time">
             <TimePicker.RangePicker value={time}
-             onChange={handleChange} 
+             
              placement="bottomRight" 
              format={"HH:mm"}/>
         </Form.Item>
         </div>
+
         <div className="flex justify-end">
         <Form.Item>
-            <Button style={{
+            <Button htmlType="submit" style={{
                 background: '#0f3460',
                 color : '#ffff',
-            }} onClick={handleCreate}>
+            }} >
                 Create
             </Button>
         </Form.Item>
@@ -107,4 +125,5 @@ const key = 'updatable';
       
      </Form>
     </div>
+    </>
 }

@@ -8,7 +8,7 @@ import {FcAbout,
    FcList, 
   FcMenu,
  } from "react-icons/fc"
- import { CiExport } from "react-icons/ci"
+ import { CiExport, CiUser } from "react-icons/ci"
 import Icon from "../Icon"
 import { Link} from "react-router-dom"
 import { Drawer, Dropdown, Select, Space } from "antd"
@@ -20,14 +20,15 @@ const cookies = new Cookies()
 
 
 const Navbar = ({style,setNavbar,container,  IsLoggIn}) =>{
-    const names = useSelector(state=> state.auth.username)
+    const names = useSelector(state=> state.auth.usernames)
     const [open ,setOpen] = useState(false)
     const [placement, setPlacement] = useState('left');
     const dispatch = useDispatch()
-
+    const username = cookies.get('Username')
 
     const logout = (e) =>{
       cookies.remove("TOKEN",{path : "/"})
+      cookies.remove('Username')
       window.location.href= "/login"
       dispatch(authAction.logout())
   }
@@ -71,7 +72,7 @@ const Navbar = ({style,setNavbar,container,  IsLoggIn}) =>{
     <a href="#" className={styleNavbar.bannerImageOfnavBar}>
     <div className={container ? styleNavbar.conatiner3  : styleNavbar.conatiner3 + " rounded-md p-[2px] text-white"}>
               <img src= {IsLoggIn ? "./asset/Puc_logo.png" : "./asset/Puc_exam.png" }
-                className={IsLoggIn ? "w-9 h-9 mx-[3.5rem]" 
+                className={IsLoggIn ? "w-9 h-9 mx-2 " 
                  : " " +styleNavbar.logoStyle} alt="logo"/>
                     {
                       container ? <>
@@ -92,8 +93,10 @@ const Navbar = ({style,setNavbar,container,  IsLoggIn}) =>{
         <div className="flex space-x-2">
           <>
         <Dropdown menu={{items}}>
-          <Space>
-          <Avatar></Avatar>
+          <Space className="text-lg text-variation-500 bg-neutral-200 px-2 py-1 
+          rounded-lg">
+            <Icon color={"#0f3460"} Size={"1.5rem"} name={<CiUser/>}/>
+          {username}
             </Space>
       
         </Dropdown>
@@ -152,14 +155,7 @@ const Navbar = ({style,setNavbar,container,  IsLoggIn}) =>{
     </div>
     {/* right content of navbar */}
     {
-      IsLoggIn ? <></>:<div className={styleNavbar.rigthContentStyle} >
-      <ul class="flex flex-col p-4 md:p-0 mt-4 border font-roboto font-normal
-       border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 
-        md:border-0  dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-          {navbarlink.map((value)=><NavbarList link={value.link} name={value.name} icon={value.icon}/>)}
-      
-      </ul>
-    </div>
+      IsLoggIn ? <></>:<></>
     }
     </div>
   </nav>
@@ -168,7 +164,7 @@ const Navbar = ({style,setNavbar,container,  IsLoggIn}) =>{
 
 const styleNavbar = {
     "normalNav" : " w-full bg-white z-10  dark:bg-gray-900 md:py-4 md:px-0 p-4  ",
-    "authNav": "fixed z-10 bg-slate-800  text-white w-full shadow-sm shadow-gray-600/10 py-2 px-2 lg:px-0 md:border-none md:py-2",
+    "authNav": "fixed z-10 bg-[#0f3460] top-0 text-white w-full shadow-sm shadow-gray-600/10 py-2 px-2 lg:px-0 md:border-none md:py-2",
     "containerOfnavbar" : "container flex flex-wrap items-center justify-between mx-auto ",
     "dashboard" : "flex flex-wrap items-center justify-between mx-auto mx-3",
     "bannerImageOfnavBar" : "flex justify-between ", 

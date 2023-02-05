@@ -14,10 +14,6 @@ import { useSelector } from "react-redux"
 export const Dashboard = () =>{
    
 const IsLogin = useSelector(state => state.auth.isLogIn)
-
-console.log(IsLogin)
-
-
   return <>
   <Navbar IsLoggIn={IsLogin}></Navbar>
   <Container>

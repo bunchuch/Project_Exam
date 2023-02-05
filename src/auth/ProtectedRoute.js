@@ -1,15 +1,10 @@
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { useNavigate, Navigate} from "react-router-dom";
 import Cookies from "universal-cookie";
-
+import {Navigate, useLocation} from "react-router-dom";
 
 const cookie = new Cookies();
 
-
-
-export const ProtectedRoute = ({ children }) => {
+export const ProtectedRoute = ({ children, role }) => {
     const token = cookie.get("TOKEN")
-    return token ? children : window.location.href = "/login"
+    return token ? children : <Navigate to="/login" state={{}}/>
 
 };
