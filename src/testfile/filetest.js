@@ -131,7 +131,6 @@ console.log( q.clude.forEach(el => {
 console.log(q.clude.find( x => x.id === i.id ).selected = true)
 }
 
-console.log(getAllQuestion.name)
 
   return(
     <Container>
