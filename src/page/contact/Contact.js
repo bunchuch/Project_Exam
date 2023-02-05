@@ -1,15 +1,6 @@
-import Icon from "../../components/Icon"
-import { useEffect } from "react"
-import {HiOutlineMail} from "react-icons/hi"
-import {TfiMapAlt} from "react-icons/tfi"
-import {BiPhoneCall} from "react-icons/bi"
-import {FiFacebook} from "react-icons/fi"
 import { contact } from "../../data/data"
-import {RiTelegramLine} from "react-icons/ri"
-import Footer from "../../components/Footer/Footer"
 import "../../style/style.css"
 import { Card } from "../../components/Card"
-import Heropage from "../../components/Herosection/Hero"
 import {FcMindMap, FcPhone, FcServices, FcSms} from "react-icons/fc"
 
 export default function Contact () {
@@ -21,7 +12,8 @@ export default function Contact () {
         
         <div className="mt-2 flex gap-2">
               <h1 className="text-2xl font-bold font-roboto text-gray-800 lg:text-3xl">Let Know about Us</h1>
-                    <span className="inline-block w-4 h-8   border-[2px]  bg-gradient-to-r from-fuchsia-600 to-pink-500  border-white rounded-full"></span>
+                    <span className="inline-block w-4 h-8   border-[2px]  bg-gradient-to-r
+                     from-fuchsia-600 to-pink-500  border-white rounded-full"></span>
                 </div>
             <div className="grid grid-cols-1 gap-8 mt-3 lg:mt-10 md:grid-cols-2 xl:grid-cols-3 py-7">
               {

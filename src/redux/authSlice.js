@@ -21,30 +21,18 @@ async (state)=> {
 export const authSlice = createSlice({
     name : "auth",
     initialState:{
-        username: "dara",
-        password:"1234",
-        loading:false,
-        userTaken:null,
-        error : null,
-        isLoggIn:false,
-        users : []
+        isLogIn: false,
     },
     reducers : {
-        login(state,actions){
-            state.isLoggIn = true
-            state.username = actions.payload;
-            state.password = actions.payload
+        login(state){
+            state.isLogIn = true
         },
         logout(state) {
-            state.isLoggIn =false
+            state.isLogIn = false
          }
     },
 
-    extraReducers: {
-        [getUsersAsync.fulfilled]: (state, action)=>{
-            state.users = action.users
-        }
-    }
+   
 })
 
 

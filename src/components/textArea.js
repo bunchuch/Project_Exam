@@ -1,7 +1,6 @@
 import Alert from "./Alerts";
-import Tooltip from "./Button/Tooltip"
 import { useEffect, useRef, useState } from "react"
-
+import { Tooltip } from "antd";
 
 
 
@@ -54,7 +53,7 @@ const preventCopyPast = (e: ClipboardEvent<HTMLInputElement>)=>{
             </textarea>
             <div className={row ? " " : "w-32 mt-3"}>
               {
-                button ?  <Tooltip tooltip="Are you sure ?">
+                button ?  <Tooltip title ="Are you sure?" >
                 <button type="submit "  className="bg-purple-800 px-4
                     py-2 rounded-full text-[14px] tracking-wider
                    font-medium text-white hover:bg-gradient-to-r

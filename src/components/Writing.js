@@ -2,7 +2,6 @@ import React, { useEffect,ClipboardEvent, useState } from "react";
 import axios from 'axios';
 import Alert from "./Alerts";
 import UploadImages from "./UploadImage";
-import Tooltip from "./Button/Tooltip";
 import { TextArea } from "./textArea";
 import Aos from "aos"
 import 'aos/dist/aos.css'

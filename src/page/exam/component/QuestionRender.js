@@ -7,7 +7,9 @@ import ExamStatus from "./ExamStaute";
 import Container from "../../../components/Container";
 import { Loader } from "../../../components/load/Loader";
 import QuestionBox from "./QuestionBox";
-
+import { Button, Result } from 'antd';
+import Icon from "../../../components/Icon";
+import { FcApproval } from "react-icons/fc";
 
 
 export const QuestionRender = ({showScore}) => {
@@ -77,7 +79,17 @@ const handleAnswerNext = () => {
 //   return
 
 return <div className="container mx-auto p-2">
-<h1>Hi</h1>
+  <div className="relative flex justify-center top-[4rem] items-center">
+  <Result
+     status="success"
+    title="Successfully"
+    subTitle="click button to navigate back to exam screen"
+    extra={
+    <Button onClick={()=> navigator("/exam")} style={{background : '#0f3460', color:'white' }} >Go back</Button>
+    }
+  />
+  </div>
+      
 </div>
 
 
@@ -98,9 +110,9 @@ const examstyle = {
 
 
 const buttonstyle = {
-  "nextBtn" : "rounded-xl font-mono text-[18px] relative inline-flex group items-center truncate "+
-  " justify-center px-4 w-32 py-2 m-1 cursor-pointer bg-purple-800 text-white active:bg-purple-600 active:shadow-none",
-  "prevBtn" : "rounded-xl text-[18px] font-mono relative inline-flex group items-center truncate "+
+  "nextBtn" : "rounded-lg  text-[16px] relative inline-flex group items-center truncate "+
+  " justify-center px-4 w-32 py-1.5 m-1 cursor-pointer bg-purple-800 text-white active:bg-purple-600 active:shadow-none",
+  "prevBtn" : "rounded-xl text-[18px]  relative inline-flex group items-center truncate "+
   " justify-center px-4 w-32 py-2 m-1 cursor-pointer bg-purple-100 text-purple-800 active:bg-purple-50 active:shadow-none",
   "grenBtn" : "rounded relative inline-flex group items-center truncate  "
   +"  justify-center px-4 w-32 py-2 m-1 cursor-pointer bg-purple-100 text-purple-800 active:bg-purple-50 active:shadow-none",

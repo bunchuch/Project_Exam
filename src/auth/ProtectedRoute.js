@@ -10,7 +10,6 @@ const cookie = new Cookies();
 
 export const ProtectedRoute = ({ children }) => {
     const token = cookie.get("TOKEN")
-    console.log(token)
-   return token ? children : <Navigate to ="/login" />
+    return token ? children : window.location.href = "/login"
 
 };

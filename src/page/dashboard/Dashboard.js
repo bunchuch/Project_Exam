@@ -1,19 +1,34 @@
-import React from "react"
-import Container from "../../components/Container"
 import Navbar from "../../components/Navbar/Navbar"
-import LeftSideBar from "./componet/LeftSideBar"
 import Panel from "./componet/Panel"
+import LeftSideBar from "./componet/LeftSideBar"
+import Container from "../../components/Container"
+import { useSelector } from "react-redux"
+
+
+
+
+
+
+
 
 export const Dashboard = () =>{
-    return <>
-    <Navbar></Navbar>
-    <Container>
-        <div className=" w-full absolute   flex flex-row h-full ">
-                <LeftSideBar></LeftSideBar>
-                <Panel></Panel>         
-        </div>
-    </Container>
-    </> 
+   
+const IsLogin = useSelector(state => state.auth.isLogIn)
+
+console.log(IsLogin)
+
+
+  return <>
+  <Navbar IsLoggIn={IsLogin}></Navbar>
+  <Container>
+  <div className=" w-full absolute   flex flex-row h-full ">
+  <LeftSideBar></LeftSideBar>
+  <Panel></Panel>
+  </div>
+  </Container>
+ 
+  
+  </>
     
     
 }

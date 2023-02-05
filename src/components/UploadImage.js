@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect,useState,useRef } from "react";
 import Icon from "./Icon";
-import Tooltip from "./Button/Tooltip";
+import {Tooltip} from "antd";
 import { FcUpload } from "react-icons/fc";
 import {AiOutlineDelete} from "react-icons/ai"
 
@@ -79,7 +79,7 @@ const UploadImages = ({onsubmit}) => {
           </p>
         ) : (
           <div className="">
-            <Tooltip tooltip="Are your Sure ?">
+            <Tooltip title="Are your Sure ?">
           <button
             className="bg-purple-900 
             px-3 py-2 rounded-full font-sans text-white text-[14px] font-medium" 

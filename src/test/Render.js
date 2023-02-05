@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addAnswer } from "./redux/answerSlice";
-import FillBlanks from "../src/components/FillBlank"
+import { addAnswer } from "../redux/answerSlice";
+import FillBlanks from "../components/FillBlank"
 
 
 
@@ -121,7 +121,7 @@ export  const Render = () =>{
 
   return <div className="max-w-5xl mx-auto rounded-xl
                          border-[1px] mt-9 p-4 border-blue-200">
-    {
+    {/* {
       showScore ? <div className="flex flex-col justify-center  
                                   items-center space-y-3">
        <h1 className="text-center font-roboto 
@@ -213,6 +213,6 @@ export  const Render = () =>{
       next
       </button> 
       </>
-    }
+    } */}
   </div>
 }

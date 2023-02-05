@@ -5,21 +5,21 @@ import { createSlice } from "@reduxjs/toolkit";
 export const TimerSlice = createSlice({
     name : "Time",
     initialState:{
-        minutes : 0,
+        minute : 0,
         seconds : 0,
+        disable:false
     },
 
     reducers: {
-        renderTimer : (state,actions)=>{
-          let myInterVal = setTimeout(()=>{
-            console.log(state.minutes)
-          }, [1000])
+       disable: (state ,action)=>{
+          if (action.payload.minute === 0){
+            state.disable = false
+          }else{
+            state.disable = true
+          }
+       }
 
-
-          return myInterVal
-
-          
-        }
+       
     }
 })
 

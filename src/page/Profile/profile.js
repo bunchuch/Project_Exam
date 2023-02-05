@@ -4,7 +4,6 @@ import { Card } from "../../components/Card"
 import { BiAward} from "react-icons/bi"
 import {FaUserGraduate }from "react-icons/fa"
 import {FcUnlock, FcLock, FcAbout }from "react-icons/fc"
-import { buttonstyle } from "../../style/style"
 import { personalinfo } from "../../data/data"
 import Alert from "../../components/Alerts"
 import { useSelector } from "react-redux"
@@ -25,7 +24,7 @@ const [enable, setEnable] = useState(false)
  }
 
     return <> 
-    <Contanier>
+    {/* <Contanier>
       {
         personalinfo.map((value)=> value !== null ? <div>
         <div className="bg-gray-50 md:px-0 px-4">
@@ -94,7 +93,7 @@ space-x-2 items-center text-purple-900">
  )
       }
      
-    </Contanier>
+    </Contanier> */}
 
     </>
 

@@ -23,14 +23,14 @@ export const GetHelpWithSigning = () =>{
                       </h1>
                     <h1 className="text-xl font-medium leading-tight
                      mb-2 tracking-tight md:text-2xl">Welcome</h1>
-               <p className=" font-normal">
+               <p className=" font-normal break-words">
                 Contact your curator to recover your password
                  </p> 
                <p className="paraStyle text-center">
                 <Link to={"/login"}>
                 <a href=""
-                             className="font-thin-[150px] active:bg-yellow-300 bg-yellow-400 px-3 py-2 rounded-md
-                               text-slate-800">
+                             className="font-thin-[150px] active:bg-variation-400 bg-variation-500 px-3 py-2 rounded-md
+                               text-gray-50">
                                 I remember the password back</a>
                 </Link>
                            

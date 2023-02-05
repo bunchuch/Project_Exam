@@ -1,11 +1,7 @@
 
-import React, { useState, useTransition } from "react";
-import { BiChevronDown,BiChevronUp, BiFullscreen } from "react-icons/bi";
-import Tooltip from "./Button/Tooltip";
-import Icon from "./Icon";
+import React, { useState,} from "react";
 import Modal from "./Modal";
 import {SmallSpinner} from "./load/SmallSpinner"
-import { Loader } from "./load/Loader";
 
 export function ReadingCard ({header,sentence,type}){
  const [open, setOpen] = useState(false)

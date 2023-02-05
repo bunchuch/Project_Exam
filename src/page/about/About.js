@@ -1,10 +1,8 @@
 
 import {React, useEffect} from "react"
-import Footer from "../../components/Footer/Footer"
 import { about } from "../../data/data"
 import 'aos/dist/aos.css'
 import Aos from "aos"
-import Heropage from "../../components/Herosection/Hero"
 import "../../style/style.css"
 import { Card } from "../../components/Card"
 import { FcBookmark, FcBriefcase, FcHome, FcKey, FcServices, FcStatistics } from "react-icons/fc"
@@ -22,7 +20,8 @@ useEffect(()=>{
              
               <div className="mt-2 flex gap-2">
               <h1 className="text-2xl font-bold font-roboto text-gray-800 lg:text-3xl">Let Know about Us</h1>
-                    <span className="inline-block w-4 h-8   border-[2px]  bg-gradient-to-br from-yellow-300 to-orange-400  border-white rounded-full"></span>
+                    <span className="inline-block w-4 h-8   border-[2px]  bg-gradient-to-br
+                     from-yellow-300 to-yellow-400  border-white rounded-full"></span>
                 </div>
               <div className="grid grid-cols-1 gap-8 mt-3 lg:mt-10 md:grid-cols-2 xl:grid-cols-3">
           {

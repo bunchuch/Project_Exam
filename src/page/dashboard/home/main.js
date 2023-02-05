@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { BiAbacus, BiArrowFromBottom, BiArrowFromTop, BiFace, BiUser,BiUsers, BiUserCircle, BiGroup, BiCoin, BiCoinStack } from "react-icons/bi";
 import Icon  from "../../../components/Icon";
-import Chart from "chart.js/auto";
 import {Lines} from "../componet/chart/line"
-import { FaSadCry } from "react-icons/fa";
+import { Result} from "antd";
+import { CiCoinInsert, CiGlass, CiGrid2V, CiLocationArrow1, CiUser } from "react-icons/ci";
+import Header from "../../../components/Header";
 
 
 
@@ -12,27 +12,29 @@ function DashboardCard ({amount , title ,icon}) {
     
     const checkIcon = (title)=>{
         if (title === "Student") {
-            return <BiFace/>
+            return <CiUser/>
         }else if (title === "Teacher"){
-            return <BiUserCircle/>
+            return <CiUser/>
         }else if (title === "Employee"){
-            return <BiGroup/>
+            return <CiGlass/>
         }else if (title === "Income"){
-            return <BiCoinStack/>
+            return <CiCoinInsert/>
         }
     }
 
 
     return <>
-    <div className="bg-white p-4 shadow-md border-[1px] border-gray-200 rounded-md shadow-gray-50 hover:bg-purple-100">
+    <div className="bg-white p-4 shadow-md border-[1px] border-gray-200 
+    rounded-md shadow-gray-50 hover:bg-purple-100">
         <div className="flex flex-col gap-2 ">
         <Icon Size={"2.5rem"} name={ checkIcon(title)}></Icon>
         <p className="text-[15px]">{amount}</p>
         </div>
         <h1 className="font-semibold text-[16px]">{title}</h1>
-        <div className="flex float-right items-center bg-green-200 rounded px-2 py-1 text-sm font-semibold"> 
+        <div className="flex float-right items-center bg-green-200
+         rounded px-2 py-1 text-sm font-semibold"> 
         <p>4.5%</p>
-        <Icon color="#29d972" Size={"1rem"} name={<BiArrowFromBottom/>}></Icon>
+        <Icon color="#29d972" Size={"1rem"} name={<CiLocationArrow1/>}></Icon>
         </div>
     </div>
     </>
@@ -40,7 +42,7 @@ function DashboardCard ({amount , title ,icon}) {
 
 
 export function Main () {
-const data = false 
+const data = false
 const options = {
     title:{
         display:true,
@@ -58,8 +60,8 @@ const options = {
     }
 }
 
-    return<div className="flex justify-center items-center"> { data ? <><h1 className="text-2xl font-semibold
-     pb-3 text-purple-900">Welcome Dara to! Dashboard</h1>
+    return<div className="flex justify-center items-center"> { data ? <>
+        <Header icons={<CiGrid2V/>} text="main"></Header>
     <div className="grid lg:grid-cols-4 gap-2 py-2">
          <DashboardCard amount={1000} title={"Student"}/>
          <DashboardCard amount={25} title="Teacher"/>
@@ -87,7 +89,13 @@ const options = {
             <h1 className="text-lg font-bold">Activity</h1>
         </div>
         
-        </div> </> : <h1 className="text-slate-900 font-medium text-[20px]">Welcome Guys</h1>}
+        </div> </> : <>
+        <Result
+    title="page are under maintenance"
+  />
+        
+        
+        </>}
      
   
    

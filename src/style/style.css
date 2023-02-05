@@ -35,6 +35,12 @@
     background-image: url("../../public/asset/bg-login.png");
     background-repeat: no-repeat;
     background-size: cover;
+  } 
+
+  .bg-login2 {
+    background-image: url("../../public/asset/bg-login2.png");
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 
   .footer-bg{
