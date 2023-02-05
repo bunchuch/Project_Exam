@@ -2,15 +2,14 @@ import React, { useEffect, useState } from 'react'
 import Navbar from './components/Navbar/Navbar'
 import Mainpage from "./page/Home/LandingPage/mainPage"
 import LoginForm from "./page/login/loginForm"
-import About from './page/about/about'
+import About from './page/about/About'
 import Profile from "./page//Profile/profile"
 import {BrowserRouter, Routes, Route,Switch} from 'react-router-dom'
 import FileTest from "./testfile/filetest"
 import Registration from './page/regisignsterForm/Registration';
 import Loader from './components/Loader';
 import ErrorPage from './components/ErrorPage';
-import TaskArea from './page/exam/component/TaskArea'
-import { useSelector } from 'react-redux'
+
 
 
 const LazyLoader = React.lazy(()=> import("./page/exam/Exam"))
@@ -21,7 +20,7 @@ const [title, setTitle] = useState()
   let [isFootBig, setIsFooter] = useState(false)
   
   useEffect(()=>{
-setTitle(document.title = "Exam Application")
+  setTitle(document.title = "Exam Application")
   },[])
 
   return <div>

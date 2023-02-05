@@ -22,15 +22,12 @@ function Banner({img,title,desc,status,statusText,style}){
 
 
 return <div className={style}>
-<img className="object-cover w-48 h-32" src={img}/>
-                <div className=" flex space-x-2 mt-10 items-center">
-                <h1 className="text-[18px] tracking-wide font-bold">{title}</h1>
-        <ShowStatue isStatus={status} text={statusText}></ShowStatue>
-                
+                <div className=" flex flex-col  space-x-2 absoulte ">
+                <h1 className="text-[40px]  drop-shadow-md font-teko left-0  tracking-wide font-bold">{title}</h1>  
+                <img className="object-cover  md:w-[20rem] md:h-[20rem] rounded-full md:border-none border-[1px] w-[10rem] [h-10rem] -translate-y-4  -translate-x-1"  src={img}/>
+                <p className="md:text-[20px] text-[18px] drop-shadow-md ">{desc} </p> 
                 </div>
-                <div className="my-4">
-                <p className="text-[16px]">{desc} </p>
-                </div>
+            
 
 </div>
 }

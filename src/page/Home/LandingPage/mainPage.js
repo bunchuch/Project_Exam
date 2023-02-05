@@ -16,11 +16,10 @@ import Footer from "../../../components/Footer/Footer";
 function Mainpage (){
     return <div className="">
 <Heropage></Heropage>
-<SectionContainer img="https://www.pngall.com/wp-content/uploads/12/Illustration-PNG.png" isRight={false} 
+<SectionOne data={sectionOneData}></SectionOne>
+<SectionContainer img="https://www.invictus.edu.kh/ivt/slot/u830/News/9%20Proven%20Methods%20That%20Cultivate%20Independ/invictus_phnompenh_classroom_studenttalking.jpg"  
 desc="Blazor is a feature of ASP.NET for building interactive web UIs using C# instead of JavaScript. Blazor gives you real .NET running in the browser on WebAssembly."
 title="None"></SectionContainer>
-<SectionOne data={sectionOneData}></SectionOne>
-<SectionTwo data={sectionTwoData}></SectionTwo>
 <SectionThree></SectionThree>
 
 <Footer></Footer>

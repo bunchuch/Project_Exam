@@ -7,44 +7,32 @@ const SectionOne = ({ data }) => {
     return <section className="max-w-10 p-5 sm:p-0  ">
         <div class=" container
         font-inter 
-       mx-auto mt-10">
+       mx-auto mt-10 md:px-10 md:py-5 space-y-5">
 
-
-
-            <div className=" grid grid-cols-2 grid-row-2 gap-3 px-10 py-10">
+          <h1 className="text-[50px] font-bold text-slate-800 font-teko tracking-wide">Learning Skill</h1>
+     
+            <div className=" grid lg:grid-cols-3 grid-row-2 gap-10 ">
+             
     {
          data.map((value)=><>
-        {value.Lisenting.map((listining)=><>
-        <div key={listining.key} className="px-5 py-10 space-y-5 rounded-md transition duration-500 ease-in-in
-          transform hover:-translate-y-2
-          hover:scale-200 border-[2px] ">
+        {value.Lisenting.map((listining)=><div className="bg-slate-700 ">
+        <div key={listining.key} className="px-5 -translate-y-2 translate-x-2 rounded-none  bg-blue-600 py-10 space-y-5 transition duration-500 ease-in-in
+          transform hover:-translate-y-3
+          hover:scale-200 shadow-sm shadow-cyan-500/10 "> 
             <Banner
-            style="flex"
+            style="flex flex-col "
              title={listining.header} 
              desc={listining.Description} 
              img={listining.icon} status={true} statusText={"check"}/>
         </div>
-        </>)}
+        </div>)}
 
-        {value.Speaking.map((speaking)=><>
-        <div key={speaking.key} className=" flex flex-row border-[2px] rounded-md px-5 py-10 space-y-5  transition duration-500 ease-in-in
-          transform hover:-translate-y-2
-          hover:scale-200">
-            <Banner style="flex" img={speaking.icon} 
-            desc={speaking.Description} 
-            title={speaking.header} 
-            status={true}
-            statusText={"check"}
-            />
-        </div>
-        </>)}
-
-        {value.Writing.map((writing)=><>
-        <div key={writing.key} className=" border-[2px] rounded-md px-5 py-10 space-y-5  transition duration-500 ease-in-in
-          transform hover:-translate-y-2
+        {value.Writing.map((writing)=><div className="bg-slate-700">
+        <div key={writing.key} className="-translate-y-2 translate-x-2  shadow-sm shadow-cyan-500/10  px-5 py-10 space-y-5 bg-yellow-300 transition duration-500 ease-in-in
+          transform hover:-translate-y-3
           hover:scale-200 ">
             <Banner 
-            style="flex"
+            style="flex flex-col"
             title={writing.header}
              desc={writing.Description}
               img={writing.icon} 
@@ -52,14 +40,14 @@ const SectionOne = ({ data }) => {
               statusText={"check"}
               />
         </div>
-        </>)}
+        </div>)}
 
-        {value.Vocalulary.map((vocalulary)=><>
-        <div key={vocalulary.key} className="rounded-md border-[2px] px-5 py-10 space-y-5   transition duration-500 ease-in-in
-          transform hover:-translate-y-2
+        {value.Vocalulary.map((vocalulary)=><div className="bg-slate-700">
+        <div key={vocalulary.key} className="-translate-y-2 translate-x-2 shadow-sm shadow-cyan-500/10 bg-red-500 px-5 py-10 space-y-5   transition duration-500 ease-in-in
+          transform hover:-translate-y-3
           hover:scale-200">
             <Banner 
-            style="flex"
+            style="flex flex-col text-white"
             title={vocalulary.header}
              desc={vocalulary.Description} 
              img={vocalulary.icon} 
@@ -69,7 +57,7 @@ const SectionOne = ({ data }) => {
              />
            
         </div>
-        </>)}
+        </div>)}
 
 
 
