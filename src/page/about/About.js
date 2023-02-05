@@ -4,15 +4,6 @@ import Footer from "../../components/Footer/Footer"
 import HeroPage from "./component/AboutHero"
 import ColFour from "./component/ColFour"
 import Banner from "./component/Banner"
-<<<<<<< HEAD:src/page/about/About.js
-import Navbar from "../../components/Navbar/Navbar"
-
-
-
-export default function About(){
-    return   <>
-          <section className=" dark:bg-gray-800 dark:text-gray-100 text-white">
-=======
 import { about } from "../../data/data"
 import { data } from "autoprefixer"
 import {BiCompass,BiBriefcase,BiTrip,BiPaperPlane,BiBuildings,BiShow} from "react-icons/bi"
@@ -38,14 +29,13 @@ function CarAbout  ({title,desc,icons}) {
 }
 
 
-function About(){
+export default function About(){
 useEffect(()=>{
   Aos.init({duration:1000})
 },[])
     return <>
   
       <section data-aos="fade-up" className=" dark:bg-gray-800 dark:text-gray-100 text-white">
->>>>>>> featurn1:src/page/about/about.js
        <HeroPage/>
         <div className="max-w-7xl  px-6 py-12 mx-auto  ">
               <h1 class="text-2xl font-semibold text-gray-800 lg:text-3xl dark:text-white">Let Know about Us</h1>
