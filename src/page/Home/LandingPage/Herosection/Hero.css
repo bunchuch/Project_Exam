@@ -40,6 +40,8 @@
    height:500px;
    background-size: cover; 
     position: relative;
+    filter: blur(1px);
+    -webkit-filter: blur(4px);
   }
 
 
@@ -54,6 +56,8 @@
     background-size: cover; 
      position: relative;
      height: 20rem;
+    
+     
   }
   .about-hero{
     background-image:/* linear-gradient(rgba(146, 93, 231, 0.898), rgba(99, 15, 177, 0.829)), */

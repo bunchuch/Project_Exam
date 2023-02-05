@@ -12,7 +12,7 @@ import { VocabularyCard } from "../components/VocabularyCard"
 import ExamStatus from "../page/exam/component/ExamStatus"
 import {BiLibrary,BiUserVoice, BiBookOpen,BiFontColor} from "react-icons/bi";
 import {TbWriting} from "react-icons/tb"
-import {FaAssistiveListeningSystems} from  "react-icons/fa"
+import {FaAssistiveListeningSystems, FaSleigh} from  "react-icons/fa"
 import {GoBook} from "react-icons/go"
 import Icon from "../components/Icon"
 import Writing from "../page/exam/component/Writing"
@@ -104,7 +104,7 @@ return (
 
     }
 
-    const [stickyClass, setStickyClass] = useState('bg-purple-900 px-2 md:px-0 overflow-x-auto text-[14px] md:text-base relative')
+    const [stickyClass, setStickyClass] = useState(false)
 
     useEffect(()=>{
       window.addEventListener('scroll',stickNavbar)
@@ -118,16 +118,18 @@ return (
       if(window !== undefined){
         let windowHieght = window.scrollY
         let windinnerH = window.innerHeight
-        windowHieght > -150 ? setStickyClass('top-0 z-10 sticky bg-purple-900 px-2 md:px-0 overflow-x-auto text-[14px] md:text-base') :
-         setStickyClass("bg-purple-900 px-2 md:px-0 overflow-x-auto text-[14px] md:text-base")
-        
+        windowHieght > -150 ? setStickyClass(true) :
+         setStickyClass(false)
+         console.log(windowHieght)
+     
       }
     }
 
 
     return <div className="bg-gray-50 min-h-screen box-border font-inter tracking-normal " >
        <div className="bg-gray-50 min-h-screen box-border font-inter tracking-normal ">
-         <div className={stickyClass}>
+         <div className={stickyClass ? "top-0 z-10 sticky bg-purple-900 px-2 md:px-0 overflow-x-auto text-[14px] md:text-base" 
+         : 'bg-purple-900 px-2 md:px-0 overflow-x-auto text-[14px] md:text-base relative'}>
 
             <div className="max-w[60rem] md:max-w-[70rem] text-white mx-auto py-2">
             <ul className=" md:max-w[70rem] mx-auto py-2" >
@@ -193,8 +195,7 @@ return (
                        
                         </main>
 
-                        <div className="lg:w-[460px] lg:order-last md:px-4 top-20 px-0  mx-0 ">
-                    
+                        <div className="lg:w-[460px] lg:order-last md:px-4 px-0  mx-0 ">
                   <ExamStatus data={questions}></ExamStatus>
            
                        </div>

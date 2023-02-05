@@ -9,6 +9,7 @@ import FileTest from "./testfile/filetest"
 import Registration from './page/regisignsterForm/Registration';
 import Loader from './components/Loader';
 import ErrorPage from './components/ErrorPage';
+import Contact from './page/contact/Contact'
 
 
 
@@ -48,7 +49,8 @@ const [title, setTitle] = useState()
    <Route path='*' element={<ErrorPage setNavbar={setIsNavBarHidden}></ErrorPage>}/>
     <Route path='/' errorElement={<ErrorPage/>} element={<Mainpage/>}></Route>
   
-    <Route path='/about' element={<About></About>}></Route>
+    <Route path='/about' element={<About></About>}> </Route>
+    <Route path='/contact' element ={<Contact/>}></Route>
     {/*
     tesfile
     */}

@@ -53,7 +53,8 @@ const resizeBy = ()=>{
 
 
 
-return <div className={fixed ? "md:top-20 top-[52.5px] z-10 lg:fixed lg:w-[300px] transition duration-150 ease-in-out " : "lg:my-6 my-0 -top-20 space-y-0 md:space-y-2" }>
+return <div className={ fixed ? "md:top-20 top-[52.5px] z-10 lg:fixed lg:w-[300px] transform transition duration-150 ease-in-out " 
+: "lg:my-6 my-0 -top-20 space-y-0 md:space-y-2" }>
 {/*  
    Timer Loading */}
 

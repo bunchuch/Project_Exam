@@ -8,7 +8,7 @@ function HeroPage ({}){
     
     <div className="about-hero">
         <div className="container px-4  flex mx-auto items-center justify-center py-10">
-        <div className=" items-center bg-slate-900 p-4 md:backdrop-blur-none backdrop-blur-sm bg-slate-500/30 rounded-md text-center drop-shadow-sm shadow-cyan-500/10 my-auto mx-auto tracking-normap">
+        <div className=" items-center  bg-slate-900 p-4 md:backdrop-blur-none backdrop-blur-sm bg-slate-500/30 rounded-md text-center drop-shadow-sm shadow-cyan-500/10 my-auto mx-auto tracking-normap">
         <h1 className="md:text-5xl font-medium text-2xl leading-none ">Hi There !<br></br>
 				<span className="dark:text-violet-400">May you need to know something About us</span>
 			</h1>
