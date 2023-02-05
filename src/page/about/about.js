@@ -7,8 +7,7 @@ import ColFour from "./component/ColFour"
 import Banner from "./component/Banner"
 
 
-function About(){
-
+export default function About(){
     return   <>
     <Navbar></Navbar>
       <section className=" dark:bg-gray-800 dark:text-gray-100 text-white">
@@ -67,5 +66,3 @@ power to create space to find belonging in their lives.
 
 }
 
-
-export default About
