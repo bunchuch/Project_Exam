@@ -217,6 +217,7 @@ number={value.question.length}
 link={value.name}
 title={value.name}
 desc={value.type}
+event={()=> alert(JSON.stringify(value.question))}
 
 >
 
