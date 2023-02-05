@@ -11,7 +11,7 @@ export default function ErrorPage({type}){
   }
 
     return <Container>
-<div className="h-screen w-screen top-0 flex items-center font-mono">
+<div className="h-screen  flex items-center font-mono">
 	<div className="container mx-auto flex flex-col md:flex-row items-center justify-center px-5 text-gray-700">
    		<div className="max-w-md md:order-1 order-2 justify-center">
       		<div className="text-5xl font-dark font-bold">404</div>

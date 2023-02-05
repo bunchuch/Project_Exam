@@ -15,7 +15,7 @@ import { NavLink } from "react-router-dom"
 
 
 
-const Navbar = ({style,setNavbar}) =>{
+const Navbar = ({style,setNavbar, container}) =>{
     const IsLoggIn = useSelector( state=> state.auth.isLoggIn)
     const names = useSelector(state=> state.auth.username)
     const loadding = useSelector((state)=> state.quizs.loadding)
@@ -36,13 +36,13 @@ const Navbar = ({style,setNavbar}) =>{
     const examList = [ {name:"Profile"},{name:"rule"}]
 
     return <nav className={IsLoggIn ? styleNavbar.authNav:styleNavbar.normalNav}>
-    <div className={styleNavbar.containerOfnavbar}>
+    <div className={container ? styleNavbar.containerOfnavbar : styleNavbar.dashboard}>
       {/* logo-banner of navbar */}
     <a href="#" className={styleNavbar.bannerImageOfnavBar}>
-    <div className={styleNavbar.conatiner3}>
-              <img src= {IsLoggIn ? "./PUC_Logo.png" : "./PUC_Logo.png" }
-                className={styleNavbar.logoStyle} alt="logo"/>
-                  <span className={IsLoggIn ? styleNavbar.bannerName + "text-white mx-1" :styleNavbar.bannerName }>
+    <div className={container ? styleNavbar.conatiner3  : styleNavbar.conatiner3 + "bg-white rounded-md p-[2px] text-slate-600"}>
+              <img src= {IsLoggIn ? "./PUC_Logo.png" : "./Puc_exam.png" }
+                className={IsLoggIn ? "w-9 h-9 flex items-center justify-center"  : " " +styleNavbar.logoStyle} alt="logo"/>
+                  <span className={IsLoggIn ? styleNavbar.bannerName + "text-white mx-3 text-[20px]" :styleNavbar.bannerName + "text-[20px] mx-3" }>
                     Puc-Exam</span>
               
                </div>
@@ -105,10 +105,11 @@ const Navbar = ({style,setNavbar}) =>{
 
 const styleNavbar = {
     "normalNav" : "bg-white border-gray-200 shadow-sm dark:bg-gray-900 md:py-4 md:px-0 p-4 ",
-    "authNav": "fixed z-10 bg-[#142544]  text-white w-full shadow-sm shadow-gray-600/10 py-2 px-2 lg:px-0 md:border-none md:py-2",
+    "authNav": "fixed z-10 bg-slate-800  text-white w-full shadow-sm shadow-gray-600/10 py-2 px-2 lg:px-0 md:border-none md:py-2",
     "containerOfnavbar" : "container flex flex-wrap items-center justify-between mx-auto ",
+    "dashboard" : "flex flex-wrap items-center justify-between mx-auto mx-3",
     "bannerImageOfnavBar" : "flex justify-between ", 
-    "bannerName" : "self-center text-2xl font-semibold font-mono whitespace-nowrap dark:text-white mx-2",
+    "bannerName" : "self-center text-[20px] font-semibold font-mono whitespace-nowrap dark:text-white mx-2",
     "conatiner3" : " flex flex-row justify-between ", 
     "logoStyle" : "object-fill md:w-full md:h-10 h-8 w-full",
     "listStyle"  : "flex md:order-2",

@@ -9,6 +9,7 @@ import Footer from "../../../components/Footer/Footer";
 import "../../../style/style.css"
 import Aos from "aos"
 import 'aos/dist/aos.css'
+import { Outlet } from "react-router-dom";
 
 
 function Mainpage (){
@@ -20,12 +21,10 @@ function Mainpage (){
 img ="main_background"
 text={false}></Heropage>
         <div className="container mx-auto md:px-0 px-2 ">
-      
 <SectionContainer  componet={<SectionOne data={sectionOneData}/>}/>
 <SectionContainer aos="fade-up" componet={<SectionTwo />}/>
 <SectionContainer aos="fade-up" componet={<SectionThree  />}/>
         </div>
-<Footer></Footer>
     </div>
 }
 

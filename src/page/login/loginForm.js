@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom"
 import Icon from "../../components/Icon"
 import {FcPortraitMode} from "react-icons/fc"
 import "../../style/style.css"
+import { Input } from "../../components/Input"
 
 
 
@@ -43,7 +44,7 @@ const navigator = useNavigate()
             password:user.password,
           }))
           if(dispatch(authAction.login)){
-            navigator("/exam")
+            navigator("/dashboard")
           }else{
             navigator("/login")
           }
@@ -60,11 +61,11 @@ const navigator = useNavigate()
         }
     }, [formErrors])
 
-    return <section className="bg-gray-50 bg-login relative inset-0 font-sans">
+    return <section className="bg-gray-50 relative inset-0 font-sans">
         <div className="flex flex-col items-center justify-center 
          h-screen">
-            <div className="w-full md:mx-auto max-w-[23rem] 
-            rounded-xl shadow-md mx-3 shadow-gray-100 bg-white border-[1px] border-gray-200   ">{ 
+            <div className="w-full    md:mx-auto max-w-[22rem] 
+            rounded-xl shadow-sm mx-3 shadow-gray-100/10 bg-white border-[1px]   ">{ 
                 <div> 
                   <div className=" space-y-1 md:space-y-3  my-2 p-2 md:p-6 text-gray-700 
                  ">
@@ -93,43 +94,9 @@ const navigator = useNavigate()
                     <form onSubmit={handleOnsubmit} 
                     className="space-y-4 md:space-y-4 my-4 " action="#">
                         {/* username input area */}
-                        <div>
-                            <label htmlFor="Username"
-                                className="block mb-2 text-sm font-medium text-gray-900 ">
-                                Username</label>
-                            < input type="text" onChange={handleChange}
-                            ref={inputRef}
-                                value={user.username || ""}
-                                name="username" id="username"
-                                className="ext-gray-900 rounded-md  border-gray-200 border-[1px] 
-                            text-sm block w-full py-2 text-[14px] font-normal md:py-3  px-2
-                                 tracking-wider"
-                                required="" />
-                                {formErrors.username && 
-                                <p className="text-red-500 text-[12px] py-2 font-medium line-none">
-                                    {formErrors.username}</p>}
-
-                        </div>
+                       <Input type="input" event={handleChange} Text="Username"></Input>
                         {/* passowrd input area */}
-                        <div>
-                            <label htmlFor="Username"
-                                className="block mb-2 text-sm font-medium text-gray-900 ">
-                                Password</label>
-                            <input
-                                ref={inputRef} 
-                                type="password"
-                                onChange={handleChange}
-                                name="password"
-                                value={user.password || ""}
-                                className="text-gray-900 rounded-md  border-gray-200 border-[1px] 
-                                text-sm block w-full py-2 text-[14px] font-normal md:py-3 px-2 tracking-wider"
-                                required="" />
-                            {
-                              formErrors.password && 
-                              <p className="text-red-500 text-[12px] py-2 font-medium line-none">
-                                {formErrors.password}</p>
-                            }
-                        </div>
+                        <Input type="input" Text="Password"></Input>
                         <div className="mt-5"></div>
                         <button type="submit" 
                         className="w-full bg-yellow-400  text-slate-800 rounded-md

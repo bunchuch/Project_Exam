@@ -20,8 +20,8 @@ export const GetHelpWithSigning = () =>{
                <p className="paraStyle text-center">
                 <Link to={"/login"}>
                 <a href=""
-                             className="font-thin-[150px] bg-yellow-400 px-3 py-2 rounded-md
-                              hover:text-slate-200 text-slate-800">
+                             className="font-thin-[150px] active:bg-yellow-300 bg-yellow-400 px-3 py-2 rounded-md
+                               text-slate-800">
                                 I remember the password back</a>
                 </Link>
                            

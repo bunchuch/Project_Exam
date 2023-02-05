@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const getUsersAsync = createAsyncThunk("quiz/getQuestionAsync",
 async (state)=> {
-    const users = await axios("http://localhost:7000/users").then((respones)=> {
+    const users = await axios("http://localhost:4000/user/login").then((respones)=> {
         return respones.data 
     })
 

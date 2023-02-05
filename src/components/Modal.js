@@ -33,11 +33,11 @@ const handleSize = (size) => {
         {
           
           type === "image" ?
-          <div className="bg-blue-100 h-[7rem]  w-full  ">
-          <img className="w-full h-[7rem] 2xl:h-[10rem] object-cover" src={text}/>
-          <div className="w-6 h-6 shadow-sm shadow-gray-300 -top-[1rem]  relative 
-           bg-purple-800 rounded-full p-1 ">
-          <Icon name={<MdZoomOutMap/>} color="white" />
+          <div className="bg-blue-100 2xl:h-[15rem] h-[9rem]  w-full  ">
+          <img className="w-full h-full  object-cover" src={text}/>
+          <div className="w-6 h-6 shadow-md shadow-gray-400/10 -top-[1rem]  relative 
+           bg-gray-200 rounded-full p-1 ">
+          <Icon name={<MdZoomOutMap/>} color="purple" />
           </div>
           
           </div>
