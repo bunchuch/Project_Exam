@@ -4,11 +4,13 @@ import Footer from "../../components/Footer/Footer"
 import HeroPage from "./component/AboutHero"
 import ColFour from "./component/ColFour"
 import Banner from "./component/Banner"
+import Navbar from "../../components/Navbar/Navbar"
 
 
 
 export default function About(){
     return   <>
+    <Navbar></Navbar>
           <section className=" dark:bg-gray-800 dark:text-gray-100 text-white">
        <HeroPage/>
         <div className="container mx-auto justify-around py-5 mt-10  my-auto space-y-10 text-slate-900">
