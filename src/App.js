@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from './components/Navbar/Navbar'
 import Mainpage from "./page/Home/LandingPage/mainPage"
+import About from "./page/about/About"
 import LoginForm from "./page/login/loginForm"
-import About from './page/about/About'
 import Profile from "./page//Profile/profile"
 import {BrowserRouter, Routes, Route,Switch} from 'react-router-dom'
 import FileTest from "./testfile/filetest"
