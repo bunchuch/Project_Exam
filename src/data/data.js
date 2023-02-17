@@ -1,12 +1,87 @@
 
+const about = [
+    {
+        "one" : [
+            {
+                "id" :"1",
+                "title": "What is Our Story?",
+                "desc" : "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem modi reprehenderit vitae exercitationem aliquid dolores ullam temporibus enim expedita aperiam mollitia iure consectetur dicta tenetur, porro consequuntur saepe accusantium consequatur."
+            }
+        ],
+        "two": [
+            {
+                "id" :"1",
+                "title": "What about service?",
+                "desc" : "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem modi reprehenderit vitae exercitationem aliquid dolores ullam temporibus enim expedita aperiam mollitia iure consectetur dicta tenetur, porro consequuntur saepe accusantium consequatur."
+            }
+        ],
 
+        "three" : [
+            {
+                "id" :"1",
+                "title": "What is Our Job?",
+                "desc" : "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem modi reprehenderit vitae exercitationem aliquid dolores ullam temporibus enim expedita aperiam mollitia iure consectetur dicta tenetur, porro consequuntur saepe accusantium consequatur."
+            }
+        ],
+        "four" : [
+            {
+                "id" :"1",
+                "title": "what a next funturn?",
+                "desc" : "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem modi reprehenderit vitae exercitationem aliquid dolores ullam temporibus enim expedita aperiam mollitia iure consectetur dicta tenetur, porro consequuntur saepe accusantium consequatur."
+            }
+        ],
+        "five" : [
+            {
+                "id" :"1",
+                "title": "How about in school?",
+                "desc" : "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem modi reprehenderit vitae exercitationem aliquid dolores ullam temporibus enim expedita aperiam mollitia iure consectetur dicta tenetur, porro consequuntur saepe accusantium consequatur."
+            }
+        ],
+        "six" : [
+            {
+                "id" :"1",
+                "title": "what are our vison?",
+                "desc" : "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem modi reprehenderit vitae exercitationem aliquid dolores ullam temporibus enim expedita aperiam mollitia iure consectetur dicta tenetur, porro consequuntur saepe accusantium consequatur."
+            }
+        ]
+    }
+]
+
+
+const contact = [
+    {
+        "Email":[{
+            "id": "01",
+            "desc": "Our friendly team is here to help",
+            "title": "Email",
+            "contact" : "example@email.com"
+        }
+           
+        ],
+        "Office":[{
+            "id": "02",
+            "desc": "Come say hello at our office HQ.",
+            "title": "Office",
+            "contact" : "100 Smith Street Collingwood VIC 3066 AU"
+        }
+           
+        ],
+        "Phone":[{
+            "id": "01",
+            "desc": "Mon-Fri from 8am to 5pm.",
+            "title": "Email",
+            "contact" : "+855 000-0000"
+        }
+           
+        ]
+    }
+]
 
 const sectionTwoData = [
     {
       "one" :[ 
         
         {"id": "001",
-       "img":"https://ouch-cdn2.icons8.com/VVhdE-HGUE7naBAkHZINJDwUsmurplE7VCETcAFs9B0/rs:fit:512:435/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9wbmcvNjIy/L2Q5NWJmZjFiLTcy/NmEtNDJmNi04ZDgx/LTExN2E3YTMxYmVi/OS5wbmc.png",
         "header":"Thinking Skill",
         "Description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro beatae error laborum ab amet sunt recusandae? Reiciendis natus perspiciatis optio."
         }],
@@ -14,17 +89,24 @@ const sectionTwoData = [
      "two" : [  
         {
             "id": "002",
-            "img":"https://cdni.iconscout.com/illustration/premium/thumb/happy-people-4316529-3613847.png",
+            
             "header":"Communication Skill",
             "Description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro beatae error laborum ab amet sunt recusandae? Reiciendis natus perspiciatis optio."
             }],
 
       "three" : [     {
                 "id": "003",
-                "img":"https://ouch-cdn2.icons8.com/nou9zptArgjdRq-eetLlrFPEkWlLUMk9a_z9QzDI2tA/rs:fit:512:384/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9wbmcvMzEy/L2Q2MWM3ZDI5LWYy/NDctNGE2Yi05Nzcx/LTJjZTVmM2M2YzY3/YS5wbmc.png",
+                
                 "header":"Problem Sovling Skill",
                 "Description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit.consectetur adipisicing elit.consectetur adipisicing elit. Porro beatae error laborum ab amet sunt recusandae? Reiciendis natus perspiciatis optio."
-                }]
+                }],
+
+                "four" : [     {
+                    "id": "003",
+                    
+                    "header":"Collaboration Skill",
+                    "Description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit.consectetur adipisicing elit.consectetur adipisicing elit. Porro beatae error laborum ab amet sunt recusandae? Reiciendis natus perspiciatis optio."
+                    }]
 
             }
         
@@ -36,23 +118,41 @@ const sectionOneData = [
     {
      "Writing" : [ { "id": "001",
         "icon": "https://ouch-cdn2.icons8.com/RZi98ls6dltk9nWZ1_SNLJQgbyacBQ9WmBjqRvjxxCw/rs:fit:512:384/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9wbmcvNzE4/L2NkZWFlZDJjLWIz/MDYtNDZjNy1hNTA5/LWI5ZGViMGVhN2Uw/Ny5wbmc.png",
-        "header":"Writing",
-        "Description":"Listening is so important that many top employers provide listening skills training for their employees. This is not surprising when you consider that good listening skills can lead to better customer satisfaction, greater productivity with fewer mistakes, and increased sharing of information that in turn can lead to more creative and innovative work.",
+        "header":"What do you get with Writing?",
+        "Description":"Listening is so important that many top employers provide listening skills.",
+        "key1title": "what Do you get with us?",
+       "key1" : "training for their employees. This is not surprising when you consider that good listening skills can lead " ,
+       "key2title" : "to better customer satisfaction.",
+       "key2" : " greater productivity with fewer mistakes, and increased sharing of information that in turn can lead to more creative and innovative work",
+       "key3title" : "ncreased sharing of information",
+       "key3": "greater productivity with fewer mistakes, and increased sharing of information that in turn can lead to more creative and innovative work",
         
         } ],
 
          "Lisenting" : [   {
                 "id": "003",
                 "icon":"https://ouch-cdn2.icons8.com/mKTUYA5xSk11T2e6VyldCtqX9XaKI-X6cqpCloaRXwI/rs:fit:512:384/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9wbmcvNjA2/LzJkYWQ0NDk0LTBh/ZGUtNDAzOC04ZmZh/LWFjMzYyM2YyZmRl/Ny5wbmc.png",
-                "header":"Lisenting",
-                "Description":"Listening is so important that many top employers provide listening skills training for their employees. This is not surprising when you consider that good listening skills can lead to better customer satisfaction, greater productivity with fewer mistakes, and increased sharing of information that in turn can lead to more creative and innovative work.",
+                "header":"What do you get with Lisenting",
+                "Description":"Listening is so important that many top employers provide listening skills training for their employees.",
+                "key1title": "what Do you get with us?",
+                "key1" : "training for their employees. This is not surprising when you consider that good listening skills can lead " ,
+                "key2title" : "to better customer satisfaction.",
+                 "key2" : " greater productivity with fewer mistakes, and increased sharing of information that in turn can lead to more creative and innovative work",
+                "key3title" : "ncreased sharing of information",
+                "key3": "greater productivity with fewer mistakes, and increased sharing of information that in turn can lead to more creative and innovative work",
                 }],
 
            "Vocalulary" : [    {
                     "id": "004",
                     "icon":"https://cdni.iconscout.com/illustration/premium/thumb/working-on-laptop-4301648-3575320.png",
-                    "header":"Vocalulary",
-                    "Description":"Listening is so important that many top employers provide listening skills training for their employees. This is not surprising when you consider that good listening skills can lead to better customer satisfaction, greater productivity with fewer mistakes, and increased sharing of information that in turn can lead to more creative and innovative work.",
+                    "header":"What do you get with Vocalulary?",
+                    "Description":"Listening is so important that many top employers provide listening skills training for their employees. ",
+                    "key1title": "what Do you get with us?",
+                    "key1" : "training for their employees. This is not surprising when you consider that good listening skills can lead " ,
+                    "key2title" : "to better customer satisfaction.",
+                    "key2" : " greater productivity with fewer mistakes, and increased sharing of information that in turn can lead to more creative and innovative work",
+                     "key3title" : "ncreased sharing of information",
+                     "key3": "greater productivity with fewer mistakes, and increased sharing of information that in turn can lead to more creative and innovative work",
                     }],
 
                 }
@@ -65,14 +165,16 @@ const sectionOneData = [
 const personalinfo = [
     {
         "id":"01",
-        "profilePicture":"https://cdn.apexlearning.com/2021-01/Student%20Success.jpg",
+        "picture":"https://cdn.apexlearning.com/2021-01/Student%20Success.jpg",
         "fname":"Martin",
         "lname": "June",
+        "location" : "takhmau ,kandal",
+        "join" : "Joined in August 2014",
          "info": [
-            {"title":"level", "desc" : "1", "icon": "BiCool" },  
-            { "title":"Grade", "desc" : "Englis", "icon" : "https://img.icons8.com/material-outlined/26/1A1BAD/school-building.png",},
-            { "title":"Age",    "desc" : "12",     "icon" :   "https://img.icons8.com/windows/32/1A1BAD/birthday-date.png",},
-            {   "title":"Roll","desc" : "Student","icon"  :   "https://img.icons8.com/material-outlined/32/1A1BAD/school.png", } ] ,
+            {"title":"Level", "desc" : "5", "icon": "<BiCool/>" },  
+            { "title":"Grade ", "desc" : "English intermedia", "icon" : "<BiChart/>",},
+            { "title":"Age",    "desc" : "12",     "icon" :   "",},
+            {   "title":"Roll","desc" : "Student","icon"  :   "", } ] ,
 
          "descritption": [{ "id":"01", "header":"Hello Wrold😍👩🏻","desc" : " Headings must have content and the content must  be accessible by a screen reader Headings",
                      }], 
@@ -105,24 +207,16 @@ const Readings = {
         {
             "id":"01",
             "type":"checkbox",
-            "text": "React finds out what changes have been made, and changes only what needs to be changed."+
-                    " React finds out what changes have been made, and changes only what needs to be changed."+
-                 " You will learn the various aspects of how React does this in the rest of this tutorial."+
-                 " React finds out what changes have been made, and changes only what needs to be changed."+
-                   " You will learn the various aspects of how React does this in the rest of this tutorial. "+    
-                      "You will learn the various aspects of how React does this in the rest of this tutorial."+
-                     " React finds out what changes have been made, and changes only what needs to be changed."+
-                    " React finds out what changes have been made, and changes only what needs to be changed."+
-                     "React finds out what changes have been made, and changes only what needs to be changed."+
-                     "React finds out what changes have been made, and changes only what needs to be changed.",
-            "header" : "reading a book is good time",
+            "header"  : "Why do introvert adn extroverts react so differently?",
+            "categorie" : "image",
+            "text": "https://www.ieltsjacky.com/images/MatchingInformationCarsText.jpg",
             "categories": "multiple Chocice",
             "question":["what is the capital of Uruguay is_____?"],
             "clude":[
-                {"id":"01", "choice":"reading can help you feel less iritated" },
-                {"id":"02", "choice":"More people are enjoying a books and turing off the television" },
-                {"id":"03", "choice":"Books can incrase your awareness and help you to be open-minded." },
-                {"id":"04", "choice":"Choosing book is no more diffucult than slecting a film" }
+                {"id":"01", "choice":"reading can help you feel less iritated","isCorrect" : false },
+                {"id":"02", "choice":"More people are enjoying a books and turing off the television","isCorrect" : false },
+                {"id":"03", "choice":"Books can incrase your awareness and help you to be open-minded.","isCorrect" : true },
+                {"id":"04", "choice":"Choosing book is no more diffucult than slecting a film","isCorrect" : false }
             ]
         
         },
@@ -134,10 +228,24 @@ const Readings = {
             "categories": "multiple Chocice",
             "question":["what is the capital of Uruguay is_____?"],
             "clude":[
-                {"id":"01", "choice":"reading can help you feel less iritated" },
-                {"id":"02", "choice":"More people are enjoying a books and turing off the television" },
-                {"id":"03", "choice":"Books can incrase your awareness and help you to be open-minded." },
-                {"id":"04", "choice":"Choosing book is no more diffucult than slecting a film" }
+                {"id":"01", "choice":"reading can help you feel less iritated","isCorrect" : false },
+                {"id":"02", "choice":"More people are enjoying a books and turing off the television","isCorrect" : true },
+                {"id":"03", "choice":"Books can incrase your awareness and help you to be open-minded.","isCorrect" : true },
+                {"id":"04", "choice":"Choosing book is no more diffucult than slecting a film","isCorrect" : false }
+            ]
+        
+        },
+        {
+            "id":"03",
+            "type":"checkbox",
+            "header" : "reading a book is good time",
+            "categories": "multiple Chocice",
+            "question":["what is the capital of Uruguay is_____?"],
+            "clude":[
+                {"id":"01", "choice":"reading can help you feel less iritated","isCorrect" : false },
+                {"id":"02", "choice":"More people are enjoying a books and turing off the television","isCorrect" : true },
+                {"id":"03", "choice":"Books can incrase your awareness and help you to be open-minded.","isCorrect" : false },
+                {"id":"04", "choice":"Choosing book is no more diffucult than slecting a film","isCorrect" : false }
             ]
         
         },
@@ -149,9 +257,9 @@ const Readings = {
             "question":["what is the capital of Uruguay is_____?"],
             "clude":[
                 {"id":"01", "choice":"reading can help you feel less iritated" },
-                {"id":"02", "choice":"More people are enjoying a books and turing off the television" },
-                {"id":"03", "choice":"Books can incrase your awareness and help you to be open-minded." },
-                {"id":"04", "choice":"Choosing book is no more diffucult than slecting a film" }
+                {"id":"02", "choice":"More people are enjoying a books and turing off the television" ,"isCorrect" : true },
+                {"id":"03", "choice":"Books can incrase your awareness and help you to be open-minded." ,"isCorrect" : true },
+                {"id":"04", "choice":"Choosing book is no more diffucult than slecting a film" ,"isCorrect" : false }
             ]
         
         },
@@ -163,9 +271,9 @@ const Readings = {
             "question":["what is the capital of Uruguay is_____?"],
             "clude":[
                 {"id":"01", "choice":"reading can help you feel less iritated" },
-                {"id":"02", "choice":"More people are enjoying a books and turing off the television" },
-                {"id":"03", "choice":"Books can incrase your awareness and help you to be open-minded." },
-                {"id":"04", "choice":"Choosing book is no more diffucult than slecting a film" }
+                {"id":"02", "choice":"More people are enjoying a books and turing off the television" ,"isCorrect" : false },
+                {"id":"03", "choice":"Books can incrase your awareness and help you to be open-minded." ,"isCorrect" : true },
+                {"id":"04", "choice":"Choosing book is no more diffucult than slecting a film" ,"isCorrect" : false }
             ]
         
         },
@@ -177,9 +285,9 @@ const Readings = {
             "question":["what is the capital of Uruguay is_____?"],
             "clude":[
                 {"id":"01", "choice":"reading can help you feel less iritated" },
-                {"id":"02", "choice":"More people are enjoying a books and turing off the television" },
-                {"id":"03", "choice":"Books can incrase your awareness and help you to be open-minded." },
-                {"id":"04", "choice":"Choosing book is no more diffucult than slecting a film" }
+                {"id":"02", "choice":"More people are enjoying a books and turing off the television"  ,"isCorrect" : false},
+                {"id":"03", "choice":"Books can incrase your awareness and help you to be open-minded.", "isCorrect" : false },
+                {"id":"04", "choice":"Choosing book is no more diffucult than slecting a film" ,"isCorrect" : true }
             ]
         
         },
@@ -190,24 +298,10 @@ const Readings = {
             "categories": "multiple Chocice",
             "question":["what is the capital of Uruguay is_____?"],
             "clude":[
-                {"id":"01", "choice":"reading can help you feel less iritated" },
-                {"id":"02", "choice":"More people are enjoying a books and turing off the television" },
-                {"id":"03", "choice":"Books can incrase your awareness and help you to be open-minded." },
-                {"id":"04", "choice":"Choosing book is no more diffucult than slecting a film" }
-            ]
-        
-        },
-        {
-            "id":"03",
-            "type":"checkbox",
-            "header" : "reading a book is good time",
-            "categories": "multiple Chocice",
-            "question":["what is the capital of Uruguay is_____?"],
-            "clude":[
-                {"id":"01", "choice":"reading can help you feel less iritated" },
-                {"id":"02", "choice":"More people are enjoying a books and turing off the television" },
-                {"id":"03", "choice":"Books can incrase your awareness and help you to be open-minded." },
-                {"id":"04", "choice":"Choosing book is no more diffucult than slecting a film" }
+                {"id":"01", "choice":"A.reading can help you feel less iritated" ,"isCorrect":true},
+                {"id":"02", "choice":"B.More people are enjoying a books and turing off the television" ,"isCorrect" : true},
+                {"id":"03", "choice":"C.Books can incrase your awareness and help you to be open-minded." ,"isCorrect" : false },
+                {"id":"04", "choice":"D.Choosing book is no more diffucult than slecting a film" ,"isCorrect" : false }
             ]
         
         }
@@ -527,100 +621,8 @@ const Listening = {
     // ]
 }
 
-// const Question = [
-//     {
-        
-//         "id":"01",
-//         "type":"checkbox",
-//         "audio": "https://www.123listening.com/freeaudio/adjectives1-1.mp3",
-//         "categories": "multiple Chocice",
-//         "question":["what is the capital of Uruguay"],
-//         "clude":[
-//             {"id":"01", "choice":"Montery" },
-//             {"id":"02", "choice":"New Uruguay" },
-//             {"id":"03", "choice":"Motevideo" },
-//             {"id":"04", "choice":"Panama City" }
-//         ]
-    
-//     },
-
-//     {
-    
-//         "id":"02",
-//         "type":"checkbox",
-//         "categories": "multiple Chocice",
-//         "audio": "",
-//         "question":["The examination of every human social interaction on a small scale describes"],
-//         "clude":[
-//             {"id":"01", "choice":"functionalism" },
-//             {"id":"02", "choice":"macrosociology" },
-//             {"id":"03", "choice":"cultural anthropology" },
-//             {"id":"04", "choice":"microsociology" }
-//         ]
-    
-//     },
-
-//     {
-    
-//         "id":"03",
-//         "type":"checkbox",
-//         "categories": "multiple Chocice",
-//         "audio": "",
-//         "question":["You send an email to the worng address. what should you do?"],
-//         "clude":[
-//             {"id":"01", "choice":"infrom your manager and together determine the best courese of action" },
-//             {"id":"02", "choice":"Tell a trusted colleague, get their advice and follow it immediately" },
-//             {"id":"03", "choice":"Resend the email to the correct address" },
-//             {"id":"04", "choice":"Don't take any action and hope the recipient igonres the email" }
-//         ]
-    
-//     },
-
-//     {
-    
-//         "id":"04",
-//         "type":"checkbox",
-//         "audio": "",
-//         "categories": "multiple Chocice",
-//         "question":["You send an email to the worng address. what should you do?"],
-//         "clude":[
-//             {"id":"01", "choice":"infrom your manager and together determine the best courese of action" },
-//             {"id":"02", "choice":"Tell a trusted colleague, get their advice and follow it immediately" },
-//             {"id":"03", "choice":"Resend the email to the correct address" },
-//             {"id":"04", "choice":"Don't take any action and hope the recipient igonres the email" }
-//         ]
-    
-//     }
-//     ,
-
-    
-//     {
-//         "id":"05",
-//         "audio": "https://www.123listening.com/freeaudio/adjectives2-2.mp3",
-//         "categories":"Fill in blank",
-//         "type" : "input",
-//         "question" :["Attending the < is a great <, but planning ahead is a good idea. Hundreds of < of people attend each year, so you’ll need to book < and tickets for popular shows in < . But don’t plan too much! You’ll find out about great, little-known shows and performers while you are there, and you’ll be < if you are too busy to attend."],
-//         "clude": ["festival","thousands","experience","disappointed","accommodation","advance"]
-//     },
-//     {
-//         "id":"06",
-//         "audio": "",
-//         "categories":"Fill in blank",
-//         "type" : "input",
-//         "question" :["We get it. Learning the meaning of the many words that make up the < can seem overwhelming. Take away the nerves and make it simple and easy to < with the use of our sentence maker."+
-
-//         "Your Dictionary < to make learning as < as possible, no matter what your age or understanding is. And our sentence examples are no different."+
-        
-//         "We understand that sometimes the best way to truly understand a new concept is to see it used in an example. With the help of our useful tool, you can be one step ahead with < the complexity and workings of English vocabulary."+
-        
-//         "With an increased < of how words can be used, you can make your writing come to life with an arsenal of words of varying < and meanings."+
-        
-//        " Simply type the word into the sentence generator and we’ll do the rest"],
-//         "clude": ["understand","English language","stress-free","understanding","grasping","couse of","difficulties","strives"]
-//     }
-// ]
 
 
 
 
-  module.exports = {sectionTwoData, sectionOneData,personalinfo,Readings, Listening, Grammar,Vocabulary,Writing}
+  module.exports = {sectionTwoData,contact, about, sectionOneData,personalinfo,Readings, Listening, Grammar,Vocabulary,Writing}

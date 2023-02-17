@@ -30,7 +30,7 @@ export default function Staff (){
 function QuestionRender () {  
 const renderQuestion = questions.map((item, key)=>(
  
-    <div className="" key={key}>
+    <div className="" key={key} >
         {
         categories === "writing" ? (
             <Writing data={item.clude}/>
@@ -40,7 +40,7 @@ const renderQuestion = questions.map((item, key)=>(
             categories === "listening" && (
                 <Audio audio={item.audio} title="my hoilday in london" ></Audio>
             ) ||   categories == "reading" && (
-                <ReadingCard header={item.header} sentence={item.text}  />
+                <ReadingCard type={item.categorie} header={item.header} sentence={item.text}  />
              ) || categories == "vocabulary" && (
              
              <VocabularyCard clude={item.clude}/>
@@ -48,11 +48,25 @@ const renderQuestion = questions.map((item, key)=>(
         }
 
 
-    <div className="bg-white shadow-sm shadow-gray-500/10 rounded-[4px]
-     tracking-wide mt-3  px-4 py-4 space-y-2">
-       <div className="space-y-2 flex items-center justify-between">
-         <h1 className ="text-md trackgin-wide font-medium ">Question {key+1}</h1>
-        </div>
+    <div className="bg-white -z-10 shadow-sm shadow-gray-500/10 rounded-lg
+     tracking-wide mt-3  px-6 py-4 space-y-2">
+       <div className="flex space-x-2">
+         <h1 className ="text-md trackgin-wide font-medium ">{key+1}.</h1>
+       
+        <div>
+    
+    {
+       
+        item.categories === "multiple Chocice" && (<>
+            <div className="text-gray-800 font-medium">{item.question}</div>
+            <div>{item.clude.map((i)=><>
+                <GroupInput type={item.type} Text={i.choice} />
+                </>)}</div>
+       </> )
+    }
+ 
+   </div>
+   
         { 
            
             item.categories === "Fill in blank" && (
@@ -61,24 +75,14 @@ const renderQuestion = questions.map((item, key)=>(
                  />
             )
             }
-       <div>
-    
-        {
-           
-            item.categories === "multiple Chocice" && (<>
-                <div>{item.question}</div>
-                <div>{item.clude.map((i)=><>
-                    <GroupInput type={item.type} Text={i.choice} />
-                    </>)}</div>
-           </> )
-        }
-     
-       </div>
+      
+    </div>
     </div>
             </>
         )
         
         }
+        
     </div>
     
     
@@ -120,7 +124,7 @@ return (
         let windinnerH = window.innerHeight
         windowHieght > -150 ? setStickyClass(true) :
          setStickyClass(false)
-         console.log(windowHieght)
+      
      
       }
     }
@@ -187,7 +191,7 @@ return (
          <div className=" mx-auto lg:p-2  p-0 md:max-w-[70rem] ">    
                      <div className="flex lg:flex-row flex-col relative">
                      {/* <div class="fixed top-10 z-10 md:top-2/4 left-[15%] transform -translate-y-1/2 w-8 h-48 bg-indigo-500 text-white flex items-center justify-center"><div >Drawer</div></div> */}
-                        <main className="w-full mt-4 order-last px-2 md:px-0 md:order-1">
+                        <main className="w-full mt-4 order-last px-2 lg:px-0 md:order-1">
                         <Instruction
                        header={categories.toUpperCase()}
                           />
@@ -195,7 +199,7 @@ return (
                        
                         </main>
 
-                        <div className="lg:w-[460px] lg:order-last md:px-4 px-0  mx-0 ">
+                        <div className="lg:w-[460px] lg:order-last md:px-4 px-0  mx-0  ">
                   <ExamStatus data={questions}></ExamStatus>
            
                        </div>

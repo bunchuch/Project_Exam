@@ -1,38 +1,63 @@
 import Icon from "../../components/Icon"
+import { useEffect } from "react"
 import {HiOutlineMail} from "react-icons/hi"
 import {TfiMapAlt} from "react-icons/tfi"
 import {BiPhoneCall} from "react-icons/bi"
+import "aos/dist/aos.css"
+import Aos from "aos"
+import { contact } from "../../data/data"
 
-const CardContact = ({header,desc,tell,icon}) =>{
+
+
+const CardContact = ({header,desc,contact,icon}) =>{
+
     return (
-        <div class="flex flex-col items-center justify-center text-center">
-        <span class="p-3 text-blue-500 rounded-full bg-purple-100/80 dark:bg-gray-800">
-        <Icon name={icon} Size="1.5rem" color="purple"/>
-        </span>
-        <h2 class="mt-4 text-lg font-medium text-gray-800 dark:text-white">{header}</h2>
-        <p class="mt-2 text-gray-500 dark:text-gray-400">{desc}</p>
-        <p class="mt-2 text-purple-900 dark:text-blue-400">{tell}</p>
+  <div className="border-[1px] rounded-lg py-4 px-5">
+   <span className="inline-block p-2 text-blue-500 bg-blue-100
+     rounded-xl  dark:text-white dark:bg-blue-500">
+       <Icon name={icon} Size="1.5rem" color="purple"></Icon>
+    </span>
+
+    <div>
+        <h1 class="text-xl font-semibold text-gray-700 dark:text-white">{header}</h1>
+
+        <p class="mt-2 text-md text-gray-500 dark:text-gray-300">
+           {desc}
+        </p>
+        <p class="mt-2  text-md text-purple-900 dark:text-gray-300">
+           {contact}
+        </p>
     </div>
+</div>
     )
 }
 
 
 export default function Contact () {
+    useEffect(()=>{
+        Aos.init({duration:1000})
+      },[])
+
     return (
-        <section class="bg-white dark:bg-gray-900">
-        <div class="container px-6 py-12 mx-auto">
-            <div class="text-center">
-                <p class="font-medium text-purple-900 dark:text-blue-400">Contact us</p>
-    
-                <h1 class="mt-2 text-2xl font-semibold text-gray-800 md:text-3xl dark:text-white">Get in touch</h1>
-    
-                <p class="mt-3 text-gray-500 dark:text-gray-400">Our friendly team is always here to chat.</p>
+        <section data-aos="fade-left"  className="bg-white dark:bg-gray-900">
+        <div className="container px-6 py-12 mx-auto">
+            <div className="">    
+                <h1 className="mt-2 text-2xl font-semibold text-gray-800 md:text-3xl dark:text-white">Get in touch</h1>
             </div>
-    
-            <div class="grid grid-cols-1 gap-12 mt-10 md:grid-cols-2 lg:grid-cols-3">
-              <CardContact header="Email" desc="Our friendly team is here to help" icon={<HiOutlineMail/>} tell="PUCRetail@puctakhmau.com"/>
-              <CardContact header="Office" desc="Come say hello at our office HQ." icon={<TfiMapAlt/>} tell="100 Smith Street Collingwood VIC 3066 AU"/>
-              <CardContact header="Phone" desc="Mon-Fri from 8am to 5pm." icon={<BiPhoneCall/>} tell="+1 (555) 000-0000"/>
+              <div className="mt-2">
+                    <span className="inline-block w-40 h-1 bg-purple-800 rounded-full"></span>
+                    <span className="inline-block w-3 h-1 ml-1 bg-red-800 rounded-full"></span>
+                    <span className="inline-block w-1 h-1 ml-1 bg-yellow-400 rounded-full"></span>
+                </div>
+            <div className="grid grid-cols-1 gap-12 mt-5 md:mt-10 md:grid-cols-2 lg:grid-cols-3">
+              {
+                contact.map((i=><>
+                { i.Email.map((x)=><CardContact header={x.title} desc={x.desc} icon={<HiOutlineMail/>} contact={x.contact}/>) }
+                { i.Office.map((x)=><CardContact header={x.title} desc={x.desc} icon={<TfiMapAlt/>} contact={x.contact}/>) }
+                { i.Phone.map((x)=><CardContact header={x.title} desc={x.desc} icon={<BiPhoneCall/>} contact={x.contact}/>) }
+               
+                </>))
+              }
             </div>
         </div>
     </section>

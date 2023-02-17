@@ -6,10 +6,28 @@ import { styleGroupInput } from "../style/style";
 
 
 
-export default function GroupInput ({ Text, type ,onChange,name })  {
+export default function GroupInput ({Text, type ,event,name,value })  {
     return <div className={styleGroupInput.main}>
-       <input id="default-radio-1" type={type}  value="" onChange={onChange} name={name}
+      {
+         type ? "checkbox" && (
+            <>
+            <div className="flex">
+            <input id="default-radio-1" type={type}  value={value} onChange={event} name={name}
           className={styleGroupInput["input-style"]}/>
-       <label htmlFor="text"  className={styleGroupInput["label-style"]}>{Text}</label>
+            </div>
+          
+           <div className=""> <p  className={styleGroupInput["label-style"]}>{Text}</p></div>
+       
+            </>
+         ):( <button onClick={event} className="border-[1px] text-start border-gray-200 hover:bg-gray-100 bg-gray-50 py-1.5 px-2 rounded-lg">
+            <p className="text-gray-800 text-[14px]">
+            {Text}
+            </p>
+           </button>)
+      }
+       
+       
+          
+      
     </div>
  }
