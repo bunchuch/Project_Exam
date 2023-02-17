@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useTransition } from "react";
 import { Link } from "react-router-dom";
-import { BiTime } from "react-icons/bi";
+import { BiInfoCircle, BiTime,BiX,BiMessageCheck, BiBadge } from "react-icons/bi";
 import Icon from "../../../components/Icon";
 import Timer from "../../../components/Timer";
 import { styleExamStatus } from "../../../style/style";
-
+import Badges from "../../../components/Badges"
 
 const number = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
 
@@ -18,11 +18,19 @@ function ListBox({title,componet,style}){
   </div>
 }
 
-export default function ExamStatus ({data}){
+export default function ExamStatus ({data,score,categories,checked}){
   const [hidden,setHidden] =
    useState('relative bg-white py-2')
 const [fixed, setFixed] = useState(true)
+const [changColor,setColor] = useState(false)
 
+const hide = ()=>{
+  if(!hidden){
+    setHidden(true)
+  }else{
+    setHidden(false)
+  }
+}
 
 const [iconSize, setIconSize] = useState("2.5rem")
 useEffect(()=>{
@@ -31,7 +39,6 @@ useEffect(()=>{
  
   return ()=>{
     window.removeEventListener('resize',resizeBy)
- 
   }
 },[])
 
@@ -51,18 +58,23 @@ const resizeBy = ()=>{
   }
 }
 
+const changeColor = (key1,key2)=>{
+    if(key1 == key2){
 
+    }
+}
 
-return <div className={fixed ? "md:top-20 top-[52.5px] z-10 lg:fixed lg:w-[300px] transition duration-150 ease-in-out " : "lg:my-6 my-0 -top-20 space-y-0 md:space-y-2" }>
-{/*  
-   Timer Loading */}
+return <div className={`${fixed ? " z-10 lg:fixed lg:w-[300px] -top-0 scale-100 transition duration-150 ease-in-out " 
+: "lg:my-6 my-0 xl:mt-[2rem]  space-y-0 md:space-y-2"} xl:mt-[3.5rem] ` }>
 
-      
-    <ListBox title="Exam status" componet={
-         <div className="flex md:block md:shadow-sm md:shadow-gray-500/10 bg-white">
-       <div className="md:order-first md:w-full bg-orange-400 md:text-slate-900 rounded-t-[4px]
-         md:bg-purple-500 order-last  ">
-    <div className=" md:py-2  flex items-center md:shadow-purple-500/10 md:shadow-sm rounded-t-[4px] ">
+{
+   data ?  (
+    <>
+    <ListBox  componet={
+         <div className="flex rounded-lg md:block md:shadow-sm md:shadow-gray-500/10 bg-white">
+       <div className="md:order-first md:w-full bg-orange-400 md:text-slate-900 md:rounded-t-lg
+         md:bg-purple-900 order-last  ">
+    <div className=" md:py-2  flex items-center md:shadow-purple-500/10 md:shadow-sm rounded-lg ">
       <div className="hidden md:flex w-full justify-center items-center space-x-2">
       <Icon name={<BiTime/>} color="white" Size={iconSize}/>
       <div className="hidden md:block">
@@ -75,12 +87,23 @@ return <div className={fixed ? "md:top-20 top-[52.5px] z-10 lg:fixed lg:w-[300px
 
   </div>
 </div>
-<div className="w-full  md:order-last order-1 md:py-0 bg-white overflow-x-auto md:overflow-hidden">
+<div className="w-full  md:order-last order-1 md:py-0 bg-white
+ overflow-x-auto md:overflow-hidden rounded-none md:rounded-lg">
 <ul className={styleExamStatus["ul-tag"]}>
  {
-   data.map((value,index)=><li key={value} className="">
-    <div className="md:py-4 py-2 px-4 flex justify-center bg-gray-50 hover:bg-yellow-100 border-[1px] rounded-sm">
-    <a href="#" >{index+1}</a>
+   data.map((value,index)=><li id={index+1} onClick={(e)=> 
+   
+   {
+    if(index+1 === checked){
+      setColor(true)
+      console.log(document.getElementById(index+1))
+    }
+   }
+   }>
+    <div id={index+1}  className={setColor ? "bg-green-500 md:py-4 py-2 hover:bg-yellow-100 border-[1px] rounded-sm px-4 flex justify-center text-white" 
+    : "md:py-4 py-2 px-4 flex justify-center "+
+     "bg-gray-50 hover:bg-yellow-100 border-[1px] rounded-sm"}>
+   {index+1}
     </div>
  
    </li>
@@ -92,25 +115,78 @@ return <div className={fixed ? "md:top-20 top-[52.5px] z-10 lg:fixed lg:w-[300px
 </div>
    }/>
 
+   <ListBox componet={
+   <div id="alert-1" className={ hidden ? "flex m-2 md:m-0 p-4 mb-4 "+
+   "text-purple-800 rounded-lg bg-white shadow-cyan-500/10 shadow-sm dark:bg-gray-800 dark:text-blue-400" 
+   : "hidden m-2 md:m-0 p-4 mb-4 "+
+   "text-purple-800 rounded-lg bg-white shadow-cyan-500/10 shadow-sm dark:bg-gray-800 dark:text-blue-400"} role="alert">
+  <div aria-hidden="true" className="flex-shrink-0 w-5 h-5">
+    <Icon name={<BiMessageCheck/>} color="purple" Size="1.3rem"></Icon>
+  </div>
+  <div className="ml-3 text-sm font-medium">
+  <p>Score</p>
+  <ul className="hidden md:static lg:grid flex lg:grid-cols-2 gap-2 ">
+    <li className="flex space-x-1 items-center">
+    <Badges background={true} text="Listening"></Badges>
+    <p>0</p>
+    </li>
+    <li className="flex space-x-1 items-center">
+    <Badges background={true} text="Reading"></Badges>
+    {
+      categories === "reading" && (<p>{score}</p>)
+    }
+    </li>
+    <li className="flex space-x-1 items-center">
+    <Badges background={true} text="Grammar"></Badges>
+    {
+      categories === "grammar" && (<p>{score}</p>)
+    }
+    </li>
+    <li className="flex space-x-1 items-center">
+    <Badges background={true} text="Vocbulary"></Badges>
+    <p>0</p>
+    </li>
+    
+   
+  </ul>
+</div>
+  </div>
+   }/>
+
+<ListBox componet={
+<div id="alert-1" className={ hidden ? "flex m-2 md:m-0 p-4 mb-4 "+
+ "text-purple-800 rounded-lg bg-white shadow-cyan-500/10 shadow-sm dark:bg-gray-800 dark:text-blue-400" 
+ : "hidden m-2 md:m-0 p-4 mb-4 "+
+ "text-purple-800 rounded-lg bg-white shadow-cyan-500/10 shadow-sm dark:bg-gray-800 dark:text-blue-400"} role="alert">
+<div aria-hidden="true" className="flex-shrink-0 w-5 h-5">
+  <Icon name={<BiInfoCircle/>} color="purple" Size="1.3rem"></Icon>
+</div>
+<span className="sr-only">Info</span>
+<div className="ml-3 text-sm font-medium">
+  Please Make your task or Answer are do Correctly don't submit anything before  
+  the invigilator calls “TIMEIS OVER.” and Do not disturb others, If you have finished the exam in time and wait.
+</div>
+  <button type="button"
+  onClick={hide}
+   className="ml-auto -mx-1.5 -my-1.5 bg-blue-50 text-blue-500 rounded-lg focus:ring-2 
+   focus:ring-blue-400 p-1.5 hover:bg-blue-200 inline-flex h-8 w-8 dark:bg-gray-800 dark:text-blue-400
+    dark:hover:bg-gray-700" data-dismiss-target="#alert-1" aria-label="Close">
+    <span className="sr-only">Close</span>
+    <div aria-hidden="true" className="flex-shrink-0 w-5 h-5">
+  <Icon name={<BiX/>} color="purple" Size="1.5rem"></Icon>
+</div>
+</button>
+</div>
   
-{/* Rule of Exam */}
-<ListBox title="Description" componet={
-  <article className={hidden}>
-        
-       <div className="md:hidden block absolute right-0 top-0 px-2 bottom-0  ">
-  <button className="bg-gray-300 px-2 rounded-full" onClick={()=>{
-    setHidden('hidden')
-  }} >X</button>
-</div>    
-        <p className="px-2 text-gray-800 space-y-1 text-[14px] my-4 ">
-           Make sure you are completed all the answer before click on submit button
-          
-        </p>
- 
-</article>
 
 }/>
-
+    </>
+  ):(
+    <></>
+  )
+}
+      
+   
 
 </div>
 }

@@ -1,53 +1,59 @@
 import React from "react"
 import "../Herosection/Hero.css"
+import Icon from "../../../../components/Icon"
 import { sectionTwoData } from "../../../../data/data"
+import { BiCool, BiData } from "react-icons/bi"
+import {MdSyncProblem} from "react-icons/md"
+import {SiHandshake} from "react-icons/si"
+import 'aos/dist/aos.css'
 
 
 const Card = ({header,img,desc}) => {
         return (
-                <div className="bg-slate-700">
-                <div class="px-12 transition duration-500 ease-in-in translate-x-2 -translate-y-2
+                <div className="flex px-4  md:px-12 transition duration-500 ease-in-in  rounded-lg
           transform hover:-translate-y-3 shadow-sm shadow-cyan-500/10
-          hover:scale-200 py-8 bg-white cursor-pointer border hover:border-transparent group dark:border-gray-700 dark:hover:border-transparent">
-                <div class="flex flex-col sm:-mx-4 sm:flex-row">
-                    <img class="flex-shrink-0 object-cover w-24 h-24 rounded-full sm:mx-4 ring-1 ring-gray-300" 
-                    src={img} alt=""/>
+          hover:scale-200 py-8 bg-white cursor-pointer border hover:border-transparent group
+           dark:border-gray-700 dark:hover:border-transparent">
+              <div className="space-y-3">
+              <span className="inline-block p-2 text-blue-500 bg-blue-100 rounded-xl  dark:text-white dark:bg-blue-500">
+             <Icon name={img} Size="1.5rem" color="purple"></Icon>
+                </span>
 
-                    <div class="mt-4 sm:mx-4 sm:mt-0 flex items-center">
-                        <h1 class="text-xl font-semibold text-gray-700 capitalize font-teko md:text-2xl dark:text-white">{header}</h1>
-                    </div>
-                </div>
+                <h1 className="text-xl font-semibold text-gray-700 capitalize dark:text-white">{header}</h1>
 
-                <p class="mt-4 text-gray-500 capitalize dark:text-gray-300 ">{desc}</p>
+                <p className="text-gray-500 dark:text-gray-300">
+                  {desc}
+                </p>
 
-                <div class="flex mt-4 -mx-2">
-                        <button className="bg-purple-900 mx-2 text-white py-2 px-3 shadow-md shadow-cyan-500/10 dark:text-gray-300 hover:text-gray-500
-                         dark:hover:text-gray-300 group-hover:text-white">
-                          Learn More
-                        </button>
-                   
-                  
-                </div>
+             
+            </div>
+
             </div> 
-                </div>
+                
         )
 }
 
-const SectionThree =()=>{
-    return <section class="bg-white dark:bg-gray-900">
-    <div class="container px-6 py-10 mx-auto">
-        <h1 class="text-2xl font-semibold text-center text-gray-800 capitalize lg:text-3xl dark:text-white">Our <span class="text-blue-500">Executive Team</span></h1>
+const SectionThree =({aos})=>{
+    return <section data-aos="fade-down" className="bg-white dark:bg-gray-900 md:mt-0 mt-10">
+        <div>
+                <h1 className="text-2xl font-semibold text-gray-800
+                 capitalize lg:text-3xl dark:text-white">What You will Get?</h1>
 
-        <p class="max-w-2xl mx-auto my-6 text-center text-gray-500 dark:text-gray-300">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo incidunt ex placeat modi magni quia error alias, adipisci rem similique, at omnis eligendi optio eos harum.
-        </p>
+                <div className="mt-2">
+                    <span className="inline-block w-40 h-1 bg-purple-800 rounded-full"></span>
+                    <span className="inline-block w-3 h-1 ml-1 bg-purple-800 rounded-full"></span>
+                    <span className="inline-block w-1 h-1 ml-1 bg-purple-800 rounded-full"></span>
+                </div>
+            </div>
+    <div className=" md:mx-auto md:py-10">
+    
 
-        <div class="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 xl:grid-cols-2">
+        <div className="grid grid-cols-1 gap-2 md:gap-8 mt-8 xl:mt-0 md:grid-cols-2 xl:grid-cols-2 md:py-0 py-3">
                 {sectionTwoData.map((i)=><>
-                     {   i.one.map((itme)=><Card header={itme.header} img={itme.img} desc={itme.Description}></Card>)}
-                      {  i.two.map((itme)=><Card header={itme.header} img={itme.img} desc={itme.Description}></Card>)}
-                      {  i.three.map((itme)=><Card header={itme.header} img={itme.img} desc={itme.Description}></Card>)}
-                      {  i.three.map((itme)=><Card header={itme.header} img={itme.img} desc={itme.Description}></Card>)}
+                     {   i.one.map((itme)=><Card header={itme.header} img={<BiData/>} desc={itme.Description}></Card>)}
+                      {  i.two.map((itme)=><Card header={itme.header} img={<BiCool/>} desc={itme.Description}></Card>)}
+                      {  i.three.map((itme)=><Card header={itme.header} img={<MdSyncProblem/>} desc={itme.Description}></Card>)}
+                      {  i.four.map((itme)=><Card header={itme.header} img={<SiHandshake/>} desc={itme.Description}></Card>)}
                 
                 
                 

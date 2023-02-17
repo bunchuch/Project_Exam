@@ -3,16 +3,15 @@ import React, { useEffect, useState } from "react"
 import {omit} from "lodash"
 import { validateForm } from "./vailidate"
 import SmallFooter from "../../components/Footer/smallFooter"
+import { useDispatch } from "react-redux"
+import { questionAction } from "../../redux/questionSlice"
+import { authAction } from "../../redux/authSlice"
+import { useNavigate } from "react-router-dom"
 
 
-const LoginForm = ({setNavbar}) => {
+const LoginForm = () => {
 
-    useEffect(()=>{
-        setNavbar(true)
-    },[])
-
- 
-
+    const dispatch  = useDispatch()
     const [color, setColor] = useState('gray')
     const [isSumbit, setIsSubmit] = useState(false)
     const [formErrors, setFormErrors] = useState({})
@@ -20,62 +19,26 @@ const LoginForm = ({setNavbar}) => {
         username: '',
         password: ''
     })
+const navigator = useNavigate()
 
-
-
- 
-
-    const validate = (event,name,value)=>{
-        switch (name) {
-            case 'username':
-                if(!value){
-                    setFormErrors(
-                       { ...formErrors,username:"username invaild"}
-                    )
-                }else{
-                    let newObj = omit(formErrors,"username")
-                    setFormErrors(newObj)
-                }
-                break;
-                case 'password':
-                    if(!new RegExp(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/).test(value)){
-                        setFormErrors({
-                            ...formErrors, password:"passowrd invaild"
-                        })
-                    }else{
-                        let newObj = omit(formErrors,"password")
-                        setFormErrors(newObj)
-                    }
-                    break;
-                    default:
-                    break;
-        }
-    }
-
-    const handleOnchange = (event) => {
-        const name = event.currentTarget.name
-        const value = event.currentTarget.value
-        setUserDetails(values => ({
-            ...user,
-            [name]: value
-        }
-        ))
-
-        validate(name,event,value)
-    }
+    const handleChange = (event) => {
+        const name = event.target.name;
+        const value = event.target.value;
+        setUserDetails(values => ({...values, [name]: value}))
+      }
+    
 
     const handleOnsubmit = (event) => {
-
-        
-        if(event) event.preventDefault()
-        setFormErrors(validateForm(user))
-        
-        if(Object.keys(formErrors).length === 0 && Object.keys(user).length !=0){
-            alert("hello world")
-        }else{
-            alert("There is an Error")
-        }
-
+          dispatch(authAction.login({
+            username:user.username,
+            password:user.password,
+          }))
+          if(dispatch(authAction.login)){
+            navigator("/exam")
+          }else{
+            navigator("/home")
+          }
+     
     }
 
     //check login form and return new page if vailidation is successful
@@ -117,7 +80,7 @@ const LoginForm = ({setNavbar}) => {
                                 <label htmlFor="Username"
                                     className="loginform_lable_style_box_10">
                                     Username</label>
-                                < input type="text" onChange={handleOnchange}
+                                < input type="text" onChange={handleChange}
                                     value={user.username || ""}
                                     name="username" id="username"
                                     className="loginform_input_style_box_12"
@@ -133,7 +96,7 @@ const LoginForm = ({setNavbar}) => {
                                     className="loginform_lable_style_box_10">
                                     Password</label>
                                 <input type="password"
-                                    onChange={handleOnchange}
+                                    onChange={handleChange}
                                     name="password"
                                     value={user.password || ""}
                                     className="loginform_input_style_box_12"

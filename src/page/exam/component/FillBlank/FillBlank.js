@@ -8,9 +8,9 @@ const styleFillBlank = {
     "spantag-style": "px-2   rounded-md leading-tight tracking-wide",
     "divtag-style-main": "",
     "divtag-ul_list": "",
-    "li_tag_stlye": "bg-gray-50 text-center  py-[2px] px-2 rounded-full md:rounded-[4px] text-[10px] shadow-sm shadow-gray-500/10 md:text-[14px] cursor-pointer",
+    "li_tag_stlye": "bg-gray-50 text-center  px-2 rounded-full md:rounded-[4px] text-[10px] shadow-sm shadow-gray-500/10 md:text-[14px] cursor-pointer",
     "divtag-paragrah": "tracking-wider text-[14px] leading-relaxed",
-    "paragrah": "tracking-wide leading-8 text-start"
+    "paragrah": "tracking-wide text-start"
 }
 
 

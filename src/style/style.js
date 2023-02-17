@@ -1,20 +1,21 @@
 
 const styleGroupInput = {
-    "main": "flex items-center py-2 rounded-[5px] xl:text-[15px] md:mb-2 sm:text-md ",
-    "input-style": " text-purple-800 w-5 h-5 bg-purple-900 focus:ring-purple-800 dark:focus:ring-purple-800 cursor-pointer dark:ring-offset-gray-800 focus:ring-2 dark:bg-purple-700 dark:border-gray-600",
-    "label-style": " ml-2 font-medium md:text-[14px] text-[12.5px] text-gray-900 dark:text-gray-300",
+    "main": "flex items-center py-2 rounded-[5px] xl:text-[15px] md:mb-1 sm:text-md ",
+    "input-style": " text-purple-800 w-5 h-5 bg-purple-900 accent-purple-800 dark:bg-purple-700 dark:border-gray-600",
+    "label-style": " ml-2 font-medium md:text-[14px] text-[14px] text-gray-900 dark:text-gray-300",
  }
 
 const styleNavbar = {
-    "navStyle" : " bg-white text-slate-900 md:shadow-orange-100 py-2 border-b-[1px] md:border-none md:py-0 md:bg-slate-900 md:text-white",
-    "container" : "flex justify-between items-center py-[5px]  mx-4 md:mx-[70px] md:py-[px] md:flex text-sm md:justify-between md:items-center   ",
+    "navStyle-noneLoggin" : "bg-white text-slate-900 md:shadow-orange-100  border-b-[1px] md:border-none md:py-0 ",
+    "navStyle-login": "bg-slate-900 text-white md:shadow-orange-100  border-b-[1px] md:border-none md:py-0",
+    "container" : "flex justify-between items-center py-[10px]  mx-4 md:mx-[70px] md:py-[px] md:flex text-sm md:justify-between md:items-center   ",
     "container2": "flex items-center justify-between",
    "conatiner3" : " flex flex-row justify-between space-x-2", 
-    "img-style" : "object-fill md:w-10 md:h-10 h-8 w-8",
+    "img-style" : "object-fill md:w-full md:h-10 h-8 w-full",
     "divtag-stlye-three": " flex flex-row justify-between space-x-2",
     "atag-style-nav": " md:text-[20px] text-[18px]  font-bold transition-colors duration-300 transform dark:text-white lg:text-xl md:tracking-wide hover:text-gray-700 dark:hover:text-gray-300",
     "divtag-style-four": " hidden md:items-center md:justify-between md:flex",
-    "atag-nav-list-style": " text-white bg-blue-700 hover:bg-blue-800 focus:ring-4  focus:ring-blue-300 font-medium rounded-sm  px-3 py-2 mr-2 mb-2   dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none    dark:focus:ring-blue-800",
+    "atag-nav-list-style": " text-white bg-purple-800 hover:bg-blue-800 focus:ring-4  focus:ring-blue-300 font-medium rounded-  px-3 py-2 mr-2 mb-2   dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none    dark:focus:ring-blue-800",
 }
 
 
@@ -39,20 +40,20 @@ const styleInstruction = {
 
 
 const styleAudio = {
-    "main" : "w-full rounded-[4px] mt-3 bg-orange-200 text-center font-ubuntu shadow-sm shadow-cyan-500/10 bg-white",
+    "main" : "w-full rounded-lg mt-3 bg-orange-400 text-center font-ubuntu shadow-sm shadow-cyan-500/10 bg-white",
     "audio" : "w-full bg-gray-100 ",
     "title_audio": "text-[14px] py-2 mx-2 font-medium"
   }
   
 
 const styleWriting = {
-    "main" : "rounded-[4px] w-full h-auto space-y-2",
-    "container" : "w-full shadow-sm shadow-gray-500/10 rounded-[4px] bg-gray-50 dark:bg-gray-700 dark:border-gray-600 ",
+    "main" : "rounded-lg w-full h-auto space-y-2",
+    "container" : "w-full shadow-sm shadow-gray-500/10 rounded-lg dark:bg-gray-700 dark:border-gray-600 ",
     "divtag2" : " px-2 py-4 relative",
     "divtag3 " : " px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800",
     "divtag4" : " flex pl-0 space-x-1 sm:pl-2",
-    "textarea" : "w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400 ",
-    "divtag5" : "flex items-center justify-between px-3 py-2 border-t dark:border-gray-600 ",
+    "textarea" : "w-full rounded-lg text-sm border-[1px] border-gray-300 border-dashed text-gray-900 bg-white p-2 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400 ",
+    "divtag5" : "flex items-center justify-between px-3 mt-1 dark:border-gray-600 ",
     "btn-style" : " nline-flex items-center py-2 px-4 text-xs font-medium text-center text-white bg-purple-800 rounded-[4px] focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800",
     "label-style" : "inline-flex justify-center cursor-pointer p-2 ",
     "input-style" : " "    

@@ -8,6 +8,9 @@ import { Readings } from "../data/data"
 import { questionAction } from "../redux/questionSlice"
 import Staff from "./Staff"
 import { ReadingCard } from "../components/ReadingCard"
+import UploadImages from "../components/UploadImage"
+import Button from "../components/Button/Tooltip"
+import Modal from "../components/Modal"
 
 // const InputFeild = ()=>{
 //     const [data,setData]= useState({
@@ -109,7 +112,34 @@ const handleOnsubmint =(e)=>{
     e.preventDefalut()
 }
 
-
+const [userinfo, setUserInfo] = useState({
+    languages: [],
+    response: [],
+  });
+  
+  const handleChange = (e) => {
+    // Destructuring
+    const { value, checked } = e.target;
+    const { languages } = userinfo;
+      
+    console.log(`${value} is ${checked}`);
+     
+    // Case 1 : The user checks the box
+    if (checked) {
+      setUserInfo({
+        languages: [...languages, value],
+        response: [...languages, value],
+      });
+    }
+  
+    // Case 2  : The user unchecks the box
+    else {
+      setUserInfo({
+        languages: languages.filter((e) => e !== value),
+        response: languages.filter((e) => e !== value),
+      });
+    }
+  };
 
 
 
@@ -118,7 +148,53 @@ const navigate = useNavigate()
     return (
         <div>
 
-   
+<div className="form-check m-3">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    name="languages"
+                    value="Javascript"
+                    id="flexCheckDefault"
+                    onChange={handleChange}
+                  />
+                  <label
+                    className="form-check-label"
+                    htmlFor="flexCheckDefault"
+                  >
+                      Javascript
+                  </label>
+                </div>
+                <div className="form-check m-3">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    name="languages"
+                    value="Python"
+                    id="flexCheckDefault"
+                    onChange={handleChange}
+                  />
+                  <label
+                    className="form-check-label"
+                    htmlFor="flexCheckDefault"
+                  >
+                      Python
+                  </label>
+                </div>
+
+                <div className="form-floating mt-3 mb-3 text-center">
+              <label htmlFor="exampleFormControlTextarea1">
+                You're proficient in the following languages :{" "}
+              </label>
+              <textarea
+                className="form-control text"
+                name="response"
+                value={userinfo.response}
+                placeholder="The checkbox values will be displayed here "
+                id="floatingTextarea2"
+                style={{ height: "150px" }}
+                onChange={handleChange}
+              ></textarea>
+            </div>
         {/* <NumberContext.Provider value={emontional}>
         <DisplayEmotional></DisplayEmotional>
        <h1>Hello there</h1>
@@ -134,7 +210,9 @@ const navigate = useNavigate()
         <FillBlanks></FillBlanks>
      <HeaderBar/> */}
      {/* <ReadingCard sentence="my mon is good" header="my name"></ReadingCard> */}
-    <Staff/> 
+    {/* <Staff/>  */}
+  <Modal/>
+   <UploadImages/>
    
         </div>
     )

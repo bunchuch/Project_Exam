@@ -1,9 +1,13 @@
 import React, { useEffect,ClipboardEvent, useState } from "react";
 import axios from 'axios';
-import { BiImage, BiPen } from "react-icons/bi";
+import { BiImage, BiPen,BiMessageSquareDetail } from "react-icons/bi";
 import Icon from "../../../components/Icon";
 import { styleWriting } from "../../../style/style";
-
+import Alert from "../../../components/Alerts";
+import 'aos/dist/aos.css'
+import Aos from "aos";
+import UploadImages from "../../../components/UploadImage";
+import Tooltip from "../../../components/Button/Tooltip";
 
 
 
@@ -15,6 +19,8 @@ export default function Writing ({data}){
  const [count,setCount] = useState()
  const [alert,setAlert] = useState(null)
 const[selectedFile, setSelectFile] = useState(null)
+const [stateChange ,setState] = useState(false)
+
 
 const preventCopyPast = (e: ClipboardEvent<HTMLInputElement>)=>{
         e.preventDefault();
@@ -56,49 +62,83 @@ console.log(err)
   }
  }
 
+
     return   <div className={styleWriting.main}>     
-  <div className="text-[14px] bg-white py-2 rounded-[4px] shadow-sm shadow-cyan-500/10">
-    <ol className="text-gray-800 tracking-wider pl-5  space-y-1 list-decimal list-inside">
-     {
+     <div class="flex p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 shadow-sm
+      shadow-cyan-500/10 dark:bg-gray-800 dark:text-blue-400" role="alert">
+  <div className="flex-shrink-0 inline w-5 h-5 mr-3" >
+    <Icon name={<BiMessageSquareDetail/>} Size="1.2rem" color="purple"></Icon>
+  </div>
+  <span class="sr-only">Info</span>
+  <div>
+    <span class="font-medium">Find The Topic Below</span>
+      <ul class="mt-1.5 ml-4 list-disc list-inside">
+      {
         data.map((items,key)=><li key={items.id}>{items.choice}</li>)
      }
-        
-    </ol>
+    </ul>
+  </div>
+</div>
+ <Alert info="warning" desc={alert}/>
+
+ <div className="grid grid-cols-2 gap-4">
+ <button onClick={()=>{
+  setState(true)
+ }}>
+<div class="max-w-sm p-2 bg-purple-100  border border-purple-200 rounded-lg
+ hover:bg-purple-50 font-semibold text-purple-800 dark:bg-gray-800 dark:border-gray-700">
+  <div className="flex justify-center items-center gap-2">
+    <Icon name={<BiImage/>} Size="1.2rem" color="purple"></Icon>
+    upload image
+  </div>
+</div>
+</button>
+<button onClick={()=>{
+  setState(false)
+}}>
+<div class="max-w-sm p-2 bg-purple-100 border border-purple-200 rounded-lg
+ hover:bg-purple-50 font-semibold text-purple-800 dark:bg-gray-800 dark:border-gray-700">
+  <div className="flex justify-center items-center gap-2">
+    <Icon name={<BiPen/>} Size="1.2rem" color="purple"></Icon>
+    Wrting
   </div>
 
-  <p className="text-red-500 font-medium text-[14px]
-  bg-red-200 rounded-[4px] px-2">{alert}</p>
+    
+</div>
+</button>
+
+ </div>
 <form>
-   <div className={styleWriting.container}>
-       <div className={styleWriting["divtag3 "]}>
-       {
-        imageURLs?(
+ <div className={styleWriting.container}>
+  {
+    stateChange ? (
             <div className={styleWriting.divtag2}>
-            {imageURLs.map(imte=>
-               <img className="w-20 h-20" src={imte}/>)}
+           <UploadImages/>
             </div>
-        ):(
-            <></>
-        )
-    }
-           <textarea  maxLength={1000} spellCheck="false" id="comment" rows="10" 
-           className={styleWriting.textarea} onCopy={(e)=>preventCopyPast(e)} 
-           onPaste={(e)=> preventCopyPast(e)}
-            placeholder="Write here..." required>
-                 </textarea>
-                
-       </div>
+       ):(    
+ <div className={styleWriting["divtag3 "]}>
+      <textarea  maxLength={1000} spellCheck="false" id="comment" rows="10" 
+      className={styleWriting.textarea} onCopy={(e)=>preventCopyPast(e)} 
+      onPaste={(e)=> preventCopyPast(e)}
+       placeholder="Write here..." required>
+            </textarea>
+            <Tooltip tooltip="Are you sure ?">
+            <button onClick={()=>alert("uploading")} className="bg-purple-900 px-4
+                py-2 rounded-lg text-[14px] 
+               font-medium text-white hover:bg-gradient-to-r
+                hover:from-purple-700 hover:to-purple-800 transition-all ease-out 
+                duration-300">Submit</button>
+            </Tooltip>
+          
+                          
+                   
+  </div> 
+    )
+  }
+      
        
-       <div className={styleWriting.divtag5}>
-           <div className={styleWriting.divtag4}>
-    <label className={styleWriting["label-style"]}>
-        <Icon name={<BiImage/>} Size="1.5rem" />
-                   <input id="dropzone-file" type="file" accept="image/*"
-                    onChange={onImageChange} className="hidden" />  
-    </label>
-           </div>
-       </div>
-   </div>
+     
+   </div> 
 </form>
 
 

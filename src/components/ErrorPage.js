@@ -6,14 +6,9 @@ import {styleError404} from "../style/style"
 
 
 
-export default function ErrorPage({setNavbar,setFooter}){
+export default function ErrorPage(){
 	document.title = "Error 404"
   let navigator = useNavigate()
-	useEffect(()=>{
-      setNavbar(true)
-	  
-	},[])
-
     return <section className={styleError404.main}>
 	<div className={styleError404.container}>
 		<div className={styleError404.tag3}>

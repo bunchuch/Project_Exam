@@ -8,7 +8,9 @@ import { Readings } from "../data/data";
 const questionSlice = createSlice({
   name: "questions",
   initialState :{
-    item : []  },
+    item : [],
+    uploadImage : [],
+  },
   reducers : {
    reading : state =>{
      state.item = [
@@ -38,7 +40,9 @@ const questionSlice = createSlice({
   }
   },
  
-
+  uploadImage : (state,action)=>{
+    state.uploadImage = [action.payload]
+  }
 
 })
 export const questionAction = questionSlice.actions
