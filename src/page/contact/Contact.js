@@ -3,8 +3,6 @@ import { useEffect } from "react"
 import {HiOutlineMail} from "react-icons/hi"
 import {TfiMapAlt} from "react-icons/tfi"
 import {BiPhoneCall} from "react-icons/bi"
-import "aos/dist/aos.css"
-import Aos from "aos"
 import { contact } from "../../data/data"
 
 
@@ -34,9 +32,7 @@ const CardContact = ({header,desc,contact,icon}) =>{
 
 
 export default function Contact () {
-    useEffect(()=>{
-        Aos.init({duration:1000})
-      },[])
+   
 
     return (
         <section data-aos="fade-left"  className="bg-white dark:bg-gray-900">

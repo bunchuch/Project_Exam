@@ -28,7 +28,9 @@ const MyList =  ({title, desc,icons}) => {
 
 
 function Banner({img,title,desc,status,statusText,style, orderFirst,keyOne,keyTwo,keyThree}){
-
+  useEffect(()=>{
+    Aos.init({duration:2000})
+  },[])
 return <section data-aos="fade-up" className="bg-white dark:bg-gray-900 ">
 <div className="container md:px-6 md:mt-0 mt-4 md:py-10 mx-auto ">
     <div className="lg:flex lg:items-center ">

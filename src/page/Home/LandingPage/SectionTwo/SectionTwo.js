@@ -1,6 +1,6 @@
 import SectionContainer from "../SectionContainer"
 import { sectionTwoData } from "../../../../data/data"
-import Aos from "aos";
+import Aos from "aos"
 import 'aos/dist/aos.css'
 import React, { useEffect } from "react"
 

@@ -1,11 +1,11 @@
-import React from "react"
+import React, { useEffect } from "react"
 import "../Herosection/Hero.css"
 import Icon from "../../../../components/Icon"
 import { sectionTwoData } from "../../../../data/data"
 import { BiCool, BiData } from "react-icons/bi"
 import {MdSyncProblem} from "react-icons/md"
 import {SiHandshake} from "react-icons/si"
-import 'aos/dist/aos.css'
+
 
 
 const Card = ({header,img,desc}) => {
@@ -34,6 +34,8 @@ const Card = ({header,img,desc}) => {
 }
 
 const SectionThree =({aos})=>{
+  
+
     return <section data-aos="fade-down" className="bg-white dark:bg-gray-900 md:mt-0 mt-10">
         <div>
                 <h1 className="text-2xl font-semibold text-gray-800

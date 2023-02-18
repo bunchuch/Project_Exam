@@ -4,8 +4,6 @@ import { BiImage, BiPen,BiMessageSquareDetail } from "react-icons/bi";
 import Icon from "../../../components/Icon";
 import { styleWriting } from "../../../style/style";
 import Alert from "../../../components/Alerts";
-import 'aos/dist/aos.css'
-import Aos from "aos";
 import UploadImages from "../../../components/UploadImage";
 import Tooltip from "../../../components/Button/Tooltip";
 
