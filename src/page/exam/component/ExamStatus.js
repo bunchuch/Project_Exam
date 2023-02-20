@@ -18,11 +18,12 @@ function ListBox({title,componet,style}){
   </div>
 }
 
-export default function ExamStatus ({data,score,categories,checked}){
+export default function ExamStatus ({data,score,categories,selected}){
   const [hidden,setHidden] =
    useState('relative bg-white py-2')
 const [fixed, setFixed] = useState(true)
 const [changColor,setColor] = useState(false)
+
 
 const hide = ()=>{
   if(!hidden){
@@ -91,16 +92,15 @@ return <div className={`${fixed ? " z-10 lg:fixed lg:w-[300px] -top-0 scale-100 
  overflow-x-auto md:overflow-hidden rounded-none md:rounded-lg">
 <ul className={styleExamStatus["ul-tag"]}>
  {
+  //find type of the question and change all state....
    data.map((value,index)=><li id={index+1} onClick={(e)=> 
    
    {
-    if(index+1 === checked){
-      setColor(true)
-      console.log(document.getElementById(index+1))
-    }
+  console.log(typeof(index))
+  console.log(typeof(selected))
    }
    }>
-    <div id={index+1}  className={setColor ? "bg-green-500 md:py-4 py-2 hover:bg-yellow-100 border-[1px] rounded-sm px-4 flex justify-center text-white" 
+    <div   className={ selected === index+1 ? "bg-green-500 md:py-4 py-2 hover:bg-yellow-100 border-[1px] rounded-sm px-4 flex justify-center text-white" 
     : "md:py-4 py-2 px-4 flex justify-center "+
      "bg-gray-50 hover:bg-yellow-100 border-[1px] rounded-sm"}>
    {index+1}
@@ -124,7 +124,7 @@ return <div className={`${fixed ? " z-10 lg:fixed lg:w-[300px] -top-0 scale-100 
     <Icon name={<BiMessageCheck/>} color="purple" Size="1.3rem"></Icon>
   </div>
   <div className="ml-3 text-sm font-medium">
-  <p>Score</p>
+  <p>Score {selected}</p>
   <ul className="hidden md:static lg:grid flex lg:grid-cols-2 gap-2 ">
     <li className="flex space-x-1 items-center">
     <Badges background={true} text="Listening"></Badges>

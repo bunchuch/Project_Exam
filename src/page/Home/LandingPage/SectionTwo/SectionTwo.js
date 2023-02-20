@@ -5,7 +5,7 @@ import 'aos/dist/aos.css'
 import React, { useEffect } from "react"
 
 
-
+ 
 
      
 export default function SectionTwo ({}){
@@ -14,9 +14,9 @@ useEffect(()=>{
   Aos.init({duration:2000})
 },[])
 
-    return  <div data-aos="fade-up" className="container  flex flex-col md:px-0 md:py-4 mx-auto space-y-6 lg:h-[32rem] lg:py-10 lg:flex-row ">
+    return  <div className="container  flex flex-col md:px-0 md:py-4 mx-auto space-y-6 lg:h-[32rem] lg:py-10 lg:flex-row ">
     <div className="w-full lg:w-1/2 md:py-10 py-4">
-        <div className="lg:max-w-lg  ">
+        <div  data-aos ="fade-right" className="lg:max-w-lg  ">
             <h1 className="text-2xl font-semibold tracking-wide text-slate-900  dark:text-white lg:text-4xl">
                 Easiest way to create your website
             </h1> 
@@ -57,7 +57,7 @@ useEffect(()=>{
       
     </div>
 
-    <div className="flex items-center justify-center w-full h-full md:h-96 lg:w-1/2 ">
+    <div data-aos="fade-left" className="flex items-center justify-center w-full h-full md:h-96 lg:w-1/2 ">
      
         <img className="md:object-cover object-fill w-full h-full mx-auto rounded-lg transition duration-500 ease-in-in hover:scale-200 transform hover:-translate-y-3 lg:max-w-2xl" 
         src="https://images.unsplash.com/photo-1543269664-7eef42226a21?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="glasses photo"/>

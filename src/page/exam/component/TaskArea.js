@@ -19,6 +19,8 @@ import GroupInput from "../../../components/GroupInput"
 import HeaderBar from "./HeaderBar"
 import FillBlanks from "../component/FillBlank/FillBlank"
 import HeaderButton from "../../../components/Button/headerButton"
+
+
 export default function TaskArea (){
         const [type ,setType] = useState([])
         const questions = useSelector((state)=> state.question.item)
@@ -27,7 +29,13 @@ export default function TaskArea (){
         const [showScore,setShowScore] = useState(false)
         const [checked ,setChecked] = useState({color :false, key:0})
         const {categories} = useParams()
-         const [correct ,setCorrect] = useState(0)
+         const [selected,setSelectedIndex] = useState(null)
+
+
+
+const handleChange = ()=>{
+
+}
 
 
     function QuestionRender () {  
@@ -43,7 +51,9 @@ export default function TaskArea (){
                 categories === "listening" && (
                     <Audio audio={item.audio} title="my hoilday in london" ></Audio>
                 ) ||   categories == "reading" && (
-                    <ReadingCard type={item.categorie} header={item.header}  sentence={item.text}  />
+                    <ReadingCard type={item.categorie} 
+                    header={item.header} 
+                     sentence={item.text}  />
                  ) || categories == "vocabulary" && (
                  
                  <VocabularyCard clude={item.clude}/>
@@ -60,18 +70,11 @@ export default function TaskArea (){
             item.categories === "multiple Chocice" && (<>
                 <div key={item.id} className="text-gray-800 font-medium">{item.question}</div>
                 <div>{item.clude.map((i,k)=><div key={k}>
-                    <GroupInput  key={i.id}
-                    type={item.type}
-                    checked={correct}
+                    <GroupInput type={item.type} key={i.id}
                     event={(e)=>{
-                       if(e.target.checked){
-                        setChecked({color:true,key:index+1})
-                       }else{
-                        console.log("uncheck")
-                        setChecked({color:false,key:index+1})
-                        console.log(checked.color , checked.key)
-                       }
-                         
+                        //fixed double checked in the first clicked isn't fix yet...
+                       setSelectedIndex(index+1)
+                       console.log(typeof(selected))
                        
 
                     }}
@@ -86,6 +89,7 @@ export default function TaskArea (){
                 item.categories === "Fill in blank" && (
                     <FillBlanks key={item.id}
                     sentence={item.question}
+                    
                      />
                 )
                 }
@@ -95,7 +99,7 @@ export default function TaskArea (){
             )
             
             }
-            
+            {selected}
         </div> )) 
 
 
@@ -146,17 +150,29 @@ export default function TaskArea (){
     
         return <div className="bg-gray-50 min-h-screen box-border font-inter tracking-normal " >
            <div className="bg-gray-50 min-h-screen box-border font-inter tracking-normal ">
-             <div className={stickyClass ? "top-0 z-10 sticky bg-purple-900 px-2 md:px-0 overflow-x-auto text-[14px] md:text-base" 
+             <div className={stickyClass ? "top-0 z-10 sticky bg-purple-900 px-2 md:px-0 "+
+             "overflow-x-auto text-[14px] md:text-base" 
              : 'bg-purple-900 px-2 md:px-0 overflow-x-auto text-[14px] md:text-base relative'}>
     
                 <div className="max-w[60rem] md:max-w-[70rem] text-white mx-auto py-2">
                 <ul className=" md:max-w[70rem] mx-auto py-2" >
     <div className="flex">
-    <HeaderButton title="Listenning" icon={<FaAssistiveListeningSystems/>} link="/exam/listening" onClick={()=> dispatch(questionAction.listenings())}/>
-    <HeaderButton title="Reading" icon={<BiBookOpen/>} link="/exam/reading" onClick={()=> dispatch(questionAction.reading())}/>
-    <HeaderButton title="Grammar" icon={<BiFontColor/>} link="/exam/grammar" onClick={()=> dispatch(questionAction.grammar())}/>
-    <HeaderButton title="Vocabulary" icon={<GoBook/>} link="/exam/vocabulary" onClick={()=> dispatch(questionAction.vocabulary())}/>
-    <HeaderButton title="Writing" icon={<TbWriting/>} link="/exam/writing"  onClick={()=> dispatch(questionAction.writing())}/>
+    <HeaderButton title="Listenning" 
+    icon={<FaAssistiveListeningSystems/>}
+     link="/exam/listening" 
+     onClick={()=> dispatch(questionAction.listenings())}/>
+    <HeaderButton title="Reading" 
+    icon={<BiBookOpen/>} link="/exam/reading" 
+    onClick={()=> dispatch(questionAction.reading())}/>
+    <HeaderButton title="Grammar" 
+    icon={<BiFontColor/>} link="/exam/grammar" 
+    onClick={()=> dispatch(questionAction.grammar())}/>
+    <HeaderButton title="Vocabulary"
+     icon={<GoBook/>} link="/exam/vocabulary" 
+     onClick={()=> dispatch(questionAction.vocabulary())}/>
+    <HeaderButton title="Writing" 
+    icon={<TbWriting/>} link="/exam/writing"  
+    onClick={()=> dispatch(questionAction.writing())}/>
     </div>
      </ul>
                 </div>
@@ -165,17 +181,20 @@ export default function TaskArea (){
              
              <div className=" mx-auto lg:p-2  p-0 md:max-w-[70rem] ">    
                          <div className="flex lg:flex-row flex-col relative">
-                         {/* <div class="fixed top-10 z-10 md:top-2/4 left-[15%] transform -translate-y-1/2 w-8 h-48 bg-indigo-500 text-white flex items-center justify-center"><div >Drawer</div></div> */}
+                         {/* <div class="fixed top-10 z-10 md:top-2/4 left-[15%] 
+                         transform -translate-y-1/2 w-8 h-48 bg-indigo-500 text-white 
+                         flex items-center justify-center"><div >Drawer</div></div> */}
                             <main className="w-full mt-4 order-last px-2 lg:px-0 md:order-1">
                             <Instruction
                            header={categories.toUpperCase()}
                               />
                            <QuestionRender></QuestionRender>
-                           
                             </main>
-    
                             <div className="lg:w-[460px] lg:order-last md:px-4 px-0  mx-0  ">
-                      <ExamStatus categories={categories} checked={checked} score={correct} data={questions}></ExamStatus>
+                      <ExamStatus 
+                      categories={categories}
+                       selected={selected} 
+                        data={questions}></ExamStatus>
                
                            </div>
                          </div>
