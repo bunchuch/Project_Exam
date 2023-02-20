@@ -13,7 +13,7 @@ export default function ErrorPage(){
 	<div className={styleError404.container}>
 		<div className={styleError404.tag3}>
 			<h2 className={styleError404.header}>
-				<img className="w-80 object-contain" src="https://craftwork-images.b-cdn.net/wp-content/uploads/edd/27.png"/>
+				<img className="w-80 object-contain rounded-lg" src="https://cdn.dribbble.com/users/595978/screenshots/3603965/dribbble.gif"/>
 			</h2>
 			<p className={styleError404.paragrh}>Sorry, we couldn't find this page.</p>
 			<p className={styleError404.paragrah2}>But dont worry,

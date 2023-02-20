@@ -61,8 +61,8 @@ const styleWriting = {
 
 
 const styleError404 = {
-	"main" : "flex items-center h-full p-16 dark:bg-gray-900 dark:text-gray-100",
-	"container": " container flex flex-col items-center justify-center px-5 mx-auto my-8",
+	"main" : "flex items-center justify-center flex h-full p-16 dark:bg-gray-900 dark:text-gray-100",
+	"container": " container flex-row items-center justify-center px-5 mx-auto my-8",
 	"tag3" : "max-w-md text-center",
 	"header" : "mb-8 font-extrabold text-9xl dark:text-gray-600" ,
 	"spantag" : " ",

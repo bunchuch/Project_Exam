@@ -464,7 +464,7 @@ const Listening = {
             "id":"03",
             "type":"checkbox",
             "categories": "multiple Chocice",
-            "audio": "",
+            "audio": "https://www.123listening.com/freeaudio/adjectives1-1.mp3",
             "question":["Karl is upset because______?"],
             "clude":[
                 {"id":"01", "choice":"his application are due" },

@@ -1,12 +1,11 @@
 import React, { useEffect, useState, useTransition } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { BiInfoCircle, BiTime,BiX,BiMessageCheck, BiBadge } from "react-icons/bi";
 import Icon from "../../../components/Icon";
 import Timer from "../../../components/Timer";
 import { styleExamStatus } from "../../../style/style";
 import Badges from "../../../components/Badges"
 
-const number = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
 
 function ListBox({title,componet,style}){
   return <div className="">
@@ -18,12 +17,12 @@ function ListBox({title,componet,style}){
   </div>
 }
 
-export default function ExamStatus ({data,score,categories,selected}){
+export default function ExamStatus ({data,score,type,selected}){
   const [hidden,setHidden] =
    useState('relative bg-white py-2')
 const [fixed, setFixed] = useState(true)
 const [changColor,setColor] = useState(false)
-
+const {categories} = useParams()
 
 const hide = ()=>{
   if(!hidden){
@@ -54,7 +53,8 @@ const fixedComponet = () =>{
 const resizeBy = ()=>{
   if(window !== undefined){
     let windowWight = window.innerWidth
-    windowWight < 764  ? setIconSize('2rem') : setIconSize('2.5rem')
+    windowWight < 764  ? setIconSize('2rem') 
+    : setIconSize('2.5rem')
     windowWight < 764 ? setHidden("relative") : setHidden("text-gray-800 bg-white rounded-[4px] px-3 py-4 font-base text-sm shadow-sm")
   }
 }
@@ -64,7 +64,8 @@ const changeColor = (key1,key2)=>{
 
     }
 }
-
+console.log(categories)
+console.log(type)
 return <div className={`${fixed ? " z-10 lg:fixed lg:w-[300px] -top-0 scale-100 transition duration-150 ease-in-out " 
 : "lg:my-6 my-0 xl:mt-[2rem]  space-y-0 md:space-y-2"} xl:mt-[3.5rem] ` }>
 
@@ -93,14 +94,9 @@ return <div className={`${fixed ? " z-10 lg:fixed lg:w-[300px] -top-0 scale-100 
 <ul className={styleExamStatus["ul-tag"]}>
  {
   //find type of the question and change all state....
-   data.map((value,index)=><li id={index+1} onClick={(e)=> 
-   
-   {
-  console.log(typeof(index))
-  console.log(typeof(selected))
-   }
-   }>
-    <div   className={ selected === index+1 ? "bg-green-500 md:py-4 py-2 hover:bg-yellow-100 border-[1px] rounded-sm px-4 flex justify-center text-white" 
+   data.map((value,index)=><li id={index+1}>
+    <div   className={ selected === index+1 && type === categories ? "bg-green-500 md:py-4 py-2"+
+    " hover:bg-yellow-100 border-[1px] rounded-sm px-4 flex justify-center text-white"
     : "md:py-4 py-2 px-4 flex justify-center "+
      "bg-gray-50 hover:bg-yellow-100 border-[1px] rounded-sm"}>
    {index+1}
@@ -116,7 +112,7 @@ return <div className={`${fixed ? " z-10 lg:fixed lg:w-[300px] -top-0 scale-100 
    }/>
 
    <ListBox componet={
-   <div id="alert-1" className={ hidden ? "flex m-2 md:m-0 p-4 mb-4 "+
+   <div id="alert-1" className={ hidden ? "m-2 md:m-0 p-4 mb-4 hidden "+
    "text-purple-800 rounded-lg bg-white shadow-cyan-500/10 shadow-sm dark:bg-gray-800 dark:text-blue-400" 
    : "hidden m-2 md:m-0 p-4 mb-4 "+
    "text-purple-800 rounded-lg bg-white shadow-cyan-500/10 shadow-sm dark:bg-gray-800 dark:text-blue-400"} role="alert">
@@ -168,7 +164,7 @@ return <div className={`${fixed ? " z-10 lg:fixed lg:w-[300px] -top-0 scale-100 
 </div>
   <button type="button"
   onClick={hide}
-   className="ml-auto -mx-1.5 -my-1.5 bg-blue-50 text-blue-500 rounded-lg focus:ring-2 
+   className="ml-auto md:hidden -mx-1.5 -my-1.5 bg-blue-50 text-blue-500 rounded-lg focus:ring-2 
    focus:ring-blue-400 p-1.5 hover:bg-blue-200 inline-flex h-8 w-8 dark:bg-gray-800 dark:text-blue-400
     dark:hover:bg-gray-700" data-dismiss-target="#alert-1" aria-label="Close">
     <span className="sr-only">Close</span>

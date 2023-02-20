@@ -32,10 +32,9 @@ export default function TaskArea (){
          const [selected,setSelectedIndex] = useState(null)
 
 
-
-const handleChange = ()=>{
-
-}
+         useEffect(()=>{
+         document.title = categories
+         },[categories])
 
 
     function QuestionRender () {  
@@ -73,8 +72,10 @@ const handleChange = ()=>{
                     <GroupInput type={item.type} key={i.id}
                     event={(e)=>{
                         //fixed double checked in the first clicked isn't fix yet...
-                       setSelectedIndex(index+1)
-                       console.log(typeof(selected))
+                        if(!e.target.checked){
+                            setSelectedIndex(null)
+                        }
+                        setSelectedIndex(index+1)
                        
 
                     }}
@@ -99,7 +100,6 @@ const handleChange = ()=>{
             )
             
             }
-            {selected}
         </div> )) 
 
 
@@ -112,11 +112,13 @@ const handleChange = ()=>{
                 categories === "writing" ? (
                    <></>
                 ):(
-                    <button onClick={()=>alert(categories)} className="bg-purple-900 px-4
+                    <button onClick={()=>{
+                     dispatch(questionAction.grammar())
+                    }} className="bg-purple-900 px-4
                     py-2 rounded-lg text-[14px] 
                    font-medium text-white hover:bg-gradient-to-r
                     hover:from-purple-700 hover:to-purple-800 transition-all ease-out 
-                    duration-300">Answer</button>
+                    duration-300">Next Section</button>
                 )
             }
            
@@ -142,12 +144,8 @@ const handleChange = ()=>{
             let windinnerH = window.innerHeight
             windowHieght > -150 ? setStickyClass(true) :
              setStickyClass(false)
-            
-         
           }
         }
-    
-    
         return <div className="bg-gray-50 min-h-screen box-border font-inter tracking-normal " >
            <div className="bg-gray-50 min-h-screen box-border font-inter tracking-normal ">
              <div className={stickyClass ? "top-0 z-10 sticky bg-purple-900 px-2 md:px-0 "+
@@ -160,7 +158,9 @@ const handleChange = ()=>{
     <HeaderButton title="Listenning" 
     icon={<FaAssistiveListeningSystems/>}
      link="/exam/listening" 
-     onClick={()=> dispatch(questionAction.listenings())}/>
+     onClick={()=> {
+     setSelectedIndex(null)
+     dispatch(questionAction.listenings())}}/>
     <HeaderButton title="Reading" 
     icon={<BiBookOpen/>} link="/exam/reading" 
     onClick={()=> dispatch(questionAction.reading())}/>
@@ -175,15 +175,11 @@ const handleChange = ()=>{
     onClick={()=> dispatch(questionAction.writing())}/>
     </div>
      </ul>
-                </div>
-                
+        </div> 
              </div>
              
              <div className=" mx-auto lg:p-2  p-0 md:max-w-[70rem] ">    
                          <div className="flex lg:flex-row flex-col relative">
-                         {/* <div class="fixed top-10 z-10 md:top-2/4 left-[15%] 
-                         transform -translate-y-1/2 w-8 h-48 bg-indigo-500 text-white 
-                         flex items-center justify-center"><div >Drawer</div></div> */}
                             <main className="w-full mt-4 order-last px-2 lg:px-0 md:order-1">
                             <Instruction
                            header={categories.toUpperCase()}
@@ -192,25 +188,14 @@ const handleChange = ()=>{
                             </main>
                             <div className="lg:w-[460px] lg:order-last md:px-4 px-0  mx-0  ">
                       <ExamStatus 
-                      categories={categories}
+                      type={categories}
                        selected={selected} 
                         data={questions}></ExamStatus>
-               
                            </div>
-                         </div>
-                        
-                     
+                         </div>  
              </div>
-    
-    
-          
-    
-        
     
           </div>
         
         </div>
     }
-
-    
-  
