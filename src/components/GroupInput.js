@@ -6,13 +6,13 @@ import { styleGroupInput } from "../style/style";
 
 
 
-export default function GroupInput ({Text, type ,event,name,value })  {
+export default function GroupInput ({id,Text, type ,event,name,value,checked })  {
     return <div className={styleGroupInput.main}>
       {
          type ? "checkbox" && (
             <>
             <div className="flex">
-            <input id="default-radio-1" type={type}  value={value} onChange={event} name={name}
+            <input id={id} type={type}  value={value} onChange={event} name={name}
           className={styleGroupInput["input-style"]}/>
             </div>
           

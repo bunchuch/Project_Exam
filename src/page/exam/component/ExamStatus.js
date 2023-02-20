@@ -64,8 +64,7 @@ const changeColor = (key1,key2)=>{
 
     }
 }
-console.log(categories)
-console.log(type)
+
 return <div className={`${fixed ? " z-10 lg:fixed lg:w-[300px] -top-0 scale-100 transition duration-150 ease-in-out " 
 : "lg:my-6 my-0 xl:mt-[2rem]  space-y-0 md:space-y-2"} xl:mt-[3.5rem] ` }>
 

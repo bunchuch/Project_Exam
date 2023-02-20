@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import FillBlank from "../component/FillBlank/FillBlank" 
 import {questionAction} from "../../../redux/questionSlice"
@@ -29,13 +29,29 @@ export default function TaskArea (){
         const [showScore,setShowScore] = useState(false)
         const [checked ,setChecked] = useState({color :false, key:0})
         const {categories} = useParams()
-         const [selected,setSelectedIndex] = useState(null)
-
+        const [selected,setSelectedIndex] = useState(null)
 
          useEffect(()=>{
          document.title = categories
          },[categories])
-
+          
+         const handlChage = (e,i,isCorrect)=>{  
+            //try to  use localstorage to query back user checkbox
+            const listAnswer = []
+           if(e.target.checked){
+            listAnswer.push(e.target.value)
+            console.log(listAnswer)
+             localStorage.setItem(`answer_${i}`,JSON.stringify({
+                "id" : i,
+                "checked": e.target.checked,
+                "value" : e.target.value,
+             }))
+             for (let i = 0; i < localStorage.length; i++) {
+                console.log(localStorage.getItem(localStorage.key(i)));
+              }
+           }
+           console.log(e.target.value)
+         }
 
     function QuestionRender () {  
     const renderQuestion = questions.map((item, index)=>(
@@ -59,8 +75,9 @@ export default function TaskArea (){
                  ) 
             }
     
-        <div key={item.id} className="bg-white -z-10 shadow-sm shadow-gray-500/10 rounded-lg
-         tracking-wide mt-3  px-6 py-4 space-y-2">
+        <div key={item.id} className={index+1 === selected ?
+        "bg-white -z-10 shadow-sm shadow-gray-500/10 border-[1px] border-purple-900 rounded-lg tracking-wide mt-3  px-6 py-4 space-y-2" :
+        "bg-white -z-10 shadow-sm shadow-gray-500/10 rounded-lg tracking-wide mt-3  px-6 py-4 space-y-2"}>
            <div className="flex space-x-2" key={item.id}>
              <h1 className ="text-md trackgin-wide font-medium ">{index+1}.</h1>
             <div>
@@ -69,18 +86,14 @@ export default function TaskArea (){
             item.categories === "multiple Chocice" && (<>
                 <div key={item.id} className="text-gray-800 font-medium">{item.question}</div>
                 <div>{item.clude.map((i,k)=><div key={k}>
-                    <GroupInput type={item.type} key={i.id}
-                    event={(e)=>{
-                        //fixed double checked in the first clicked isn't fix yet...
-                        if(!e.target.checked){
-                            setSelectedIndex(null)
-                        }
-                        setSelectedIndex(index+1)
-                       
-
-                    }}
-                    
-                     value={i.isCorrect}  Text={i.choice} />
+                    <GroupInput
+                    id={i.id}
+                    checked={checked}
+                    type={item.type} key={i.id}
+                    event={(e)=>{handlChage(e,index+1,i.isCorrect)}}
+                    value={i.choice}
+                     Text={i.choice}
+                         />
                     </div>)}</div>
            </> )
         }
