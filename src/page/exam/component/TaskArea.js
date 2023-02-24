@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import FillBlank from "../component/FillBlank/FillBlank" 
 import {questionAction} from "../../../redux/questionSlice"
 import SmallFooter from "../../../components/Footer/smallFooter"
-import { Link, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import Audio from "../../../components/Audio"
 import { ReadingCard } from "../../../components/ReadingCard"
 import Instruction from "../../../components/Instruction"
@@ -14,44 +14,45 @@ import {TbWriting} from "react-icons/tb"
 import {FaAssistiveListeningSystems, FaSleigh} from  "react-icons/fa"
 import {GoBook} from "react-icons/go"
 import Icon from "../../../components/Icon"
-import Writing from "./Writing"
+import Writing from "../../../components/Writing"
 import GroupInput from "../../../components/GroupInput"
 import HeaderBar from "./HeaderBar"
 import FillBlanks from "../component/FillBlank/FillBlank"
 import HeaderButton from "../../../components/Button/headerButton"
+import { addAnswer } from "../../../redux/answerSlice"
+import QuestionHeader from "../../../components/QuestionHeader"
 
 
 export default function TaskArea (){
-        const [type ,setType] = useState([])
         const questions = useSelector((state)=> state.question.item)
+        const answer = useSelector((state)=> state.answer)
         const dispatch = useDispatch()
-        const [nubmer ,setNumber] = useState([])
-        const [showScore,setShowScore] = useState(false)
-        const [checked ,setChecked] = useState({color :false, key:0})
         const {categories} = useParams()
         const [selected,setSelectedIndex] = useState(null)
+         const naviagtor = useNavigate()
+
+         const [checkedState, setCheckedState] = useState(
+            new Array(questions.length).fill(false)
+          );
 
          useEffect(()=>{
          document.title = categories
          },[categories])
+
+
+          useEffect(()=>{
+        
+          },[])
+
+         const handlChage = (e,position)=>{
+            const updateCheckedState = checkedState.map((item,index)=>
+                  index === position ? !item : item
+            )  
+            e.preventDefault()
+            console.log(checkedState)
+      setCheckedState(updateCheckedState)
           
-         const handlChage = (e,i,isCorrect)=>{  
-            //try to  use localstorage to query back user checkbox
-            const listAnswer = []
-           if(e.target.checked){
-            listAnswer.push(e.target.value)
-            console.log(listAnswer)
-             localStorage.setItem(`answer_${i}`,JSON.stringify({
-                "id" : i,
-                "checked": e.target.checked,
-                "value" : e.target.value,
-             }))
-             for (let i = 0; i < localStorage.length; i++) {
-                console.log(localStorage.getItem(localStorage.key(i)));
-              }
-           }
-           console.log(e.target.value)
-         }
+        }
 
     function QuestionRender () {  
     const renderQuestion = questions.map((item, index)=>(
@@ -63,35 +64,25 @@ export default function TaskArea (){
             ):(
                 <>
                 {
-                categories === "listening" && (
-                    <Audio audio={item.audio} title="my hoilday in london" ></Audio>
-                ) ||   categories == "reading" && (
-                    <ReadingCard type={item.categorie} 
-                    header={item.header} 
-                     sentence={item.text}  />
-                 ) || categories == "vocabulary" && (
-                 
-                 <VocabularyCard clude={item.clude}/>
-                 ) 
+               <QuestionHeader item={item} type={categories}/>
             }
-    
         <div key={item.id} className={index+1 === selected ?
         "bg-white -z-10 shadow-sm shadow-gray-500/10 border-[1px] border-purple-900 rounded-lg tracking-wide mt-3  px-6 py-4 space-y-2" :
-        "bg-white -z-10 shadow-sm shadow-gray-500/10 rounded-lg tracking-wide mt-3  px-6 py-4 space-y-2"}>
+        "bg-white -z-10 shadow-sm shadow-gray-500/10 border-[1px] border-gray-200 rounded-lg tracking-wide mt-3  px-6 py-4 space-y-2"}>
            <div className="flex space-x-2" key={item.id}>
              <h1 className ="text-md trackgin-wide font-medium ">{index+1}.</h1>
             <div>
-        {
-           
+        {   
             item.categories === "multiple Chocice" && (<>
                 <div key={item.id} className="text-gray-800 font-medium">{item.question}</div>
-                <div>{item.clude.map((i,k)=><div key={k}>
+                <div>{item.clude.map((i,index)=><div key={index}>
                     <GroupInput
-                    id={i.id}
-                    checked={checked}
                     type={item.type} key={i.id}
-                    event={(e)=>{handlChage(e,index+1,i.isCorrect)}}
-                    value={i.choice}
+                    id={`coustome-checkbox-${index+1}`}
+                   checked={checkedState[index]}
+                    event={(e)=>
+                      handlChage(e,index)}
+                      value={i.choice}
                      Text={i.choice}
                          />
                     </div>)}</div>
@@ -117,7 +108,7 @@ export default function TaskArea (){
 
 
     return (
-        <div className="mt-1.5">
+        <div className={"mt-1.5 "}>
             {renderQuestion} 
             <div className="flex flex-row
            space-x-2 md:items-center justify-between md:justify-start mt-[10px]">
@@ -126,7 +117,10 @@ export default function TaskArea (){
                    <></>
                 ):(
                     <button onClick={()=>{
-                     dispatch(questionAction.grammar())
+                     if(categories === 'listening'){
+                      naviagtor(`/exam/reading`)
+                      dispatch(questionAction.reading())
+                     }
                     }} className="bg-purple-900 px-4
                     py-2 rounded-lg text-[14px] 
                    font-medium text-white hover:bg-gradient-to-r
@@ -140,7 +134,17 @@ export default function TaskArea (){
     )
     
         }
-    
+
+
+
+
+
+
+
+
+
+
+
         const [stickyClass, setStickyClass] = useState(false)
     
         useEffect(()=>{
@@ -168,11 +172,11 @@ export default function TaskArea (){
                 <div className="max-w[60rem] md:max-w-[70rem] text-white mx-auto py-2">
                 <ul className=" md:max-w[70rem] mx-auto py-2" >
     <div className="flex">
-    <HeaderButton title="Listenning" 
+    <HeaderButton  title="Listenning" 
     icon={<FaAssistiveListeningSystems/>}
      link="/exam/listening" 
      onClick={()=> {
-     setSelectedIndex(null)
+     console.log(document.getElementById("btn1"))
      dispatch(questionAction.listenings())}}/>
     <HeaderButton title="Reading" 
     icon={<BiBookOpen/>} link="/exam/reading" 

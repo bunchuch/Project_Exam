@@ -20,7 +20,7 @@ const name = useSelector(state=> state.auth.username)
 
 const list = ["logout"]
 
-const list2 = ["home", "about","contact"]
+const list2 = ["home", "about","contact",'exam']
 const [open ,setOpen] = useState(false)
     return (
        < nav  className={ IsLoggIn ? styleNavbar["navStyle-login"] : styleNavbar["navStyle-noneLoggin"]}>

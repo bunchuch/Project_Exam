@@ -187,7 +187,7 @@ const personalinfo = [
 
 ]
 
-const Writing = {
+const writings = {
      
     "multiple chocice":  [ { "id" : "01",
         "type" : "none",
@@ -625,4 +625,4 @@ const Listening = {
 
 
 
-  module.exports = {sectionTwoData,contact, about, sectionOneData,personalinfo,Readings, Listening, Grammar,Vocabulary,Writing}
+  module.exports = {sectionTwoData,contact, about, sectionOneData,personalinfo,Readings, Listening, Grammar,Vocabulary,writings}

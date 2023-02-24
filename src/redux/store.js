@@ -10,6 +10,7 @@ const store = configureStore({
     reducer:{
         user: userSlice,
         loader:loaderSlice,
+        answer: answerSlice,
         question:questionSlice,
         auth : authSlice.reducer,
     }

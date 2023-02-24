@@ -1,21 +1,34 @@
+import { IoAtCircleOutline } from "react-icons/io5";
+
 const { createSlice } = require("@reduxjs/toolkit");
 
 const answerSlice = createSlice({
     name: "answer",
     initialState:[
-        {
-            id: 1, answer:"todo1",checked:false,
-        }
+     {
+        id:null,
+        answer : [
+            {
+                id : null,
+                ans : [],
+                checked:false,
+            }
+        ]
+     }
     ],
     reducers:{
         addAnswer : (state,action)=>{
-            const newAnswer = {
-                id:Date.now(),
-                answer:action.payload.answer,
-                checked: true,
-            }
-
-            state.push(newAnswer)
+           const newItem = {
+             id : action.payload.id,
+             answer : [
+                {
+                    id: action.payload.id,
+                    ans: action.payload,
+                    checked: action.payload,
+                }
+             ]
+           }
+           state.push(newItem)
         }
     }
 })

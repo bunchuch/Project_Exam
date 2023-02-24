@@ -145,15 +145,21 @@ const [userinfo, setUserInfo] = useState({
 
 
 const navigate = useNavigate()
+
+const list = ["javascript", "python","java","c++","ruby","Go","react js"]
+
     return (
         <div>
 
 <div className="form-check m-3">
-                  <input
+
+  {
+    list.map((i,k)=><>
+    <input
                     className="form-check-input"
                     type="checkbox"
                     name="languages"
-                    value="Javascript"
+                    value={i}
                     id="flexCheckDefault"
                     onChange={handleChange}
                   />
@@ -161,24 +167,12 @@ const navigate = useNavigate()
                     className="form-check-label"
                     htmlFor="flexCheckDefault"
                   >
-                      Javascript
+                     {i}
                   </label>
-                </div>
-                <div className="form-check m-3">
-                  <input
-                    className="form-check-input"
-                    type="checkbox"
-                    name="languages"
-                    value="Python"
-                    id="flexCheckDefault"
-                    onChange={handleChange}
-                  />
-                  <label
-                    className="form-check-label"
-                    htmlFor="flexCheckDefault"
-                  >
-                      Python
-                  </label>
+    </>
+      
+    )
+  }
                 </div>
 
                 <div className="form-floating mt-3 mb-3 text-center">

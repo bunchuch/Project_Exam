@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Grammar, Listening, Vocabulary, Writing } from "../data/data";
+import { Grammar, Listening, Vocabulary, writings } from "../data/data";
 import { Readings } from "../data/data";
 
 
@@ -35,14 +35,10 @@ const questionSlice = createSlice({
   },
   writing : state=>{
     state.item = [
-     ...Writing["multiple chocice"]
+    ...writings["multiple chocice"]
     ]
   }
   },
- 
-  uploadImage : (state,action)=>{
-    state.uploadImage = [action.payload]
-  }
 
 })
 export const questionAction = questionSlice.actions

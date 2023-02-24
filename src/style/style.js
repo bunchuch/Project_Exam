@@ -40,9 +40,9 @@ const styleInstruction = {
 
 
 const styleAudio = {
-    "main" : "w-full rounded-lg mt-3 bg-orange-400 text-center font-ubuntu shadow-sm shadow-cyan-500/10 bg-white",
+    "main" : "w-full rounded-lg mt-3 border-[1px] border-gray-200 bg-purple-100 text-center font-inter shadow-sm shadow-cyan-500/10 bg-white",
     "audio" : "w-full bg-gray-100 ",
-    "title_audio": "text-[14px] py-2 mx-2 font-medium"
+    "title_audio": "text-[14px] text-purple-900 py-2 mx-2 font-medium"
   }
   
 
@@ -61,12 +61,12 @@ const styleWriting = {
 
 
 const styleError404 = {
-	"main" : "flex items-center justify-center flex h-full p-16 dark:bg-gray-900 dark:text-gray-100",
-	"container": " container flex-row items-center justify-center px-5 mx-auto my-8",
-	"tag3" : "max-w-md text-center",
-	"header" : "mb-8 font-extrabold text-9xl dark:text-gray-600" ,
+	"main" : "flex items-center justify-center flex  h-full p-16 dark:bg-gray-900 dark:text-gray-100",
+	"container": " container flex-row  flex items-center justify-center px-5 mx-auto my-8",
+	"tag3" : "max-w-md  flex justify-center items-center flex-col text-center",
+	"header" : "mb-8 text-center font-extrabold text-9xl dark:text-gray-600" ,
 	"spantag" : " ",
-	"paragrh" : " text-2xl font-semibold md:text-3xl",
+	"paragrh" : " md:text-[28px] text-[18px] font-ubuntu font-semibold md:text-3xl",
 	"paragrah2" : "mt-4 mb-8 dark:text-gray-400",
 	"atag" : "px-8 py-3 font-semibold rounded dark:bg-violet-400 dark:text-gray-900 "
 }

@@ -15,7 +15,8 @@ import {TbWriting} from "react-icons/tb"
 import {FaAssistiveListeningSystems, FaSleigh} from  "react-icons/fa"
 import {GoBook} from "react-icons/go"
 import Icon from "../components/Icon"
-import Writing from "../page/exam/component/Writing"
+import Writing from "../components/Writing"
+
 
 
 export default function Staff (){

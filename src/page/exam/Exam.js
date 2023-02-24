@@ -89,7 +89,7 @@ function Exam({ data }) {
          </span>      
              </p>
              </span>
-             <hr className="my-5 border-gray-400 dark:border-gray-700" />
+             <hr className="my-5 hidden border-gray-400 dark:border-gray-700" />
          <div className="flex items-center justify-between mt-4 gap-x-4 shrink-0">
              <button className="text-[14px] transition-colors font-medium text-blue-800 duration-300
               dark:text-white dark:hover:text-gray-400 hover:text-gray-600 focus:outline-none">

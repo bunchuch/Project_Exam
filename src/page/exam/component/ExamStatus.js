@@ -65,8 +65,8 @@ const changeColor = (key1,key2)=>{
     }
 }
 
-return <div className={`${fixed ? " z-10 lg:fixed lg:w-[300px] -top-0 scale-100 transition duration-150 ease-in-out " 
-: "lg:my-6 my-0 xl:mt-[2rem]  space-y-0 md:space-y-2"} xl:mt-[3.5rem] ` }>
+return <div className={`${fixed ? " z-10 lg:fixed lg:w-[300px] -top-0 " 
+: "lg:my-6 my-0 xl:mt-[2rem]  space-y-0 md:space-y-2"} xl:mt-[3.5rem] lg:mt-[3.5rem] ` }>
 
 {
    data ?  (
@@ -93,16 +93,16 @@ return <div className={`${fixed ? " z-10 lg:fixed lg:w-[300px] -top-0 scale-100 
 <ul className={styleExamStatus["ul-tag"]}>
  {
   //find type of the question and change all state....
-   data.map((value,index)=><li id={index+1}>
+   data.map((value,index,length)=><li id={index+1}>
     <div   className={ selected === index+1 && type === categories ? "bg-green-500 md:py-4 py-2"+
     " hover:bg-yellow-100 border-[1px] rounded-sm px-4 flex justify-center text-white"
     : "md:py-4 py-2 px-4 flex justify-center "+
      "bg-gray-50 hover:bg-yellow-100 border-[1px] rounded-sm"}>
    {index+1}
     </div>
- 
    </li>
    )
+  
  }
 
 </ul>
@@ -120,7 +120,7 @@ return <div className={`${fixed ? " z-10 lg:fixed lg:w-[300px] -top-0 scale-100 
   </div>
   <div className="ml-3 text-sm font-medium">
   <p>Score {selected}</p>
-  <ul className="hidden md:static lg:grid flex lg:grid-cols-2 gap-2 ">
+  <ul className=" md:static lg:grid flex lg:grid-cols-2 gap-2 ">
     <li className="flex space-x-1 items-center">
     <Badges background={true} text="Listening"></Badges>
     <p>0</p>
@@ -150,14 +150,14 @@ return <div className={`${fixed ? " z-10 lg:fixed lg:w-[300px] -top-0 scale-100 
 
 <ListBox componet={
 <div id="alert-1" className={ hidden ? "flex m-2 md:m-0 p-4 mb-4 "+
- "text-purple-800 rounded-lg bg-white shadow-cyan-500/10 shadow-sm dark:bg-gray-800 dark:text-blue-400" 
+ "text-purple-800 rounded-lg bg-white border-[1px] shadow-cyan-500/10 shadow-sm dark:bg-gray-800 dark:text-blue-400" 
  : "hidden m-2 md:m-0 p-4 mb-4 "+
  "text-purple-800 rounded-lg bg-white shadow-cyan-500/10 shadow-sm dark:bg-gray-800 dark:text-blue-400"} role="alert">
 <div aria-hidden="true" className="flex-shrink-0 w-5 h-5">
   <Icon name={<BiInfoCircle/>} color="purple" Size="1.3rem"></Icon>
 </div>
 <span className="sr-only">Info</span>
-<div className="ml-3 text-sm font-medium">
+<div className="ml-3 text-sm ">
   Please Make your task or Answer are do Correctly don't submit anything before  
   the invigilator calls “TIMEIS OVER.” and Do not disturb others, If you have finished the exam in time and wait.
 </div>
