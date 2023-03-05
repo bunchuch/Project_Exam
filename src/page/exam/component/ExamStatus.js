@@ -110,44 +110,6 @@ return <div className={`${fixed ? " z-10 lg:fixed lg:w-[300px] -top-0 "
 </div>
    }/>
 
-   <ListBox componet={
-   <div id="alert-1" className={ hidden ? "m-2 md:m-0 p-4 mb-4 hidden "+
-   "text-purple-800 rounded-lg bg-white shadow-cyan-500/10 shadow-sm dark:bg-gray-800 dark:text-blue-400" 
-   : "hidden m-2 md:m-0 p-4 mb-4 "+
-   "text-purple-800 rounded-lg bg-white shadow-cyan-500/10 shadow-sm dark:bg-gray-800 dark:text-blue-400"} role="alert">
-  <div aria-hidden="true" className="flex-shrink-0 w-5 h-5">
-    <Icon name={<BiMessageCheck/>} color="purple" Size="1.3rem"></Icon>
-  </div>
-  <div className="ml-3 text-sm font-medium">
-  <p>Score {selected}</p>
-  <ul className=" md:static lg:grid flex lg:grid-cols-2 gap-2 ">
-    <li className="flex space-x-1 items-center">
-    <Badges background={true} text="Listening"></Badges>
-    <p>0</p>
-    </li>
-    <li className="flex space-x-1 items-center">
-    <Badges background={true} text="Reading"></Badges>
-    {
-      categories === "reading" && (<p>{score}</p>)
-    }
-    </li>
-    <li className="flex space-x-1 items-center">
-    <Badges background={true} text="Grammar"></Badges>
-    {
-      categories === "grammar" && (<p>{score}</p>)
-    }
-    </li>
-    <li className="flex space-x-1 items-center">
-    <Badges background={true} text="Vocbulary"></Badges>
-    <p>0</p>
-    </li>
-    
-   
-  </ul>
-</div>
-  </div>
-   }/>
-
 <ListBox componet={
 <div id="alert-1" className={ hidden ? "flex m-2 md:m-0 p-4 mb-4 "+
  "text-purple-800 rounded-lg bg-white border-[1px] shadow-cyan-500/10 shadow-sm dark:bg-gray-800 dark:text-blue-400" 

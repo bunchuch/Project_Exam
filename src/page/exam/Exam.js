@@ -2,6 +2,7 @@ import React, { useEffect, useState, useTransition } from "react"
 import { BiFile, BiHighlight } from "react-icons/bi"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, useParams, } from "react-router-dom"
+import Container from "../../components/Container"
 import GroupInput from "../../components/GroupInput"
 import Icon from "../../components/Icon"
 import { questionAction } from "../../redux/questionSlice"
@@ -56,9 +57,9 @@ function Exam({ data }) {
  }
 
 
-   return  <div className="bg-gray-50 min-h-screen
-    box-border font-inter tracking-normal relative">
-
+   return <>
+   
+   <Container>
    {
       isState ?  (
          <TaskArea 
@@ -119,8 +120,13 @@ function Exam({ data }) {
    
       )
    }
-     
-</div>
+   </Container>
+   </>
+   
+   
+   
+   
+  
 }
 
 

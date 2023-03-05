@@ -21,7 +21,8 @@ import FillBlanks from "../component/FillBlank/FillBlank"
 import HeaderButton from "../../../components/Button/headerButton"
 import { addAnswer } from "../../../redux/answerSlice"
 import QuestionHeader from "../../../components/QuestionHeader"
-
+import { Grammar, Listening,Readings, Vocabulary, writings } from "../../../data/data"
+import {useLocalStorage} from "../../../testfile/hook/userLocalStorage"
 
 export default function TaskArea (){
         const questions = useSelector((state)=> state.question.item)
@@ -43,20 +44,29 @@ export default function TaskArea (){
           useEffect(()=>{
         
           },[])
+          const [item,setItem]= useLocalStorage('catogries',[])
+         const handlChage = (e,position,questionNumber)=>{
+           setItem([...item,{
+            qn:questionNumber,
+            answer: {
+              id:position,
+              value:e.target.value,
+              checked:e.target.checked,
+            }
 
-         const handlChage = (e,position)=>{
-            const updateCheckedState = checkedState.map((item,index)=>
-                  index === position ? !item : item
-            )  
-            e.preventDefault()
-            console.log(checkedState)
-      setCheckedState(updateCheckedState)
-          
+           }])
+          e.preventDefault();
+      //       const updateCheckedState = checkedState.map((item,index)=>
+      //             index === position ? !item : item
+      //       )  
+      //       console.log(questions)
+      //       console.log(updateCheckedState)
+      //  setCheckedState(updateCheckedState)
+          return
         }
 
     function QuestionRender () {  
     const renderQuestion = questions.map((item, index)=>(
-     
         <div className="" key={index}  >
             {
             categories === "writing" ? (
@@ -66,6 +76,7 @@ export default function TaskArea (){
                 {
                <QuestionHeader item={item} type={categories}/>
             }
+
         <div key={item.id} className={index+1 === selected ?
         "bg-white -z-10 shadow-sm shadow-gray-500/10 border-[1px] border-purple-900 rounded-lg tracking-wide mt-3  px-6 py-4 space-y-2" :
         "bg-white -z-10 shadow-sm shadow-gray-500/10 border-[1px] border-gray-200 rounded-lg tracking-wide mt-3  px-6 py-4 space-y-2"}>
@@ -75,27 +86,24 @@ export default function TaskArea (){
         {   
             item.categories === "multiple Chocice" && (<>
                 <div key={item.id} className="text-gray-800 font-medium">{item.question}</div>
-                <div>{item.clude.map((i,index)=><div key={index}>
+                <div>{item.clude.map((i,indexs)=><div key={indexs}>
                     <GroupInput
                     type={item.type} key={i.id}
                     id={`coustome-checkbox-${index+1}`}
-                   checked={checkedState[index]}
+                 
                     event={(e)=>
-                      handlChage(e,index)}
+                      handlChage}
                       value={i.choice}
                      Text={i.choice}
                          />
                     </div>)}</div>
            </> )
         }
-     
        </div>
             {  
                 item.categories === "Fill in blank" && (
                     <FillBlanks key={item.id}
-                    sentence={item.question}
-                    
-                     />
+                    sentence={item.question}   />
                 )
                 }
              </div>
@@ -111,7 +119,7 @@ export default function TaskArea (){
         <div className={"mt-1.5 "}>
             {renderQuestion} 
             <div className="flex flex-row
-           space-x-2 md:items-center justify-between md:justify-start mt-[10px]">
+           space-x-2 md:items-center justify-between md:justify-start py-2 mt-[10px]">
             {
                 categories === "writing" ? (
                    <></>
@@ -135,16 +143,6 @@ export default function TaskArea (){
     
         }
 
-
-
-
-
-
-
-
-
-
-
         const [stickyClass, setStickyClass] = useState(false)
     
         useEffect(()=>{
@@ -165,7 +163,7 @@ export default function TaskArea (){
         }
         return <div className="bg-gray-50 min-h-screen box-border font-inter tracking-normal " >
            <div className="bg-gray-50 min-h-screen box-border font-inter tracking-normal ">
-             <div className={stickyClass ? "top-0 z-10 sticky bg-purple-900 px-2 md:px-0 "+
+             <div className={stickyClass ? "top-0 z-10 sticky bg-white shadow-sm px-2 md:px-0 "+
              "overflow-x-auto text-[14px] md:text-base" 
              : 'bg-purple-900 px-2 md:px-0 overflow-x-auto text-[14px] md:text-base relative'}>
     
@@ -177,19 +175,19 @@ export default function TaskArea (){
      link="/exam/listening" 
      onClick={()=> {
      console.log(document.getElementById("btn1"))
-     dispatch(questionAction.listenings())}}/>
+     dispatch(questionAction.getQuestions(Listening["multiple chocice"]))}}/>
     <HeaderButton title="Reading" 
     icon={<BiBookOpen/>} link="/exam/reading" 
-    onClick={()=> dispatch(questionAction.reading())}/>
+    onClick={()=> dispatch(questionAction.getQuestions(Readings["multiple chocice"]))}/>
     <HeaderButton title="Grammar" 
     icon={<BiFontColor/>} link="/exam/grammar" 
-    onClick={()=> dispatch(questionAction.grammar())}/>
+    onClick={()=> dispatch(questionAction.getQuestions(Grammar["multiple chocice"]))}/>
     <HeaderButton title="Vocabulary"
      icon={<GoBook/>} link="/exam/vocabulary" 
-     onClick={()=> dispatch(questionAction.vocabulary())}/>
+     onClick={()=> dispatch(questionAction.getQuestions(Vocabulary["Fill in blank"]))}/>
     <HeaderButton title="Writing" 
     icon={<TbWriting/>} link="/exam/writing"  
-    onClick={()=> dispatch(questionAction.writing())}/>
+    onClick={()=> dispatch(questionAction.getQuestions(writings["multiple chocice"]))}/>
     </div>
      </ul>
         </div> 
@@ -201,6 +199,7 @@ export default function TaskArea (){
                             <Instruction
                            header={categories.toUpperCase()}
                               />
+
                            <QuestionRender></QuestionRender>
                             </main>
                             <div className="lg:w-[460px] lg:order-last md:px-4 px-0  mx-0  ">

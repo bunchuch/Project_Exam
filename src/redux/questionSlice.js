@@ -1,43 +1,67 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 import { Grammar, Listening, Vocabulary, writings } from "../data/data";
 import { Readings } from "../data/data";
 
+const getQuetstionAsync = createAsyncThunk('exam/getQuestionAsync',
+  async () => {
+    const response = await axios('')
+    if(response.ok){
+      const question = await response.json()
+      return {question}
+    }
 
+  }
+
+)
 
 
 const questionSlice = createSlice({
   name: "questions",
   initialState :{
+    questionCard : [],
+    loadding : false,
+    padding : false,
     item : [],
+    selectedState : false,
+    selectedQuetion: [
+    {
+      question_id : null,
+      selectedAnswer : {
+        id: null,
+        selected : false,
+      }
+    }
+    ],
+
     uploadImage : [],
   },
   reducers : {
-   reading : state =>{
-     state.item = [
-     ...Readings["multiple chocice"]
-     ]
-   },
-   grammar: state =>{
-    state.item = [
-        ...Grammar["multiple chocice"]
-    ]
-   },
-   listenings : state =>{
-    state.item = [
-   ...Listening["multiple chocice"]
-    
-    ]
+
+    loaddingQuestion : state =>{
+      state.loadding = true
+    },
+    getQuestions: (state, action)=>{
+      return {...state, item:action.payload}
+    },
+    QuestionAdd:(state,action)=>{
+      const newQuestion = {
+        
+      }
+
+
+      return {...state,item:state.item.push([action.payload])}
+    },
+    checkState : (state)=>{
+       return state.selectedState = true
+    }
+   
+
   },
-  vocabulary : state =>{
-    state.item = [
-      ...Vocabulary["Fill in blank"]
-    ]
-  },
-  writing : state=>{
-    state.item = [
-    ...writings["multiple chocice"]
-    ]
-  }
+  extraReducers : {
+[getQuetstionAsync.fulfilled] : (state,action)=>{
+  return action.payload.question
+}
   },
 
 })

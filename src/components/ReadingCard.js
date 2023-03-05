@@ -22,7 +22,6 @@ const handleOnclick = () =>{
        sentence	 ?(
         <div className="flex flex-col rounded-lg border-[1px] border-dashed"  id="accordion-collapse" data-accordion="collapse">
         <h2 className="md:order-first order-last" id="accordion-collapse-heading-1">
-          <Tooltip top={true} tooltip="click to to get doucment to read">
           <button type="button" onClick={handleOnclick} className="flex  border-dashed border-blue-900 items-center justify-between w-full
            bg-white md:p-4 p-2 font-medium text-left  border
              rounded-lg text-[14px] md:text-[16px]   focus:ring-4  focus:ring-gray-200 dark:focus:ring-gray-800
@@ -36,7 +35,6 @@ const handleOnclick = () =>{
             )
           }
           </button>
-          </Tooltip>
          
         </h2>
         {
@@ -44,11 +42,13 @@ const handleOnclick = () =>{
             <div 
             className={style}>
                {
-              fullScreen ? (
-               <img className="object-contain z-10 -top-6 absolute" src={sentence}/>
+              fullScreen ? (<>
+                <img className="object-contain z-10 -top-6 absolute" src={sentence}/>
+              </>
+             
               ):(null)
             }
-            <div className="border  rounded-[4px] text-start py-4 shadow-sm overflow-y-auto overflow-hidden h-52 md:h-52
+            <div className="border  rounded-[4px] text-start py-4 shadow-sm overflow-y-auto h-52 md:h-52
              shadow-cyan-500/10 border-b-0 px-4 tracking-wide transition-all duration-150 ease-in-out scale-200 text-slate-600 bg-blue-50 text-[16px]
               border-gray-200 dark:border-gray-700 dark:bg-gray-900">
                 {type === "text" && (    <p className="mb-2 leading-7 justify-center ">{sentence}</p>)}

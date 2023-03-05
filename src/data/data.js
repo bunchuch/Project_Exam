@@ -435,10 +435,10 @@ const Listening = {
             "categories": "multiple Chocice",
             "question":["what is the capital of Uruguay is _____?"],
             "clude":[
-                {"id":"01", "choice":"Montery" },
-                {"id":"02", "choice":"New Uruguay" },
-                {"id":"03", "choice":"Motevideo" },
-                {"id":"04", "choice":"Panama City" }
+                {"id":"01", "choice":"Montery","isCorrect":true },
+                {"id":"02", "choice":"New Uruguay","isCorrect":false },
+                {"id":"03", "choice":"Motevideo","isCorrect":false},
+                {"id":"04", "choice":"Panama City","isCorrect": false }
             ]
         
         },
@@ -571,54 +571,7 @@ const Listening = {
         },
     ],
 
-    // "Fill in Blank" : [
-        
-    //         {
-    //             "id":"01",
-    //             "audio": "https://www.123listening.com/freeaudio/adjectives2-2.mp3",
-    //             "categories":"Fill in blank",
-    //             "type" : "input",
-    //             "question" :["To get a promotion, you'd better work hard and show < for your boss."],
-    //             "clude": ["respect", "confused","respect"]
-    //         },
-    //         {
-    //             "id":"02",
-    //             "audio": "",
-    //             "categories":"Fill in blank",
-    //             "type" : "input",
-    //             "question" :["James is moving to new neighborhood, but her firend hope she will <"
-    //             ],
-    //             "clude": ["respect", "confused","respect"]
-    //         },
-    //         {
-    //             "id":"03",
-    //             "audio": "",
-    //             "categories":"Fill in blank",
-    //             "type" : "input",
-    //             "question" :["Ever Eric changed and sometimes never listen to any recommandations from other <."
-    //             ],
-    //             "clude": ["respect", "confused","respect"]
-    //         },
-    //         {
-    //             "id":"04",
-    //             "audio": "",
-    //             "categories":"Fill in blank",
-    //             "type" : "input",
-    //             "question" :["I sometimes get < about how and when use past simple and present perfect. Teacher said that I had to practice doing mre excerices to get better."
-    //             ],
-    //             "clude": ["respect", "confused","respect"]
-    //         },
-    //         {
-    //             "id":"05",
-    //             "audio": "",
-    //             "categories":"Fill in blank",
-    //             "type" : "input",
-    //             "question" :["Before Jame left to work in his company's branch in Japan, he < a spacial tranning program."],
-    //             "clude": ["respect", "confused","respect"]
-    //         },
-        
-        
-    // ]
+   
 }
 
 

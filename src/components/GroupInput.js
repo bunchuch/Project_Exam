@@ -19,7 +19,8 @@ export default function GroupInput ({id,Text, type ,event,name,value,checked }) 
            <div className=""> <p className={styleGroupInput["label-style"]}>{Text}</p></div>
        
             </>
-         ):( <button onClick={event} className="border-[1px] text-start border-gray-200 hover:bg-gray-100 bg-gray-50 py-1.5 px-2 rounded-lg">
+         ):( <button onClick={event} className="border-[1px] text-start
+          border-gray-200 hover:bg-gray-100 bg-gray-50 py-1.5 px-2 rounded-lg">
             <p className="text-gray-800 text-[14px]">
             {Text}
             </p>

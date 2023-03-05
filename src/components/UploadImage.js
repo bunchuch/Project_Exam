@@ -8,6 +8,7 @@ const UploadImages = () => {
   const [selectedImages, setSelectedImages] = useState([]);
 
   const onSelectFile = (event) => {
+    event.preventDefault()
     const selectedFiles = event.target.files;
     const selectedFilesArray = Array.from(selectedFiles);
 

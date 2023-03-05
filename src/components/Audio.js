@@ -17,7 +17,6 @@ export default function Audio({audio,title}){
       audio?(<>
       <div  className={styleAudio.main}>
         <div className="flex justify-center items-center">
-        <Icon name={<BiRadio/>} Size="1.2rem"/>
         <h1 className={styleAudio.title_audio}>{title}</h1>
         </div>
        

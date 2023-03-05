@@ -28,7 +28,7 @@ const [open ,setOpen] = useState(false)
             <div className={styleNavbar.container2}>
                 <div className={styleNavbar.conatiner3}>
                 <img src={ IsLoggIn ? "https://upload.wikimedia.org/wikipedia/en/e/ed/PUC_Logo.png" 
-               :"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu549tbz869AXxenZjBEY6IEmtMa-ymimFnIxkJnRR6gTgIfSptJcsJwLzfiUBAm-4FA&usqp=CAU" }
+               :"https://upload.wikimedia.org/wikipedia/en/e/ed/PUC_Logo.png" }
                 className={styleNavbar["img-style"]} alt="logo"/>
                 </div>
                 <div  className={styleNavbar["divtag-style-four"]}>

@@ -25,10 +25,13 @@ const Timer = (props) => {
     });
 
     return (
-        <div className='md:bg-gray-200  px-2 rounded-sm'>
+        <div className=''>
         { minutes === 0 && seconds === 0
-            ? null
-            : <h1 className='text-slate-900 font-medium md:font-none text-[16px]'> {minutes}:{seconds < 10 ?  `0${seconds}` : seconds}</h1> 
+            ? <></>
+            : <div className="py-2 px-2 md:px-6 m-1 flex items-center text-white border-b-4 border-l-2 bg-gradient-to-tr
+            from-yellow-300 to-yellow-400 border-yellow-500 rounded">
+                  <h1 className='font-medium md:font-none text-[16px]'> {minutes}:{seconds < 10 ?  `0${seconds}` : seconds}</h1> 
+             </div> 
         }
         </div>
     )

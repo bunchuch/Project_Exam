@@ -2,11 +2,11 @@
 const styleGroupInput = {
     "main": "flex items-center py-2 rounded-[5px] xl:text-[15px] md:mb-1 sm:text-md ",
     "input-style": " text-purple-800 w-5 h-5 bg-purple-900 accent-purple-800 dark:bg-purple-700 dark:border-gray-600",
-    "label-style": " ml-2 font-medium md:text-[14px] text-[14px] text-gray-900 dark:text-gray-300",
+    "label-style": " ml-2 md:font-medium md:text-[14px] text-[14px] text-gray-900 dark:text-gray-300",
  }
 
 const styleNavbar = {
-    "navStyle-noneLoggin" : "bg-white text-slate-900 md:shadow-orange-100  border-b-[1px] md:border-none md:py-0 ",
+    "navStyle-noneLoggin" : "bg-white shadow-lg text-slate-900 md:shadow-orange-100  border-b-[1px] md:border-none md:py-0 ",
     "navStyle-login": "bg-slate-900 text-white md:shadow-orange-100  border-b-[1px] md:border-none md:py-0",
     "container" : "flex justify-between items-center py-[10px]  mx-4 md:mx-[70px] md:py-[px] md:flex text-sm md:justify-between md:items-center   ",
     "container2": "flex items-center justify-between",
@@ -40,9 +40,9 @@ const styleInstruction = {
 
 
 const styleAudio = {
-    "main" : "w-full rounded-lg mt-3 border-[1px] border-gray-200 bg-purple-100 text-center font-inter shadow-sm shadow-cyan-500/10 bg-white",
+    "main" : "w-full rounded-lg text-center font-inter shadow-sm shadow-cyan-500/10 bg-white",
     "audio" : "w-full bg-gray-100 ",
-    "title_audio": "text-[14px] text-purple-900 py-2 mx-2 font-medium"
+    "title_audio": "text-[14px] text-purple-900 mx-2 font-medium"
   }
   
 
