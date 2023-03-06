@@ -12,7 +12,7 @@ export default function GroupInput ({id,Text, type ,event,name,value,checked }) 
          type ? "checkbox" && (
             <>
             <div className="flex">
-            <input checked={checked} id={id}  type={type}  value={value} onChange={event} 
+            <input checked={checked} id={id} type={type}  value={value} onChange={event} name={name}
           className={styleGroupInput["input-style"]}/>
             </div>
           

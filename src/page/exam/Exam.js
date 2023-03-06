@@ -57,9 +57,9 @@ function Exam({ data }) {
  }
 
 
-   return <>
-   
-   <Container>
+   return  <div className="bg-gray-50 min-h-screen
+    box-border font-inter tracking-normal relative">
+
    {
       isState ?  (
          <TaskArea 

@@ -28,6 +28,10 @@ export default function TaskArea (){
         const questions = useSelector((state)=> state.question.item)
         const answer = useSelector((state)=> state.answer)
         const dispatch = useDispatch()
+        const [showScore,setShowScore] = useState(false)
+        const [checked ,setChecked] = useState(
+            new Array(questions.length).fill(false)
+        )
         const {categories} = useParams()
         const [selected,setSelectedIndex] = useState(null)
          const naviagtor = useNavigate()
@@ -39,31 +43,24 @@ export default function TaskArea (){
          useEffect(()=>{
          document.title = categories
          },[categories])
-
-
-          useEffect(()=>{
-        
-          },[])
-          const [item,setItem]= useLocalStorage('catogries',[])
-         const handlChage = (e,position,questionNumber)=>{
-           setItem([...item,{
-            qn:questionNumber,
-            answer: {
-              id:position,
-              value:e.target.value,
-              checked:e.target.checked,
-            }
-
-           }])
-          e.preventDefault();
-      //       const updateCheckedState = checkedState.map((item,index)=>
-      //             index === position ? !item : item
-      //       )  
-      //       console.log(questions)
-      //       console.log(updateCheckedState)
-      //  setCheckedState(updateCheckedState)
-          return
-        }
+          
+         const handlChage = (e,i,isCorrect)=>{  
+            //try to  use localstorage to query back user checkbox
+            const listAnswer = []
+           if(e.target.checked){
+            listAnswer.push(e.target.value)
+            console.log(listAnswer)
+             localStorage.setItem(`answer_${i}`,JSON.stringify({
+                "id" : i,
+                "checked": e.target.checked,
+                "value" : e.target.value,
+             }))
+             for (let i = 0; i < localStorage.length; i++) {
+                console.log(localStorage.getItem(localStorage.key(i)));
+              }
+           }
+           console.log(e.target.value)
+         }
 
     function QuestionRender () {  
     const renderQuestion = questions.map((item, index)=>(
@@ -88,12 +85,11 @@ export default function TaskArea (){
                 <div key={item.id} className="text-gray-800 font-medium">{item.question}</div>
                 <div>{item.clude.map((i,indexs)=><div key={indexs}>
                     <GroupInput
+                    id={i.id}
+                    checked={checked[k]}
                     type={item.type} key={i.id}
-                    id={`coustome-checkbox-${index+1}`}
-                 
-                    event={(e)=>
-                      handlChage}
-                      value={i.choice}
+                    event={(e)=>{handlChage(e,index+1,i.isCorrect,k+1)}}
+                    value={i.choice}
                      Text={i.choice}
                          />
                     </div>)}</div>
@@ -161,7 +157,7 @@ export default function TaskArea (){
              setStickyClass(false)
           }
         }
-        return <div className="bg-gray-50 min-h-screen box-border font-inter tracking-normal " >
+        return <div className="lg:bg-white bg-gray-50 min-h-screen box-border font-inter tracking-normal " >
            <div className="bg-gray-50 min-h-screen box-border font-inter tracking-normal ">
              <div className={stickyClass ? "top-0 z-10 sticky bg-white shadow-sm px-2 md:px-0 "+
              "overflow-x-auto text-[14px] md:text-base" 

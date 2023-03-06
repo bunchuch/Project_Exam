@@ -48,8 +48,8 @@ const handleOnclick = () =>{
              
               ):(null)
             }
-            <div className="border  rounded-[4px] text-start py-4 shadow-sm overflow-y-auto h-52 md:h-52
-             shadow-cyan-500/10 border-b-0 px-4 tracking-wide transition-all duration-150 ease-in-out scale-200 text-slate-600 bg-blue-50 text-[16px]
+            <div className="border  rounded-[4px] text-start py-4 shadow-sm overflow-y-auto overflow-hidden h-52 md:h-80
+             shadow-cyan-500/10 border-b-0 px-4 tracking-wide transition duration-150 ease-in-out scale-100 text-slate-600 bg-blue-50 text-[16px]
               border-gray-200 dark:border-gray-700 dark:bg-gray-900">
                 {type === "text" && (    <p className="mb-2 leading-7 justify-center ">{sentence}</p>)}
                 {type === "image" && (
@@ -60,7 +60,7 @@ const handleOnclick = () =>{
                 )}
           
             </div>
-            <div className="-translate-y-10 md:hidden static -translate-x-4 z-10 right-0 absolute">
+            <div className="-translate-y-10 md:hidden -translate-x-4 z-10 right-0 absolute">
               <button onClick={()=> setFullScreen(!fullScreen)}>
               <Icon name={<BiFullscreen/>} Size="1.2rem" color="gray"></Icon>
               </button>
