@@ -25,9 +25,10 @@ export default function TaskArea (){
         const [type ,setType] = useState([])
         const questions = useSelector((state)=> state.question.item)
         const dispatch = useDispatch()
-        const [nubmer ,setNumber] = useState([])
         const [showScore,setShowScore] = useState(false)
-        const [checked ,setChecked] = useState({color :false, key:0})
+        const [checked ,setChecked] = useState(
+            new Array(questions.length).fill(false)
+        )
         const {categories} = useParams()
         const [selected,setSelectedIndex] = useState(null)
 
@@ -35,22 +36,12 @@ export default function TaskArea (){
          document.title = categories
          },[categories])
           
-         const handlChage = (e,i,isCorrect)=>{  
+         const handlChage = (e,i,isCorrect,id)=>{  
             //try to  use localstorage to query back user checkbox
-            const listAnswer = []
-           if(e.target.checked){
-            listAnswer.push(e.target.value)
-            console.log(listAnswer)
-             localStorage.setItem(`answer_${i}`,JSON.stringify({
-                "id" : i,
-                "checked": e.target.checked,
-                "value" : e.target.value,
-             }))
-             for (let i = 0; i < localStorage.length; i++) {
-                console.log(localStorage.getItem(localStorage.key(i)));
-              }
-           }
-           console.log(e.target.value)
+            const updateCheckState = checked.map((item, index)=> index === id ? !item :item )
+            setChecked(updateCheckState)
+            console.log(checked)
+          
          }
 
     function QuestionRender () {  
@@ -88,9 +79,9 @@ export default function TaskArea (){
                 <div>{item.clude.map((i,k)=><div key={k}>
                     <GroupInput
                     id={i.id}
-                    checked={checked}
+                    checked={checked[k]}
                     type={item.type} key={i.id}
-                    event={(e)=>{handlChage(e,index+1,i.isCorrect)}}
+                    event={(e)=>{handlChage(e,index+1,i.isCorrect,k+1)}}
                     value={i.choice}
                      Text={i.choice}
                          />
@@ -159,7 +150,7 @@ export default function TaskArea (){
              setStickyClass(false)
           }
         }
-        return <div className="bg-gray-50 min-h-screen box-border font-inter tracking-normal " >
+        return <div className="lg:bg-white bg-gray-50 min-h-screen box-border font-inter tracking-normal " >
            <div className="bg-gray-50 min-h-screen box-border font-inter tracking-normal ">
              <div className={stickyClass ? "top-0 z-10 sticky bg-purple-900 px-2 md:px-0 "+
              "overflow-x-auto text-[14px] md:text-base" 
