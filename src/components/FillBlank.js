@@ -1,16 +1,16 @@
 import React, { useState } from "react"
 import reactStringReplace from "react-string-replace"
-import { Question } from "../../../../data/data"
+
 
 const styleFillBlank = {
     "main": "",
     "selectbox": "border-b-[1px] rounded-[4px]",
     "spantag-style": "px-2   rounded-md leading-tight tracking-wide",
-    "divtag-style-main": "",
+    "divtag-style-main": "flex justify-center border-t-[1px] py-5 md:py-14",
     "divtag-ul_list": "",
     "li_tag_stlye": "bg-gray-50 text-center  px-2 rounded-full md:rounded-[4px] text-[10px] shadow-sm shadow-gray-500/10 md:text-[14px] cursor-pointer",
     "divtag-paragrah": "tracking-wider text-[14px] leading-relaxed",
-    "paragrah": "tracking-wide text-start"
+    "paragrah": "tracking-wide text-start text-[16px] md:text-[18px] px-3 md:px-16 leading-loose text-slate-700"
 }
 
 

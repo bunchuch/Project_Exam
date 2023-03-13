@@ -22,7 +22,7 @@
 
     /* loginForm */
     .Section_login_oneStyle_1{
-       @apply  dark:bg-gray-900 bg-gray-50 
+       @apply  dark:bg-gray-900 bg-gray-50 relative inset-0
     }
 
     .loginform_Styletwo_2{
@@ -33,17 +33,15 @@
      @apply w-full md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700 relative
     }
     .loginform_style_line_left_4{
-      @apply bg-blue-900 px-[17%] py-[2px] absolute translate-x-10 translate-y-10 bottom-14 rounded-bl-[2px]
+      @apply bg-blue-900 w-full  py-[2px]  rounded-bl-[2px]
     }
-    .loginform_style_line_right_5{
-        @apply bg-yellow-400 px-[25%] py-[2px] absolute translate-x-10  translate-y-10 right-20 bottom-14  rounded-br-[2px]
-    }
+  
     .loginform_main_style_box_6{
-        @apply p-6 space-y-1 md:space-y-3  my-5 md:mx-10  md:bg-white md:p-8 rounded-sm
+        @apply p-6 space-y-1 md:space-y-3  my-5 md:mx-10 text-gray-700  md:bg-white md:p-8 rounded
     }
     .loginform_header_style_box_7{
         @apply text-xl 
-        font-medium leading-tight mb-2 tracking-tight text-gray-900 md:text-2xl dark:text-white 
+        font-medium leading-tight mb-2 tracking-tight md:text-2xl dark:text-white 
     }
 
     .loginform_paragraph_style_box_8{
@@ -51,7 +49,7 @@
     }
 
     .loginform_form_style_box_9{
-        @apply space-y-4 md:space-y-6 my-6  mt-10
+        @apply space-y-4 md:space-y-6 my-6 
     }
     .loginform_lable_style_box_10{
         @apply block mb-2 text-sm font-medium text-gray-900
@@ -61,7 +59,7 @@
         @apply text-[10px] my-[5px] font-extralight
     }
     .loginform_button_style_box_13 {
-        @apply  w-full bg-blue-800 rounded-sm
+        @apply  w-full bg-purple-800 rounded
          text-white  focus:ring-4 focus:outline-none 
          font-medium text-sm px-5 py-3 text-center 
     }
@@ -69,14 +67,14 @@
 
 
     .loginform_input_style_box_12{
-       @apply  text-gray-900 rounded-[4px]  border-slate-900  bg-gray-100
-        sm:text-sm block w-full py-2  md:py-3  px-2 dark:bg-gray-700
+       @apply  text-gray-900 rounded-[4px]  border-gray-200 border-[1px] 
+        text-sm block w-full py-2 text-[14px] font-normal md:py-3  px-2 dark:bg-gray-700
          dark:border-gray-600 dark:placeholder-gray-400
-          dark:text-white text-[20px] font-medium tracking-wider
+          dark:text-white  tracking-wider
     }
 
     .paraStyle{
-        @apply text-sm text-start font-light  dark:text-gray-400 text-blue-500
+        @apply active:text-purple-400 text-sm font-ubuntu text-start font-light  dark:text-gray-400 text-purple-700
     }
 
 

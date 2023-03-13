@@ -188,14 +188,16 @@ const personalinfo = [
 ]
 
 const writings = {
-     
-    "multiple chocice":  [ { "id" : "01",
+    "id" : "01",
+    "type" : "MQC",
+    "name" : "writing",
+    "question":  [ { "id" : "01",
         "type" : "none",
+           "file": {"id": "01", "src":["Describe three advanges of living abroad","Describe three advantages of traveling aboard"]},
         "number-word" : "100",
         "clude" : [
-                { "id" : "01" , "choice" : "Describe three advantages of living aboard"},
-                {"id" : "02" ,  "choice" : "Describe three advantages of traveling aboard"},
-                {"id" : "03" ,  "choice" : "Describe you happay memory in life"},
+                { "id" : "01" , "choice" :null, selected:false},
+               
             
         ]
     }
@@ -203,13 +205,17 @@ const writings = {
 }
 
 const Readings = {
-    "multiple chocice" : [
+    "id" : "01",
+    "type" : "MQC",
+    "name" : "Reading",
+    "question" : [
         {
             "id":"01",
             "type":"checkbox",
             "header"  : "Why do introvert adn extroverts react so differently?",
             "categorie" : "image",
-            "text": "https://www.ieltsjacky.com/images/MatchingInformationCarsText.jpg",
+            "file": {"id": "01","header" : "What is A book ?" , 
+             "type" : "image",  "src":"https://www.ieltsjacky.com/images/MatchingInformationCarsText.jpg"},
             "categories": "multiple Chocice",
             "question":["what is the capital of Uruguay is_____?"],
             "clude":[
@@ -224,7 +230,9 @@ const Readings = {
         {
             "id":"02",
             "type":"checkbox",
-            "header" : "reading a book is good time",
+            "file": {"id": "01","header" : "What is A book ?" ,
+            "type" : "image", 
+             "src":"https://www.ieltsjacky.com/images/MatchingInformationCarsText.jpg"},
             "categories": "multiple Chocice",
             "question":["what is the capital of Uruguay is_____?"],
             "clude":[
@@ -238,7 +246,7 @@ const Readings = {
         {
             "id":"03",
             "type":"checkbox",
-            "header" : "reading a book is good time",
+            "file": {"id": "01","header" : "What is A book ?" ,  "type" : "image",  "src":"https://www.ieltsjacky.com/images/MatchingInformationCarsText.jpg"},
             "categories": "multiple Chocice",
             "question":["what is the capital of Uruguay is_____?"],
             "clude":[
@@ -249,62 +257,7 @@ const Readings = {
             ]
         
         },
-        {
-            "id":"03",
-            "type":"checkbox",
-            "header" : "reading a book is good time",
-            "categories": "multiple Chocice",
-            "question":["what is the capital of Uruguay is_____?"],
-            "clude":[
-                {"id":"01", "choice":"reading can help you feel less iritated" },
-                {"id":"02", "choice":"More people are enjoying a books and turing off the television" ,"isCorrect" : true },
-                {"id":"03", "choice":"Books can incrase your awareness and help you to be open-minded." ,"isCorrect" : true },
-                {"id":"04", "choice":"Choosing book is no more diffucult than slecting a film" ,"isCorrect" : false }
-            ]
-        
-        },
-        {
-            "id":"03",
-            "type":"checkbox",
-            "header" : "reading a book is good time",
-            "categories": "multiple Chocice",
-            "question":["what is the capital of Uruguay is_____?"],
-            "clude":[
-                {"id":"01", "choice":"reading can help you feel less iritated" },
-                {"id":"02", "choice":"More people are enjoying a books and turing off the television" ,"isCorrect" : false },
-                {"id":"03", "choice":"Books can incrase your awareness and help you to be open-minded." ,"isCorrect" : true },
-                {"id":"04", "choice":"Choosing book is no more diffucult than slecting a film" ,"isCorrect" : false }
-            ]
-        
-        },
-        {
-            "id":"03",
-            "type":"checkbox",
-            "header" : "reading a book is good time",
-            "categories": "multiple Chocice",
-            "question":["what is the capital of Uruguay is_____?"],
-            "clude":[
-                {"id":"01", "choice":"reading can help you feel less iritated" },
-                {"id":"02", "choice":"More people are enjoying a books and turing off the television"  ,"isCorrect" : false},
-                {"id":"03", "choice":"Books can incrase your awareness and help you to be open-minded.", "isCorrect" : false },
-                {"id":"04", "choice":"Choosing book is no more diffucult than slecting a film" ,"isCorrect" : true }
-            ]
-        
-        },
-        {
-            "id":"03",
-            "type":"checkbox",
-            "header" : "reading a book is good time",
-            "categories": "multiple Chocice",
-            "question":["what is the capital of Uruguay is_____?"],
-            "clude":[
-                {"id":"01", "choice":"A.reading can help you feel less iritated" ,"isCorrect":true},
-                {"id":"02", "choice":"B.More people are enjoying a books and turing off the television" ,"isCorrect" : true},
-                {"id":"03", "choice":"C.Books can incrase your awareness and help you to be open-minded." ,"isCorrect" : false },
-                {"id":"04", "choice":"D.Choosing book is no more diffucult than slecting a film" ,"isCorrect" : false }
-            ]
-        
-        }
+      
 
     ]
 
@@ -312,11 +265,14 @@ const Readings = {
 }
 
 const Grammar = {
-    "multiple chocice" : [
+    "id" : "01",
+    "type" : "MQC",
+    "name" : "Grammer",
+    "question" : [
         {
             "id" : "01",
+            "file": {"id": "01", "src":null},
             "type" : "checkbox",
-            "categories": "multiple Chocice",
             "question" : ["If you_____ to my advice in firt place, you______in a mess right now"],
             "clude":[
                { "id" : "1","choice": "listen/wouldn't be"},
@@ -328,7 +284,7 @@ const Grammar = {
         {
             "id" : "02",
             "type" : "checkbox",
-            "categories": "multiple Chocice",
+            "file": {"id": "01", "src":null},
             "question" : ["If i _______ French in high school, I______ more job opportunities now."],
             "clude":[
                { "id" : "1","choice": "had taken/ would have"},
@@ -340,7 +296,7 @@ const Grammar = {
         {
             "id" : "03",
             "type" : "checkbox",
-            "categories": "multiple Chocice",
+            "file": {"id": "01", "src":null},
             "question" : ["If she______ in the United State. she_____a visa to work here."],
             "clude":[
                { "id" : "1","choice": "had be born/ would have"},
@@ -349,47 +305,28 @@ const Grammar = {
               { "id" : "4", "choice" : "taken/ would had" }
             ]
         },
-        {
-            "id" : "04",
-            "type" : "checkbox",
-            "categories": "multiple Chocice",
-            "question" : ["If i _______ French in high school, I______ more job opportunities now."],
-            "clude":[
-               { "id" : "1","choice": "had taken/ would have"},
-              { "id" : "2", "choice" : "had taken/would not have" },
-              { "id" : "3", "choice" : "had not taken/would have had" },
-              { "id" : "4", "choice" : "taken/ would had" }
-            ]
-        },
-        {
-            "id" : "05",
-            "type" : "checkbox",
-            "categories": "multiple Chocice",
-            "question" : ["If he______after the car thief, he_____today"],
-            "clude":[
-               { "id" : "1","choice": "hadn't run/ would probably be alive"},
-              { "id" : "2", "choice" : "had run/would probably be alive" },
-              { "id" : "3", "choice" : "hadn't ran/would not probably be alive" },
-              { "id" : "4", "choice" : "hadn't ran/ would probably be alive" }
-            ]
-        }
+       
+     
     ]
 }
 
 const Vocabulary = {
     "id" : "01",
-    "type" : "Vocabulary",
-    "Fill in blank" : [
+    "type" : "Blank",
+    "name" : "Vocabulary",
+    "question" : [
         {
             "id":"01",
+            "file": {"id": "01", "src":["confused","stay out trouble","respeed","unfair","acceptable","undifferent","keep  in touch"],},
             "categories":"Fill in blank",
-            "clude": ["confused","stay out trouble","respeed","unfair","acceptable","undifferent","keep  in touch"],
             "type" : "input",
+            "clude" : [],
             "question" :["To get a promotion, you'd better work hard and show < for your boss."],
            
         },
         {
             "id":"02",
+            "file": {"id": "01", "src":null},
             "categories":"Fill in blank",
             "type" : "input",
             "question" :["I sometime get< about how and when to use past simple and pressent ferfect. Teacher said that I had to paractice doing more excrcise to get better."],
@@ -397,7 +334,8 @@ const Vocabulary = {
            
         },
         {
-            "id":"02",
+            "id":"05",
+            "file": {"id": "01", "src":null},
             "categories":"Fill in blank",
             "type" : "input",
             "question" :["Before Jame left to work in his company's branch in Japan, he < a special trainning program"],
@@ -405,169 +343,69 @@ const Vocabulary = {
            
         },
         {
-            "id":"02",
+            "id":"04",
+            "file": {"id": "01", "src":null},
             "categories":"Fill in blank",
             "type" : "input",
             "question" :["James is moving to a new neighorhood, but her friends hope she will <"],
             "clude" : []
            
         },
-        {
-            "id":"02",
-            "categories":"Fill in blank",
-            "type" : "input",
-            "question" :["James is moving to a new neighorhood, but her friends hope she will <"],
-            "clude" : []
-           
-        },
+      
     ]
     
 }
 
 const Listening = {
     "id":"01",
-    "type" : "Listenning",
-    "multiple chocice" : [
+    "type" : "MQC",
+    'name' : "Listenning",
+    "question" : [
         {
-            "id":"01",
+            "qid":"1",
             "type":"checkbox",
-            "audio": "https://www.123listening.com/freeaudio/adjectives1-1.mp3",
+            "file": {"id": "01", "src":" https://www.123listening.com/freeaudio/adjectives1-1.mp3"},
             "categories": "multiple Chocice",
             "question":["what is the capital of Uruguay is _____?"],
             "clude":[
-                {"id":"01", "choice":"Montery","isCorrect":true },
-                {"id":"02", "choice":"New Uruguay","isCorrect":false },
-                {"id":"03", "choice":"Motevideo","isCorrect":false},
-                {"id":"04", "choice":"Panama City","isCorrect": false }
+                {"id":"01", "choice":"Montery","isCorrect":true,  "selected": false },
+                {"id":"02", "choice":"New Uruguay","isCorrect":false,"selected": false  },
+                {"id":"03", "choice":"Motevideo","isCorrect":false,"selected": false },
+                {"id":"04", "choice":"Panama City","isCorrect": false,"selected": false  }
             ]
         
         },
-
         {
     
-            "id":"02",
+            "qid":"2",
             "type":"checkbox",
             "categories": "multiple Chocice",
-            "audio": "",
+            "file": {"id": "01", "src": null},
             "question":["The examination of every human social interaction on a small scale describes______?"],
             "clude":[
-                {"id":"01", "choice":"functionalism" },
-                {"id":"02", "choice":"macrosociology" },
-                {"id":"03", "choice":"cultural anthropology" },
-                {"id":"04", "choice":"microsociology" }
+                {"id":"01", "choice":"functionalism","selected": false },
+                {"id":"02", "choice":"macrosociology","selected": false },
+                {"id":"03", "choice":"cultural anthropology" ,"selected": false},
+                {"id":"04", "choice":"microsociology","selected": false }
             ]
         
         },
 
 
         {
-            "id":"03",
+            "qid":"3",
             "type":"checkbox",
             "categories": "multiple Chocice",
-            "audio": "https://www.123listening.com/freeaudio/adjectives1-1.mp3",
+            "file": {"id": "01", "src": "https://www.123listening.com/freeaudio/bodyparts1-2.mp3"},
             "question":["Karl is upset because______?"],
             "clude":[
-                {"id":"01", "choice":"his application are due" },
-                {"id":"02", "choice":"his train was dlayed" },
-                {"id":"03", "choice":"he was late getting to school" },
+                {"id":"01", "choice":"his application are due","selected": false },
+                {"id":"02", "choice":"his train was dlayed" ,"selected": false},
+                {"id":"03", "choice":"he was late getting to school" ,"selected": false},
+                {"id":"04", "choice":"he was late getting to school" ,"selected": false},
                 
             ]
 
-        },
-        {
-            "id":"04",
-            "type":"checkbox",
-            "audio": "",
-            "categories": "multiple Chocice",
-            "question":["The women suggests that karl______?"],
-            "clude":[
-                {"id":"01", "choice":"Knock on his advisor's door" },
-                {"id":"02", "choice":"delay his appointment" },
-                {"id":"03", "choice":"switch appointment with someone" },
-                
-            ]
-        },
-        
-        {
-    
-            "id":"02",
-            "type":"checkbox",
-            "categories": "multiple Chocice",
-            "audio": "",
-            "question":["The examination of every human social interaction on a small scale describes______?"],
-            "clude":[
-                {"id":"01", "choice":"functionalism" },
-                {"id":"02", "choice":"macrosociology" },
-                {"id":"03", "choice":"cultural anthropology" },
-                {"id":"04", "choice":"microsociology" }
-            ]
-        
-        },
-
-        {
-            "id":"04",
-            "type":"checkbox",
-            "audio": "",
-            "categories": "multiple Chocice",
-            "question":["The women suggests that karl______?"],
-            "clude":[
-                {"id":"01", "choice":"Knock on his advisor's door" },
-                {"id":"02", "choice":"delay his appointment" },
-                {"id":"03", "choice":"switch appointment with someone" },
-                
-            ]
-        },
-        {
-            "id":"04",
-            "type":"checkbox",
-            "audio": "",
-            "categories": "multiple Chocice",
-            "question":["The women suggests that karl______?"],
-            "clude":[
-                {"id":"01", "choice":"Knock on his advisor's door" },
-                {"id":"02", "choice":"delay his appointment" },
-                {"id":"03", "choice":"switch appointment with someone" },
-                
-            ]
-        },
-        {
-            "id":"04",
-            "type":"checkbox",
-            "audio": "",
-            "categories": "multiple Chocice",
-            "question":["The women suggests that karl______?"],
-            "clude":[
-                {"id":"01", "choice":"Knock on his advisor's door" },
-                {"id":"02", "choice":"delay his appointment" },
-                {"id":"03", "choice":"switch appointment with someone" },
-                
-            ]
-        },
-        {
-            "id":"04",
-            "type":"checkbox",
-            "audio": "",
-            "categories": "multiple Chocice",
-            "question":["The women suggests that karl______?"],
-            "clude":[
-                {"id":"01", "choice":"Knock on his advisor's door" },
-                {"id":"02", "choice":"delay his appointment" },
-                {"id":"03", "choice":"switch appointment with someone" },
-                
-            ]
-        },
-        {
-            "id":"04",
-            "type":"checkbox",
-            "audio": "",
-            "categories": "multiple Chocice",
-            "question":["The women suggests that karl______?"],
-            "clude":[
-                {"id":"01", "choice":"Knock on his advisor's door" },
-                {"id":"02", "choice":"delay his appointment" },
-                {"id":"03", "choice":"switch appointment with someone" },
-                
-            ]
         },
     ],
 
