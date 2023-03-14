@@ -54,7 +54,7 @@ group-hover:w-32 group-hover:h-32 opacity-10"></span>
                       <button onClick={event}
                 type="button" className="rounded relative inline-flex group items-center
                 justify-center md:px-4 px-2 md:w-32 py-2 m-1 cursor-pointer border-b-4 border-l-2
-                 active:border-blue-600 active:shadow-none shadow-lg bg-gradient-to-tr
+                 active:border-blue-500 active:shadow-none shadow-lg bg-gradient-to-tr
                   from-blue-400 to-blue-500 border-blue-600 text-white">
                     Yes, I'm sure
                 </button>

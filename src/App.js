@@ -13,9 +13,6 @@ import Contact from './page/contact/Contact'
 
 
 
-
-const LazyLoader = React.lazy(()=> import("./page/exam/Exam"))
-
 const App =()=>{
 const [title, setTitle] = useState()
  
@@ -36,19 +33,7 @@ const [title, setTitle] = useState()
  <Route path='/profile' element={<Profile/>} ></Route>
     <Route path='/author/registration' element={<Registration>
     </Registration>}></Route>
-    <Route path='/exam'  errorElement={<ErrorPage/>}
-     element={
-    <React.Suspense fallback={<Loader/>}>
-      <LazyLoader/>
-    </React.Suspense>}>
-      <Route path=':categories' element={
-        <React.Suspense fallback={<Loader/>}>
-          <LazyLoader/>
-        </React.Suspense>
-      }></Route>
-
-</Route>
-   <Route path='*' element={<ErrorPage ></ErrorPage>}/>
+   <Route path='*/' element={<ErrorPage ></ErrorPage>}/>
     <Route path='/' errorElement={<ErrorPage/>} element={<Mainpage/>}></Route>
     <Route path='/home' errorElement={<ErrorPage/>} element={<Mainpage/>}></Route>
   

@@ -56,7 +56,7 @@ Start
          
       </div>
   </div>
-  <div className ={`w-full h-[4px] ${ title === 'Reading' &&  `bg-purple-600`}
+  <div className ={`w-full h-[10px] ${ title === 'Reading' &&  `bg-purple-600`}
    ${ title === 'Writing' &&  `bg-red-500 `}
    ${ title === 'Grammar' &&  `bg-green-500`}
    ${ title === 'Vocabulary' &&  `bg-yellow-400`}
@@ -88,11 +88,11 @@ const [currentQuestion, setCurrentQuestion] = useState(0);
 const questions = useSelector((state)=> state.question.item)
 const dispatch = useDispatch()
 const loadding = useSelector((state)=> state.question.loadding)
-console.log(questions)
+const item = questions.map((item)=>item.clude)
 const [showScore, setShowScore] = useState(false);
 const [score, setScore] = useState(0);
-  const [previous, setPrevious] = useState(false);
-
+const [previous, setPrevious] = useState(false);
+const [check,setChecked] = useState(false)
 
 
 const handleAnswerOptionClick = (isCorrect) => {
@@ -102,6 +102,10 @@ const handleAnswerOptionClick = (isCorrect) => {
     setCurrentQuestion(nextQuestion);
   }
 }
+
+
+
+
 const handleAnswerOptionClickPrev = (isCorrect) => {
   const nextQuestion = currentQuestion - 1;
   if (nextQuestion < questions.length) {
@@ -114,8 +118,15 @@ const handleAnswerOptionClickPrev = (isCorrect) => {
  
 }
 
+const handleChange = (e,id)=>{
+  const updateCheck = [...item]
+  const itemId = updateCheck.findIndex((obje)=> obje.id === id)
+  updateCheck[itemId].checked = !updateCheck[itemId].checked
+}
+
 
   return(
+    <>
     <Container>
       <div>
       {
@@ -161,8 +172,12 @@ const handleAnswerOptionClickPrev = (isCorrect) => {
               // multiple choice
                 <div className="mt-5 py-3 space-y-4 px-6">
                 {
-                    questions[currentQuestion].clude.map((i)=><>
-                  <GroupInput type="checkbox" Text={i.choice}/>
+                    questions[currentQuestion].clude.map((i,id)=><>
+                  <GroupInput
+                 checked={i.isCorrect}
+                 value={i.choice}
+                  event={(e)=>handleChange(e,id)}
+                  type="checkbox" Text={i.choice}/>
                     
                     </>)
                 }
@@ -247,5 +262,6 @@ event={()=>{
     }
    </div>
     </Container>
+    </>
   )
 }

@@ -477,7 +477,7 @@ const Listening = {
         {
             "id":"04",
             "type":"checkbox",
-            "audio": "",
+            "audio": null,
             "categories": "multiple Chocice",
             "question":["The women suggests that karl______?"],
             "clude":[
@@ -493,7 +493,7 @@ const Listening = {
             "id":"02",
             "type":"checkbox",
             "categories": "multiple Chocice",
-            "audio": "",
+            "audio": null,
             "question":["The examination of every human social interaction on a small scale describes______?"],
             "clude":[
                 {"id":"01", "choice":"functionalism" },
@@ -507,7 +507,7 @@ const Listening = {
         {
             "id":"04",
             "type":"checkbox",
-            "audio": "",
+            "audio": null,
             "categories": "multiple Chocice",
             "question":["The women suggests that karl______?"],
             "clude":[
@@ -533,7 +533,7 @@ const Listening = {
         {
             "id":"04",
             "type":"checkbox",
-            "audio": "",
+            "audio": null,
             "categories": "multiple Chocice",
             "question":["The women suggests that karl______?"],
             "clude":[
@@ -543,32 +543,7 @@ const Listening = {
                 
             ]
         },
-        {
-            "id":"04",
-            "type":"checkbox",
-            "audio": "",
-            "categories": "multiple Chocice",
-            "question":["The women suggests that karl______?"],
-            "clude":[
-                {"id":"01", "choice":"Knock on his advisor's door" },
-                {"id":"02", "choice":"delay his appointment" },
-                {"id":"03", "choice":"switch appointment with someone" },
-                
-            ]
-        },
-        {
-            "id":"04",
-            "type":"checkbox",
-            "audio": "",
-            "categories": "multiple Chocice",
-            "question":["The women suggests that karl______?"],
-            "clude":[
-                {"id":"01", "choice":"Knock on his advisor's door" },
-                {"id":"02", "choice":"delay his appointment" },
-                {"id":"03", "choice":"switch appointment with someone" },
-                
-            ]
-        },
+      
     ],
 
    

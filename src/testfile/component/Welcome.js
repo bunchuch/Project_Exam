@@ -2,7 +2,7 @@ import React,{useState} from "react";
 import Icon from "../../components/Icon";
 import { BiFile } from "react-icons/bi";
 import GroupInput from "../../components/GroupInput";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { questionAction } from "../../redux/questionSlice";
 
 
@@ -26,12 +26,12 @@ const examRoule = [
 export default function Welcome (){
     const [ableBtn,setAbleBtn] = useState(false)
     const dispatch = useDispatch()
+const questionCard = useSelector((state)=> state.question.questionCard)
 
 
 
-
-    return  <section className=" max-w-2xl mx-6 p-4 md:mx-auto bg-white border border-gray-200 dark:bg-gray-800 
-    left-0 right-0 top absolute top-10 dark:border-gray-700 rounded">
+    return  <section className="inset-0 max-w-2xl mx-6 p-4 md:mx-auto bg-white border border-gray-200 dark:bg-gray-800 
+    relative top-10  dark:border-gray-700 rounded">
        <div className="flex py-2 items-center ">
        <Icon name={<BiFile/>} Size="1.5rem" color="purple"/>
        <h2 className="font-semibold text-[16px] mx-2 text-gray-800 md:text-[24px] dark:text-white font-ubuntu">Welcom to examination</h2>
@@ -69,7 +69,9 @@ export default function Welcome (){
 
 {
  ableBtn ? (
-    <button onClick={()=> dispatch(questionAction.loaddingQuestion()) }
+    <button onClick={()=> {dispatch(questionAction.loaddingQuestion())
+                            console.log(questionCard)
+    } }
      className="rounded relative inline-flex group items-center
     justify-center px-4 w-32 py-2 m-1 cursor-pointer border-b-4 border-l-2
      active:border-purple-600 active:shadow-none shadow-lg bg-gradient-to-tr

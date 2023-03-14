@@ -44,22 +44,12 @@ export default function TaskArea (){
          document.title = categories
          },[categories])
           
-         const handlChage = (e,i,isCorrect)=>{  
+         const handlChage = (e,i,isCorrect,id)=>{  
             //try to  use localstorage to query back user checkbox
-            const listAnswer = []
-           if(e.target.checked){
-            listAnswer.push(e.target.value)
-            console.log(listAnswer)
-             localStorage.setItem(`answer_${i}`,JSON.stringify({
-                "id" : i,
-                "checked": e.target.checked,
-                "value" : e.target.value,
-             }))
-             for (let i = 0; i < localStorage.length; i++) {
-                console.log(localStorage.getItem(localStorage.key(i)));
-              }
-           }
-           console.log(e.target.value)
+            const updateCheckState = checked.map((item, index)=> index === id ? !item :item )
+            setChecked(updateCheckState)
+            console.log(checked)
+          
          }
 
     function QuestionRender () {  
