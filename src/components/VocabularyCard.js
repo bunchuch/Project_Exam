@@ -10,7 +10,8 @@ const [renderClude ,setRenderClude] = useState([...clude])
     
      {
         renderClude.length !== 0 ? (
-            <div className="grid grid-cols-3 md:grid-cols-5 gap-1 px-2 py-2 text-center md:text-base
+            <div className="grid grid-cols-3 md:grid-cols-5 gap-1 
+            px-2 py-2 text-center md:text-base
              text-[12px]  bg-white  rounded">{
                 renderClude.map((i,key)=><ul className="flex justify-center  items-center 
                 md:bg-purple-50 text-purple-900 rounded-lg" key={key-1}>

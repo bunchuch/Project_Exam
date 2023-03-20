@@ -5,7 +5,7 @@ import About from "./page/about/About"
 import LoginForm from "./page/login/loginForm"
 import Profile from "./page//Profile/profile"
 import {BrowserRouter, Routes, Route,useLocation} from 'react-router-dom'
-import FileTest from "./testfile/filetest"
+import FileTest from "./exam/exam"
 import Registration from './page/regisignsterForm/Registration';
 import Loader from './components/Loader';
 import ErrorPage from './components/ErrorPage';
@@ -14,7 +14,7 @@ import Contact from './page/contact/Contact'
 
 
 
-const LazyLoader = React.lazy(()=> import("./testfile/filetest"))
+const LazyLoader = React.lazy(()=> import("./exam/exam"))
 
 const App =()=>{
 const [title, setTitle] = useState()

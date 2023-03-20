@@ -192,8 +192,8 @@ const writings = {
     "type" : "MQC",
     "name" : "writing",
     "question":  [ { "id" : "01",
-        "type" : "none",
-           "file": {"id": "01", "src":["Describe three advanges of living abroad","Describe three advantages of traveling aboard"]},
+           "file": {"id": "01", "type":null,
+            "src":["Describe three advanges of living abroad","Describe three advantages of traveling aboard"]},
         "number-word" : "100",
         "clude" : [
                 { "id" : "01" , "choice" :null, selected:false},
@@ -212,9 +212,8 @@ const Readings = {
         {
             "id":"01",
             "type":"checkbox",
-            "header"  : "Why do introvert adn extroverts react so differently?",
             "categorie" : "image",
-            "file": {"id": "01","header" : "What is A book ?" , 
+            "file": {"id": "01","header" : "Why do introvert adn extroverts react so differently?" , 
              "type" : "image",  "src":"https://www.ieltsjacky.com/images/MatchingInformationCarsText.jpg"},
             "categories": "multiple Chocice",
             "question":["what is the capital of Uruguay is_____?"],
@@ -326,28 +325,28 @@ const Vocabulary = {
         },
         {
             "id":"02",
-            "file": {"id": "01", "src":null},
+            "file": {"id": "01", "src":["confused","stay out trouble","respeed","unfair","acceptable","undifferent","keep  in touch"],},
             "categories":"Fill in blank",
             "type" : "input",
-            "question" :["I sometime get< about how and when to use past simple and pressent ferfect. Teacher said that I had to paractice doing more excrcise to get better."],
+            "question" :["I sometime get< about how and when to use past simple and pressent ferfect. Teacher said that I had to paractice doing more excrcise to get better.I sometime get< about how and when to use past simple and pressent ferfect. Teacher said that I had to paractice doing more excrcise to get better."],
             "clude" : []
            
         },
         {
             "id":"05",
-            "file": {"id": "01", "src":null},
+            "file": {"id": "01", "src":["confused","stay out trouble","respeed","unfair","acceptable","undifferent","keep  in touch"],},
             "categories":"Fill in blank",
             "type" : "input",
-            "question" :["Before Jame left to work in his company's branch in Japan, he < a special trainning program"],
+            "question" :["Before Jame left to work in his company's branch in Japan, he < a special trainning program,Before Jame left to work in his company's branch in Japan, he < a special trainning program"],
             "clude" : []
            
         },
         {
             "id":"04",
-            "file": {"id": "01", "src":null},
+            "file": {"id": "01", "src":["confused","stay out trouble","respeed","unfair","acceptable","undifferent","keep  in touch"],},
             "categories":"Fill in blank",
             "type" : "input",
-            "question" :["James is moving to a new neighorhood, but her friends hope she will <"],
+            "question" :["James is moving to a new neighorhood, but her friends hope she will <,James is moving to a new neighorhood, but her friends hope she will <"],
             "clude" : []
            
         },
