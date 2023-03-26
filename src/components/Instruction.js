@@ -29,8 +29,8 @@ const descrition = {
 }
 
 
-export default function Instruction ({tagname,icon,desc, header}){
-
+export default function Instruction ({tagname,icon,desc, headers}){
+     const header =  headers.toUpperCase()
 
 
        return <div className={styleInstruction.main}>

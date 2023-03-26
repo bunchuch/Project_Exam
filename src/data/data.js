@@ -191,7 +191,9 @@ const writings = {
     "id" : "01",
     "type" : "MQC",
     "name" : "writing",
-    "question":  [ { "id" : "01",
+    "question":  [ 
+        { "qid" : "01","completed":true,
+
            "file": {"id": "01", "type":null,
             "src":["Describe three advanges of living abroad","Describe three advantages of traveling aboard"]},
         "number-word" : "100",
@@ -210,7 +212,8 @@ const Readings = {
     "name" : "Reading",
     "question" : [
         {
-            "id":"01",
+            "qid":"01",
+            "completed":false,
             "type":"checkbox",
             "categorie" : "image",
             "file": {"id": "01","header" : "Why do introvert adn extroverts react so differently?" , 
@@ -227,7 +230,8 @@ const Readings = {
         },
 
         {
-            "id":"02",
+            "qid":"02",
+            "completed":true,
             "type":"checkbox",
             "file": {"id": "01","header" : "What is A book ?" ,
             "type" : "image", 
@@ -243,7 +247,8 @@ const Readings = {
         
         },
         {
-            "id":"03",
+            "qid":"03",
+            "completed":false,
             "type":"checkbox",
             "file": {"id": "01","header" : "What is A book ?" ,  "type" : "image",  "src":"https://www.ieltsjacky.com/images/MatchingInformationCarsText.jpg"},
             "categories": "multiple Chocice",
@@ -269,7 +274,8 @@ const Grammar = {
     "name" : "Grammer",
     "question" : [
         {
-            "id" : "01",
+            "qid" : "01",
+            "completed":false,
             "file": {"id": "01", "src":null},
             "type" : "checkbox",
             "question" : ["If you_____ to my advice in firt place, you______in a mess right now"],
@@ -281,7 +287,8 @@ const Grammar = {
             ]
         },
         {
-            "id" : "02",
+            "qid" : "02",
+            "completed":false,
             "type" : "checkbox",
             "file": {"id": "01", "src":null},
             "question" : ["If i _______ French in high school, I______ more job opportunities now."],
@@ -293,7 +300,8 @@ const Grammar = {
             ]
         },
         {
-            "id" : "03",
+            "qid" : "03",
+            "completed":false,
             "type" : "checkbox",
             "file": {"id": "01", "src":null},
             "question" : ["If she______ in the United State. she_____a visa to work here."],
@@ -315,7 +323,8 @@ const Vocabulary = {
     "name" : "Vocabulary",
     "question" : [
         {
-            "id":"01",
+            "qid":"01",
+            "completed":false,
             "file": {"id": "01", "src":["confused","stay out trouble","respeed","unfair","acceptable","undifferent","keep  in touch"],},
             "categories":"Fill in blank",
             "type" : "input",
@@ -324,7 +333,8 @@ const Vocabulary = {
            
         },
         {
-            "id":"02",
+            "qid":"02",
+            "completed":false,
             "file": {"id": "01", "src":["confused","stay out trouble","respeed","unfair","acceptable","undifferent","keep  in touch"],},
             "categories":"Fill in blank",
             "type" : "input",
@@ -333,7 +343,8 @@ const Vocabulary = {
            
         },
         {
-            "id":"05",
+            "qid":"05",
+            "completed":true,
             "file": {"id": "01", "src":["confused","stay out trouble","respeed","unfair","acceptable","undifferent","keep  in touch"],},
             "categories":"Fill in blank",
             "type" : "input",
@@ -342,7 +353,8 @@ const Vocabulary = {
            
         },
         {
-            "id":"04",
+            "qid":"04",
+            "completed":false,
             "file": {"id": "01", "src":["confused","stay out trouble","respeed","unfair","acceptable","undifferent","keep  in touch"],},
             "categories":"Fill in blank",
             "type" : "input",
@@ -362,6 +374,7 @@ const Listening = {
     "question" : [
         {
             "qid":"1",
+            "completed":true,
             "type":"checkbox",
             "file": {"id": "01", "src":" https://www.123listening.com/freeaudio/adjectives1-1.mp3"},
             "categories": "multiple Chocice",
@@ -377,6 +390,7 @@ const Listening = {
         {
     
             "qid":"2",
+            "completed":true,
             "type":"checkbox",
             "categories": "multiple Chocice",
             "file": {"id": "01", "src": null},
@@ -393,6 +407,7 @@ const Listening = {
 
         {
             "qid":"3",
+            "completed":true,
             "type":"checkbox",
             "categories": "multiple Chocice",
             "file": {"id": "01", "src": "https://www.123listening.com/freeaudio/bodyparts1-2.mp3"},

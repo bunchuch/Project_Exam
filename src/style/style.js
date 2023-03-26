@@ -1,8 +1,48 @@
+const examStatusStyle ={
+    "arrowTextstyle" : "font-ubuntu font-medium items-center space-x-2 flex flex-row uppercase",
+    "arrowstyle" : "cursor-pointer  text-purple-800  px-2 space-x-2 items-center rounded flex justify-between active:bg-purple-100",
+    "mainStyle" : "py-4 md:px-2 px-4 overflow-auto",
+    "mainwhenfasle" : "w-full hidden",
+    "listyle" : {
+        "liststyle" : "md:py-2 py-1.5 px-2 md:px-3.5 rounded-md border-1 border-purple-400",
+        "ulstyle" : "inline-flex space-x-2 md:space-x-4",
+        "active-unchecked" : "border-2 border-purple-500 bg-purple-100 text-purple-800 font-semibold",
+        "active-checked"  : "border-2 border-green-600 bg-green-300 text-slate-800 ",
+        "normalstyle-checkd" : "bg-green-300 border-green-400 font-semibold text-green-900 border hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700   dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
+        "normalstyle-uncheckd" : "bg-purple-100 text-purple-900 border-purple-400 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700  dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
+    }
+}
+
+
+
+const buttonstyle = {
+    "nextBtn" : "rounded relative inline-flex group items-center justify-center px-4 w-32 py-2 m-1 cursor-pointer bg-purple-800 text-white active:bg-purple-600 active:shadow-none",
+    "prevBtn" : "rounded relative inline-flex group items-center   justify-center px-4 w-32 py-2 m-1 cursor-pointer bg-purple-100 text-purple-800 active:bg-purple-50 active:shadow-none",
+    "grenBtn" : "rounded relative inline-flex group items-center   justify-center px-4 w-32 py-2 m-1 cursor-pointer bg-purple-100 text-purple-800 active:bg-purple-50 active:shadow-none",
+}
+
+
+const examstyle = {
+    "quiz" : {
+        "main" : "mx-auto max-w-6xl 2xl:py-5 md:px-0 md:py-3 px-4 flex items-center justify-between dark:border-gray-700",
+        "quizboxdiv" : "max-w-6xl md:mt-7 mx-auto",
+        "quizboxgrid" : "grid w-full gap-2 p-2 xl:p-0 md:grid-cols-3 grid-cols-2 ",
+    },
+    "task" : {
+        "main" : "max-w-6xl mx-auto md:p-0 p-5 max-md:relative",
+        "taskbox" : "bg-white mt-3 -z-10 shadow-sm md:py-6 shadow-gray-500/10 border-[1px] border-gray-200 rounded tracking-wide lg:mt-3 md:px-6 px-2 py-4 space-y-2 w-full h-[50%]",
+        "questiondiv" : "flex space-x-2 mt-5 mx-5",
+        "questionText" : "text-md trackgin-wide font-medium md:text-[18px]",
+        "btnstylediv"  : "flex flex-row space-x-2 md:items-center justify-between md:justify-end py-2 mt-[10px]",
+        "spanbtn" : "relative flex items-center space-x-2",
+
+    }
+}
 
 const styleGroupInput = {
     "main": "flex items-center py-2 rounded-[5px] xl:text-[15px] md:mb-1 sm:text-md ",
     "input-style": " text-purple-800 w-5 h-5 bg-purple-900 accent-purple-800 dark:bg-purple-700 dark:border-gray-600",
-    "label-style": " ml-2 md:font-medium md:text-[14px] text-[14px] text-gray-900 dark:text-gray-300",
+    "label-style": " ml-2  md:text-[16px] text-[14px] text-gray-900 indent-4 dark:text-gray-300 hover:text-gray-500",
  }
 
 const styleNavbar = {
@@ -31,7 +71,7 @@ const styleLoader = {
 
 
 const styleInstruction = {
-    "main" : "flex  text-purple-900 py-2 md:bg-gray-50 space-x-1 items-center md:py-2  rounded-[4px]",
+    "main" : "flex  text-purple-900 py-2 space-x-1 items-center md:py-2  rounded-[4px]",
     "article": "md:flex space-x-0 items-center md:space-x-2 tracking-wide",
     "header": "font-semibold leading-none text-sm ",
     "paragrah": "text-[12px] hidden md:block md:text-sm text-gray-800"
@@ -96,6 +136,9 @@ module.exports = {styleWriting, styleError404 ,
     styleInstruction,styleLoader,
     styleRenderQuestion,
     styleExamStatus,
+    buttonstyle,
+    examstyle,
+    examStatusStyle,
 
 
 }

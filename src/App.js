@@ -6,7 +6,6 @@ import LoginForm from "./page/login/loginForm"
 import Profile from "./page//Profile/profile"
 import {BrowserRouter, Routes, Route,useLocation} from 'react-router-dom'
 import FileTest from "./exam/exam"
-import Registration from './page/regisignsterForm/Registration';
 import Loader from './components/Loader';
 import ErrorPage from './components/ErrorPage';
 import Contact from './page/contact/Contact'
@@ -36,8 +35,6 @@ const location = useLocation()
    element={<LoginForm  />}/> 
 
  <Route path='/profile' element={<Profile/>} ></Route>
-    <Route path='/author/registration' element={<Registration>
-    </Registration>}></Route>
     <Route path='/exam'  errorElement={<ErrorPage/>}
      element={
     <React.Suspense fallback={<Loader/>}>

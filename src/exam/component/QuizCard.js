@@ -6,7 +6,7 @@ import { ProgressBar } from "./progressBar"
 
 
 export function QuizCard ({title,desc,event,number,link,progressPercentage}){
-
+  const titles = title.toUpperCase()
   const renderColor = (name)=>{
     if (name === 'READING')   { return `bg-purple-400`}
     if(name=== 'WRITING')   { return `bg-red-400 `}
@@ -15,12 +15,6 @@ export function QuizCard ({title,desc,event,number,link,progressPercentage}){
     if(name=== 'LISTENING')  { return `bg-blue-400`}
 
   }
-
-
-
-const titles = title.toUpperCase()
-console.log(titles)
-
     return <div class="w-full mx-auto overflow-hidden bg-white rounded shadow-lg dark:bg-gray-800">
     <div class="md:px-6 px-4 py-4">
         <h1 class="text-xl font-semibold font-ubuntu text-gray-800 dark:text-white">{title}</h1>
@@ -45,9 +39,9 @@ console.log(titles)
           <Link to={`/exam/${link}`}>
         <a  onClick={event}
           href="#_" className="px-4 text-purple-800 hover:underline
-           bg-purple-50 border-purple-500 shadow-md shadow-gray-100 
+           bg-purple-50 border-purple-500
            rounded before:text-blue-400
-           after:text-blue-400 active:undeline active:after:text-red-400 py-1.5 
+           after:text-blue-400 active:undeline  active:after:text-red-400 py-1.5 
            text-center  font-medium  hover:bg-blue-100
             hover:text-blue-600 font-roboto uppercase
            text-sm">

@@ -17,8 +17,8 @@ const styleFillBlank = {
 
 export default function FillBlanks(props) {
   
-    const [change, setChange] = useState(null);
- console.log(props)
+    const [change, setChange] = useState(null)
+    
     const regExp = "<"
     const reactaStringReplace = reactStringReplace(props.sentence, regExp, (macth, i) =>
     (

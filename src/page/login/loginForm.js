@@ -57,47 +57,50 @@ const navigator = useNavigate()
         }
     }, [formErrors])
 
-    return <section className="Section_login_oneStyle_1">
-        <div className="loginform_Styletwo_2">
-            <div className="loginform_stylethree_3 ">{ 
-                help ? <div className="loginform_main_style_box_6 text-center bg-gray-50 px-0 xl:py-0">
-                      <h1 className="loginform_header_style_box_7">
+    return <section className="dark:bg-gray-900 bg-gray-50 relative inset-0">
+        <div className="flex flex-col items-center justify-center mx-auto h-screen md:h-screen lg:py-0">
+            <div className="w-full md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700 relative">{ 
+                help ? <div className="p-6 space-y-1 md:space-y-3  my-5 md:mx-10 text-gray-700  md:p-8 rounded text-center bg-gray-50 px-0 xl:py-0">
+                      <h1 className=" text-xl font-medium leading-tight mb-2 tracking-tight md:text-2xl dark:text-white ">
                         🤗
                       </h1>
-                    <h1 className="loginform_header_style_box_7">Welcome</h1>
-               <p className="loginform_paragraph_style_box_8  font-normal">Contact your curator to recover your password </p> 
+                    <h1 className=" text-xl font-medium leading-tight mb-2 tracking-tight md:text-2xl dark:text-white ">Welcome</h1>
+               <p className=" font-normal">Contact your curator to recover your password </p> 
                <p className="paraStyle text-center">
-                            <a onClick={()=> setHelp(false)} href="" className="atagstyle">I remember the password back</a>
+                            <a onClick={()=> setHelp(false)} href="" className="font-thin-[150px] hover:text-purple-900 text-purple-800">I remember the password back</a>
                         </p>
-                </div> :   <div className="loginform_main_style_box_6 ">
+                </div> :   <div className="p-6 space-y-1 md:space-y-3  my-5 md:mx-10 text-gray-700  md:bg-white md:p-8 rounded ">
                 
                 {
                     user.username ? (
                         <>
-                            <h1 className="loginform_header_style_box_7">
+                            <h1 className="text-xl font-medium leading-tight mb-2 tracking-tight md:text-2xl dark:text-white ">
                                 {
                                     `${Type ? "Greeting" : "Hello"} ! ${user.username}`}</h1>
                             <p className="loginform_paragraph_style_box_8">{Type ? "How are doing?👋🏻" :"Nice to meet you 😎"}</p>
                         </>
                     ) : (
                         <>
-                            <h1 className="loginform_header_style_box_7">
+                            <h1 className="text-xl font-medium leading-tight mb-2 tracking-tight md:text-2xl dark:text-white ">
                                 Log In   </h1>
                             <p className="loginform_paragraph_style_box_8">Enter your Personal Account</p>
                         </>
                     )
                 }
                 <div className="">
-                    <form onSubmit={handleOnsubmit} className="loginform_form_style_box_9" action="#">
+                    <form onSubmit={handleOnsubmit} className="space-y-4 md:space-y-6 my-6 " action="#">
                         {/* username input area */}
                         <div>
                             <label htmlFor="Username"
-                                className="loginform_lable_style_box_10">
+                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                 Username</label>
                             < input type="text" onChange={handleChange}
                                 value={user.username || ""}
                                 name="username" id="username"
-                                className="loginform_input_style_box_12"
+                                className="ext-gray-900 rounded-[4px]  border-gray-200 border-[1px] 
+        text-sm block w-full py-2 text-[14px] font-normal md:py-3  px-2 dark:bg-gray-700
+         dark:border-gray-600 dark:placeholder-gray-400
+          dark:text-white  tracking-wider"
                                 required="" />
                                 {formErrors.username && 
                                 <p className="text-red-500 text-[12px] py-2 font-medium line-none">
@@ -107,30 +110,36 @@ const navigator = useNavigate()
                         {/* passowrd input area */}
                         <div>
                             <label htmlFor="Username"
-                                className="loginform_lable_style_box_10">
+                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                 Password</label>
                             <input type="password"
                                 onChange={handleChange}
                                 name="password"
                                 value={user.password || ""}
-                                className="loginform_input_style_box_12"
+                                className="ext-gray-900 rounded-[4px]  border-gray-200 border-[1px] 
+        text-sm block w-full py-2 text-[14px] font-normal md:py-3  px-2 dark:bg-gray-700
+         dark:border-gray-600 dark:placeholder-gray-400
+          dark:text-white  tracking-wider"
                                 required="" />
                             {
                               formErrors.password && <p className="text-red-500 text-[12px] py-2 font-medium line-none">
                                 {formErrors.password}</p>
                             }
                         </div>
-                        <p className="loginform_error_paragraph_style_box_11 font-medium text-[12px] text-blue-900">
+                        <p className=" font-medium text-[12px] text-blue-900">
                             <a href="#" onClick={()=> setType(!Type)} className="atagstyle">{
                             Type
                              ? "I am a student" 
                              : "I am a teacher"}
                             </a>
                         </p>
-                        <button type="submit" className="loginform_button_style_box_13">Log in</button>
+                        <button type="submit" className="w-full bg-purple-800 rounded
+         text-white  focus:ring-4 focus:outline-none 
+         font-medium text-sm px-5 py-3 text-center ">Log in</button>
 
                         <p className="paraStyle text-center">
-                            <a onClick={()=> setHelp(true)} href="#" className="atagstyle"> Get Help with Signing In</a>
+                            <a onClick={()=> setHelp(true)} href="#" 
+                            className="font-thin-[150px] hover:text-purple-900 text-[14px] text-purple-700"> Get Help with Signing In</a>
                         </p>
                     </form>
                 </div>

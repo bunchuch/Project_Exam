@@ -67,7 +67,7 @@ console.log(err)
  <button onClick={()=>{
   setState(true)
  }}>
-<div className="max-w-sm p-2 text-[14px] bg-purple-100 border border-purple-200 rounded-lg
+<div className="max-w-sm p-2 text-[14px] bg-purple-100 border border-purple-200 rounded
  hover:bg-purple-50 font-semibold text-purple-800 dark:bg-gray-800 dark:border-gray-700">
   <div className="flex justify-center items-center gap-2">
     <Icon name={<BiImage/>} Size="1.2rem" color="purple"></Icon>
@@ -78,7 +78,7 @@ console.log(err)
 <button onClick={()=>{
   setState(false)
 }}>
-<div className="max-w-sm p-2 text-[14px] bg-purple-100 border border-purple-200 rounded-lg
+<div className="max-w-sm p-2 text-[14px] bg-purple-100 border border-purple-200 rounded
  hover:bg-purple-50 font-semibold text-purple-800 dark:bg-gray-800 dark:border-gray-700">
   <div className="flex justify-center items-center gap-2">
     <Icon name={<BiPen/>} Size="1.2rem" color="purple"></Icon>

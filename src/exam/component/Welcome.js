@@ -60,7 +60,7 @@ export default function Welcome (){
         </span>
         <hr className="my-5 hidden border-gray-400 dark:border-gray-700" />
     <div className="flex flex-col md:flex-row md:items-center w-full  justify-between mt-4 gap-x-4 shrink-0">
-        <button className="text-[14px] transition-colors font-medium text-blue-800 duration-300
+        <button className="text-[14px] transition-colors text-blue-800 duration-300
          dark:text-white dark:hover:text-gray-400 hover:text-gray-600 focus:outline-none">
          <GroupInput event={()=> setAbleBtn(!ableBtn)} type="checkbox"
           Text="I comfirm that 
