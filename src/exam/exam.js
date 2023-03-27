@@ -26,16 +26,17 @@ export default function TestFile (){
 const {categories} = useParams()
 const [showQuestion,setShowQuestion] = useState(false)
 const [currentQuestion, setCurrentQuestion] = useState(0);
-const getAllQuestion = useSelector((state)=> state.question.item)
+const questions = useSelector((state)=> state.question.item)
 const dispatch = useDispatch()
 const loadding = useSelector((state)=> state.question.loadding)
 const [showScore, setShowScore] = useState(false);
 const [score, setScore] = useState(false);
 const [previous, setPrevious] = useState(false);
 const [ramdonAnswer,setRadomAnswer] = useState(0)
+const [getType ,setType] = useState(null)
+const [questionType ,setQuestionType] = useState(null)
 
 
-const questions = getAllQuestion.question
 
 const handleAnswerOptionClick = (isCorrect) => {
   const nextQuestion = currentQuestion + 1;
@@ -100,28 +101,30 @@ console.log(q.clude.find( x => x.id === i.id ).selected = true)
       {
    showQuestion ? (<>
    <div className={examstyle.task.main}>
-    <Header categorie={categories}  item={questions[currentQuestion].file}/>
+   <Instruction headers={questionType}></Instruction>
+    <Header categorie={questionType}  item={questions[currentQuestion].file}/>
+   
     <div className={examstyle.task.taskbox}>
       {
         showScore ? (<ShowScore event={()=> {setShowQuestion(false)}}/>):(
           <>
-           { categories === "writing" && (<>
+           { categories === "Writing" && (<>
         <Writing/>
         </>) } 
-        {categories !== "writing" && (<>
+        {categories !== "Writing" && (<>
           <div className="flex space-x-2 mt-5 mx-5" >
              <h1 className ="text-md trackgin-wide 
              font-medium md:text-[18px]">{currentQuestion + 1}.</h1>
                <div className="text-gray-800
-              font-medium md:text-[18px] ">{getAllQuestion.type === "MQC" 
+              font-medium md:text-[18px] ">{getType === "MQC" 
               ? questions[currentQuestion].question : null}</div>
               </div>
              {
-              getAllQuestion.type == "Blank" && (<FillBlanks
+              getType === "Blank" && (<FillBlanks
                sentence={questions[currentQuestion].question}/>)
              }
              {
-              getAllQuestion.type === "MQC" && (<>
+              getType === "MQC" && (<>
                <div className="space-y-4">
               <Mqc qustion={questions[currentQuestion].clude}/>
                 </div>
@@ -133,10 +136,8 @@ console.log(q.clude.find( x => x.id === i.id ).selected = true)
         )
         
       }
-       
-                 
     </div>{
-    categories !== "writing" ? (
+    categories !== "Writing" ? (
    <div className={examstyle.task.btnstylediv}>
              {   previous ? (  <a onClick={()=>{ handleAnswerOptionClickPrev()}}
               className={buttonstyle.prevBtn}>
@@ -160,25 +161,26 @@ console.log(q.clude.find( x => x.id === i.id ).selected = true)
    <div className={examstyle.quiz.quizboxdiv}>
      <div id="main" className={examstyle.quiz.quizboxgrid}>
 
-{/* {
+{
 quiz.map((value)=><QuizCard
 progressPercentage={value.progress}
 number={value.question.length}
 link={value.name}
 title={value.name}
 desc={value.type}
-event={()=> {setShowQuestion(true)
-              dispatch(questionAction.getQuestions(value.qu))
+event={()=> {
+  setShowQuestion(true)
+  setQuestionType(value.name)
+  setType(value.type)
+  dispatch(questionAction.getQuestions(value.question))           
 }}
 
 >
-
-
 </QuizCard>)
-} */}
+}
 
 
-<QuizCard link="listening" progressPercentage={50}
+{/* <QuizCard link="listening" progressPercentage={50}
       desc="MQC"
 event={()=>{
   setShowQuestion(true)
@@ -211,7 +213,7 @@ progressPercentage={100}
 event={()=>{
   setShowQuestion(true)
   dispatch(questionAction.getQuestions(writings))}} 
-link={"writing"}   desc="MQC" title="Writing"></QuizCard>
+link={"writing"}   desc="MQC" title="Writing"></QuizCard> */}
 </div>
     
     </div>

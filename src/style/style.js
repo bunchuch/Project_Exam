@@ -1,18 +1,17 @@
 const examStatusStyle ={
     "arrowTextstyle" : "font-ubuntu font-medium items-center space-x-2 flex flex-row uppercase",
-    "arrowstyle" : "cursor-pointer  text-purple-800  px-2 space-x-2 items-center rounded flex justify-between active:bg-purple-100",
+    "arrowstyle" : "cursor-pointer  text-purple-800  space-x-2 items-center rounded flex justify-between active:bg-purple-100",
     "mainStyle" : "py-4 md:px-2 px-4 overflow-auto",
     "mainwhenfasle" : "w-full hidden",
     "listyle" : {
         "liststyle" : "md:py-2 py-1.5 px-2 md:px-3.5 rounded-md border-1 border-purple-400",
         "ulstyle" : "inline-flex space-x-2 md:space-x-4",
-        "active-unchecked" : "border-2 border-purple-500 bg-purple-100 text-purple-800 font-semibold",
+        "active-unchecked" : "border-2 border-purple-500 bg-purple-200 text-purple-800 font-semibold",
         "active-checked"  : "border-2 border-green-600 bg-green-300 text-slate-800 ",
-        "normalstyle-checkd" : "bg-green-300 border-green-400 font-semibold text-green-900 border hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700   dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
-        "normalstyle-uncheckd" : "bg-purple-100 text-purple-900 border-purple-400 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700  dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
+        "normalstyle-checkd" : "bg-green-300 border-green-400 font-semibold text-green-900 border hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
+        "normalstyle-uncheckd" : "bg-purple-200 text-purple-900 border-purple-400 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700  dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
     }
 }
-
 
 
 const buttonstyle = {
@@ -74,7 +73,7 @@ const styleInstruction = {
     "main" : "flex  text-purple-900 py-2 space-x-1 items-center md:py-2  rounded-[4px]",
     "article": "md:flex space-x-0 items-center md:space-x-2 tracking-wide",
     "header": "font-semibold leading-none text-sm ",
-    "paragrah": "text-[12px] hidden md:block md:text-sm text-gray-800"
+    "paragrah": "text-[12px]  md:text-sm text-gray-800"
   }
   
 

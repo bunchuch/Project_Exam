@@ -5,17 +5,18 @@ import  {VocabularyCard}  from "../../components/VocabularyCard";
 import { ReadingCard } from "../../components/ReadingCard";
 
 
-const renderQuestionHeader = (questionType,item) =>{
+const renderQuestionHeader = (result,item) =>{
   const items = {...item}
   const {src ,id,type,header} = items
+
  
-  if(questionType === "listening"){
+  if(result === "LISTENING"){
     return <Audio audio={src}></Audio>
   }
-  if(questionType === 'reading'){
+  if(result === 'READING'){
     return <ReadingCard  header={header} type={type} sentence={src}/>
   }
-  if(questionType === "writing"){
+  if(result === "WRITING"){
     return <h1 className="px-5 py-2">
       <p className="text-md font-semibold py-2">
         📑
@@ -24,7 +25,7 @@ const renderQuestionHeader = (questionType,item) =>{
       className="mx-3 text-[14px] text-slate-800"
       key={key}> {key+1} - {i}  </p>)}</h1>
   }
-if (questionType === "vocabulary"){
+if (result === "VOCABULARY"){
   return <VocabularyCard clude={src}></VocabularyCard>
 }
   return true
@@ -34,14 +35,14 @@ if (questionType === "vocabulary"){
 
 export default function Header ({item, categorie}) {
   const {src} = item
- 
+ const questionType = categorie.toUpperCase()
         return (
           <>
           {
             src ? <div className= {renderQuestionHeader() ?
                "bg-white -z-10 shadow-sm shadow-gray-500/10 border-[1px] "
             +" border-gray-200 rounded tracking-wide 2xl:mt-3 md:px-2 md:py-2 space-y-2 ": " " }>
-             {renderQuestionHeader(categorie,item)}
+             {renderQuestionHeader(questionType,item)}
             </div> : <></>
           }
           </>

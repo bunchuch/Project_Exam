@@ -4,9 +4,11 @@ const quiz = [
         "id" : "01",
         "progress" : 0,
         "task" : false,
-        "type" : "MQC",
+        "type" : "writing",
         "name" : "Writing",
-        "question":  [ { "id" : "01",
+        "question":  [ { 
+            "qid" : "01",
+            "completed":true,
                "file": {"id": "01", "type":null,
                 "src":["Describe three advanges of living abroad","Describe three advantages of traveling aboard"]},
             "number-word" : "100",
@@ -27,7 +29,8 @@ const quiz = [
         "name" : "Reading",
         "question" : [
             {
-                "id":"01",
+                "qid":"01",
+                "completed":true,
                 "type":"checkbox",
                 "categorie" : "image",
                 "file": {"id": "01","header" : "Why do introvert adn extroverts react so differently?" , 
@@ -44,8 +47,9 @@ const quiz = [
             },
     
             {
-                "id":"02",
+                "qid":"02",
                 "type":"checkbox",
+                "completed":true,
                 "file": {"id": "01","header" : "What is A book ?" ,
                 "type" : "image", 
                  "src":"https://www.ieltsjacky.com/images/MatchingInformationCarsText.jpg"},
@@ -60,8 +64,9 @@ const quiz = [
             
             },
             {
-                "id":"03",
+                "qid":"03",
                 "type":"checkbox",
+                "completed":true,
                 "file": {"id": "01","header" : "What is A book ?" ,  "type" : "image",  "src":"https://www.ieltsjacky.com/images/MatchingInformationCarsText.jpg"},
                 "categories": "multiple Chocice",
                 "question":["what is the capital of Uruguay is_____?"],
@@ -88,6 +93,7 @@ const quiz = [
         "question" : [
             {
                 "id" : "01",
+                "completed":false,
                 "file": {"id": "01", "src":null},
                 "type" : "checkbox",
                 "question" : ["If you_____ to my advice in firt place, you______in a mess right now"],
@@ -99,7 +105,8 @@ const quiz = [
                 ]
             },
             {
-                "id" : "02",
+                "qid" : "02",
+                "completed":false,
                 "type" : "checkbox",
                 "file": {"id": "01", "src":null},
                 "question" : ["If i _______ French in high school, I______ more job opportunities now."],
@@ -111,7 +118,8 @@ const quiz = [
                 ]
             },
             {
-                "id" : "03",
+                "qid" : "03",
+                "completed":false,
                 "type" : "checkbox",
                 "file": {"id": "01", "src":null},
                 "question" : ["If she______ in the United State. she_____a visa to work here."],
@@ -135,7 +143,8 @@ const quiz = [
         "name" : "Vocabulary",
         "question" : [
             {
-                "id":"01",
+                "qid":"01",
+                "completed":false,
                 "file": {"id": "01", "src":["confused","stay out trouble","respeed","unfair","acceptable","undifferent","keep  in touch"],},
                 "categories":"Fill in blank",
                 "type" : "input",
@@ -144,7 +153,8 @@ const quiz = [
                
             },
             {
-                "id":"02",
+                "qid":"02",
+                "completed":false,
                 "file": {"id": "01", "src":null},
                 "categories":"Fill in blank",
                 "type" : "input",
@@ -153,7 +163,8 @@ const quiz = [
                
             },
             {
-                "id":"05",
+                "qid":"05",
+                "completed":false,
                 "file": {"id": "01", "src":null},
                 "categories":"Fill in blank",
                 "type" : "input",
@@ -162,7 +173,68 @@ const quiz = [
                
             },
             {
-                "id":"04",
+                "qid":"04",
+                "completed":true,
+                "file": {"id": "01", "src":null},
+                "categories":"Fill in blank",
+                "type" : "input",
+                "question" :["James is moving to a new neighorhood, but her friends hope she will <"],
+                "clude" : []
+               
+            },
+            {
+                "qid":"05",
+                "completed":true,
+                "file": {"id": "01", "src":null},
+                "categories":"Fill in blank",
+                "type" : "input",
+                "question" :["James is moving to a new neighorhood, but her friends hope she will <"],
+                "clude" : []
+               
+            },
+            {
+                "qid":"06",
+                "completed":true,
+                "file": {"id": "01", "src":null},
+                "categories":"Fill in blank",
+                "type" : "input",
+                "question" :["James is moving to a new neighorhood, but her friends hope she will <"],
+                "clude" : []
+               
+            },
+            {
+                "qid":"07",
+                "completed":true,
+                "file": {"id": "01", "src":null},
+                "categories":"Fill in blank",
+                "type" : "input",
+                "question" :["James is moving to a new neighorhood, but her friends hope she will <"],
+                "clude" : []
+               
+            },
+            {
+                "qid":"08",
+                "completed":true,
+                "file": {"id": "01", "src":null},
+                "categories":"Fill in blank",
+                "type" : "input",
+                "question" :["James is moving to a new neighorhood, but her friends hope she will <"],
+                "clude" : []
+               
+            },
+            {
+                "qid":"09",
+                "completed":true,
+                "file": {"id": "01", "src":null},
+                "categories":"Fill in blank",
+                "type" : "input",
+                "question" :["James is moving to a new neighorhood, but her friends hope she will <"],
+                "clude" : []
+               
+            },
+            {
+                "qid":"10",
+                "completed":true,
                 "file": {"id": "01", "src":null},
                 "categories":"Fill in blank",
                 "type" : "input",
@@ -184,6 +256,7 @@ const quiz = [
         "question" : [
             {
                 "qid":"1",
+                "completed":true,
                 "type":"checkbox",
                 "file": {"id": "01", "src":" https://www.123listening.com/freeaudio/adjectives1-1.mp3"},
                 "categories": "multiple Chocice",
@@ -199,6 +272,7 @@ const quiz = [
             {
         
                 "qid":"2",
+                "completed":true,
                 "type":"checkbox",
                 "categories": "multiple Chocice",
                 "file": {"id": "01", "src": null},
@@ -216,6 +290,7 @@ const quiz = [
             {
                 "qid":"3",
                 "type":"checkbox",
+                "completed":true,
                 "categories": "multiple Chocice",
                 "file": {"id": "01", "src": "https://www.123listening.com/freeaudio/bodyparts1-2.mp3"},
                 "question":["Karl is upset because______?"],

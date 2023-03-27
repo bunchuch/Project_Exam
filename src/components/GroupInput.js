@@ -10,7 +10,7 @@ export default function GroupInput ({id,Text, type ,event,name,value,checked }) 
     return <div className={styleGroupInput.main}>
       {
          type ? "checkbox" && (
-            <label className="flex space-x-2">
+            <label className="flex space-x-2 cursor-pointer">
             <input checked={checked} id={id}  type={type}  value={value} onChange={event} 
           className={styleGroupInput["input-style"]}/>
            <div className=""> <p className={styleGroupInput["label-style"]}>{Text}</p></div>

@@ -23,7 +23,7 @@ const handleOnclick = () =>{
         <div className="flex flex-col rounded"  id="accordion-collapse" data-accordion="collapse">
         <h2 className="md:order-first order-last" id="accordion-collapse-heading-1">
           <button type="button" onClick={handleOnclick} className="flex items-center justify-between w-full
-           bg-white md:p-4 p-2 font-medium text-left  border
+           bg-white md:p-4 p-2 font-medium text-left  
              rounded text-[14px] md:text-[16px]   focus:ring-4  focus:ring-gray-200 dark:focus:ring-gray-800
             dark:border-gray-700 dark:text-white hover:bg-gray-50 text-slate-900 dark:hover:bg-gray-800">
             <span>{header}</span>
