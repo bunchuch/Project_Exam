@@ -1,18 +1,16 @@
-import {createApi, fetchBaseQuery} from '@reudxjs/toolkit/query/react'
+import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react"
 
 export const examApi = createApi({
-    reducerPath : 'productsApi',
-    baseQuery : fetchBaseQuery({baseUrl: ""}),
-    endpoints: (builder) =>({
-        getAllExam:builder.query({
-            query:()=> "exam",
-        }),
-        getExam : builder.query({
-            query:(exam)=> `exam/show/${exam}`,
-        })
-    })
-    
+  reducerPath : 'examApi',
+  baseQuery : fetchBaseQuery({baseUrl : "https://jsonplaceholder.typicode.com/todos"}),
+  endpoints : (builder)=>({
+  getAllExam : builder.query({
+    query : ()=> 'exam',
+  })
+
+  })
 })
 
 
-export const {useGetAllExamQuery,useGetExamQuery} = examApi
+
+export const {useGetAllExamQuery} = examApi

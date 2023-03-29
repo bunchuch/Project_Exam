@@ -62,28 +62,12 @@ console.log(err)
 
 
     return   <div className={styleWriting.main}>     
-     <div className="flex border-dashed border-[1px] border-purple-400 p-4 mb-4 text-sm text-blue-800 rounded-lg bg-purple-50 shadow-sm
-      shadow-cyan-500/10 dark:bg-gray-800 dark:text-blue-400" role="alert">
-  <div className="flex-shrink-0 inline w-5 h-5 mr-3" >
-    <Icon name={<BiMessageSquareDetail/>} Size="1.2rem" color="purple"></Icon>
-  </div>
-  <span class="sr-only">Info</span>
-  <div>
-    <span class="font-medium">Find The Topic Below</span>
-      <ul class="mt-1.5 ml-4 list-disc list-inside">
-      {
-        data.map((items,key)=><li key={items.id}>{items.choice}</li>)
-     }
-    </ul>
-  </div>
-</div>
  <Alert info="warning" desc={alert}/>
-
- <div className="grid grid-cols-2 gap-4">
+ <div className="w-full  flex mx-auto space-x-4">
  <button onClick={()=>{
   setState(true)
  }}>
-<div className="max-w-sm p-2 text-[14px] bg-purple-100 border border-purple-200 rounded-lg
+<div className="max-w-sm p-2 text-[14px] bg-purple-100 border border-purple-200 rounded
  hover:bg-purple-50 font-semibold text-purple-800 dark:bg-gray-800 dark:border-gray-700">
   <div className="flex justify-center items-center gap-2">
     <Icon name={<BiImage/>} Size="1.2rem" color="purple"></Icon>
@@ -94,7 +78,7 @@ console.log(err)
 <button onClick={()=>{
   setState(false)
 }}>
-<div className="max-w-sm p-2 text-[14px] bg-purple-100 border border-purple-200 rounded-lg
+<div className="max-w-sm p-2 text-[14px] bg-purple-100 border border-purple-200 rounded
  hover:bg-purple-50 font-semibold text-purple-800 dark:bg-gray-800 dark:border-gray-700">
   <div className="flex justify-center items-center gap-2">
     <Icon name={<BiPen/>} Size="1.2rem" color="purple"></Icon>
@@ -115,21 +99,19 @@ console.log(err)
             </div>
        ):(    
  <div className={styleWriting["divtag3 "]}>
+  <p className="text-end text-gray-400">0/500</p>
       <textarea  maxLength={1000} spellCheck="false" id="comment" rows="10" 
       className={styleWriting.textarea} onCopy={(e)=>preventCopyPast(e)} 
       onPaste={(e)=> preventCopyPast(e)}
        placeholder="Write here..." required>
             </textarea>
             <Tooltip tooltip="Are you sure ?">
-            <button onClick={()=>alert("uploading")} className="bg-purple-900 px-4
-                py-2 rounded-lg text-[14px] 
+            <button onClick={()=>alert("uploading")} className="bg-purple-800 px-4
+                py-2 rounded text-[14px] 
                font-medium text-white hover:bg-gradient-to-r
-                hover:from-purple-700 hover:to-purple-800 transition-all ease-out 
+                hover:from-purple-700 hover:to-purple-700 transition-all ease-out 
                 duration-300">Submit</button>
-            </Tooltip>
-          
-                          
-                   
+            </Tooltip>          
   </div> 
     )
   }

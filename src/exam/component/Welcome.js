@@ -30,8 +30,9 @@ const questionCard = useSelector((state)=> state.question.questionCard)
 
 
 
-    return  <section className="inset-0 max-w-2xl mx-6 p-4 md:mx-auto bg-white border border-gray-200 dark:bg-gray-800 
-    relative top-10  dark:border-gray-700 rounded">
+
+    return  <section className=" max-w-2xl mx-6 p-4 md:mx-auto bg-white border border-gray-200 dark:bg-gray-800 
+     absolute md:fixed top-[10%] md:top-1/2  md:left-1/2 md:-translate-y-1/2 md:-translate-x-1/2 dark:border-gray-700 rounded">
        <div className="flex py-2 items-center ">
        <Icon name={<BiFile/>} Size="1.5rem" color="purple"/>
        <h2 className="font-semibold text-[16px] mx-2 text-gray-800 md:text-[24px] dark:text-white font-ubuntu">Welcom to examination</h2>
@@ -60,7 +61,7 @@ const questionCard = useSelector((state)=> state.question.questionCard)
         </span>
         <hr className="my-5 hidden border-gray-400 dark:border-gray-700" />
     <div className="flex flex-col md:flex-row md:items-center w-full  justify-between mt-4 gap-x-4 shrink-0">
-        <button className="text-[14px] transition-colors font-medium text-blue-800 duration-300
+        <button className="text-[14px] transition-colors text-blue-800 duration-300
          dark:text-white dark:hover:text-gray-400 hover:text-gray-600 focus:outline-none">
          <GroupInput event={()=> setAbleBtn(!ableBtn)} type="checkbox"
           Text="I comfirm that 
@@ -73,11 +74,8 @@ const questionCard = useSelector((state)=> state.question.questionCard)
                             console.log(questionCard)
     } }
      className="rounded relative inline-flex group items-center
-    justify-center px-4 w-32 py-2 m-1 cursor-pointer border-b-4 border-l-2
-     active:border-purple-600 active:shadow-none shadow-lg bg-gradient-to-tr
-      from-purple-600 to-purple-500 border-purple-700 text-white">
-<span class="absolute w-0 h-0 transition-all duration-300 ease-out bg-white rounded-full 
-group-hover:w-32 md:group-hover:h-32 opacity-10"></span>
+     justify-center px-4 w-32 py-2 m-1 cursor-pointer bg-purple-800 text-white
+      active:bg-purple-600 active:shadow-none">
            Let's Go!
        </button>
  ) : (

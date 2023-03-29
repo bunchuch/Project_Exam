@@ -35,7 +35,7 @@ const items = personalinfo.map((value)=>
     return <> 
     {
         personalinfo.map((items)=><section className="relative bg-gray-50 ">
-        <div className="w-full flex flex-col max-w-4xl  top-10 md:top-20 absolute left-0 
+        <div className="w-full flex flex-col max-w-4xl fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2
         right-0 mx-auto bg-white z-10  rounded-md md:border-[1px]  shadow-lg shadow-cyan-500/10">
        
             {/* image */}

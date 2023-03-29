@@ -3,7 +3,7 @@ import Archivement from "./RightbarComponet/archivement";
 import Description from "./RightbarComponet/description";
 import PersonalInfo from "./RightbarComponet/info";
 import Title from "./RightbarComponet/Title";
-import Button from "../../../components/Button";
+import Button from "../../../components/Button/Button";
 import { BiBookReader, BiCool,BiHealth,BiHive } from "react-icons/bi";
 
 function Rightsidebar({info,desc,arch}) {

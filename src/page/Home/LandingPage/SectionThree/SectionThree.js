@@ -12,7 +12,7 @@ const Card = ({header,img,desc}) => {
         return (
                 <div className="flex px-4  md:px-12 transition duration-500 ease-in-in  rounded-lg
           transform hover:-translate-y-3 shadow-sm shadow-cyan-500/10
-          hover:scale-200 py-8 bg-white cursor-pointer border hover:border-transparent group
+          hover:scale-200 py-8 bg-white cursor-pointer border  group
            dark:border-gray-700 dark:hover:border-transparent">
               <div className="space-y-3">
               <span className="inline-block p-2 text-blue-500 bg-blue-100 rounded-xl  dark:text-white dark:bg-blue-500">

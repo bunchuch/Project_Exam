@@ -1,5 +1,6 @@
 import { useState,useEffect } from 'react'
-
+import Icon from './Icon';
+import {FcClock} from "react-icons/fc"
 
 const Timer = (props) => {
     const {initialMinute = 0,initialSeconds = 0} = props;
@@ -28,9 +29,13 @@ const Timer = (props) => {
         <div className=''>
         { minutes === 0 && seconds === 0
             ? <></>
-            : <div className="py-2 px-2 md:px-6 m-1 flex items-center text-white border-b-4 border-l-2 bg-gradient-to-tr
-            from-yellow-300 to-yellow-400 border-yellow-500 rounded">
-                  <h1 className='font-medium md:font-none text-[16px]'> {minutes}:{seconds < 10 ?  `0${seconds}` : seconds}</h1> 
+            : <div className="py-2 px-2 md:px-2 m-1 space-x-2 flex z-10 items-center bg-purple-200
+             text-purple-800 border-yellow-500 rounded text-[12px] md:text-[16px]">
+                    <p className='font-semibold'>Time Left</p>
+                    <div className='h-5 w-5'>
+                    <Icon name={<FcClock></FcClock>}></Icon>
+                    </div>
+                  <h1 className='font-medium md:font-none '> {minutes}:{seconds < 10 ?  `0${seconds}` : seconds}</h1> 
              </div> 
         }
         </div>
