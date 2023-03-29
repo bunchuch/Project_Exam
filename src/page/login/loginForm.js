@@ -7,7 +7,8 @@ import { useDispatch } from "react-redux"
 import { questionAction } from "../../redux/questionSlice"
 import { authAction } from "../../redux/authSlice"
 import { useNavigate } from "react-router-dom"
-
+import Icon from "../../components/Icon"
+import {FcPortraitMode} from "react-icons/fc"
 
 const LoginForm = () => {
 
@@ -60,9 +61,9 @@ const navigator = useNavigate()
     return <section className="dark:bg-gray-900 bg-gray-50 relative inset-0">
         <div className="flex flex-col items-center justify-center mx-auto h-screen md:h-screen lg:py-0">
             <div className="w-full md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700 relative">{ 
-                help ? <div className="p-6 space-y-1 md:space-y-3  my-5 md:mx-10 text-gray-700  md:p-8 rounded text-center bg-gray-50 px-0 xl:py-0">
+                help ? <div className="p-6 space-y-1 md:space-y-3 flex flex-col items-center my-5 md:mx-10 text-gray-700  md:p-8 rounded text-center bg-gray-50 px-0 xl:py-0">
                       <h1 className=" text-xl font-medium leading-tight mb-2 tracking-tight md:text-2xl dark:text-white ">
-                        🤗
+                    <Icon Size="2rem" name={<FcPortraitMode/>}></Icon>
                       </h1>
                     <h1 className=" text-xl font-medium leading-tight mb-2 tracking-tight md:text-2xl dark:text-white ">Welcome</h1>
                <p className=" font-normal">Contact your curator to recover your password </p> 

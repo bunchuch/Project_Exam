@@ -35,7 +35,7 @@ const UploadImages = () => {
             return (
               <div key={image} className="p-2">
                 <img className="md:w-32 w-20
-                 h-20 object-cover rounded-md md:h-36" src={image} alt="upload" />
+                 h-20 object-cover rounded md:h-36" src={image} alt="upload" />
                 <button className="bg-red-500 
                 px-2 mt-1 py-1 text-[10px] md:text-[14px] rounded-sm 
                 md:rounded-lg shadow-sm text-white "
@@ -59,7 +59,7 @@ const UploadImages = () => {
           accept="image/png , image/jpeg, image/webp"
         />
         <span className="bg-purple-100 flex border-[1px] border-dashed border-purple-400 
-        px-2 py-1.5 rounded-lg text-purple-900
+        px-2 py-1.5 rounded text-purple-900
          text-[14px] font-medium">
               <Icon name={<BiCloudUpload/>} Size="1.2rem" color="purple"></Icon>
             <div className="flex flex-shrink-0">
@@ -80,7 +80,7 @@ const UploadImages = () => {
             <Tooltip right={true} tooltip="Are your Sure ?">
           <button
             className="bg-purple-900 
-            px-3 py-2 rounded-lg text-white text-[14px] font-medium" 
+            px-3 py-2 rounded text-white text-[14px] font-medium" 
             onClick={() => {
               console.log(selectedImages);
             }}

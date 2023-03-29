@@ -8,7 +8,7 @@ const quiz = [
         "name" : "Writing",
         "question":  [ { 
             "qid" : "01",
-            "completed":true,
+            "completed":false,
                "file": {"id": "01", "type":null,
                 "src":["Describe three advanges of living abroad","Describe three advantages of traveling aboard"]},
             "number-word" : "100",
@@ -58,7 +58,7 @@ const quiz = [
                 "clude":[
                     {"id":"01", "choice":"reading can help you feel less iritated","isCorrect" : false },
                     {"id":"02", "choice":"More people are enjoying a books and turing off the television","isCorrect" : true },
-                    {"id":"03", "choice":"Books can incrase your awareness and help you to be open-minded.","isCorrect" : true },
+                    {"id":"03", "choice":" 'IoAtCircleOutline' is defined but never used .","isCorrect" : true },
                     {"id":"04", "choice":"Choosing book is no more diffucult than slecting a film","isCorrect" : false }
                 ]
             
@@ -73,7 +73,7 @@ const quiz = [
                 "clude":[
                     {"id":"01", "choice":"reading can help you feel less iritated","isCorrect" : false },
                     {"id":"02", "choice":"More people are enjoying a books and turing off the television","isCorrect" : true },
-                    {"id":"03", "choice":"Books can incrase your awareness and help you to be open-minded.","isCorrect" : false },
+                    {"id":"03", "choice":"'Grammar' is defined but never used ","isCorrect" : false },
                     {"id":"04", "choice":"Choosing book is no more diffucult than slecting a film","isCorrect" : false }
                 ]
             

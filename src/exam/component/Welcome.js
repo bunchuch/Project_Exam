@@ -2,7 +2,7 @@ import React,{useState} from "react";
 import Icon from "../../components/Icon";
 import { BiFile } from "react-icons/bi";
 import GroupInput from "../../components/GroupInput";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { questionAction } from "../../redux/questionSlice";
 
 
@@ -26,6 +26,7 @@ const examRoule = [
 export default function Welcome (){
     const [ableBtn,setAbleBtn] = useState(false)
     const dispatch = useDispatch()
+const questionCard = useSelector((state)=> state.question.questionCard)
 
 
 
@@ -69,7 +70,9 @@ export default function Welcome (){
 
 {
  ableBtn ? (
-    <button onClick={()=> dispatch(questionAction.loaddingQuestion()) }
+    <button onClick={()=> {dispatch(questionAction.loaddingQuestion())
+                            console.log(questionCard)
+    } }
      className="rounded relative inline-flex group items-center
      justify-center px-4 w-32 py-2 m-1 cursor-pointer bg-purple-800 text-white
       active:bg-purple-600 active:shadow-none">

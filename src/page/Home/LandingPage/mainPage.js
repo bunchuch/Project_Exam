@@ -14,7 +14,7 @@ import Footer from "../../../components/Footer/Footer";
 
 function Mainpage (){
   
-    return <div className="">
+    return <div data-aos="fade-out" className="">
           <Heropage></Heropage>
         <div className="md:max-w-[80%] mx-auto md:px-0 px-6">
       

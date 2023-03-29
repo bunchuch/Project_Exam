@@ -15,11 +15,22 @@ const getQuetstionAsync = createAsyncThunk('exam/getQuestionAsync',
 
 )
 
+const ramdonQuestion = (arr)=>{
+  return arr[Math.floor(Math.random()* arr.length)]
+}
+
+const TaskInitailState = {
+  'id':null,
+  'title':null,
+  'type': null,
+  'QtyQuestion':null,
+}
+
 
 const questionSlice = createSlice({
   name: "questions",
   initialState :{
-    questionCard : [],
+    questionCard : [TaskInitailState],
     loadding : false,
     padding : false,
     item : [],
@@ -43,6 +54,9 @@ const questionSlice = createSlice({
     },
     getQuestions: (state, action)=>{
       return {...state, item:action.payload}
+    },
+    getRamdomQuestion :(state,action)=>{
+        return {...state,}
     },
     QuestionAdd:(state,action)=>{
       const newQuestion = {

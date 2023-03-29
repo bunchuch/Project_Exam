@@ -2,7 +2,7 @@ import Icon from "./Icon"
 import {BiLibrary,BiBarChartAlt ,BiUserVoice, BiBookOpen,BiFontColor, BiLoader} from "react-icons/bi";
 import {TbWriting} from "react-icons/tb"
 import { styleInstruction } from "../style/style"
-
+import {FcIdea} from "react-icons/fc"
 
 
 const descrition = {
@@ -33,13 +33,11 @@ export default function Instruction ({tagname,icon,desc, headers}){
      const header =  headers.toUpperCase()
 
 
-       return <div className={styleInstruction.main}>
-       
-    <h1 className="text-[18px]">💡</h1>
-       
+       return <div className={styleInstruction.main}> 
      <article className={styleInstruction.article}>
+     <h1 className="text-[18px]"><Icon Size="1.2rem" name={<FcIdea></FcIdea>}>
+      </Icon></h1> 
         <p className={styleInstruction.paragrah}>
-          
            { header === "LISTENING" && descrition.listening.desc}
           { header === "READING" && descrition.reading.desc}
           { header === "GRAMMER" && descrition.grammer.desc}

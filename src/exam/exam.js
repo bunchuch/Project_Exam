@@ -6,8 +6,6 @@ import Icon from "../components/Icon"
 import Timer from "../components/Timer"
 import { useDispatch, useSelector } from "react-redux"
 import { questionAction } from "../redux/questionSlice"
-import { Grammar, Listening, Readings, Vocabulary, writings } 
-from "../data/data"
 import ExamStatus from "./component/ExamStaute"
 import Welcome from "./component/Welcome"
 import Header from "./component/Header"
@@ -133,8 +131,7 @@ console.log(q.clude.find( x => x.id === i.id ).selected = true)
         </>)} 
 
           </>
-        )
-        
+        ) 
       }
     </div>{
     categories !== "Writing" ? (
@@ -178,42 +175,6 @@ event={()=> {
 >
 </QuizCard>)
 }
-
-
-{/* <QuizCard link="listening" progressPercentage={50}
-      desc="MQC"
-event={()=>{
-  setShowQuestion(true)
-  dispatch(questionAction.getQuestions(Listening))  
-}
-  } title="Listening" ></QuizCard>
-<QuizCard
-progressPercentage={40}
-event={()=>{
-  setShowQuestion(true)
-  dispatch(questionAction.getQuestions(Readings))
-}} link="reading"   desc="MQC" title="Reading"></QuizCard>
-<QuizCard 
-progressPercentage={10}
-event={()=>{
-  setShowQuestion(true)
-  dispatch(questionAction.getQuestions(Grammar))
-}}  link="grammer"  desc="MQC" title="Grammer"></QuizCard>
-
-<QuizCard
-progressPercentage={90}
-event={()=>{
-  setShowQuestion(true)
-  dispatch(questionAction.getQuestions(Vocabulary))}} 
-  link="vocabulary"
-  
-  desc="Blank" title="Vocabulary"></QuizCard>
-<QuizCard
-progressPercentage={100}
-event={()=>{
-  setShowQuestion(true)
-  dispatch(questionAction.getQuestions(writings))}} 
-link={"writing"}   desc="MQC" title="Writing"></QuizCard> */}
 </div>
     
     </div>

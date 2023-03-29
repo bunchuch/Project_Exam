@@ -18,11 +18,11 @@ const renderQuestionHeader = (result,item) =>{
   }
   if(result === "WRITING"){
     return <h1 className="px-5 py-2">
-      <p className="text-md font-semibold py-2">
+      <p className="text-md tracking-wide font-semibold py-2">
         📑
         choose topic below</p>
       {src.map((i,key)=> <p
-      className="mx-3 text-[14px] text-slate-800"
+      className="mx-3 tracking-wider text-[14px] text-slate-800"
       key={key}> {key+1} - {i}  </p>)}</h1>
   }
 if (result === "VOCABULARY"){

@@ -7,9 +7,9 @@ export const ProgressBar = ({ progressPercentage }) => {
             <div
                 style={{ width: `${progressPercentage}%`}}
                 className={` rounded-md h-full ${
-                    progressPercentage < 50 ? 'bg-red-600 ' : ' bg-purple-700'}`}>
+                    progressPercentage < 50 ? 'bg-red-600 ' : ' bg-purple-800'}`}>
             </div>
-            <p className="text-[14px] font-mono">{progressPercentage }%</p>
+            <p className="text-[10px] lg:text-[14px] py-2 font-mono">completed {progressPercentage }%</p>
         </div>
     );
 };
