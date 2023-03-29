@@ -45,8 +45,8 @@ const styleGroupInput = {
  }
 
 const styleNavbar = {
-    "navStyle-noneLoggin" : "bg-white shadow-lg text-slate-900 md:shadow-orange-100  border-b-[1px] md:border-none md:py-0 ",
-    "navStyle-login": "bg-slate-900 text-white md:shadow-orange-100  border-b-[1px] md:border-none md:py-0",
+    "navStyle-noneLoggin" : "bg-white border-gray-500 text-slate-900 md:py-0 ",
+    "navStyle-login": "bg-slate-900 text-white md:shadow-orange-100  md:border-none md:py-0",
     "container" : "flex justify-between items-center py-[10px]  mx-4 md:mx-[70px] md:py-[px] md:flex text-sm md:justify-between md:items-center   ",
     "container2": "flex items-center justify-between",
    "conatiner3" : " flex flex-row justify-between space-x-2", 
@@ -100,7 +100,7 @@ const styleWriting = {
 
 
 const styleError404 = {
-	"main" : "flex items-center justify-center flex  h-full p-16 dark:bg-gray-900 dark:text-gray-100",
+	"main" : "flex items-center justify-center flex bg-purple-100  max-h-screen p-16 dark:bg-gray-900 dark:text-gray-100",
 	"container": " container flex-row  flex items-center justify-center px-5 mx-auto my-8",
 	"tag3" : "max-w-md  flex justify-center items-center flex-col text-center",
 	"header" : "mb-8 text-center font-extrabold text-9xl dark:text-gray-600" ,
