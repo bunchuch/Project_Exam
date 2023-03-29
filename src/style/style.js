@@ -91,7 +91,7 @@ const styleWriting = {
     "divtag2" : "py-4 relative",
     "divtag3 " : "py-2 bg-white rounded-t-lg dark:bg-gray-800",
     "divtag4" : " flex pl-0 space-x-1 sm:pl-2",
-    "textarea" : "w-full rounded-lg text-sm border-[1px] border-gray-300 border-dashed text-gray-900 bg-white p-2 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400 ",
+    "textarea" : "w-full rounded-lg tracking-widest text-sm border-[1px] border-gray-300 border-dashed text-gray-900 bg-white p-2 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400 ",
     "divtag5" : "flex items-center justify-between px-3 mt-1 dark:border-gray-600 ",
     "btn-style" : " inline-flex items-center py-2 px-4 text-xs font-medium text-center text-white bg-purple-800 rounded-[4px] focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800",
     "label-style" : "inline-flex justify-center cursor-pointer p-2 ",

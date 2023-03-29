@@ -17,12 +17,12 @@ export function QuizCard ({title,desc,event,number,link,progressPercentage}){
   }
     return <div class="w-full mx-auto overflow-hidden bg-white rounded shadow-lg dark:bg-gray-800">
     <div class="md:px-6 px-4 py-4">
-        <h1 class="text-xl font-semibold font-ubuntu text-gray-800 dark:text-white">{title}</h1>
+        <h1 class="text-xl tracking-wider font-semibold font-ubuntu text-gray-800 dark:text-white">{title}</h1>
         <div className={"flex items-center rounded-full pb-1.5 mt-4 text-gray-700 dark:text-gray-200"}>
            <div className="w-5 h-5">
             <Icon color="purple" name={<FaRegQuestionCircle/>} ></Icon>
            </div>
-            <h1 className="px-2 text-sm font-medium">{number}</h1>
+            <p className="px-2 text-sm"><span className="font-medium">{number}</span></p>
         </div>
         <div className="py-4"> <ProgressBar progressPercentage={progressPercentage}></ProgressBar></div>
       
@@ -33,17 +33,17 @@ export function QuizCard ({title,desc,event,number,link,progressPercentage}){
           <div className="w-6 h-6">
             <Icon color="purple"  name={<BiCategoryAlt/>} ></Icon>
            </div>
-            <h1 class="px-2 font-mono font-bold text-[14px]">{desc}</h1>
+            <h1 class="px-2 font-mono tracking-wider font-bold text-[14px]">{desc}</h1>
           </div>
   
           <Link to={`/exam/${link}`}>
         <a  onClick={event}
-          href="#_" className="px-4 text-purple-800 hover:underline
-           bg-purple-50 border-purple-500
+          href="#_" className="px-4 text-white
+           bg-purple-800 border-purple-500
            rounded before:text-blue-400
            after:text-blue-400 active:undeline  active:after:text-red-400 py-1.5 
-           text-center  font-medium  hover:bg-blue-100
-            hover:text-blue-600 font-roboto uppercase
+           text-center  font-medium  hover:bg-purple-700
+             font-roboto tracking-wider
            text-sm">
   Start 
   </a>

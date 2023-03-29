@@ -1,6 +1,7 @@
 import React, { useEffect,ClipboardEvent, useState } from "react";
 import axios from 'axios';
-import { BiImage, BiPen,BiMessageSquareDetail } from "react-icons/bi";
+import { BiImage } from "react-icons/bi";
+import {TfiWrite} from "react-icons/tfi"
 import Icon from "./Icon";
 import {styleWriting} from "../style/style"
 import Alert from "./Alerts";
@@ -63,7 +64,7 @@ console.log(err)
 
     return   <div className={styleWriting.main}>     
  <Alert info="warning" desc={alert}/>
- <div className="w-full  flex mx-auto space-x-4">
+ <div className="w-full tracking-wide flex mx-auto space-x-4">
  <button onClick={()=>{
   setState(true)
  }}>
@@ -81,7 +82,7 @@ console.log(err)
 <div className="max-w-sm p-2 text-[14px] bg-purple-100 border border-purple-200 rounded
  hover:bg-purple-50 font-semibold text-purple-800 dark:bg-gray-800 dark:border-gray-700">
   <div className="flex justify-center items-center gap-2">
-    <Icon name={<BiPen/>} Size="1.2rem" color="purple"></Icon>
+    <Icon name={<TfiWrite/>} Size="1.2rem" color="purple"></Icon>
     Wrting
   </div>
 
@@ -90,7 +91,7 @@ console.log(err)
 </button>
 
  </div>
-<form>
+<form onSubmit={(event)=>{event.preventDefault() }}>
  <div className={styleWriting.container}>
   {
     stateChange ? (
@@ -106,8 +107,8 @@ console.log(err)
        placeholder="Write here..." required>
             </textarea>
             <Tooltip tooltip="Are you sure ?">
-            <button onClick={()=>alert("uploading")} className="bg-purple-800 px-4
-                py-2 rounded text-[14px] 
+            <button type="submit " onClick={()=>alert("uploading")} className="bg-purple-800 px-4
+                py-2 rounded text-[14px] tracking-wider
                font-medium text-white hover:bg-gradient-to-r
                 hover:from-purple-700 hover:to-purple-700 transition-all ease-out 
                 duration-300">Submit</button>
@@ -120,10 +121,6 @@ console.log(err)
      
    </div> 
 </form>
-
-
-      
-      
     </div> 
     
 
