@@ -162,8 +162,8 @@ const sectionOneData = [
 
 
 
-const personalinfo = [
-    {
+const personalinfo = [ 
+   {
         "id":"01",
         "picture":"https://cdn.apexlearning.com/2021-01/Student%20Success.jpg",
         "fname":"Martin",
@@ -171,263 +171,40 @@ const personalinfo = [
         "location" : "takhmau ,kandal",
         "join" : "Joined in August 2014",
          "info": [
-            {"title":"Level", "desc" : "5", "icon": "<BiCool/>" },  
-            { "title":"Grade ", "desc" : "English intermedia", "icon" : "<BiChart/>",},
+            {"title":"Level", "desc" : "5", "icon": "" },  
+            { "title":"Grade ", "desc" : "English intermedia", "icon" : "",},
             { "title":"Age",    "desc" : "12",     "icon" :   "",},
-            {   "title":"Roll","desc" : "Student","icon"  :   "", } ] ,
+            { "title":"Teacher", "desc" : "12",     "icon" :   "",},
+            {  "title":"Top 1 English Speaking","desc" : "Who is the best of English Speaking at 01-Jun-2022 at ABC Internation School","icon"  : "arc", }  ,
+            {  "title":"Top 1 English Public Speaking","desc" : "Who is the best of English Speaking at 01-Jun-2022 at ABC Internation School","icon"  : "arc", } ,
+            {  "title":"Top 1 English Public Speaking","desc" : "Who is the best of English Speaking at 01-Jun-2022 at ABC Internation School","icon"  : "arc", } ,
+            { "title":"Top 1 English Speaking","desc" : "Who is the best of English Speaking at 01-Fed-2022 at ABC Internation School","icon" : "arc", }, 
+        ] ,
 
-         "descritption": [{ "id":"01", "header":"Hello Wrold😍👩🏻","desc" : " Headings must have content and the content must  be accessible by a screen reader Headings",
-                     }], 
-        "PersonalArchivement" : [ 
-            { "id": "01",  "title": "Top 1 English Speaking",  "summary": "Who is the best of English Speaking at 01-Jun-2022 at ABC Internation School"  },
-            { "id": "02",  "title": "Top 1 English Writing",    "summary": "Who is the best of English Speaking at 01-Apir-2022 at ABC Internation School" },
-            { "id": "03", "title": "Top 1 English Public Speaking", "summary": "Who is the best of English Speaking at 01-Fed-2022 at ABC Internation School"}
-        ]
-    },
+         "descritption": [{ "id":"01", "desc" : "😀😁😍 Headings must have content and the content must  be accessible by a screen reader Headings",
+ 
+ 
+                  }],
+                } 
+]
+
+
+
+const examRule = [
+  {id:1 , text : "Make sure that you are prepared for the exam", },
+  {id:2 , text :  "You will not be allowed to leave the exam room during the exam.", },
+  {id:3 , text : " An exam is a race against time, try to be quick, but careful",} ,
+  {id:4 , text :   "If you have any difficulty with the exam, raise your hand and wait for the invigilator to respond",} ,
+  {id:5 , text : "Only the equipment which is necessary for the exam should be kept on the desk.", } ,
+  {id:6 , text :  "Keep silent during exams.", } ,
+  {id:7 , text :   " Be careful that you mark multiple choice answers properly. Incorrect entries may lose you marks.", } ,
+  {id:8 , text :    "If you have time when you finish the exam, check your answers.", } ,
+  {id:9 , text :  "If you have finished the exam in time and wait. Do not disturb others", } ,
+  {id:10 , text :   "When the exam ends the invigilator calls “TIMEIS OVER. Submit Your Task or "+
+  " Exam”. Please Submit all your Answer immediately and wait.", } ,
+  {id:11 , text :  " Leave the class quietly and do not loiter in front of the class", } ,
 
 ]
 
-const writings = {
-    "id" : "01",
-    "type" : "MQC",
-    "name" : "writing",
-    "question":  [ 
-        { "qid" : "01","completed":true,
 
-           "file": {"id": "01", "type":null,
-            "src":["Describe three advanges of living abroad","Describe three advantages of traveling aboard"]},
-        "number-word" : "100",
-        "clude" : [
-                { "id" : "01" , "choice" :null, selected:false},
-               
-            
-        ]
-    }
-    ]
-}
-
-const Readings = {
-    "id" : "01",
-    "type" : "MQC",
-    "name" : "Reading",
-    "question" : [
-        {
-            "qid":"01",
-            "completed":false,
-            "type":"checkbox",
-            "categorie" : "image",
-            "file": {"id": "01","header" : "Why do introvert adn extroverts react so differently?" , 
-             "type" : "image",  "src":"https://www.ieltsjacky.com/images/MatchingInformationCarsText.jpg"},
-            "categories": "multiple Chocice",
-            "question":["what is the capital of Uruguay is_____?"],
-            "clude":[
-                {"id":"01", "choice":"reading can help you feel less iritated","isCorrect" : false },
-                {"id":"02", "choice":"More people are enjoying a books and turing off the television","isCorrect" : false },
-                {"id":"03", "choice":"Books can incrase your awareness and help you to be open-minded.","isCorrect" : true },
-                {"id":"04", "choice":"Choosing book is no more diffucult than slecting a film","isCorrect" : false }
-            ]
-        
-        },
-
-        {
-            "qid":"02",
-            "completed":true,
-            "type":"checkbox",
-            "file": {"id": "01","header" : "What is A book ?" ,
-            "type" : "image", 
-             "src":"https://www.ieltsjacky.com/images/MatchingInformationCarsText.jpg"},
-            "categories": "multiple Chocice",
-            "question":["what is the capital of Uruguay is_____?"],
-            "clude":[
-                {"id":"01", "choice":"reading can help you feel less iritated","isCorrect" : false },
-                {"id":"02", "choice":"More people are enjoying a books and turing off the television","isCorrect" : true },
-                {"id":"03", "choice":"Books can incrase your awareness and help you to be open-minded.","isCorrect" : true },
-                {"id":"04", "choice":"Choosing book is no more diffucult than slecting a film","isCorrect" : false }
-            ]
-        
-        },
-        {
-            "qid":"03",
-            "completed":false,
-            "type":"checkbox",
-            "file": {"id": "01","header" : "What is A book ?" ,  "type" : "image",  "src":"https://www.ieltsjacky.com/images/MatchingInformationCarsText.jpg"},
-            "categories": "multiple Chocice",
-            "question":["what is the capital of Uruguay is_____?"],
-            "clude":[
-                {"id":"01", "choice":"reading can help you feel less iritated","isCorrect" : false },
-                {"id":"02", "choice":"More people are enjoying a books and turing off the television","isCorrect" : true },
-                {"id":"03", "choice":"Books can incrase your awareness and help you to be open-minded.","isCorrect" : false },
-                {"id":"04", "choice":"Choosing book is no more diffucult than slecting a film","isCorrect" : false }
-            ]
-        
-        },
-      
-
-    ]
-
-
-}
-
-const Grammar = {
-    "id" : "01",
-    "type" : "MQC",
-    "name" : "Grammer",
-    "question" : [
-        {
-            "qid" : "01",
-            "completed":false,
-            "file": {"id": "01", "src":null},
-            "type" : "checkbox",
-            "question" : ["If you_____ to my advice in firt place, you______in a mess right now"],
-            "clude":[
-               { "id" : "1","choice": "listen/wouldn't be"},
-              { "id" : "2", "choice" : "had listend/wouldn't been" },
-              { "id" : "3", "choice" : "had/listend/wouldn't be" },
-              { "id" : "4", "choice" : "listend wouldn't be" }
-            ]
-        },
-        {
-            "qid" : "02",
-            "completed":false,
-            "type" : "checkbox",
-            "file": {"id": "01", "src":null},
-            "question" : ["If i _______ French in high school, I______ more job opportunities now."],
-            "clude":[
-               { "id" : "1","choice": "had taken/ would have"},
-              { "id" : "2", "choice" : "had taken/would not have" },
-              { "id" : "3", "choice" : "had not taken/would have had" },
-              { "id" : "4", "choice" : "taken/ would had" }
-            ]
-        },
-        {
-            "qid" : "03",
-            "completed":false,
-            "type" : "checkbox",
-            "file": {"id": "01", "src":null},
-            "question" : ["If she______ in the United State. she_____a visa to work here."],
-            "clude":[
-               { "id" : "1","choice": "had be born/ would have"},
-              { "id" : "2", "choice" : "had taken/would not have" },
-              { "id" : "3", "choice" : "had not taken/would have had" },
-              { "id" : "4", "choice" : "taken/ would had" }
-            ]
-        },
-       
-     
-    ]
-}
-
-const Vocabulary = {
-    "id" : "01",
-    "type" : "Blank",
-    "name" : "Vocabulary",
-    "question" : [
-        {
-            "qid":"01",
-            "completed":false,
-            "file": {"id": "01", "src":["confused","stay out trouble","respeed","unfair","acceptable","undifferent","keep  in touch"],},
-            "categories":"Fill in blank",
-            "type" : "input",
-            "clude" : [],
-            "question" :["To get a promotion, you'd better work hard and show < for your boss."],
-           
-        },
-        {
-            "qid":"02",
-            "completed":false,
-            "file": {"id": "01", "src":["confused","stay out trouble","respeed","unfair","acceptable","undifferent","keep  in touch"],},
-            "categories":"Fill in blank",
-            "type" : "input",
-            "question" :["I sometime get< about how and when to use past simple and pressent ferfect. Teacher said that I had to paractice doing more excrcise to get better.I sometime get< about how and when to use past simple and pressent ferfect. Teacher said that I had to paractice doing more excrcise to get better."],
-            "clude" : []
-           
-        },
-        {
-            "qid":"05",
-            "completed":true,
-            "file": {"id": "01", "src":["confused","stay out trouble","respeed","unfair","acceptable","undifferent","keep  in touch"],},
-            "categories":"Fill in blank",
-            "type" : "input",
-            "question" :["Before Jame left to work in his company's branch in Japan, he < a special trainning program,Before Jame left to work in his company's branch in Japan, he < a special trainning program"],
-            "clude" : []
-           
-        },
-        {
-            "qid":"04",
-            "completed":false,
-            "file": {"id": "01", "src":["confused","stay out trouble","respeed","unfair","acceptable","undifferent","keep  in touch"],},
-            "categories":"Fill in blank",
-            "type" : "input",
-            "question" :["James is moving to a new neighorhood, but her friends hope she will <,James is moving to a new neighorhood, but her friends hope she will <"],
-            "clude" : []
-           
-        },
-      
-    ]
-    
-}
-
-const Listening = {
-    "id":"01",
-    "type" : "MQC",
-    'name' : "Listenning",
-    "question" : [
-        {
-            "qid":"1",
-            "completed":true,
-            "type":"checkbox",
-            "file": {"id": "01", "src":" https://www.123listening.com/freeaudio/adjectives1-1.mp3"},
-            "categories": "multiple Chocice",
-            "question":["what is the capital of Uruguay is _____?"],
-            "clude":[
-                {"id":"01", "choice":"Montery","isCorrect":true,  "selected": false },
-                {"id":"02", "choice":"New Uruguay","isCorrect":false,"selected": false  },
-                {"id":"03", "choice":"Motevideo","isCorrect":false,"selected": false },
-                {"id":"04", "choice":"Panama City","isCorrect": false,"selected": false  }
-            ]
-        
-        },
-        {
-    
-            "qid":"2",
-            "completed":true,
-            "type":"checkbox",
-            "categories": "multiple Chocice",
-            "file": {"id": "01", "src": null},
-            "question":["The examination of every human social interaction on a small scale describes______?"],
-            "clude":[
-                {"id":"01", "choice":"functionalism","selected": false },
-                {"id":"02", "choice":"macrosociology","selected": false },
-                {"id":"03", "choice":"cultural anthropology" ,"selected": false},
-                {"id":"04", "choice":"microsociology","selected": false }
-            ]
-        
-        },
-
-
-        {
-            "qid":"3",
-            "completed":true,
-            "type":"checkbox",
-            "categories": "multiple Chocice",
-            "file": {"id": "01", "src": "https://www.123listening.com/freeaudio/bodyparts1-2.mp3"},
-            "question":["Karl is upset because______?"],
-            "clude":[
-                {"id":"01", "choice":"his application are due","selected": false },
-                {"id":"02", "choice":"his train was dlayed" ,"selected": false},
-                {"id":"03", "choice":"he was late getting to school" ,"selected": false},
-                {"id":"04", "choice":"he was late getting to school" ,"selected": false},
-                
-            ]
-
-        },
-    ],
-
-   
-}
-
-
-
-
-
-  module.exports = {sectionTwoData,contact, about, sectionOneData,personalinfo,Readings, Listening, Grammar,Vocabulary,writings}
+  module.exports = {sectionTwoData,contact, about, sectionOneData,personalinfo ,examRule}

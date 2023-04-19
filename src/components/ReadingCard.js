@@ -21,11 +21,21 @@ const handleOnclick = () =>{
       {
        sentence	 ?(
         <div className="flex flex-col rounded"  id="accordion-collapse" data-accordion="collapse">
-        <h2 className="md:order-first order-last" id="accordion-collapse-heading-1">
+          {type === "image" ?  <>
+          <div className="border   rounded-[4px] text-start py-4 shadow-sm overflow-y-auto overflow-hidden h-20 md:h-32
+             shadow-cyan-500/10 border-b-0 px-4 tracking-wide transition duration-150 ease-in-out scale-100 text-slate-600  text-[16px]
+              border-gray-200 ">
+                {type === "text" && (    <p className="mb-2 leading-7 justify-center ">{sentence}</p>)}
+                {type === "image" && (
+                     <img className="" src= {sentence}/>
+                )}
+            </div>
+          </> : <>
+          <h2 className="md:order-first order-last" id="accordion-collapse-heading-1">
           <button type="button" onClick={handleOnclick} className="flex items-center justify-between w-full
            bg-white md:p-4 p-2 font-medium text-left  
-             rounded text-[14px] md:text-[16px]   focus:ring-4  focus:ring-gray-200 dark:focus:ring-gray-800
-            dark:border-gray-700 dark:text-white hover:bg-gray-50 text-slate-900 dark:hover:bg-gray-800">
+             rounded text-[14px] md:text-[16px]   focus:ring-4  focus:ring-gray-200
+            hover:bg-gray-50 text-slate-900">
             <span>{header}</span>
           {
             open ? (
@@ -37,6 +47,10 @@ const handleOnclick = () =>{
           </button>
          
         </h2>
+          
+          
+          </>}
+       
         {
           open && (
             <div 
@@ -50,7 +64,7 @@ const handleOnclick = () =>{
             }
             <div className="border  rounded-[4px] text-start py-4 shadow-sm overflow-y-auto overflow-hidden h-52 md:h-80
              shadow-cyan-500/10 border-b-0 px-4 tracking-wide transition duration-150 ease-in-out scale-100 text-slate-600 bg-blue-50 text-[16px]
-              border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+              border-gray-200 ">
                 {type === "text" && (    <p className="mb-2 leading-7 justify-center ">{sentence}</p>)}
                 {type === "image" && (
       

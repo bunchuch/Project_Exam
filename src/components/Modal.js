@@ -4,23 +4,27 @@ import { BiCircle,BiX } from "react-icons/bi";
 import Icon from "./Icon";
 
 
-const Modal = ({description,children,info,text,event}) => {
+const Modal = ({showModals, description,children,info,text,event}) => {
     const [showModal, setShowModal] = useState(false);
    
     return (
-      <>
+      <>{
+        showModal ? 
         <button
-          className="rounded relative shadow-md inline-flex group items-center
-          hover:border-purple-200
-          justify-center px-4 md:w-32 py-2 m-1 cursor-pointer bg-green-500 text-white
-           active:bg-green-600 active:shadow-none"
-          type="button"
-          onClick={() => setShowModal(true)}
-        >
-          <span class="absolute w-0 h-0  bg-white rounded-full 
+        className="rounded relative shadow-md inline-flex group items-center
+        hover:border-purple-200
+        justify-center px-4 md:w-32 py-2 m-1 cursor-pointer bg-green-500 text-white
+         active:bg-green-600 active:shadow-none"
+        type="button"
+        onClick={() => setShowModal(true)}
+      >
+        <span class="absolute w-0 h-0  bg-white rounded-full 
 group-hover:w-32 group-hover:h-32 opacity-10"></span>
-        <span class="relative">{text}</span>
-        </button>
+      <span class="relative">{text}</span>
+      </button>
+        : <></>
+      }
+      
         {showModal ? (
           <>
             <div className="flex justify-center md:mx-0 mx-10 items-center overflow-x-hidden

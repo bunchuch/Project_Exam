@@ -1,10 +1,5 @@
 import React, { useEffect, useState } from "react"
-// import axios from axios;
-import {omit} from "lodash"
-import { validateForm } from "./vailidate"
-import SmallFooter from "../../components/Footer/smallFooter"
 import { useDispatch } from "react-redux"
-import { questionAction } from "../../redux/questionSlice"
 import { authAction } from "../../redux/authSlice"
 import { useNavigate } from "react-router-dom"
 import Icon from "../../components/Icon"
@@ -15,7 +10,6 @@ const LoginForm = () => {
     const dispatch  = useDispatch()
     const [Type ,setType] = useState(false)
     const [help ,setHelp] = useState(false)
-    const [color, setColor] = useState('gray')
     const [isSumbit, setIsSubmit] = useState(false)
     const [formErrors, setFormErrors] = useState({})
     const [user, setUserDetails] = useState({
@@ -43,7 +37,7 @@ const navigator = useNavigate()
           if(dispatch(authAction.login)){
             navigator("/exam")
           }else{
-            navigator("/home")
+            navigator("/login")
           }
      
     }
@@ -58,10 +52,11 @@ const navigator = useNavigate()
         }
     }, [formErrors])
 
-    return <section className="dark:bg-gray-900 bg-gray-50 relative inset-0">
+    return <section className="bg-gray-50 relative inset-0">
         <div className="flex flex-col items-center justify-center mx-auto h-screen md:h-screen lg:py-0">
-            <div className="w-full md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700 relative">{ 
-                help ? <div className="p-6 space-y-1 md:space-y-3 flex flex-col items-center my-5 md:mx-10 text-gray-700  md:p-8 rounded text-center bg-gray-50 px-0 xl:py-0">
+            <div className="w-full md:mt-0 sm:max-w-md xl:p-0 relative">{ 
+                help ? <div className="p-6 space-y-1 md:space-y-3 flex flex-col items-center my-5 md:mx-10
+                 text-gray-700  md:p-8 rounded text-center bg-gray-50 px-0 xl:py-0">
                       <h1 className=" text-xl font-medium leading-tight mb-2 tracking-tight md:text-2xl dark:text-white ">
                     <Icon Size="2rem" name={<FcPortraitMode/>}></Icon>
                       </h1>
@@ -70,19 +65,20 @@ const navigator = useNavigate()
                <p className="paraStyle text-center">
                             <a onClick={()=> setHelp(false)} href="" className="font-thin-[150px] hover:text-purple-900 text-purple-800">I remember the password back</a>
                         </p>
-                </div> :   <div className="p-6 space-y-1 md:space-y-3  my-5 md:mx-10 text-gray-700  md:bg-white md:p-8 rounded ">
+                </div> :   <div className="p-6 space-y-1 md:space-y-3  my-5 md:mx-10 text-gray-700 
+               mx-5 bg-white md:p-8 rounded ">
                 
                 {
                     user.username ? (
                         <>
-                            <h1 className="text-xl font-medium leading-tight mb-2 tracking-tight md:text-2xl dark:text-white ">
+                            <h1 className="text-xl font-medium leading-tight mb-2 tracking-tight md:text-2xl  ">
                                 {
                                     `${Type ? "Greeting" : "Hello"} ! ${user.username}`}</h1>
                             <p className="loginform_paragraph_style_box_8">{Type ? "How are doing?👋🏻" :"Nice to meet you 😎"}</p>
                         </>
                     ) : (
                         <>
-                            <h1 className="text-xl font-medium leading-tight mb-2 tracking-tight md:text-2xl dark:text-white ">
+                            <h1 className="text-xl font-medium leading-tight mb-2 tracking-tight md:text-2xl  ">
                                 Log In   </h1>
                             <p className="loginform_paragraph_style_box_8">Enter your Personal Account</p>
                         </>
@@ -93,15 +89,14 @@ const navigator = useNavigate()
                         {/* username input area */}
                         <div>
                             <label htmlFor="Username"
-                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                className="block mb-2 text-sm font-medium text-gray-900 ">
                                 Username</label>
                             < input type="text" onChange={handleChange}
                                 value={user.username || ""}
                                 name="username" id="username"
                                 className="ext-gray-900 rounded-[4px]  border-gray-200 border-[1px] 
-        text-sm block w-full py-2 text-[14px] font-normal md:py-3  px-2 dark:bg-gray-700
-         dark:border-gray-600 dark:placeholder-gray-400
-          dark:text-white  tracking-wider"
+                            text-sm block w-full py-2 text-[14px] font-normal md:py-3  px-2
+                                 tracking-wider"
                                 required="" />
                                 {formErrors.username && 
                                 <p className="text-red-500 text-[12px] py-2 font-medium line-none">
@@ -111,24 +106,22 @@ const navigator = useNavigate()
                         {/* passowrd input area */}
                         <div>
                             <label htmlFor="Username"
-                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                className="block mb-2 text-sm font-medium text-gray-900 ">
                                 Password</label>
                             <input type="password"
                                 onChange={handleChange}
                                 name="password"
                                 value={user.password || ""}
-                                className="ext-gray-900 rounded-[4px]  border-gray-200 border-[1px] 
-        text-sm block w-full py-2 text-[14px] font-normal md:py-3  px-2 dark:bg-gray-700
-         dark:border-gray-600 dark:placeholder-gray-400
-          dark:text-white  tracking-wider"
+                                className="text-gray-900 rounded-[4px]  border-gray-200 border-[1px] 
+                                text-sm block w-full py-2 text-[14px] font-normal md:py-3 px-2 tracking-wider"
                                 required="" />
                             {
                               formErrors.password && <p className="text-red-500 text-[12px] py-2 font-medium line-none">
                                 {formErrors.password}</p>
                             }
                         </div>
-                        <p className=" font-medium text-[12px] text-blue-900">
-                            <a href="#" onClick={()=> setType(!Type)} className="atagstyle">{
+                        <p className="text-[12px] text-blue-700 ">
+                            <a href="#" onClick={()=> setType(!Type)} className="text-purple-900">{
                             Type
                              ? "I am a student" 
                              : "I am a teacher"}
@@ -140,7 +133,8 @@ const navigator = useNavigate()
 
                         <p className="paraStyle text-center">
                             <a onClick={()=> setHelp(true)} href="#" 
-                            className="font-thin-[150px] hover:text-purple-900 text-[14px] text-purple-700"> Get Help with Signing In</a>
+                            className="font-thin-[150px] hover:text-purple-900 text-[14px]
+                             text-purple-700"> Get Help with Signing In</a>
                         </p>
                     </form>
                 </div>

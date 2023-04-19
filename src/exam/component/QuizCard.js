@@ -1,8 +1,9 @@
 import Icon from "../../components/Icon"
 import { Link } from "react-router-dom"
-import {  BiCategoryAlt, BiFile, BiLayer } from "react-icons/bi"
+import {  BiCategoryAlt } from "react-icons/bi"
 import {FaRegQuestionCircle} from "react-icons/fa"
 import { ProgressBar } from "./progressBar"
+import { useSelector } from "react-redux"
 
 
 export function QuizCard ({title,desc,event,number,link,progressPercentage}){
@@ -15,10 +16,10 @@ export function QuizCard ({title,desc,event,number,link,progressPercentage}){
     if(name=== 'LISTENING')  { return `bg-blue-400`}
 
   }
-    return <div class="w-full mx-auto overflow-hidden bg-white rounded shadow-lg dark:bg-gray-800">
+    return <div class="w-full mx-auto overflow-hidden bg-white rounded shadow-lg">
     <div class="md:px-6 px-4 py-4">
-        <h1 class="text-xl tracking-wider font-semibold font-ubuntu text-gray-800 dark:text-white">{title}</h1>
-        <div className={"flex items-center rounded-full pb-1.5 mt-4 text-gray-700 dark:text-gray-200"}>
+        <h1 class="text-xl tracking-wider font-semibold font-ubuntu text-gray-800">{title}</h1>
+        <div className={"flex items-center rounded-full pb-1.5 mt-4 text-gray-700 "}>
            <div className="w-5 h-5">
             <Icon color="purple" name={<FaRegQuestionCircle/>} ></Icon>
            </div>
@@ -28,7 +29,7 @@ export function QuizCard ({title,desc,event,number,link,progressPercentage}){
       
         <div class="flex md:flex-row md:items-center
          space-y-3 md:space-y-0 flex-col justify-between mt-3
-          text-gray-700 dark:text-gray-200">
+          text-gray-700 ">
           <div className="flex items-center py-1.5">
           <div className="w-6 h-6">
             <Icon color="purple"  name={<BiCategoryAlt/>} ></Icon>
@@ -36,9 +37,9 @@ export function QuizCard ({title,desc,event,number,link,progressPercentage}){
             <h1 class="px-2 font-mono tracking-wider font-bold text-[14px]">{desc}</h1>
           </div>
   
-          <Link to={`/exam/${link}`}>
-        <a  onClick={event}
-          href="#_" className="px-4 text-white
+          <Link to={link}>
+        <a onClick={event}
+          href="" className="px-4 text-white
            bg-purple-800 border-purple-500
            rounded before:text-blue-400
            after:text-blue-400 active:undeline  active:after:text-red-400 py-1.5 
@@ -50,7 +51,7 @@ export function QuizCard ({title,desc,event,number,link,progressPercentage}){
   </Link>
        </div>
   
-        <div className="flex items-center mt-4 text-gray-700 dark:text-gray-200">
+        <div className="flex items-center mt-4 text-gray-700 ">
            
         </div>
     </div>

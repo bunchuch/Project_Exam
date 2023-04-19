@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 
 
-export default function Alert ({info, desc}){
+export default function Alert ({info, desc, children}){
 const [hidden,setHidden] = useState(false)
 
 const checkoutInfo = (infos) =>{
@@ -15,7 +15,7 @@ const checkoutInfo = (infos) =>{
 }
 
     return <>
-    { desc ? (  <div  className={ hidden ? "hidden" : `flex p-3 mb-4 rounded-lg
+    { desc ? (  <div  className={ hidden ? "hidden" : `flex items-center p-3 mb-4 rounded-lg
     ${checkoutInfo(info)}
      dark:bg-gray-800 ` } role="alert">
     <svg aria-hidden="true" className="flex-shrink-0 w-5 h-5" fill="currentColor"
@@ -27,7 +27,12 @@ const checkoutInfo = (infos) =>{
     <span className="sr-only">Info</span>
     <div className="ml-3 text-sm font-sm">
     {desc}
+   
     </div>
+    <div className="ml-3 text-sm font-sm">
+    {children}
+    </div>
+   
     <button onClick={
       ()=>setHidden(true)
     } type="button" className={`ml-auto -mx-1.5 -my-1.5 ${checkoutInfo(info)}

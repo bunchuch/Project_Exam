@@ -18,13 +18,22 @@ const styleFillBlank = {
 export default function FillBlanks(props) {
   
     const [change, setChange] = useState(null)
-    
+    const [value ,setValue]  = useState({})
+
+   const handleChange = (e) => {
+    const name = e.target.name
+    const value = e.target.value
+    setValue( values => ({...values , [name] : value}))
+
+   }
+
     const regExp = "<"
     const reactaStringReplace = reactStringReplace(props.sentence, regExp, (macth, i) =>
     (
     
          <span className={styleFillBlank["spantag-style"]}>
-            <input  className="border-b-[1px] w-28 border-purple-900 " onChange={props.onChange}/>
+            <input  className="border-[1px] rounded w-28
+             border-gray-400 " name="values" value={value.values}  onChange={handleChange}/>
         {/* <select className={styleFillBlank.selectbox}>
             <option value="selcetd"></option>
             {props.clude.map((value) => <option key={value} value={value}>{value}</option>)}

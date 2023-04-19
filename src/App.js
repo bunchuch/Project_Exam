@@ -6,48 +6,64 @@ import LoginForm from "./page/login/loginForm"
 import Profile from "./page//Profile/profile"
 import {BrowserRouter, Routes, Route,useLocation} from 'react-router-dom'
 import FileTest from "./exam/exam"
-import Loader from './components/Loader';
+import {Loader} from './components/Loader';
 import ErrorPage from './components/ErrorPage';
 import Contact from './page/contact/Contact'
-
+import { ProtectedRoute } from './auth/ProtectedRoute'
+import "./index.css"
+import { File } from './File'
+import { Render } from './Render'
+import { QuestionRender } from './exam/component/QuestionRender'
+import { useSelector } from 'react-redux'
 
 
 
 const LazyLoader = React.lazy(()=> import("./exam/exam"))
 
+
 const App =()=>{
 const [title, setTitle] = useState()
 const location = useLocation()
+const loading = useSelector((state)=> state.loader.loading)
 
-
+console.log(loading)
   useEffect(()=>{
-  setTitle(document.title = location.pathname.slice(1,location.pathname.length))
+  const title  = location.pathname.slice(1,
+                location.pathname.length)
+  const getTitle =  title.replace("/", " | ")
+  document.title = getTitle
   },[location.pathname])
 
-  return <div>
+  return <div className='App'>
    
    {
     location.pathname !== '/login' && <Navbar/>
    }
   
-   <Routes>
+ { loading && <><Loader/></>}  
+<Routes>
 <Route path='/login'
    element={<LoginForm  />}/> 
 
- <Route path='/profile' element={<Profile/>} ></Route>
+ <Route path='/profile' element={
+<ProtectedRoute>
+<Profile/>
+</ProtectedRoute>
+
+ } ></Route>
     <Route path='/exam'  errorElement={<ErrorPage/>}
-     element={
+     element={ <ProtectedRoute>
     <React.Suspense fallback={<Loader/>}>
       <LazyLoader/>
-    </React.Suspense>}>
-      <Route path=':categories' element={
-        <React.Suspense fallback={<Loader/>}>
-          <LazyLoader/>
-        </React.Suspense>
-      }></Route>
-
+    </React.Suspense>
+    </ProtectedRoute>
+    }>
 </Route>
+<Route path='/exam/:name' element={
+       <ProtectedRoute><QuestionRender/></ProtectedRoute> 
+      }></Route>
    <Route path='/*' element={<ErrorPage ></ErrorPage>}/>
+   
     <Route path='/' errorElement={<ErrorPage/>} element={<Mainpage/>}></Route>
     <Route path='/home' errorElement={<ErrorPage/>} element={<Mainpage/>}></Route>
   
@@ -56,7 +72,9 @@ const location = useLocation()
     {/*
     tesfile
     */}
-    <Route path='/testfile/:categories' element ={<FileTest></FileTest>}></Route>
+    <Route path='/file' element ={<File/>}>
+    </Route>
+    <Route path='/file/:name' element ={<Render/>}></Route>
    </Routes>
  
     

@@ -4,13 +4,10 @@ import {BiRadio} from "react-icons/bi"
 import Icon from "./Icon";
 import { styleAudio } from "../style/style"
 
-function get_random(list) {
-  return list[Math.floor((Math.random() * list.length))];
-}
 
 
 
-export default function Audio({audio,title}){
+export default function Audio({audio,title, type}){
  
 
     return <>{
