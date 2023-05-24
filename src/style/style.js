@@ -1,35 +1,42 @@
 const examStatusStyle ={
-    "arrowTextstyle" : "font-ubuntu font-medium items-center space-x-2 flex flex-row uppercase",
-    "arrowstyle" : "cursor-pointer  text-purple-800  space-x-2 items-center rounded flex justify-between active:bg-purple-100",
-    "mainStyle" : "py-4 md:px-2 px-4 overflow-auto",
-    "mainwhenfasle" : "w-full hidden",
+    "arrowTextstyle" : "tracking-wider font-medium items-center space-x-2 flex flex-row uppercase",
+    "arrowstyle" : "cursor-pointer px-2 text-purple-800  space-x-1.5 items-center rounded flex justify-between active:bg-purple-100",
+    "mainStyle" : "py-4 md:px-2  px-4 overflow-auto",
+    "mainwhenfasle" : "w-full hidden  z-10",
     "listyle" : {
-        "liststyle" : "md:py-2 py-1.5 px-2 md:px-3.5 rounded-md border-1 border-purple-400",
-        "ulstyle" : "inline-flex space-x-2 md:space-x-4",
+        "liststyle" : "md:py-2 py-1.5 w-8 h-8  px-2 md:px-3.5 rounded border-1 border-purple-400",
+        "ulstyle" : "inline-flex space-x-2 md:space-x-4 ",
         "active-unchecked" : "border-2 border-purple-500 bg-purple-200 text-purple-800 font-semibold",
         "active-checked"  : "border-2 border-green-600 bg-green-300 text-slate-800 ",
-        "normalstyle-checkd" : "bg-green-300 border-green-400 font-semibold text-green-900 border hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
-        "normalstyle-uncheckd" : "bg-purple-200 text-purple-900 border-purple-400 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700  dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
+        "normalstyle-checkd" : "bg-green-300 border-green-400 font-semibold text-green-900 border hover:text-gray-700",
+        "normalstyle-uncheckd" : "bg-purple-200 text-purple-900 border-purple-400 hover:text-gray-700",
     }
 }
 
 
 const buttonstyle = {
-    "nextBtn" : "rounded relative inline-flex group items-center justify-center px-4 w-32 py-2 m-1 cursor-pointer bg-purple-800 text-white active:bg-purple-600 active:shadow-none",
-    "prevBtn" : "rounded relative inline-flex group items-center   justify-center px-4 w-32 py-2 m-1 cursor-pointer bg-purple-100 text-purple-800 active:bg-purple-50 active:shadow-none",
-    "grenBtn" : "rounded relative inline-flex group items-center   justify-center px-4 w-32 py-2 m-1 cursor-pointer bg-purple-100 text-purple-800 active:bg-purple-50 active:shadow-none",
+    "nextBtn" : "rounded relative inline-flex group items-center truncate "+
+    " justify-center px-4 w-32 py-2 m-1 cursor-pointer bg-purple-800 text-white active:bg-purple-600 active:shadow-none",
+    "prevBtn" : "rounded relative inline-flex group items-center truncate "+
+    " justify-center px-4 w-32 py-2 m-1 cursor-pointer bg-purple-100 text-purple-800 active:bg-purple-50 active:shadow-none",
+    "grenBtn" : "rounded relative inline-flex group items-center truncate  "
+    +"  justify-center px-4 w-32 py-2 m-1 cursor-pointer bg-purple-100 text-purple-800 active:bg-purple-50 active:shadow-none",
 }
 
 
 const examstyle = {
     "quiz" : {
-        "main" : "mx-auto max-w-6xl 2xl:py-5 md:px-0 md:py-3 px-4 flex items-center justify-between dark:border-gray-700",
-        "quizboxdiv" : "max-w-6xl md:mt-7 mx-auto",
+        "main" : " bg-purple-50 sticky top-[50px] py-2 mx-auto max-w-6xl 2xl:py-5 md:px-0 md:py-2 px-4 flex "
+        +" items-center justify-between dark:border-gray-700",
+        "main2" : " bg-purple-50 sticky top-0 py-2 mx-auto max-w-6xl 2xl:py-5 md:px-0 md:py-2 px-4 flex "
+        +" items-center justify-between dark:border-gray-700",
+        "quizboxdiv" : "max-w-6xl md:mt-7 mx-auto w-full",
         "quizboxgrid" : "grid w-full gap-2 p-2 xl:p-0 md:grid-cols-3 grid-cols-2 ",
     },
     "task" : {
-        "main" : "max-w-6xl mx-auto md:p-0 p-5 max-md:relative",
-        "taskbox" : "bg-white mt-3 -z-10 shadow-sm md:py-6 shadow-gray-500/10 border-[1px] border-gray-200 rounded tracking-wide lg:mt-3 md:px-6 px-2 py-4 space-y-2 w-full h-[50%]",
+        "main" : "max-w-6xl mx-auto md:pb-3 md:px-0 p-5",
+        "taskbox" : "bg-white  text-slate-900 mt-3 -z-10 shadow-sm md:py-6 shadow-gray-500/10 "
+        +" border-[1px] border-gray-200 rounded tracking-wide lg:mt-3 md:px-6 px-2 py-4 space-y-2 w-full h-[50%]",
         "questiondiv" : "flex space-x-2 mt-5 mx-5",
         "questionText" : "text-md trackgin-wide font-medium md:text-[18px]",
         "btnstylediv"  : "flex flex-row space-x-2 md:items-center justify-between md:justify-end py-2 mt-[10px]",
@@ -40,21 +47,25 @@ const examstyle = {
 
 const styleGroupInput = {
     "main": "flex items-center py-2 rounded-[5px] xl:text-[15px] md:mb-1 sm:text-md ",
-    "input-style": " text-purple-800 w-5 h-5 bg-purple-900 accent-purple-800 dark:bg-purple-700 dark:border-gray-600",
-    "label-style": " ml-2  md:text-[16px] text-[14px] text-gray-900 indent-4 dark:text-gray-300 hover:text-gray-500",
+    "input-style": " text-purple-800 w-5 h-5 bg-purple-900 accent-purple-800",
+    "label-style": " ml-2  md:text-[16px] text-[14px] text-gray-900 indent-4 hover:text-gray-500",
  }
 
 const styleNavbar = {
-    "navStyle-noneLoggin" : "bg-white shadow-lg text-slate-900 md:shadow-orange-100  border-b-[1px] md:border-none md:py-0 ",
-    "navStyle-login": "bg-slate-900 text-white md:shadow-orange-100  border-b-[1px] md:border-none md:py-0",
-    "container" : "flex justify-between items-center py-[10px]  mx-4 md:mx-[70px] md:py-[px] md:flex text-sm md:justify-between md:items-center   ",
+    "navStyle-noneLoggin" : "bg-[#142544] border-gray-500 text-white md:py-0 ",
+    "navStyle-login": "fixed z-10 bg-[#142544] text-white w-full md:shadow-orange-100  md:border-none md:py-0",
+    "container" : "flex justify-between items-center py-[10px]  mx-4 md:mx-[70px] md:py-[px] md:flex "
+    +" text-sm md:justify-between md:items-center   ",
     "container2": "flex items-center justify-between",
    "conatiner3" : " flex flex-row justify-between space-x-2", 
     "img-style" : "object-fill md:w-full md:h-10 h-8 w-full",
     "divtag-stlye-three": " flex flex-row justify-between space-x-2",
-    "atag-style-nav": " md:text-[20px] text-[18px]  font-bold transition-colors duration-300 transform dark:text-white lg:text-xl md:tracking-wide hover:text-gray-700 dark:hover:text-gray-300",
+    "atag-style-nav": " md:text-[20px] text-[18px]  font-bold transition-colors duration-300 transform "
+    +" lg:text-xl md:tracking-wide hover:text-gray-700 dark:hover:text-gray-300",
     "divtag-style-four": " hidden md:items-center md:justify-between md:flex",
-    "atag-nav-list-style": " text-white bg-purple-800 hover:bg-blue-800 focus:ring-4  focus:ring-blue-300 font-medium rounded-  px-3 py-2 mr-2 mb-2   dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none    dark:focus:ring-blue-800",
+    "atag-nav-list-style": " text-white bg-purple-800 hover:bg-blue-800 focus:ring-4 "
+    +" focus:ring-blue-300 font-medium rounded-  px-3 py-2 mr-2 mb-2   dark:bg-blue-600 "
+    +" dark:hover:bg-blue-700 focus:outline-none    dark:focus:ring-blue-800",
 }
 
 
@@ -70,37 +81,37 @@ const styleLoader = {
 
 
 const styleInstruction = {
-    "main" : "flex  text-purple-900 py-2 space-x-1 items-center md:py-2  rounded-[4px]",
-    "article": "flex items-center space-x-1 md:space-x-3 items-center md:space-x-2 tracking-wide",
+    "article": "flex 2xl:py-0 py-4 lg:py-2 md:py-2 items-center space-x-1 md:space-x-3 items-center md:space-x-2 tracking-wide",
     "header": "font-semibold leading-none text-sm ",
-    "paragrah": "text-[12px] md:text-sm text-gray-800"
+    "paragrah": "text-[12px] md:text-[14px] md:w-full w-80 truncate text-gray-800"
   }
   
 
-
 const styleAudio = {
-    "main" : "w-full rounded-lg text-center font-inter shadow-sm shadow-cyan-500/10 bg-white",
-    "audio" : "w-full bg-gray-100 ",
+    "main" : "w-full rounded text-center font-inter",
+    "audio" : "w-full bg-gray-100 relative rounded",
     "title_audio": "text-[14px] text-purple-900 mx-2 font-medium"
   }
   
 
 const styleWriting = {
-    "main" : "rounded-lg w-full h-auto space-y-2",
-    "container" : "w-full shadow-gray-500/10 rounded-lg dark:bg-gray-700 dark:border-gray-600 ",
-    "divtag2" : "py-4 relative",
-    "divtag3 " : "py-2 bg-white rounded-t-lg dark:bg-gray-800",
+    "main" : "rounded-lg w-full  space-y-2",
+    "container" : "w-full shadow-gray-500/10 rounded-lg  ",
+    "divtag2" : "py-4",
+    "divtag3 " : "bg-white rounded-t-lg ",
     "divtag4" : " flex pl-0 space-x-1 sm:pl-2",
-    "textarea" : "w-full rounded-lg tracking-widest text-sm border-[1px] border-gray-300 border-dashed text-gray-900 bg-white p-2 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400 ",
-    "divtag5" : "flex items-center justify-between px-3 mt-1 dark:border-gray-600 ",
-    "btn-style" : " inline-flex items-center py-2 px-4 text-xs font-medium text-center text-white bg-purple-800 rounded-[4px] focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800",
+    "textarea" : "w-full rounded-lg tracking-widest text-sm border-[1px] border-gray-300 border-dashed text-gray-900 bg-white p-2  ",
+    "divtag5" : "flex items-center justify-between px-3 mt-1  ",
+    "btn-style" : " inline-flex items-center py-2 px-4 text-xs font-medium text-center "
+    +" text-white bg-purple-800 rounded-[4px] focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800",
     "label-style" : "inline-flex justify-center cursor-pointer p-2 ",
-    "input-style" : " "    
+    "input-style" : " ", 
+    "switchBtn" : "max-w-sm px-2 tracking-wide py-1.5 text-[14px] bg-gray-100 border border-gray-200 rounded hover:bg-gray-50 text-gray-800 ",   
 }
 
 
 const styleError404 = {
-	"main" : "flex items-center justify-center flex  h-full p-16 dark:bg-gray-900 dark:text-gray-100",
+	"main" : "flex items-center justify-center flex bg-purple-100  max-h-screen p-16 dark:bg-gray-900 dark:text-gray-100",
 	"container": " container flex-row  flex items-center justify-center px-5 mx-auto my-8",
 	"tag3" : "max-w-md  flex justify-center items-center flex-col text-center",
 	"header" : "mb-8 text-center font-extrabold text-9xl dark:text-gray-600" ,
@@ -125,7 +136,7 @@ const styleExamStatus = {
   "rule_exam-style" : " ",
   "ul-tag" : " py-0  flex  md:grid md:grid-rows md:grid-cols-5 flex bg-white border-gray-400 md:rounded-[4px] ",
   "li-tag" : "bg-blue-100",
-  "a-tag" :  "leading-tight text-gray-900 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
+  "a-tag" :  "leading-tight text-gray-900 hover:bg-gray-100 hover:text-gray-700",
   
 
 }

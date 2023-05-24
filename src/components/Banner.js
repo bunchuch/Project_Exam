@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { icons } from "react-icons";
 import { BiChart,BiBadgeCheck, BiCool, BiCheck } from "react-icons/bi";
-import Icon from "../../../components/Icon";
+import Icon from "./Icon";
 import Aos from "aos";
 import 'aos/dist/aos.css'
 

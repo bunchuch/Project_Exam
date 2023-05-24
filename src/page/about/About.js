@@ -1,32 +1,14 @@
 
 import {React, useEffect} from "react"
 import Footer from "../../components/Footer/Footer"
-import HeroPage from "./component/AboutHero"
-import ColFour from "./component/ColFour"
-import Banner from "./component/Banner"
 import { about } from "../../data/data"
-import { data } from "autoprefixer"
 import {BiCompass,BiBriefcase,BiTrip,BiPaperPlane,BiBuildings,BiShow} from "react-icons/bi"
-import Icon from "../../components/Icon"
 import 'aos/dist/aos.css'
 import Aos from "aos"
+import Heropage from "../../components/Herosection/Hero"
+import "../../style/style.css"
+import { Card } from "../../components/Card"
 
-function CarAbout  ({title,desc,icons}) {
-    return     <div>
-   <span className="inline-block p-2 text-blue-500 bg-blue-100
-     rounded-xl  dark:text-white dark:bg-blue-500">
-       <Icon name={icons} Size="1.5rem" color="purple"></Icon>
-    </span>
-
-    <div>
-        <h1 class="text-xl font-semibold text-gray-700 dark:text-white">{title}</h1>
-
-        <p class="mt-2 text-md text-gray-500 dark:text-gray-300">
-           {desc}
-        </p>
-    </div>
-</div>
-}
 
 
 export default function About(){
@@ -35,8 +17,8 @@ useEffect(()=>{
 },[])
     return <>
   
-      <section data-aos="fade-up" className=" dark:bg-gray-800 dark:text-gray-100 text-white">
-       <HeroPage/>
+      <section data-aos="fade-in" className=" dark:bg-gray-800 dark:text-gray-100 text-white">
+       <Heropage img="about-hero"/>
         <div className="max-w-7xl  px-6 py-12 mx-auto  ">
               <h1 class="text-2xl font-semibold text-gray-800 lg:text-3xl dark:text-white">Let Know about Us</h1>
               <div class="mt-2">
@@ -47,12 +29,12 @@ useEffect(()=>{
               <div className="grid grid-cols-1 gap-8 mt-8 lg:mt-16 md:grid-cols-2 xl:grid-cols-3">
           {
             about.map((itme)=> <>
-            {itme.one.map((i)=><CarAbout icons={<BiCompass/>} img={i.img} title={i.title} desc={i.desc}/>)}
-            {itme.two.map((i)=><CarAbout icons={<BiTrip/>} img={i.img} title={i.title} desc={i.desc}/>)}
-            {itme.three.map((i)=><CarAbout icons={<BiBriefcase/>}  img={i.img} title={i.title} desc={i.desc}/>)}
-            {itme.four.map((i)=><CarAbout icons={<BiPaperPlane/>}  img={i.img} title={i.title} desc={i.desc}/>)}
-            {itme.five.map((i)=><CarAbout icons={<BiBuildings/>}  img={i.img} title={i.title} desc={i.desc}/>)}
-            {itme.six.map((i)=><CarAbout icons={<BiShow/>}  img={i.img} title={i.title} desc={i.desc}/>)}
+            {itme.one.map((i)=><Card icons={<BiCompass/>} img={i.img} title={i.title} desc={i.desc}/>)}
+            {itme.two.map((i)=><Card icons={<BiTrip/>} img={i.img} title={i.title} desc={i.desc}/>)}
+            {itme.three.map((i)=><Card icons={<BiBriefcase/>}  img={i.img} title={i.title} desc={i.desc}/>)}
+            {itme.four.map((i)=><Card icons={<BiPaperPlane/>}  img={i.img} title={i.title} desc={i.desc}/>)}
+            {itme.five.map((i)=><Card icons={<BiBuildings/>}  img={i.img} title={i.title} desc={i.desc}/>)}
+            {itme.six.map((i)=><Card icons={<BiShow/>}  img={i.img} title={i.title} desc={i.desc}/>)}
             
             
             </>)

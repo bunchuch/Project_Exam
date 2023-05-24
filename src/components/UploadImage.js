@@ -3,8 +3,9 @@ import { useEffect,useState,useRef } from "react";
 import Icon from "./Icon";
 import {BiCloudUpload} from "react-icons/bi"
 import Tooltip from "./Button/Tooltip";
+import { Form } from "react-router-dom";
 
-const UploadImages = () => {
+const UploadImages = ({onsubmit}) => {
   const [selectedImages, setSelectedImages] = useState([]);
 
   const onSelectFile = (event) => {
@@ -28,7 +29,7 @@ const UploadImages = () => {
   }
 
   return (
-    <section className = "">
+    <form onSubmit={onsubmit} className = "">
       <div className="flex flex-wrap space-x-2 ">
         {selectedImages &&
           selectedImages.map((image, index) => {
@@ -37,8 +38,7 @@ const UploadImages = () => {
                 <img className="md:w-32 w-20
                  h-20 object-cover rounded md:h-36" src={image} alt="upload" />
                 <button className="bg-red-500 
-                px-2 mt-1 py-1 text-[10px] md:text-[14px] rounded-sm 
-                md:rounded-lg shadow-sm text-white "
+                px-2 mt-1 py-1 text-[10px] md:text-[14px] rounded shadow-sm text-white "
                  onClick={() => deleteHandler(image)}>
                   Delete
                 </button>
@@ -46,7 +46,7 @@ const UploadImages = () => {
             );
           })}
       </div>
-<hr className="border-1 border-gray-500"></hr>
+<hr className="border-1 border-gray-200"></hr>
 <div className="flex justify-between items-center py-2 ">
 
 
@@ -58,10 +58,10 @@ const UploadImages = () => {
           multiple
           accept="image/png , image/jpeg, image/webp"
         />
-        <span className="bg-purple-100 flex border-[1px] border-dashed border-purple-400 
-        px-2 py-1.5 rounded text-purple-900
-         text-[14px] font-medium">
-              <Icon name={<BiCloudUpload/>} Size="1.2rem" color="purple"></Icon>
+        <span className="bg-gray-100 flex border-[1px] border-dashed border-gray-200 
+        px-2 py-1.5 rounded text-gray-900
+         text-[14px] font-medium space-x-1 cursor-pointer">
+              <Icon name={<BiCloudUpload/>} Size="1.2rem" color="#11221d"></Icon>
             <div className="flex flex-shrink-0">
             Choose the File
             </div>
@@ -82,7 +82,7 @@ const UploadImages = () => {
             className="bg-purple-900 
             px-3 py-2 rounded text-white text-[14px] font-medium" 
             onClick={() => {
-              console.log(selectedImages);
+            alert(selectedImages)
             }}
           >
             Submit {selectedImages.length} file
@@ -91,7 +91,7 @@ const UploadImages = () => {
           </Tooltip>
         ))} 
 </div>
-    </section>
+    </form>
   );
 };
 

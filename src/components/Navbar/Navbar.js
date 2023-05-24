@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react"
-
-
-import PageComponet from "./ListComponet"
+import NavbarList from "./NavbarList"
 import { styleNavbar } from "../../style/style"
 import { useSelector } from "react-redux"
 import Dropdown from "../Dropdown"
-import {BiHomeAlt,BiGroup,BiGlobe, BiMenu} from "react-icons/bi"
-import {AiOutlineQuestionCircle} from "react-icons/ai"
+import {BiHomeAlt,BiGroup,BiGlobe, BiMenu, BiQuestionMark, BiPencil, BiLogOut} from "react-icons/bi"
+import {CgProfile} from "react-icons/cg"
 import Icon from "../Icon"
 
 
@@ -18,9 +16,12 @@ const IsLoggIn = useSelector( state=> state.auth.isLoggIn)
 const name = useSelector(state=> state.auth.username)
 
 
-const list = ["logout"]
+const list = [{"name":`profile`,"icon":<CgProfile/>},{"name":`exam`,"icon":<BiPencil/>},{"name":"sign out","icon":<BiLogOut/>}]
+const navbarlink = [{name:"Home",link: "home",icon: <BiHomeAlt/>},
+{name:"About us" ,link:"about",icon: <BiGroup/>},{name:"Contact us",link:"contact", icon: <BiQuestionMark/>}]
 
-const list2 = ["home", "about","contact",'exam']
+const list2 =  [ {"name":"home","icon":<BiHomeAlt/>}, {"name":"about","icon":<BiQuestionMark/>},
+{"name":"contact", "icon":<BiGroup/>},{"name":'exam', "icon":<BiPencil/>}]
 const [open ,setOpen] = useState(false)
     return (
        < nav  className={ IsLoggIn ? styleNavbar["navStyle-login"] : styleNavbar["navStyle-noneLoggin"]}>
@@ -33,15 +34,12 @@ const [open ,setOpen] = useState(false)
                 </div>
                 <div  className={styleNavbar["divtag-style-four"]}>
                     {
-                        IsLoggIn ? <div>
-
-                        </div> : <>
-                     <PageComponet icon={<BiHomeAlt/>} link= "/" name="Home" />
-                    <PageComponet icon={<BiGroup/>} link="/about" name="About us" />
-                    <PageComponet icon={<AiOutlineQuestionCircle/>} link="/contact" name="Contact us"/>
+                        IsLoggIn ? null : <>
+                        {navbarlink.map(item => 
+                        <NavbarList icon={item.icon} link={item.link} 
+                        name={item.name}/>)}
                         </>
                     }
-                   
             </div>
             </div> 
 <div className="flex flex-row">
@@ -60,7 +58,7 @@ const [open ,setOpen] = useState(false)
             <div className="block md:hidden" >
                 <Dropdown name={
                     <div className="">
-                        <Icon name={<BiMenu/>} Size="1.5rem" color="purple"/>
+                        <Icon name={<BiMenu/>} Size="1.5rem" color="white"/>
                     </div>
                 }
                 list={list2}

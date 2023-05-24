@@ -10,7 +10,7 @@ const quiz = [
             "qid" : "01",
             "completed":false,
                "file": {"id": "01", "type":null,
-                "src":["Describe three advanges of living abroad","Describe three advantages of traveling aboard"]},
+                "src":["Describe three advanges of living abroad.","Describe three advantages of traveling aboard.","Dsecribe your happay memory in life."]},
             "number-word" : "100",
             "clude" : [
                     { "id" : "01" , "choice" :null, selected:false},
@@ -182,67 +182,10 @@ const quiz = [
                 "clude" : []
                
             },
-            {
-                "qid":"05",
-                "completed":true,
-                "file": {"id": "01", "src":null},
-                "categories":"Fill in blank",
-                "type" : "input",
-                "question" :["James is moving to a new neighorhood, but her friends hope she will <"],
-                "clude" : []
-               
-            },
-            {
-                "qid":"06",
-                "completed":true,
-                "file": {"id": "01", "src":null},
-                "categories":"Fill in blank",
-                "type" : "input",
-                "question" :["James is moving to a new neighorhood, but her friends hope she will <"],
-                "clude" : []
-               
-            },
-            {
-                "qid":"07",
-                "completed":true,
-                "file": {"id": "01", "src":null},
-                "categories":"Fill in blank",
-                "type" : "input",
-                "question" :["James is moving to a new neighorhood, but her friends hope she will <"],
-                "clude" : []
-               
-            },
-            {
-                "qid":"08",
-                "completed":true,
-                "file": {"id": "01", "src":null},
-                "categories":"Fill in blank",
-                "type" : "input",
-                "question" :["James is moving to a new neighorhood, but her friends hope she will <"],
-                "clude" : []
-               
-            },
-            {
-                "qid":"09",
-                "completed":true,
-                "file": {"id": "01", "src":null},
-                "categories":"Fill in blank",
-                "type" : "input",
-                "question" :["James is moving to a new neighorhood, but her friends hope she will <"],
-                "clude" : []
-               
-            },
-            {
-                "qid":"10",
-                "completed":true,
-                "file": {"id": "01", "src":null},
-                "categories":"Fill in blank",
-                "type" : "input",
-                "question" :["James is moving to a new neighorhood, but her friends hope she will <"],
-                "clude" : []
-               
-            },
-          
+         
+      
+           
+            
         ]
         
     },
