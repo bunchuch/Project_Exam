@@ -28,18 +28,13 @@ useEffect(() => {
  
 }, [dispatch]);
 
-console.log(quiz.page)
+
 return <> 
   <Container>
+    <div className=" relative top-[4rem]">
     {
 
       loadding ? (<>
-      
-      <div className={examstyle.quiz.main2}>
-<div className={ name ? "flex md:gap-2" : " gap-1 flex md:gap-2 justify-end w-full"}>
-        <Timer initialMinute = {45} nitialSeconds={23}></Timer>    
-</div>        
-    </div>
 <div className={examstyle.quiz.main}>
   {
     quiz.pending ? <div><Loader/></div> : 
@@ -50,7 +45,7 @@ return <>
         <QuizCard
         desc={value.type}
         title={value.name}
-      progressPercentage={value.progress}
+        progressPercentage={value.progress}
         number={value.question.length}
         link={`/exam/${value.name}`}
         > 
@@ -68,7 +63,7 @@ return <>
 
     }
   
- 
+ </div>
   </Container>
  
 </>

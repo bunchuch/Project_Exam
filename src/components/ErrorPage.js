@@ -1,35 +1,41 @@
 import React, { useEffect } from "react";
-import { useNavigate, useHistory } from "react-router-dom";
-import {styleError404} from "../style/style"
-import Icon from "./Icon";
-import { FcBrokenLink } from "react-icons/fc";
-import Container from "./Container"
+import { useNavigate } from "react-router-dom";
+import Container from "./Container";
 
-export default function ErrorPage(){
-	document.title = "Error 404"
+
+export default function ErrorPage({type}){
+	document.title = "404 - not found page"
   let navigator = useNavigate()
-  const hanldClick = () => {
-    navigator("/home", {replace: true})
+  const handleNavigator = () => {
+    navigator(-1, {replace:true})
   }
 
     return <Container>
-<div className=" space-y-1 flex flex-col items-center justify-center 
-md:mx-10 text-gray-700 px-4 md:p-8 rounded  xl:py-0">
-	<div className="flex relative flex-col items-center inset-y-40 justify-center rounded border-[1px] px-5 space-y-3 py-3 border-gray-900">
-	<div className="w-10 h-10 md:w-20 md:h-20">
-						<Icon name={<FcBrokenLink/>}></Icon>
-					 </div>
-                    <h1 className="text-xl font-medium leading-tight mb-2
-                     tracking-tight md:text-2xl
-                      dark:text-white">Page Not Found</h1>
-               <p className="font-normal text-center">The requestion URL was not found. That's all we know. </p> 
-               <p className="md:text-center text-start">
-                            <a onClick={hanldClick} 
-                            href="" className="font-thin-[150px] text-start
-                             hover:text-purple-900 text-purple-800">Go back</a>
-                        </p>
-                </div>
-	</div>
+<div className="h-screen w-screen top-0 flex items-center">
+	<div className="container mx-auto flex flex-col md:flex-row items-center justify-center px-5 text-gray-700">
+   		<div className="max-w-md md:order-1 order-2 justify-center">
+      		<div className="text-5xl font-dark font-bold">404</div>
+            <p
+              className="text-2xl md:text-3xl font-light leading-normal"
+            >Sorry we couldn't find this page. </p>
+          <p class="mb-8">But dont worry, you can find plenty of other things on our homepage.</p>
+          
+          <button
+          onClick={()=> handleNavigator()}
+          className="px-4 inline py-2 text-sm font-medium leading-5
+           shadow text-white transition-colors duration-150 border
+            border-transparent rounded border-1 tracking-wide focus:outline-none focus:shadow-outline-blue
+             bg-purple-800 active:bg-purple-600 hover:bg-purple-700">back to homepage</button>
+    </div>
+      <div className="max-w-lg  md:order-2 order-1">
+        <p className="text-[100px]">
+        😴
+        </p>
+   
+    </div>
+    
+  </div>
+</div>
                    
 	</Container>
 

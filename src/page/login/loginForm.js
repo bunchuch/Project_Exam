@@ -57,13 +57,14 @@ const navigator = useNavigate()
             <div className="w-full md:mt-0 sm:max-w-md xl:p-0 relative">{ 
                 help ? <div className="p-6 space-y-1 md:space-y-3 flex flex-col items-center my-5 md:mx-10
                  text-gray-700  md:p-8 rounded text-center bg-gray-50 px-0 xl:py-0">
-                      <h1 className=" text-xl font-medium leading-tight mb-2 tracking-tight md:text-2xl dark:text-white ">
+                      <h1 className=" text-xl font-medium leading-tight mb-2 tracking-tight md:text-2xl  ">
                     <Icon Size="2rem" name={<FcPortraitMode/>}></Icon>
                       </h1>
-                    <h1 className=" text-xl font-medium leading-tight mb-2 tracking-tight md:text-2xl dark:text-white ">Welcome</h1>
+                    <h1 className=" text-xl font-medium leading-tight mb-2 tracking-tight md:text-2xl  ">Welcome</h1>
                <p className=" font-normal">Contact your curator to recover your password </p> 
                <p className="paraStyle text-center">
-                            <a onClick={()=> setHelp(false)} href="" className="font-thin-[150px] hover:text-purple-900 text-purple-800">I remember the password back</a>
+                            <a onClick={()=> setHelp(false)} href=""
+                             className="font-thin-[150px] hover:text-purple-900 text-purple-800">I remember the password back</a>
                         </p>
                 </div> :   <div className="p-6 space-y-1 md:space-y-3  my-5 md:mx-10 text-gray-700 
                mx-5 bg-white md:p-8 rounded ">

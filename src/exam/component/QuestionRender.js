@@ -16,6 +16,7 @@ import Container from "../../components/Container";
 import { Loader } from "../../components/load/Loader";
 import { Input } from "../../components/Input";
 import Timer from "../../components/Timer";
+import { FaQuidditch } from "react-icons/fa";
 
 
 export const QuestionRender = ({showScore}) => {
@@ -28,26 +29,15 @@ export const QuestionRender = ({showScore}) => {
   const [previous, setPrevious] = useState(false);
   const [load, setLoad] = useState(false);
   const [id , setId] = useState(qv)
-  const [check ,setChecked] = useState(false)
+  const [checked ,setChecked] = useState(false)
 
 
 var qid= parseInt(qv)
 var page = quizId.page
 
-
-
-
-
 useEffect(()=>{
   dispatch(getQuestionNameAsync({name}))
 }, [dispatch])
-
-
-
-
-
-
-
 
 
 const handleAnswerNext = () => {
@@ -60,15 +50,6 @@ const handleAnswerNext = () => {
 
 }
 
-
-
-
-
- 
-
-
- 
-  
   const handleAnswerOptionClickPrev = () => {
     const nextQuestion = currentQuestion - 1;
     if (nextQuestion < quizId.questions.question.length) {
@@ -86,25 +67,29 @@ const handleAnswerNext = () => {
   }
 
   const hanndleChecek = (id ,completed) => {
+    alert("Hi")
     console.log(id ,completed)
     const quizTest = quizId.questions.question[currentQuestion].clude.find((x)=> x.id === id)
-    dispatch(toggleCompleteAsync({id ,completed:!completed}))
+    if(quizTest.id === id){
+      var selecteds = JSON.stringify(quizTest.selected)
+    }
 
-    console.log(quizTest)
     
+   
   }
 
-  console.log(quizId)
+  
 
   return <Container>
+    <div className="2xl:pt-[4rem]  pt-8">
      {/* {JSON.stringify(quizId.questions)} */}
     { quizId.pending ? <Loader></Loader> : <>
-  <div className={examstyle.quiz.main}>
+  <div className={examstyle.task.examheader}>
 <ExamStatus link={"/exam"} showQuestion={true} title={name}
 currentQuestion={quizId.questions === null ? [] : quizId.questions.question[currentQuestion]}
 data={quizId.questions === null ? [] : quizId.questions.question }/>  
 <div className={ name ? "flex md:gap-2" : " gap-1 flex md:gap-2 justify-end w-full"}>
-        <Timer initialMinute = {45} nitialSeconds={23}></Timer>    
+         
   </div>
 
 
@@ -147,7 +132,7 @@ data={quizId.questions === null ? [] : quizId.questions.question }/>
                quizId.questions.question[currentQuestion].clude.map((i,indexs)=><>
          <div key={indexs*10 /2}>
               <Input key={indexs*10 / 2} 
-              checked={i.selected} 
+               checked={i.selected}
               event={(e) =>hanndleChecek(i.id ,i.selected)}
               value={i.choice} name="quiz" id={i.id} 
               type="checkbox" Text={i.choice}/>
@@ -155,8 +140,7 @@ data={quizId.questions === null ? [] : quizId.questions.question }/>
           </>)
       }
       </div>
-               </div>
-              
+               </div>    
               </>)
             }
           </>)
@@ -198,6 +182,6 @@ data={quizId.questions === null ? [] : quizId.questions.question }/>
   </> }
 
  
-
+</div>
   </Container>
 }

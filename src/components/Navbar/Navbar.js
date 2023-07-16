@@ -3,33 +3,39 @@ import NavbarList from "./NavbarList"
 import { styleNavbar } from "../../style/style"
 import { useSelector } from "react-redux"
 import Dropdown from "../Dropdown"
-import {BiHomeAlt,BiGroup,BiGlobe, BiMenu, BiQuestionMark, BiPencil, BiLogOut} from "react-icons/bi"
+import {BiHomeAlt,BiGroup,BiGlobe, 
+    BiMenu,
+     BiQuestionMark,
+      BiPencil,
+       BiLogOut} from "react-icons/bi"
 import {CgProfile} from "react-icons/cg"
 import Icon from "../Icon"
-
+import Timer from "../Timer"
 
 
 
 const Navbar = ({style,setNavbar}) =>{
 
 const IsLoggIn = useSelector( state=> state.auth.isLoggIn)
-const name = useSelector(state=> state.auth.username)
-
-
-const list = [{"name":`profile`,"icon":<CgProfile/>},{"name":`exam`,"icon":<BiPencil/>},{"name":"sign out","icon":<BiLogOut/>}]
+const names = useSelector(state=> state.auth.username)
+const loadding = useSelector((state)=> state.quizs.loadding)
+const list = [{"name":`profile`,"icon":<CgProfile/>},{"name":`exam`,"icon":<BiPencil/>},{"name":"Log out",
+"icon":<BiLogOut/>}]
 const navbarlink = [{name:"Home",link: "home",icon: <BiHomeAlt/>},
 {name:"About us" ,link:"about",icon: <BiGroup/>},{name:"Contact us",link:"contact", icon: <BiQuestionMark/>}]
 
 const list2 =  [ {"name":"home","icon":<BiHomeAlt/>}, {"name":"about","icon":<BiQuestionMark/>},
 {"name":"contact", "icon":<BiGroup/>},{"name":'exam', "icon":<BiPencil/>}]
-const [open ,setOpen] = useState(false)
+
+
+
+
     return (
        < nav  className={ IsLoggIn ? styleNavbar["navStyle-login"] : styleNavbar["navStyle-noneLoggin"]}>
         <div className={styleNavbar.container}>
             <div className={styleNavbar.container2}>
                 <div className={styleNavbar.conatiner3}>
-                <img src={ IsLoggIn ? "https://upload.wikimedia.org/wikipedia/en/e/ed/PUC_Logo.png" 
-               :"https://upload.wikimedia.org/wikipedia/en/e/ed/PUC_Logo.png" }
+                <img src= {IsLoggIn ? "./PUC_Logo.png" : "./PUC_Logo.png" }
                 className={styleNavbar["img-style"]} alt="logo"/>
                 </div>
                 <div  className={styleNavbar["divtag-style-four"]}>
@@ -42,19 +48,26 @@ const [open ,setOpen] = useState(false)
                     }
             </div>
             </div> 
-<div className="flex flex-row">
+<div className="flex flex-row items-center  space-x-3 align-bottom">
     {
-        IsLoggIn ? <Dropdown
+        IsLoggIn ?
+        <>
+        {loadding ?
+        <Timer initialMinute = {10} nitialSeconds={23}></Timer> : null}
+        <Dropdown
         name={
             <div className="flex items-center justify-center 
-            w-8 h-8 font-bold rounded-full select-none text-cyan-800 bg-cyan-100">
-            {name.username.slice(0,2)}
+            w-9 h-9 font-bold rounded-full select-none text-cyan-800 uppercase bg-blue-200">
+
+            {names.username.slice(0,2)}
         </div>
         }
         list={list}
         >
 
-        </Dropdown>:<div className="">
+        </Dropdown>
+        </>
+        :<div className="">
             <div className="block md:hidden" >
                 <Dropdown name={
                     <div className="">

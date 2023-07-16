@@ -4,7 +4,7 @@ const examStatusStyle ={
     "mainStyle" : "py-4 md:px-2  px-4 overflow-auto",
     "mainwhenfasle" : "w-full hidden  z-10",
     "listyle" : {
-        "liststyle" : "md:py-2 py-1.5 w-8 h-8  px-2 md:px-3.5 rounded border-1 border-purple-400",
+        "liststyle" : "md:py-2 py-1.5 w-8 h-8  px-2 md:px-3.5 rounded-md border-1 border-purple-400",
         "ulstyle" : "inline-flex space-x-2 md:space-x-4 ",
         "active-unchecked" : "border-2 border-purple-500 bg-purple-200 text-purple-800 font-semibold",
         "active-checked"  : "border-2 border-green-600 bg-green-300 text-slate-800 ",
@@ -26,7 +26,7 @@ const buttonstyle = {
 
 const examstyle = {
     "quiz" : {
-        "main" : " bg-purple-50 sticky top-[50px] py-2 mx-auto max-w-6xl 2xl:py-5 md:px-0 md:py-2 px-4 flex "
+        "main" : "py-2 mx-auto max-w-6xl 2xl:py-5 md:px-0 md:py-2 px-4 flex relative md:top-[5rem] top-0 "
         +" items-center justify-between dark:border-gray-700",
         "main2" : " bg-purple-50 sticky top-0 py-2 mx-auto max-w-6xl 2xl:py-5 md:px-0 md:py-2 px-4 flex "
         +" items-center justify-between dark:border-gray-700",
@@ -35,6 +35,8 @@ const examstyle = {
     },
     "task" : {
         "main" : "max-w-6xl mx-auto md:pb-3 md:px-0 p-5",
+        "examheader" : "py-2 mx-auto max-w-6xl 2xl:py-5 md:px-0 pt-[2rem] flex "
+        +" items-center justify-between dark:border-gray-700",
         "taskbox" : "bg-white  text-slate-900 mt-3 -z-10 shadow-sm md:py-6 shadow-gray-500/10 "
         +" border-[1px] border-gray-200 rounded tracking-wide lg:mt-3 md:px-6 px-2 py-4 space-y-2 w-full h-[50%]",
         "questiondiv" : "flex space-x-2 mt-5 mx-5",
@@ -81,9 +83,9 @@ const styleLoader = {
 
 
 const styleInstruction = {
-    "article": "flex 2xl:py-0 py-4 lg:py-2 md:py-2 items-center space-x-1 md:space-x-3 items-center md:space-x-2 tracking-wide",
+    "article": "flex 2xl:py-0 py-4 lg:py-5 md:py-2 items-center space-x-1 md:space-x-3 items-center md:space-x-2 tracking-wide",
     "header": "font-semibold leading-none text-sm ",
-    "paragrah": "text-[12px] md:text-[14px] md:w-full w-80 truncate text-gray-800"
+    "paragrah": "text-[12px] text-purple-700 md:text-[16px] md:w-full w-80 truncate text-gray-800"
   }
   
 

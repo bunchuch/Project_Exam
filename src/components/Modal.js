@@ -44,14 +44,14 @@ const handleSize = (size) => {
             <div className="fixed top-0 left-0 right-0 z-50 w-full overflow-x-hidden
              overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full
                             flex justify-center items-cente outline-none focus:outline-none">
-            <div className="relative w-auto md:my-4 top-10 md:mx-auto mx-4">
+            <div className="relative w-auto md:my-4 top-20 md:mx-auto">
               <div className="rounded  relative flex flex-col w-full
                bg-white outline-none focus:outline-none">
               <div className={`relative w-full h-full ${handleSize(size)} md:h-auto`}>
         <div className="relative ">
             <button 
             onClick={()=>setShowModal(false)}
-            type="button" className="absolute md:top-3 right-4  md:right-2.5 text-gray-400
+            type="button" className="absolute md:top-3 right-4 top-4  md:right-2.5 text-gray-400
              bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg bg-purple-100 
              text-sm p-1.5 ml-auto inline-flex items-center
             " data-modal-hide="popup-modal">

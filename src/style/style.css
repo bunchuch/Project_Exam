@@ -43,7 +43,15 @@
     
   }
 
-
+.contact-hero{
+  background-image: linear-gradient(rgba(232, 231, 233, 0.898), rgba(202, 202, 202, 0.829)),
+  url("https://cheeswrights.com/wp/wp-content/uploads/contact-hero-1.jpg");
+ background-position: center;
+ background-repeat: no-repeat;
+ height:500px;
+ background-size: cover; 
+  position: relative;
+}
 
 @media  screen and (max-width:640px) {
 
