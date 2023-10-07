@@ -43,8 +43,8 @@ export default function Dropdown ({name,icon,list}){
       bg-white rounded-md shadow-xl dark:bg-gray-800 transition ease-out duration-100" >
         <div className="flex justify-end bg-gray-50  w-full">
          
-          <button onClick={()=> setDropdown(false)} className="p-2">
-          <Icon name={<BiX/>} Size="1.5rem" color="purple"></Icon>
+          <button onClick={()=> setDropdown(false)} className="px-2 py-1.5 hover:bg-purple-50 hover:rounded-sm hover:shadow-sm">
+          <Icon name={<BiX/>} Size="1.2rem" color="purple"></Icon>
           </button>
         
         </div>

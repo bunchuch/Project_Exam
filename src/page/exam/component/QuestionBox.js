@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-import { ReadingCard } from "../../components/ReadingCard";
-import {Audio} from "../../components/Audio"
-import "../../style/style.css"
-import Writing from "../../components/Writing";
-import FillBlanks from "../../components/FillBlank";
-import {VocabularyCard} from "../../components/VocabularyCard"
-import { Input } from "../../components/Input";
+import { ReadingCard } from "../../../components/ReadingCard";
+import {Audio} from "../../../components/Audio"
+import Writing from "../../../components/Writing";
+import FillBlanks from "../../../components/FillBlank";
+import {VocabularyCard} from "../../../components/VocabularyCard"
+import { Input } from "../../../components/Input";
+
+
+
+
 const renderQuestionHeader =  (result,item) =>{
   const items =  {...item}
   const {src ,type,header} = items

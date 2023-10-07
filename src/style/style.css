@@ -1,6 +1,6 @@
 .main_background{
     background-image:
-     url("https://www.unicef.org/cambodia/sites/unicef.org.cambodia/files/styles/hero_tablet/public/123.jpg?itok=L94BbNF7");
+     url("https://raw.githubusercontent.com/ProgrammingHero1/ProgrammingHero1/main/image/banner.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover; 
@@ -9,34 +9,39 @@
   }
 
    .exam-section-bg{
-    background-image: url("../../public/purple-bg.png");
+    background-image: url("../../public/asset/purple-bg.png");
     background-size: cover;
     background-repeat: no-repeat;
 
 
    }
    .welcome-section-bg{
-    background-image: url("../../public/red-bg.png");
+    background-image: url("../../public/asset/red-bg.png");
     background-repeat: no-repeat;
     background-size: cover;
    }
    .login-section-bg{
-    background-image: url("../../public/bg-yellow.png");
+    background-image: url("../../public/asset/bg-yellow.png");
     background-repeat: no-repeat;
     background-size: cover;
    }
 
    .red-section-bg{
-    background-image: url("../../public/red-bg.png");
+    background-image: url("../../public/asset/red-bg.png");
     background-repeat: no-repeat;
     background-size: cover;
    }
   .bg-login{
-    background-image: url("../../public/bg-login.png");
+    background-image: url("../../public/asset/bg-login.png");
     background-repeat: no-repeat;
     background-size: cover;
   }
 
+  .footer-bg{
+    background-image: url("../../public/asset/footer-bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
 
   .sectionOne_background{
     background-image:  linear-gradient(rgba(231, 227, 3, 0.898), rgba(253, 255, 148, 0.829)),
@@ -62,14 +67,11 @@
   }
 
   .about-hero{
-    background-image:
+    background-image:linear-gradient(rgb(255, 255, 255, 0.189),rgba(15, 13, 13, 0.893)),
     url("https://eamu.edu.kh/wp-content/uploads/2022/09/Student-Librarian-Duty-1.jpg");
    background-position: center;
    background-repeat: no-repeat;
-   height:500px;
    background-size: cover; 
-    position: relative;
-    
   }
 
 .contact-hero{

@@ -1,18 +1,11 @@
 import React, { useEffect, useState } from "react";
-import Instruction from "../../components/Instruction";
-import Header from "./QuestionBox";
-import Writing from "../../components/Writing";
-import FillBlanks from "../../components/FillBlank";
-import Icon from "../../components/Icon";
-import { BiLeftArrowAlt ,BiRightArrowAlt } from "react-icons/bi";
-import { SmallSpinner } from "../../components/load/SmallSpinner";
+import Instruction from "../../../components/Instruction";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams ,Link} from "react-router-dom";
-import { toggleCompleteAsync, getQuestionNameAsync, getQuestionNameAsyncID, increment } from "../../redux/apicall";
+import { toggleCompleteAsync, getQuestionNameAsync, } from "../../../redux/apicall";
 import ExamStatus from "./ExamStaute";
-import Container from "../../components/Container";
-import { Loader } from "../../components/load/Loader";
-import { Input } from "../../components/Input";
+import Container from "../../../components/Container";
+import { Loader } from "../../../components/load/Loader";
 import QuestionBox from "./QuestionBox";
 
 
@@ -81,38 +74,13 @@ const handleAnswerNext = () => {
 
   
 
-  return <Container>
-    <div className="h-full inset-0 relative ">
-     {/* {JSON.stringify(quizId.questions)} */}
-    { quizId.pending ? <Loader></Loader> : <>
-  <div className={examstyle.task.examheader}>
-<ExamStatus link={"/exam"} showQuestion={true} title={name}
-currentQuestion={quizId.questions === null ? [] : quizId.questions.question[currentQuestion]}
-data={quizId.questions === null ? [] : quizId.questions.question }/>  
-<div className={ name ? "flex md:gap-2" : " gap-1 flex md:gap-2 justify-end w-full"}>      
-  </div>
+//   return
+
+return <div className="container mx-auto p-2">
+<h1>Hi</h1>
 </div>
 
-<div className={examstyle.task.main}>
-<Instruction headers={name}></Instruction>
-<div className="h-full relative rounded-xl  my-1 md:px-0 inset-0 ">
 
-      {quizId.pending ? <div><Loader/></div>  :  quizId.questions == null ? <></> 
-      :
-        <>         
-          <QuestionBox item={quizId.questions} categorie={quizId.questions} />                
-</>
-
-      
-    }
-</div>
- </div>
-  
-  </> }
-
- 
-</div>
-  </Container>
 }
 
 

@@ -1,44 +1,37 @@
 import React from "react";
 import Table from "../../../components/table";
 import { Link, Outlet } from "react-router-dom";
+import Tab from "../../../components/Tab";
 
+
+const TabList = [
+    {"name": "user","Link" : "/dashboard/User/"},
+    {"name": "student" , "Link" : "/dashboard/User/Student"},
+     ]
 
 export default function User () {
+
     return <div className="">
     <h1 className="text-2xl font-semibold pb-3 text-purple-900">User Dashboard</h1>
         <div className="bg-white rounded-md border-[1px] py-5 px-6">
         <button className="bg-purple-900 px-2 py-1.5 
         rounded text-center float-right after:bg-purple-700 text-[14px] active:bg-purple-700 text-white">
-            <Link >
+            <Link to={`/dashboard/User/Add`} >
                 Add user
             </Link>
             </button>
-            <ul class="flex flex-wrap text-sm font-medium text-center text-gray-500
-          border-gray-200 dark:border-gray-700 dark:text-gray-400">
-    <li class="mr-2">
-        <Link to={"/dashboard/User"}>
-        <a href="#" aria-current="page" class="inline-block 
-        py-2
-           active:bg-gray-50 hover:bg-gray-50">User</a>
-        </Link>
-       
-    </li>
-    <li class="mr-2">
-        <Link to={"/dashboard/User/Student"}>
-        <a href="#" class="inline-block p-2
-         hover:text-gray-600 hover:bg-gray-50
-          dark:hover:bg-gray-800 dark:hover:text-gray-300">Student</a>
-        </Link>
-
-    </li>
-   
-</ul>
+            <Tab List={TabList} ></Tab>
 <hr></hr>
-
-       
        <Outlet/>
         </div>
      
+    </div>
+}
+
+
+export const AddUser = () => {
+    return <div className="bg-white rounded-md border-[1px]">
+        <h1>Add user</h1>
     </div>
 }
 

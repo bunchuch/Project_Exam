@@ -1,38 +1,42 @@
 import React from "react";
 
 
+const renderType = (type)=>{
+  const types = type.toLowerCase()
 
+  if(types === "password"){
+    return "password"
+  }else if(types === "radio"){
+    return "radio"
+  }else if ("checkbox") {
+      return "checkbox"
+  }else if (types === "submint"){
+    return "submit"
+  }else{
+    return "text"
+  }
+
+}
 
 
 
 
 export const Input =  ({id,Text, type ,event,name,value,checked, ref }) => {
     return <div >
-    {    type  === "input"  ?   <div>
-                            <label htmlFor="Username"
-                                className="block mb-2 text-sm font-medium text-gray-900 ">
-                              {Text}</label>
-                            < input type="text" onChange={event}
-                            ref={ref}
+    <div>
+                            < input type={ type ? renderType(type) : "text"} onChange={event}
+                              ref={ref}
                                 value={value}
                                 name="username" id="username"
-                                className="ext-gray-900 rounded-md  border-gray-200 border-[1px] 
-                            text-sm block w-full py-2 text-[14px] font-normal md:py-3  px-2
+                                className="ext-gray-900 rounded-md bg-gray-50 border-gray-200 border-[1px] 
+                                text-sm block w-full py-2 text-[14px] font-normal md:py-3  px-2
                                  tracking-wider"
                                 required="" />
                                 {/* {formErrors.username && 
                                 <p className="text-red-500 text-[12px] py-2 font-medium line-none">
                                     {formErrors.username}</p>} */}
-                        </div> :     
-          <div className="flex justify-center items-center ">
-          <input id="default-checkbox" type={type === "checkbox" ? "checkbox" : "radio"}
-           value={value}
-           
-           onChange={event}
-            className={styleGroupInput.inputStyle}/>
-          <label htmlFor=""  className="mx-5 font-sans tracking-wider text-[16px] text-gray-800">{Text}</label>
-      </div>       
-      }    
+                        </div> 
+      
     </div>
  }
 

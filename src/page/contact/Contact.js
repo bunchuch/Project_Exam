@@ -16,18 +16,14 @@ export default function Contact () {
    
 
     return (
-        <section data-aos="fade-in"  className="bg-white dark:bg-gray-900">
-          <Heropage img="contact-hero"></Heropage>
-        <div className="container mx-auto  px-6 py-12 mt-10 font-sans">
-            <div className="">    
-                <h1 className="mt-2 text-2xl font-semibold text-gray-800 md:text-3xl dark:text-white">Get in touch</h1>
-            </div>
-              <div className="mt-2">
-                    <span className="inline-block w-40 h-1 bg-purple-800 rounded-full"></span>
-                    <span className="inline-block w-3 h-1 ml-1 bg-red-800 rounded-full"></span>
-                    <span className="inline-block w-1 h-1 ml-1 bg-yellow-400 rounded-full"></span>
+        <section data-aos="fade-in"  className="py-0">
+        <div className="container mx-auto px-6 mt-9 font-sans  ">
+        
+        <div className="mt-2 flex gap-2">
+              <h1 className="text-2xl font-bold font-roboto text-gray-800 lg:text-3xl">Let Know about Us</h1>
+                    <span className="inline-block w-4 h-8   border-[2px]  bg-gradient-to-r from-fuchsia-600 to-pink-500  border-white rounded-full"></span>
                 </div>
-            <div className="grid grid-cols-1 gap-12 mt-5 md:mt-10 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-8 mt-3 lg:mt-10 md:grid-cols-2 xl:grid-cols-3 py-7">
               {
                 contact.map((i=><>
                 { i.Email.map((x)=><Card title={x.title} desc={x.desc} icons={<FcSms/>} chilren={x.contact}/>) }

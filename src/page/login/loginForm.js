@@ -1,84 +1,72 @@
 import React, { useEffect, useState,useRef } from "react"
-import { useDispatch } from "react-redux"
-import { authAction } from "../../redux/authSlice"
 import { Link, useNavigate } from "react-router-dom"
-import Icon from "../../components/Icon"
-import {FcPortraitMode} from "react-icons/fc"
 import "../../style/style.css"
 import { Input } from "../../components/Input"
+import axios from "axios"
+import Cookies from "universal-cookie"
 
 
-
-
-
-
+const cookie = new Cookies
 
 const LoginForm = () => {
+    const inputRef = useRef(null)
+    const navigator = useNavigate()
 
-    const dispatch  = useDispatch()
-    const [Type ,setType] = useState(false)
-    const [help ,setHelp] = useState(false)
-    const [isSumbit, setIsSubmit] = useState(false)
-    const [formErrors, setFormErrors] = useState({})
-    const [user, setUserDetails] = useState({
-        username: '',
-        password: ''
-    })
-
-const inputRef = useRef(null)
+    const [username , setUsername] = useState()
+    const [password ,setPassword] = useState()
+    const [type ,setType] = useState(false)
+    const [message, setMessage] = useState(false)
 
 
-
-const navigator = useNavigate()
-
-    const handleChange = (event) => {
-        const name = event.target.name;
-        const value = event.target.value;
-        setUserDetails(values => ({...values, [name]: value}))
-      }
     
+    const handleSubmit = async e => {
+        e.preventDefault(e);
+        axios.post("http://localhost:4000/user/login", {
+          name : username,
+          password : password,
+        }
+        )
+        .then((response)=> {
+            console.log(response.data)
+            cookie.set("TOKEN", response.data.token , {
+              path: "/"
+            });
+            if(response.data.role[0] === "student" ){
+                navigator("/exam") 
+            }else {
+                navigator("/dashboard")
+            }
+         
+         
+      }).catch((err)=> {
+          setMessage(true)
+          alert("invail credentials")
+        })
 
-    const handleOnsubmit = (event) => {
-          dispatch(authAction.login({
-            username:user.username,
-            password:user.password,
-          }))
-          if(dispatch(authAction.login)){
-            navigator("/dashboard")
-          }else{
-            navigator("/login")
-          }
-     
+        
+        
+       
+
     }
 
-    //check login form and return new page if vailidation is successful
-    //use axios http library to return
-    useEffect(() => {
-        if (Object.keys(formErrors).length === 0 && isSumbit) {
-            console.log(user)
-            // axios.post('https:')
-
-        }
-    }, [formErrors])
-
-    return <section className="bg-gray-50 relative inset-0 font-sans">
-        <div className="flex flex-col items-center justify-center 
+return <section className="bg-gray-50   inset-0 font-sans">
+        <div className="flex items-center justify-center 
          h-screen">
-            <div className="w-full    md:mx-auto max-w-[22rem] 
-            rounded-xl shadow-sm mx-3 shadow-gray-100/10 bg-white border-[1px]   ">{ 
+            <div className="w-full    md:mx-auto md:max-w-[22rem] max-w-full
+            rounded-lg shadow-sm  shadow-gray-100/10 md:bg-white md:border-[1px]   ">{ 
                 <div> 
                   <div className=" space-y-1 md:space-y-3  my-2 p-2 md:p-6 text-gray-700 
                  ">
                 {
-                    user.username ? (
-                        <>
+                    username ? (
+                        <div className="mx-3 md:mx-0 border-b-[1px] py-1.5 md:py-0 md:border-0">
                             <h1 className="text-xl font-sans
                             font-medium leading-tight tracking-tight md:text-2xl  ">
                                 {
-                                    `${Type ? "Greeting" : "Hello"} ! ${user.username}`}</h1>
-                            <p className="loginform_paragraph_style_box_8 font-sans">{Type ? "How are doing?👋🏻"
+                                    `${type ? "Greeting" : "Hello"} ! ${username}`}</h1>
+                            <p className="loginform_paragraph_style_box_8 font-sans">{type ? "How are doing?👋🏻"
                             :"Nice to meet you 😎"}</p>
-                        </>
+                        </div>
                     ) : (
                         <>
                             <h1 className="text-xl font-medium font-sans
@@ -91,22 +79,29 @@ const navigator = useNavigate()
                     )
                 }
                 <div className="md:px-2 px-4">
-                    <form onSubmit={handleOnsubmit} 
+                    <form 
                     className="space-y-4 md:space-y-4 my-4 " action="#">
                         {/* username input area */}
-                       <Input type="input" event={handleChange} Text="Username"></Input>
+                        <label htmlFor="Username"
+                                className="block mb-2 text-sm font-medium text-gray-900 ">
+                              Username</label>
+                       <Input ref={inputRef} type={null} event={e => setUsername(e.target.value)} Text="Username"></Input>
                         {/* passowrd input area */}
-                        <Input type="input" Text="Password"></Input>
-                        <div className="mt-5"></div>
-                        <button type="submit" 
+                        <label htmlFor="Username"
+                                className="block mb-2 text-sm font-medium text-gray-900 ">
+                             Password</label>
+                        <Input ref={inputRef} event={e => setPassword(e.target.value)} type="password"  Text="Password"></Input>
+                        <div className="mt-5">
+                          {message ? <p className="text-sm font-medium text-red-500">Invaild credentails</p> : null}
+                        </div>
+                        <button onClick={(e)=> handleSubmit(e)} type="submit" 
                         className="w-full bg-yellow-400  text-slate-800 rounded-md
                                     focus:ring-4 focus:outline-none 
                                     font-medium text-sm px-5 py-3  md:text-[16px] text-center">
                                         Log In</button>
-
                         <p className="text-center">
                             <Link to={"/login/reset-account"}>
-                            <a onClick={()=> setHelp(true)} href="#" 
+                            <a 
                             className="font-thin-[200px] hover:text-purple-900 text-[14px]
                              text-yellow-500"> Get Help with Signing In</a>
                             </Link>
@@ -116,17 +111,12 @@ const navigator = useNavigate()
                 </div>
              
             </div>
-            <div 
-            className="login-section-bg object-fill rounded-br-xl
-             rounded-bl-xl bg-purple-800 py-2 w-full">
-
-</div>
+        
             </div>
             
             }
                          
             </div>
-            
         </div>
     </section>
 }

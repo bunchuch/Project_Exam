@@ -39,11 +39,16 @@ const Navbar = ({style,setNavbar, container}) =>{
     <div className={container ? styleNavbar.containerOfnavbar : styleNavbar.dashboard}>
       {/* logo-banner of navbar */}
     <a href="#" className={styleNavbar.bannerImageOfnavBar}>
-    <div className={container ? styleNavbar.conatiner3  : styleNavbar.conatiner3 + "bg-white rounded-md p-[2px] text-slate-600"}>
-              <img src= {IsLoggIn ? "./PUC_Logo.png" : "./Puc_exam.png" }
+    <div className={container ? styleNavbar.conatiner3  : styleNavbar.conatiner3 + " rounded-md p-[2px] text-white"}>
+              <img src= {IsLoggIn ? "./PUC_Logo.png" : "./asset/Puc_exam.png" }
                 className={IsLoggIn ? "w-9 h-9 flex items-center justify-center"  : " " +styleNavbar.logoStyle} alt="logo"/>
-                  <span className={IsLoggIn ? styleNavbar.bannerName + "text-white mx-3 text-[20px]" :styleNavbar.bannerName + "text-[20px] mx-3" }>
-                    Puc-Exam</span>
+                    {
+                      container ? <>
+                      <span className={IsLoggIn ? styleNavbar.bannerName + "text-white mx-3 text-[20px]" :styleNavbar.bannerName + "text-[20px] mx-3"}>
+                   </span>
+                      </> : <></>
+                    }
+                  
               
                </div>
     </a>
@@ -69,11 +74,11 @@ const Navbar = ({style,setNavbar, container}) =>{
         </div>
          : <div>
            <div class="relative hidden md:block">
-      <div className="md:flex md:flex-row items-center  border-[1px]
-         bg-gray-100 text-purple-900 font-mono px-3 rounded-xl py-1.5 hidden">
-              <div className="font-medium flex">
+      <div className="md:flex md:flex-row items-center  
+       tracking-wide  px-3 font-roboto  py-1.5 hidden">
+              <div className="flex">
              <span className="inline-flex space-x-1"><Icon name={<FcGlobe/>} 
-            Size="1.2rem" color="purple"></Icon> <p>En</p></span>
+            Size="1.2rem" color="purple"></Icon> <p>English</p></span>
            </div>
         </div>
       </div>
@@ -90,9 +95,9 @@ const Navbar = ({style,setNavbar, container}) =>{
     {/* right content of navbar */}
     {
       IsLoggIn ? <></>:<div className={styleNavbar.rigthContentStyle} >
-      <ul class="flex flex-col p-4 md:p-0 mt-4 border font-sans
-       border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0
-        md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+      <ul class="flex flex-col p-4 md:p-0 mt-4 border font-roboto font-normal
+       border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 
+        md:border-0  dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
           {navbarlink.map((value)=><NavbarList link={value.link} name={value.name} icon={value.icon}/>)}
       
       </ul>
@@ -104,14 +109,14 @@ const Navbar = ({style,setNavbar, container}) =>{
 
 
 const styleNavbar = {
-    "normalNav" : "bg-white border-gray-200 shadow-sm dark:bg-gray-900 md:py-4 md:px-0 p-4 ",
+    "normalNav" : " fixed w-full bg-white z-10 relative  dark:bg-gray-900 md:py-4 md:px-0 p-4  ",
     "authNav": "fixed z-10 bg-slate-800  text-white w-full shadow-sm shadow-gray-600/10 py-2 px-2 lg:px-0 md:border-none md:py-2",
     "containerOfnavbar" : "container flex flex-wrap items-center justify-between mx-auto ",
     "dashboard" : "flex flex-wrap items-center justify-between mx-auto mx-3",
     "bannerImageOfnavBar" : "flex justify-between ", 
     "bannerName" : "self-center text-[20px] font-semibold font-mono whitespace-nowrap dark:text-white mx-2",
     "conatiner3" : " flex flex-row justify-between ", 
-    "logoStyle" : "object-fill md:w-full md:h-10 h-8 w-full",
+    "logoStyle" : "object-fill md:w-full md:h-10 h-8 w-full rounded-full",
     "listStyle"  : "flex md:order-2",
     "rigthContentStyle": "items-center justify-between hidden w-full md:flex md:w-auto md:order-1",
   
@@ -120,3 +125,7 @@ const styleNavbar = {
 
 
 export default Navbar
+
+
+
+

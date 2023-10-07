@@ -3,6 +3,7 @@ import { BiAbacus, BiArrowFromBottom, BiArrowFromTop, BiFace, BiUser,BiUsers, Bi
 import Icon  from "../../../components/Icon";
 import Chart from "chart.js/auto";
 import {Lines} from "../componet/chart/line"
+import { FaSadCry } from "react-icons/fa";
 
 
 
@@ -39,7 +40,7 @@ function DashboardCard ({amount , title ,icon}) {
 
 
 export function Main () {
-
+const data = false 
 const options = {
     title:{
         display:true,
@@ -57,34 +58,37 @@ const options = {
     }
 }
 
-    return<div className="">
-        <h1 className="text-2xl font-semibold pb-3 text-purple-900">Welcome Dara to! Dashboard</h1>
-<div className="grid lg:grid-cols-4 gap-2 py-2">
-     <DashboardCard amount={1000} title={"Student"}/>
-     <DashboardCard amount={25} title="Teacher"/>
-     <DashboardCard amount={23} title="Employee"/>
-     <DashboardCard amount={2000} title="Income"/>
-    </div>
-    <div className="grid lg:grid-cols-3 gap-2 ">
-    <div className=" bg-white rounded-md p-4 col-span-2 border-[1px] border-gray-200">
-        <div className="flex justify-between">
-        <h1 className="text-lg font-semibold">Analysist</h1> 
-        <select className="bg-gray-100 px-2 py-1 rounded-md border-[1xp]" name="report-select" for="report">
-            <option value="Year">year</option>
-            <option value="month">month</option>
-            <option value="week">week</option>
-        </select>
+    return<div className="flex justify-center items-center"> { data ? <><h1 className="text-2xl font-semibold
+     pb-3 text-purple-900">Welcome Dara to! Dashboard</h1>
+    <div className="grid lg:grid-cols-4 gap-2 py-2">
+         <DashboardCard amount={1000} title={"Student"}/>
+         <DashboardCard amount={25} title="Teacher"/>
+         <DashboardCard amount={23} title="Employee"/>
+         <DashboardCard amount={2000} title="Income"/>
         </div>
-   <div className="mt-5">
-   <Lines/> 
-   </div>
-  
-    </div>
-    <div className="bg-white rounded-md border-[1px] p-4">
-        <h1 className="text-lg font-bold">Activity</h1>
-    </div>
-    
-    </div>
+        <div className="grid lg:grid-cols-3 gap-2 ">
+        <div className=" bg-white rounded-md p-4 col-span-2 
+        border-[1px] border-gray-200">
+            <div className="flex justify-between">
+            <h1 className="text-lg font-semibold">Analysist</h1> 
+            <select className="bg-gray-100 px-2 py-1 rounded-md 
+            border-[1xp]" name="report-select" for="report">
+                <option value="Year">year</option>
+                <option value="month">month</option>
+                <option value="week">week</option>
+            </select>
+            </div>
+       <div className="mt-5">
+       <Lines/> 
+       </div>
+      
+        </div>
+        <div className="bg-white rounded-md border-[1px] p-4">
+            <h1 className="text-lg font-bold">Activity</h1>
+        </div>
+        
+        </div> </> : <h1 className="text-slate-900 font-medium text-[20px]">Welcome Guys</h1>}
+     
   
    
     
