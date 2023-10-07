@@ -77,38 +77,46 @@ const contact = [
     }
 ]
 
-const sectionTwoData = [
-    {
-      "one" :[ 
-        
+const sectionTwoData = [   
         {"id": "001",
         "header":"Thinking Skill",
-        "Description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro beatae error laborum ab amet sunt recusandae? Reiciendis natus perspiciatis optio."
-        }],
-
-     "two" : [  
+        "Description":"Lorem ipsum dolor sit amet, consectetur "
+        },
         {
             "id": "002",
             
             "header":"Communication Skill",
-            "Description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro beatae error laborum ab amet sunt recusandae? Reiciendis natus perspiciatis optio."
-            }],
-
-      "three" : [     {
+            "Description":"Lorem ipsum dolor sit amet, consectetur "
+            },
+   {
                 "id": "003",
                 
                 "header":"Problem Sovling Skill",
-                "Description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit.consectetur adipisicing elit.consectetur adipisicing elit. Porro beatae error laborum ab amet sunt recusandae? Reiciendis natus perspiciatis optio."
-                }],
+                "Description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit.consectetur adipisicing elit.consectetur "
+                },
 
-                "four" : [     {
+               {
                     "id": "003",
                     
                     "header":"Collaboration Skill",
-                    "Description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit.consectetur adipisicing elit.consectetur adipisicing elit. Porro beatae error laborum ab amet sunt recusandae? Reiciendis natus perspiciatis optio."
-                    }]
+                    "Description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit.consectetur adipisicing elit.consectetur "
+                    },
 
-            }
+                    {
+                        "id": "003",
+                        
+                        "header":"Collaboration Skill",
+                        "Description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit.consectetur adipisicing elit.consectetur "
+                        },
+                        {
+                            "id": "003",
+                            
+                            "header":"Collaboration Skill",
+                            "Description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit.consectetur adipisicing elit.consectetur "
+                            }
+    
+
+            
         
 ]
 

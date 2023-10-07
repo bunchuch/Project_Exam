@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { BiArrowBack } from "react-icons/bi";
-import Icon from "../../components/Icon";
+import Icon from "../../../components/Icon";
 import { Link } from "react-router-dom";
 
 

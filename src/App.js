@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Navbar from './components/Navbar/Navbar'
-import Mainpage from "./page/Home/LandingPage/mainPage"
 import About from "./page/about/About"
 import LoginForm from "./page/login/loginForm"
 import Profile from "./page//Profile/profile"
@@ -11,22 +9,22 @@ import { ProtectedRoute } from './auth/ProtectedRoute'
 import "./index.css"
 import { File } from './File'
 import { Render } from './Render'
-import { QuestionRender } from './exam/component/QuestionRender'
+import {QuestionRender} from "./page/exam/component/QuestionRender";
 import { useSelector } from 'react-redux'
 import { Loader } from './components/load/Loader'
-import SmallFooter from './components/Footer/smallFooter'
-import Footer from './components/Footer/Footer'
 import { GetHelpWithSigning } from './page/login/resetAccount'
 import { Dashboard } from './page/dashboard/Dashboard'
-import Layout from './page/Home/LandingPage/Layout'
 import { Main } from './page/dashboard/componet/main'
-import DashboardExam, { CreateExam } from './page/dashboard/componet/exam'
-import User, { StudentTable, UserTable } from './page/dashboard/componet/User'
+import DashboardExam, { CreateExam, MQC } from './page/dashboard/componet/exam'
+import User, { AddUser, StudentTable, UserTable } from './page/dashboard/componet/User'
+import LandingPageLayout from './layout/landingPageLayout'
+import Home from './page/LandingPage/Home'
+import { ExamLayout } from './layout/ExamLayout'
+import  Exam from "./page/exam/exam"
 
 
 
-
-const LazyLoader = React.lazy(()=> import("./exam/exam"))
+const LazyLoader = React.lazy(()=> import("./layout/ExamLayout"))
 
 
 const App =()=>{
@@ -53,33 +51,33 @@ console.log(loading)
   
  { loading && <><Loader/></>}  
 <Routes>
-<Route path='/login'
-   element={<LoginForm  />}/> 
-<Route path='/login/reset-account' element={<GetHelpWithSigning/>}/>
- <Route path='/profile' element={
-<ProtectedRoute>
-<Profile/>
-</ProtectedRoute>}></Route>
-      
 
-<Route path='/exam'  errorElement={<ErrorPage/>} element={ 
-    <React.Suspense fallback={<Loader/>}>
-      <LazyLoader/>
-    </React.Suspense>
-  
-    }></Route>
-<Route path='/exam/:name' element={
-      <QuestionRender/>
-      }></Route>
-   <Route path='/*' element={<ErrorPage ></ErrorPage>}/>
 
-   {/* LandingPage */}
-    <Route path='/' errorElement={<ErrorPage/>} element={<Layout/>}>
-    <Route path='/' errorElement={<ErrorPage/>} element={<Mainpage/>}></Route>
-    <Route path = "/home" element={<Mainpage/>} ></Route>
-    <Route path='/about' element={<About></About>}> </Route>
-    <Route path='/contact' element ={<Contact/>}></Route>
+
+ {/* LandingPage */}
+    <Route path='/' errorElement={<ErrorPage/>} element={<LandingPageLayout/>}>
+      <Route path='/' errorElement={<ErrorPage/>} element={<Home/>}></Route>
+      <Route path = "/home" element={<Home/>} ></Route>
+      <Route path='/about' element={<About></About>}> </Route>
+      <Route path='/contact' element ={<Contact/>}></Route>
     </Route>
+
+
+      <Route path='/login'
+      element={<LoginForm/>}/> 
+      <Route path='/login/reset-account' element={<GetHelpWithSigning/>}/>
+      <Route path='/profile' element={
+    <   ProtectedRoute>
+      <Profile/>
+      </ProtectedRoute>}></Route>
+      
+    <Route path='/exam'  errorElement={<ErrorPage/>} element={<ProtectedRoute><ExamLayout/></ProtectedRoute>} >
+      <Route path='/exam' element={<Exam/>}></Route>
+      <Route path='/exam/:name' element={<QuestionRender/> }></Route>
+      </Route>
+
+  
+
   
     {/*tesfile*/}
     <Route path='/file' element ={<File/>}>
@@ -94,22 +92,27 @@ console.log(loading)
       <Route path='dashboard/User' element={<User/>}>
         <Route path='/dashboard/User' element={<UserTable/>}></Route>
         <Route path='/dashboard/User/Student' element={<StudentTable/>}></Route>
+        <Route path='/dashboard/User/Add' element={<AddUser/>}></Route>
       </Route>
+
+
       <Route path='dashboard/Exam' element={<DashboardExam/>}>
-        <Route path='/dashboard/Exam/create' element={<CreateExam/>}></Route>
+        <Route path='/dashboard/Exam/create' element={<CreateExam/>}>
+        <Route path="/dashboard/Exam/create/MCQ" element={<MQC/>}></Route>
+          <Route path='/dashboard/Exam/create/Blank' element={<h1>Blank</h1>}></Route>
+          <Route path='/dashboard/Exam/create/Writing' element={<h1>Writing</h1>}></Route>
+        </Route>
+       
       </Route>
       
       <Route path='dashboard/Report' element={<h1>Roport</h1>}></Route>
     </Route>
-   
+
+
+    {/* Error page not found */}
+    <Route path='/*' element={<ErrorPage ></ErrorPage>}/>
+
    </Routes>
-   
-
-
-
-
-
-  
   </div>
 }
 

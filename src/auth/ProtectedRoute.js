@@ -1,19 +1,16 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, Navigate} from "react-router-dom";
+import Cookies from "universal-cookie";
 
 
-const useAuth = () =>{
-    const login = useSelector(state => state.auth.isLoggIn)
-    const user = {LoggedIn : login}
-    return user && user.LoggedIn
-}
+const cookie = new Cookies();
+
 
 
 export const ProtectedRoute = ({ children }) => {
-    const  user  = useAuth();
-    const navigate = useNavigate()
-   
-   return user ? children : <Navigate to ="/login" />
+    const token = cookie.get("TOKEN")
+    console.log(token)
+   return token ? children : <Navigate to ="/login" />
 
 };

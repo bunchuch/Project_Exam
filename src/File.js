@@ -5,11 +5,12 @@ import { getQuestionAsync, getQuestionNameAsync } from "./redux/apicall";
 import { Link, json, useParams } from "react-router-dom";
 import {Loader} from  "./components/load/Loader"
 import { Render } from "./Render";
-import {QuizCard}  from  "./exam/component/QuizCard"
+import { QuizCard } from "./page/exam/component/QuizCard";
 import Container  from "./components/Container";
 import { examstyle } from "./style/style";
-import Timer from "./components/Timer"
-import ExamStatus from "./exam/component/ExamStaute";
+import Timer from "./components/Timer";
+
+
 
 
 

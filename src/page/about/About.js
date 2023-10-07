@@ -17,16 +17,14 @@ useEffect(()=>{
 },[])
     return <>
   
-      <section data-aos="fade-in" className=" dark:bg-gray-800 dark:text-gray-100  font-sans text-black">
-       <Heropage img="about-hero"/>
-        <div className="container px-6 md:mt-10 py-12 mx-auto  ">
-              <h1 class="text-2xl font-semibold text-gray-800 lg:text-3xl dark:text-white">Let Know about Us</h1>
-              <div class="mt-2">
-                    <span className="inline-block w-40 h-1 bg-purple-800 rounded-full"></span>
-                    <span className="inline-block w-3 h-1 ml-1 bg-red-800 rounded-full"></span>
-                    <span className="inline-block w-1 h-1 ml-1 bg-yellow-400 rounded-full"></span>
+      <section data-aos="fade-in" className="   font-sans">
+        <div className="container px-6 mx-auto mt-9 ">
+             
+              <div className="mt-2 flex gap-2">
+              <h1 className="text-2xl font-bold font-roboto text-gray-800 lg:text-3xl">Let Know about Us</h1>
+                    <span className="inline-block w-4 h-8   border-[2px]  bg-gradient-to-br from-yellow-300 to-orange-400  border-white rounded-full"></span>
                 </div>
-              <div className="grid grid-cols-1 gap-8 mt-8 lg:mt-16 md:grid-cols-2 xl:grid-cols-3">
+              <div className="grid grid-cols-1 gap-8 mt-3 lg:mt-10 md:grid-cols-2 xl:grid-cols-3">
           {
             about.map((itme)=> <>
             {itme.one.map((i)=><Card icons={<FcBookmark/>} img={i.img} title={i.title} desc={i.desc}/>)}

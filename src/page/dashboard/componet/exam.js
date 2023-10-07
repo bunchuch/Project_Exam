@@ -1,21 +1,76 @@
 import { Link, Outlet } from "react-router-dom"
 import { Input } from "../../../components/Input"
 import { useState } from "react"
-import { BiPlug, BiPlus, BiX } from "react-icons/bi"
+import { BiMinus, BiMinusCircle, BiPlug, BiPlus, BiPlusCircle, BiPulse, BiX } from "react-icons/bi"
 import Icon from "../../../components/Icon"
 import Table from "../../../components/table"
+import { TextArea } from "../../../components/textArea"
+import Tab from "../../../components/Tab"
+import SelectOption from "../../../components/selectOption"
+
+
+export const MQC = ()=>{
+    const [check ,setCheck] = useState(false)
+    const [inputFields , setInputFields] = useState([{clude: ""}])
+
+const addInputFields = () =>{
+   setInputFields([...inputFields,{clude: ""}])
+}
+
+const removeInputFields = (index) => {
+    let data = [...inputFields]
+    data.splice(index, 1)
+    setInputFields(data)
+}
+
+    return <>
+     <div className="mt-3">
+     <label htmlFor="Username"
+        className="block mb-2 text-sm font-medium text-gray-900 ">Question</label>
+    <Input type="input" Text="Question"></Input>
+    </div>
+   
+    <div className="grid gap-6 mb-3 md:grid-cols-3 bg-white mt-2  py-5">
+       {
+        inputFields.map((value,index)=><div>
+         <label htmlFor="Username"
+        className="block mb-2 text-sm font-medium text-gray-900 ">Clude { index + 1}</label>
+        <Input type="input"></Input>
+        <div className="flex gap-2 text-purple-900 text-sm">
+            {
+                inputFields.length >= 10 ? <>
+                </> : <button onClick={addInputFields}>Add</button>
+            }
+        {
+            inputFields.length < 2 ? " " 
+          :   <button onClick={()=>removeInputFields(index)}>Remove</button>
+        }
+        </div>
+        </div>)
+       }
+        </div>
+    <label for="message" class="block mb-2 text-sm font-medium
+     text-gray-900 dark:text-white">Description</label>
+      <TextArea reszie={false} row={5}/>
+    
+    </>
+}
+
+
+
+
+
 
 
 export const CreateExam = () => {
 
-const [check ,setCheck] = useState(false)
+const TabList = [
+    {"name": "MQC","Link" : "/dashboard/Exam/create/MCQ"},
+    {"name": "Fill in blank" , "Link" : "/dashboard/Exam/create/Blank"},
+     {"name" : "Writing", "Link" : "/dashboard/Exam/create/Writing"}]
 
-const handleChange = () => {
-    setCheck(!check)
-}
 
-
-    return <div className="bg-white rounded-md border-[1px] px-6 py-5 mt-5 ">
+    return <div className="bg-white rounded-md border-[1px] px-6 py-5 mt-2 ">
         <div className="w-6 h-6 rounded-full  bg-gray-100  float-right">
             <Link to={"/dashboard/Exam"}>
             <Icon name={<BiX/>} ></Icon>
@@ -23,45 +78,21 @@ const handleChange = () => {
            
         </div>
         <h1 className="font-semibold pb-3">Select an Type</h1>
-        <ul class="flex flex-wrap text-sm font-medium text-center text-gray-500
-          border-gray-200 dark:border-gray-700 dark:text-gray-400">
-    <li class="mr-2">
-        <a href="#" aria-current="page" class="inline-block 
-        py-2
-           active:bg-gray-50 hover:bg-gray-50">Mutilple Chioce</a>
-    </li>
-    <li class="mr-2">
-        <a href="#" class="inline-block p-2
-         hover:text-gray-600 hover:bg-gray-50
-          dark:hover:bg-gray-800 dark:hover:text-gray-300">Fill in Blank</a>
-    </li>
-    <li class="mr-2">
-        <a href="#" class="inline-block p-2
-         hover:text-gray-600 hover:bg-gray-50
-          dark:hover:bg-gray-800 dark:hover:text-gray-300">Writing</a>
-    </li>
+        <div className="mb-2 flex gap-3 items-center">
+            <label>Title</label>
+                <SelectOption option={["Reading","Listenning","Vocabulary","Reading","Writing"]} ></SelectOption>
+                    <label>Group</label>
+           <SelectOption option={["Reading","Listenning","Vocabulary","Reading","Writing"]} ></SelectOption>
+         <label>Class</label>
+         <SelectOption option={["Reading","Listenning","Vocabulary","Reading","Writing"]} ></SelectOption>
+         <label>File</label>
+            <input className="w-4 h-4" type="checkbox"/>
+        </div>
    
-</ul>
+        <Tab List={TabList}></Tab>
         <hr></hr>
-    <div className="mt-3">
-    <Input type="input" Text="Question"></Input>
-    </div>
+        <Outlet/>
    
-    <div class="grid gap-6 mb-3 md:grid-cols-2 bg-white mt-2   py-5 ">
-    
-      <Input type="input" Text="clude 1"/>
-      <Input type="input" Text="clude 2"/>
-      <Input type="input" Text="clude 3"/>
-      <Input type="input" Text="clude 4"/>
-      <button className="py-1 
-      items-center text-[14px] text-purple-500 active:text-purple-200  rounded flex gap-2 ">
-        <div className="bg-purple-900 rounded-full">
-        <Icon Size={"1.2rem"} color="white" 
-        name={<BiPlus></BiPlus>}></Icon>
-        </div>
-        Add More Clude
-      </button>
-        </div>
 
     </div> 
 }
@@ -69,9 +100,10 @@ const handleChange = () => {
 
 export const ExamList = () => {
 
-    return <div className="bg-white rounded-md border-[1px] mt-4 py-5 px-6">
+    return <div className="bg-white rounded-md border-[1px] mt-2 py-5 px-6">
         <h1 className="font-semibold pb-3 text-purple-900">List</h1>
-        <Table tableTh={[{"name": "Title",},{"name" : "Categories"}]} data={[{username : "reading"},{username: "Writing"}]}/>
+        <Table tableTh={[{"name": "Title",},{"name" :
+         "Categories"}]} data={[{username : "reading"},{username: "Writing"}]}/>
     </div>
 
 }
@@ -80,18 +112,12 @@ export const ExamList = () => {
 export default function DashboardExam () {
     return<div className="">
         <h1 className="text-2xl font-semibold pb-3 text-purple-900">Exam Dashboard</h1>
-    <div className="  mt-2">
+    <div className=" ">
  <div className="flex justify-start gap-2">
- <button className="bg-purple-900 px-2 py-1.5 
-        rounded text-center after:bg-purple-700 text-[14px] active:bg-purple-700 text-white">
+ <button className="text-purple-900 px-2 py-1.5 font-semibold
+        rounded text-center after:text-purple-700 text-[14px] hover:underline active:text-purple-700">
             <Link to = {"/dashboard/Exam/create"} >
             Create exam
-            </Link>
-            </button>
-            <button className="bg-purple-900 px-2 py-1.5 
-        rounded text-center after:bg-purple-700 text-[14px] active:bg-purple-700 text-white">
-            <Link >
-            Delete
             </Link>
             </button>
          
