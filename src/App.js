@@ -52,12 +52,12 @@ const loading = useSelector((state)=> state.loader.loading)
 
 
  {/* LandingPage */}
-    <Route path='/' errorElement={<ErrorPage/>} element={<LandingPageLayout/>}>
+    {/* <Route path='/' errorElement={<ErrorPage/>} element={<LandingPageLayout/>}>
       <Route path='/' errorElement={<ErrorPage/>} element={<Home/>}></Route>
       <Route path = "/home" element={<Home/>} ></Route>
       <Route path='/about' element={<About></About>}> </Route>
       <Route path='/contact' element ={<Contact/>}></Route>
-    </Route>
+    </Route> */}
 
 
       <Route path='/login'
