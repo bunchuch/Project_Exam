@@ -1,54 +1,67 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Icon from "../../../components/Icon";
 import { CiAlignBottom, CiBookmarkPlus, CiCircleChevLeft } from "react-icons/ci";
-import { Button, Form, Input, Select, Space , DatePicker} from "antd";
+import { Button, Form, Input, Select, Space , DatePicker, message} from "antd";
 import Header from "../../../components/Header";
 import { generateRandomNDigits } from "../../../function/generate";
 import axios from "axios";
-import moment from "moment"
 import NavigatorButton from "../../../components/navigatorButton";
+import { createStudent, getStudent, updateStudent } from "../../../api/student";
+import {useDispatch, useSelector} from "react-redux"
+import { getAddress } from "../../../redux/addressSlice";
+import axiosInstance from "../../../api";
 const {Option}  = Select 
 
 
 export default function RegisterStudent (){
 
     const navigator = useNavigate()
+    const {stuid} = useParams()
     const [form] = Form.useForm()
-    const [groupname , setGroupname] = useState([])
-    const [address ,setAddress] = useState([])
+    const [data ,setData] = useState([])
+    const dispatch = useDispatch()
     const dateFormat = 'YYYY/MM/DD';
-
-    // const handleChangeDate = {
-    //     dateofbirth : moment('2020-06-09T12:40:14+0000')
-    // }
+    const address = useSelector (state => state.address.data)
+    const courseName = useSelector(state => state.course.courseName)
      
-    const getCourse = async ()=>{
-        await axios.get(`${process.env.REACT_APP_API_KEY}group`).then(res => {
-          const value = res.data.groups.map(i => i.group)
-          setGroupname(value)
-        })
-       
-    }
 
-    const getAddress = async ()=>{
-        await axios.get(`${process.env.REACT_APP_API_KEY}address`).then(res => {
-            setAddress(res.data.address)    
-        })
+    const findStudent = async () => {
+            try {
+                const response = await getStudent(stuid)
+                if(response.success){
+                    if(stuid){
+                        form.setFieldsValue(response.result)
+                    }
+                }else{
+                    message.error(response.data.message)
+                }
+            } catch (error) {
+                message.error(error)
+            }
     }
-
     const onFinish = async (value)=>{
-        console.log(value)
-         axios.post(`${process.env.REACT_APP_API_KEY}student/create`, value).then(res=>{
-            alert(res.data.message)
-        }).catch((err)=> {
-            console.log(err)
-            alert(err.response.data.message)
-        })
+        try {
+            const response = stuid ? await updateStudent(stuid , value) :
+            await createStudent(value)
+            if(response.success){
+               message.success(response.message)
+                
+            }else{
+                message.error(response.data.message)
+            }
+        } catch (error) {
+            message.error(error)
+        }
     }
     useEffect(()=>{
-        getCourse()
-        getAddress()
+        dispatch(getAddress())
+        if(stuid){
+            findStudent()
+        }
+        
+       
+        
     }, [])
 
     const onFill = ()=>{
@@ -65,7 +78,7 @@ export default function RegisterStudent (){
     return <>
    <NavigatorButton/>
     <div className="bg-white border-neutral-200 border rounded-lg p-3">
-    <Header icons={<CiAlignBottom/>} text="Register Student"/>
+    <Header icons={<CiAlignBottom/>} text={stuid ? "update student" : "Register Student"}/>
 
      <div className="px-3 py-4">
      <Form 
@@ -75,7 +88,16 @@ export default function RegisterStudent (){
      autoComplete="off"
      layout="vertical">
         <div className="grid grid-cols-4 gap-2">
-                <Form.Item name="firstname" label="Firstname">
+                <Form.Item 
+                
+                rules={[
+                    {
+                        required:true,
+                        message : 'please enter name'
+                    }
+                ]}
+                
+                name="firstname" label="Firstname">
                 <Input />
                 </Form.Item>
                 <Form.Item name="lastname" label="Lastname">
@@ -84,9 +106,12 @@ export default function RegisterStudent (){
                 <Form.Item name="username" label="Username">
                 <Input />
                 </Form.Item>
-                <Form.Item name="password" label="Password">
-                <Input/>
-                </Form.Item>
+                {
+                    stuid ? <></> : <Form.Item name="password" label="Password">
+                    <Input/>
+                    </Form.Item>
+                }
+            
                 <Form.Item name="address" label="Address">
                   <Select>
                     {
@@ -96,12 +121,16 @@ export default function RegisterStudent (){
                     }
                   </Select>
                 </Form.Item>
+                {
+                stuid ? <></> : 
                 <Form.Item  name="dateBirth"  label="Date of Birth">
                 <DatePicker   style={{width: "100%"}} 
-                onChange={(date)=> console.log(date)} picker="day" format={dateFormat}
+
+                picker="day" format={dateFormat}
                 placement={"topRight"}
                 />
                 </Form.Item>
+}   
                 <Form.Item name="email" label="Email">
                 <Input />
                 </Form.Item>
@@ -114,19 +143,20 @@ export default function RegisterStudent (){
                 <Form.Item name="courseName" label="Assign course">
                     <Select placeholder="select course">
                         {
-                            groupname.map((i, k)=>
+                          courseName.map((i, k)=>
                              <Option key={k} value={i}>{i}</Option>)
                         }
                     </Select>
                 </Form.Item>
         </div>
-        <Form.Item name="Description" label="Description">
+        <Form.Item name="description" label="Description">
                     <Input.TextArea style={{
                         height : "10rem"
                     }}/>
                 </Form.Item>
 
                 <div className="flex justify-between gap-2">
+                    {stuid ? <></> :
                 <Button htmlType="button"
                  onClick={onFill} style={{
                 background: '#f43f5e',
@@ -134,6 +164,7 @@ export default function RegisterStudent (){
             }}>
                 generate username & password
             </Button>
+                }
             <div className="flex gap-2">
             <Button htmlType="reset"
                  onClick={()=>{
@@ -148,7 +179,7 @@ export default function RegisterStudent (){
                 background: '#0f3460',
                 color : '#ffff',
             }}>
-                Create
+                Submit
             </Button>
             </div>
     

@@ -5,7 +5,7 @@ import { CiCircleMinus, CiCirclePlus } from "react-icons/ci"
 
 
 
-export const WritingForm = () => {
+export const WritingForm = ({form}) => {
     return <>
     <div className="bg-neutral-50
        rounded-lg border-[1px]

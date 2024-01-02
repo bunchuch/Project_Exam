@@ -2,21 +2,29 @@ import {useState ,useEffect} from "react"
 import {Table, Tag, message} from "antd"
 import {useParams , Link} from "react-router-dom"
 import moment from "moment"
-import axios from "axios"
 import { CSVLink } from "react-csv"
+import {useDispatch} from 'react-redux'
+import { getGroupReport } from "../../../api/report"
+import { loadingAction } from "../../../redux/loaderSlice"
 export const ReportExam = () => {
     const [data ,setData] = useState([])
     const {id} = useParams()
-
+    const dispatch = useDispatch()
  
     const GetReport = async () => {
-      await  axios.post(`${process.env.REACT_APP_API_KEY}report`
-      , {examId : id}).then((res)=> {
-            setData(res.data.result)
-            console.log(res.data.result)
-        }).catch((error)=> 
-        message.error(error.response.data.message)
-        )
+
+        try {
+            dispatch(loadingAction.ShowLoading())
+            const response = await getGroupReport({examId : id})
+            dispatch(loadingAction.HideLoading())
+            if(response.success){
+                setData(response.result)
+            }else{
+                message.error(response.data.message)
+            }
+        } catch (error) {
+            message.error(error)
+        }
     }
    
     useEffect(()=> {
@@ -25,8 +33,14 @@ export const ReportExam = () => {
 
 
     
+    
 
 const columnsReport = [
+    {
+        title : 'No',
+        dataIndex : 'number',
+        key : 'No',
+    },
         {
           title: 'username',
           dataIndex: 'username',
@@ -88,30 +102,44 @@ const columnsReport = [
         },
         {
             title: 'Submit Date',
-            dataIndex: 'updatedAt',
-            key : 'updateAt',
-            render : (text, record)=> <>{moment(text).format("YY/MM/DD:HH:mm:ss")}</>
+            dataIndex: 'createdAt',
+            key : 'createdAt',
+            render : (text, record)=> <>{moment(text).format("LL")}</>
             
         },
     
-        // {
-        //     title: 'status',
-        //     dataIndex: 'status',
-        //     sorter: {
-        //       compare: (a, b) => a.english - b.english,
-        //       multiple: 1,
-        //     }, 
-        //     render: (_, status) => (
-        //       <Space size={[0, 8]} wrap>
-        //        <Tag color={status.status === "pass" ? "success" : "error"}>
-        //       {status.status}
-        //        </Tag>
-        //       </Space>
-        //     ),
-            
-        // }
       ];
     
+
+const sortbyTotal = () => {
+    data.sort((a,b)=> b.total - a.total)
+    data.forEach((item, index)=>{
+        item.number = index + 1
+        if(item.total > 45){
+            item.status = 'pass'
+        }
+    })
+
+    return data
+}
+
+const csvData = [
+    ["No","username", "vocabulary", "reading", "QA",
+     'grammar', 'wirting', 'listenning',"total","status"],
+    ...data.map(({username ,vocabulary,reading ,qa, grammar, writing, listenning ,total , status ,number} ,key)=>[
+      number , 
+      username ,
+      vocabulary ,
+       reading ,
+       qa,
+       grammar,
+        writing ,
+        listenning,
+        total ,
+        status
+    ]),
+];
+
 
     return <>
     <div className="flex gap-3 items-center">
@@ -119,12 +147,13 @@ const columnsReport = [
      ✨ Click on each id for view result
         </p>
 <a><CSVLink className="bg-variation-500 
-        text-white rounded-md py-[1px] px-2" filename="studnetRport.csv" data={[]}>
+        text-white rounded-md py-[1px] text-[12px] px-2" 
+        filename="studnetRport.csv" data={csvData}>
         Export to CSV
       </CSVLink></a>  
     </div>
    <Table bordered className="mt-3"  
-   columns={columnsReport} dataSource={data}></Table>
+   columns={columnsReport} dataSource={sortbyTotal()}></Table>
     </>
 
 }

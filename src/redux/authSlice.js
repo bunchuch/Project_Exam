@@ -6,11 +6,11 @@ const authSlice = createSlice({
         isLogIn: " ",
         token : '',
         usernames : " ",
-        role : "",
+        userRole : "",
     },
     reducers : {
         roleBase : (state ,action) => {
-            state.role = action.payload.role
+            state.userRole = action.payload.role
         },
         login(state){
             state.isLogIn = true

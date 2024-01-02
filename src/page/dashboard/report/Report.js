@@ -9,15 +9,15 @@ import Header from "../../../components/Header";
 export default function Report() {
 
     return <>
-    <div className="flex justify-between items-center pb-2 ">
+    <div className="flex w-full justify-between items-center ">
     <Header text="Report" icons={<CiCalculator1/>}></Header>
     </div>
     <Result
-    status="warning"
+    status="500"
     title="There are some problems with your operation."
     extra={
-      <Button key="console">
-        Go Console
+      <Button className="bg-variation-500 text-white">
+          Please contact provider for feedback
       </Button>
     }
   />

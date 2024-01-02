@@ -42,11 +42,6 @@ export const TabExamItem =  [
       label: 'Student',
       children: null,
     },
-    {
-      key: 3,
-      label: 'Report',
-      children: null,
-    },
     
   ]
 

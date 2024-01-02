@@ -1,11 +1,9 @@
 import React ,{useEffect, useState} from "react";
-import { Button ,Modal, Table, Form, Popconfirm,Input,InputNumber,Select,
-   message, Tabs,
-   Card,
-   Dropdown} from "antd";
-import {CiCircleInfo, CiCirclePlus, CiTrash ,CiCircleMore, CiRead, CiEdit} from "react-icons/ci";
+import { Button ,Modal, Form, Popconfirm,Input,InputNumber,
+   message, Tabs,Descriptions} from "antd";
+import {CiCircleInfo, CiCirclePlus, CiTrash} from "react-icons/ci";
 import Header  from "../../../components/Header";
-import { Link, useNavigate, useParams, Outlet } from "react-router-dom";
+import { useParams,Link } from "react-router-dom";
 import moment from "moment";
 import { useDispatch } from "react-redux";
 import { loadingAction } from "../../../redux/loaderSlice";
@@ -17,12 +15,9 @@ import { TitleRender } from "../../../components/Title";
 import { TabExam } from "../componet/TabItems";
 
 
-const types = [{label :"Mqc" ,value : "Mqc"}, 
-{label:"Blank", value: "Blank"},
- {label :"Writing", value : "Writing"}]
+
 
 export default function ExamInfo (){
-
     const[data ,setData] = useState([])
     const {id} = useParams()
     const [render ,setRender] = useState(false)
@@ -32,12 +27,9 @@ export default function ExamInfo (){
     const [score ,setScore] = useState('')
     const [examId ,setExamId] = useState(id)
     const dispatch = useDispatch()
-    const [messageApi , contextHolder] = message.useMessage()
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [form] = Form.useForm();
-    const key = "updatable"
    
-
     const onGetExam = async ()=>{
       try {
         dispatch(loadingAction.ShowLoading())
@@ -47,20 +39,10 @@ export default function ExamInfo (){
           setData(respone.exams)
           setQuiz(respone.exams.quiz)
         }else{
-          messageApi.open({
-            key ,
-            type : "warning",
-            content : `${respone.data.message}`
-
-          })
+          message.success(respone.data.message)
         }
       } catch (error) {
-        messageApi.open({
-          key ,
-          type : "error",
-          content : `${error}`
-
-        })
+        message.error(error)
       }
     }
 
@@ -72,36 +54,18 @@ export default function ExamInfo (){
           type : type,
           ExamId : examId,
         }, id)
-        console.log(response)
 
         if(response.success){
-          messageApi.open({
-            key,
-            type : 'loading',
-            content : 'Loading...'
-        })
+          message.loading('loading...')
         setTimeout(()=>{
-            messageApi.open({
-                key,
-                type : 'success',
-                content : `${response.message}`,
-                duration :2
-            })
+          message.success(response.message)
             onGetExam()
-        } , [1000])
+        } , 2000)
         }else{
-          messageApi.open({
-            key,
-            type : 'erorr',
-            content : `${response.message}`
-        })
+          message.error(response.data.message)
         }
       } catch (error) {
-        messageApi.open({
-          key,
-          type : 'erorr',
-          content : `${error}`
-      })
+        message.error(error)
       }
   
       }
@@ -113,35 +77,18 @@ export default function ExamInfo (){
         const request = await deleteExam(id ,course)
         dispatch(loadingAction.HideLoading())
         if(request.success){
-          messageApi.open({
-            key :"updatable",
-            type : 'loading',
-            content : `Loading`
-          })
+          message.loading('loading')
           setTimeout(()=> {
-            messageApi.open({
-              key,
-              type: 'success',
-              content : `${request.message}`,
-              duration : 2
-          })
+          message.success(request.message)
           navigator(-1 , {replace:true})
           dispatch(loadingAction.HideLoading())
-          }, [1000])
+          }, 2000)
           dispatch(loadingAction.HideLoading())
         }else{
-          messageApi.open({
-            key :"updatable",
-            type : 'warning',
-            content : `${request.message}`
-        })
+        message.error(request.data.message)
       }
       } catch (error) {
-        messageApi.open({
-          key :"updatable",
-          type : 'error',
-          content : `${error.data.message}`
-        })
+          message.error(`${error}`)
       }
     }
 
@@ -152,36 +99,26 @@ export default function ExamInfo (){
       onGetExam()
     }, [])
 
-
-    const onRender = () =>{
-      dispatch(loadingAction.ShowLoading())
-      setTimeout(()=> {  
-            setRender(!render)
-            dispatch(loadingAction.HideLoading())
-      },[300])
-      
-    }
     const showModal = () => {
       setIsModalOpen(true);
-    };
-    const handleOk = () => {
-      setIsModalOpen(false);
     };
     const handleCancel = () => {
       setIsModalOpen(false);
     };
       
  return <>
- {contextHolder}
  <NavigatorButton/>
- <div className="bg-white rounded-md border-neutral-200 border-[1px] p-4">
+ <div className="bg-white rounded-md
+  border-neutral-200 border-[1px] p-4">
  <>
  <div className="flex justify-between pb-5">
     <Header icons={<CiCircleInfo/>} text={"Exam Info"}/>
         <div className="flex justify-end gap-2">
-        <Button onClick={showModal}
-         className="flex items-center border-none bg-neutral-50" icon={<Icon Size="1.2rem"
-          name={<CiCirclePlus/>}/>}>Create Subject</Button>
+        <button onClick={showModal}
+         className="px-2 py-[0.5px] text-[12px] border-none rounded-md
+          text-white active:bg-variation-400 bg-variation-500" 
+         icon={<Icon Size="1.2rem"
+          name={<CiCirclePlus/>}/>}>New section</button>
     <Modal okType="default" okText="Create" 
     title="Create new Subject" 
     open={isModalOpen} onOk={onCreate} 
@@ -207,39 +144,47 @@ export default function ExamInfo (){
             </Form.Item>
      </Form>
       </Modal>
+      <button className="border-none text-[12px] rounded-md
+       active:bg-yellow-300 px-2 py-[0.5px] bg-yellow-400">
+        <Link to={`/dashboard/exam/update/${data?._id}`}>
+        update
+        </Link>
+        </button>
+      
           <Popconfirm 
           placement="topLeft"
           description="Are you sure to delete this Exam?" 
            title="Delete this Exam"
            okType="default" onConfirm={onDeleteExam} okText="Delete">
-          <Button className="border-none bg-neutral-50" icon={<CiTrash/>}/>
+          <button className="border-none rounded-md bg-rose-500 active:bg-rose-600
+           px-2 text-white text-[12px] py-[0.5px]">Delete</button>
           </Popconfirm>
         </div>
   </div>
   </>
  <div classNam="px-3 py-4">
  {/* info list */}
-  <div className="grid grid-cols-3 gap-3 px-2 mt-2 text-[14px]">
-  <span className="flex gap-2">
-  <label key={data.title} className="font-semibold space-x-2 text-gray-600">Title :</label>
-  <p className="text-gray-900">{data.name}</p>
-  </span>
-  
-  <span className="flex gap-2">
-  <label key={data.startDate} className="font-semibold space-x-2 text-gray-600">Start :</label>
-  <p className="text-gray-900">{moment(data.startDate).format("YYYY-MM-DD")}</p>
-  <p className="text-gray-900">End : {moment(data.endDate).format("YYYY-MM-DD")}</p>
-  </span>
-  
-  <span className="flex gap-2">
-  <label key={data.endDate} className="font-semibold space-x-2 text-gray-600">question amount :</label>
-  <p className="text-gray-900">{data.quiz ? data.quiz.length : null}</p>
-  </span>
-  <span className="flex gap-2">
-  <label key={data.createdAt} className="font-semibold space-x-2 text-gray-600">create date :</label>
-  <p className="text-gray-900">{moment(data.createdAt).format("DD/MM/YYYY")}</p>
-  </span>
-  </div>
+ <Descriptions>
+  <Descriptions.Item label="Title">
+            {data?.name}
+  </Descriptions.Item>
+  <Descriptions.Item label="Course">
+            {data?.course}
+  </Descriptions.Item>
+  <Descriptions.Item label="sections">
+  {data.quiz ? data.quiz.length : null}
+  </Descriptions.Item>
+  <Descriptions.Item label="create">
+  {moment(data.createdAt).format("DD/MM/YYYY")}
+  </Descriptions.Item>
+  <Descriptions.Item label="Exam Date">
+  {moment(data.date).format("YYYY-MM-DD")}
+  </Descriptions.Item>
+  <Descriptions.Item label="Time">
+  {moment(data.time).format("LT")}
+  </Descriptions.Item>
+ </Descriptions>
+
   </div>
        </div>
       <div>

@@ -1,39 +1,51 @@
 import {useState , useEffect} from "react"
-import {Table, message, Tag ,Tooltip} from "antd"
-import { columnExam } from "../componet/ColumsItem"
+import {Table, message, Tag ,Tooltip, Button} from "antd"
 import {useParams , Link} from "react-router-dom"
-import axios from "axios"
-import Icon from "../../../components/Icon"
-import { deteleSubject } from "../../../api/quiz"
-import { CiCirclePlus, CiEdit, CiRead, CiTrash } from "react-icons/ci";
+import { deteleSubject, queryQuiz } from "../../../api/quiz"
 import moment from "moment"
+import {useDispatch} from 'react-redux'
+import axiosInstance from "../../../api"
+import { loadingAction } from "../../../redux/loaderSlice"
 
 export const QuizTable = () => {
   
     const {id} = useParams()
     const [data ,setData] = useState()
-    const getQuiz = async() => {
-      await  axios.post(`${process.env.REACT_APP_API_KEY}quiz`,{examId : id}).then((res)=> {
+    const [loading, setLoading] = useState(false);
+    const dispatch = useDispatch()
+    
+    const getQuiz = async () => {
+      dispatch(loadingAction.ShowLoading())
+      await axiosInstance.post(`quiz`,{examId : id}).then((res)=> {
             setData(res.data.result)
-            console.log(res.data.result)
         }).catch(error => {
             alert(error.response.data.message)
         })
+        dispatch(loadingAction.HideLoading())
     }
 
     const handledeleteSubject = async (id, exam_id)=>{
+      dispatch(loadingAction.ShowLoading())
       const response = await deteleSubject(id, exam_id)
-      console.log(response)
+      dispatch(loadingAction.HideLoading())
       if(response.success){
-        message.success("succes")
+        message.success(response.message)
         getQuiz()
       }else{
-        message.error('error')
+        message.error(response.data.message)
       }
     }
     
     
-
+    const start = () => {
+      setLoading(true);
+      getQuiz()
+      setTimeout(()=>{
+        setLoading(false)
+      },[2000])
+   
+    
+    }
 
     useEffect(()=> {
         getQuiz()
@@ -56,6 +68,7 @@ export const QuizTable = () => {
         title : 'Type',
         dataIndex: 'type',
         key : 'type',
+        render : () => <Tag>none</Tag>
       },
       {
         title : 'question',
@@ -84,43 +97,43 @@ export const QuizTable = () => {
       dataIndex: '',
       key: 'x',
       render: (record) => <div
-       className="flex gap-4 items-center">
+       className="flex gap-2 items-center">
   
         <Tooltip title="Create a question">
-        <a className="bg-variation-500 rounded-md p-1">
+        <button className="bg-variation-500 text-white px-2 py-0.5 text-[12px] rounded-md p-1">
         <Link  to={`/dashboard/Quiz/${record._id}/${record.title}`}>
-        <Icon color="white" Size={"1.2rem"} name={<CiCirclePlus/>}/>
+            add question
         </Link>
-      </a>
+      </button>
           </Tooltip>
   
   
         <Tooltip title="Update">
-        <a className="bg-yellow-300 rounded-md p-1">
+        <a className="bg-yellow-300 px-2 py-0.5 text-[12px] rounded-md">
         <Link>
-        <Icon color="black" Size={"1.2rem"} name={<CiEdit/>}/>
+          update
         </Link>
       </a>
           </Tooltip>
   
        <Tooltip title="Delete Subject">
-        <a  onClick={()=> { 
+        <button  onClick={()=> { 
         handledeleteSubject(record._id ,record.ExamId)
-        }} className="bg-red-500 rounded-md p-1">
-        <Link>
-        <Icon color={"white"} Size={"1.2rem"} name={<CiTrash/>}/>
-        </Link>
-      </a>
+        }} className="bg-red-500 rounded-md text-white px-2 py-0.5 text-[12px]">
+          delete
+      </button>
           </Tooltip>
       </div>,
     },
     ]
     return <>
-     <div>
+     <div className="flex gap-3">
             <p className="text-[14px] mt-2 text-gray-300">
              ✨ Click on each subject name for create new question
             </p>
+            <Button onClick={start} loading={loading}>Reload</Button>
           </div>
+         
       <Table dataSource={data} bordered className="mt-3" columns={columnExam}/>
     
     </>

@@ -7,6 +7,7 @@ import {TimerSlice} from "./TimerSlice"
 import { api } from "../api/api"
 import showScoreSlice from "./ShowScore"
 import courseSlice from "./courseSlice"
+import addressSlice from "./addressSlice"
 
 const store = configureStore({
     reducer:{
@@ -16,6 +17,7 @@ const store = configureStore({
         show  : showScoreSlice,
         Time : TimerSlice.reducer,
         course : courseSlice,
+        address : addressSlice,
         [api.reducerPath] : api.reducer
 
     },

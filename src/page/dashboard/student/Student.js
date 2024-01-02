@@ -40,7 +40,7 @@ import { columnsStudent } from "../componet/ColumsItem";
 export default function Student() {
 
     const onChange = (pagination, filters, sorter, extra) => {
-        console.log('params', pagination, filters, sorter, extra);
+        
       };
 
 

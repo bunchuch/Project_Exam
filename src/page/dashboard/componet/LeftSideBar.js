@@ -31,7 +31,7 @@ export default function LeftSideBar ({item}) {
         setDurations(document.getElementById(''))
     }
     const normal = "w-full flex flex-col "
-    +" justify-between bg-white border-[1px] border-neutral-200 overflow-auto h-full"
+    +" justify-between bg-white font-roboto border-[1px] border-neutral-200 overflow-auto h-full"
 
       return <>
       <DashboardContext.Provider value={sideReponse}>
@@ -44,7 +44,7 @@ export default function LeftSideBar ({item}) {
         {
             LeftSideBarList.map((item , key)=> <li className="p-4" key={key}>
                 <Link to={`/dashboard/${item.Link}`}>
-            <a href="" className={`flex items-center 
+            <a href="" className={`flex items-center font-roboto 
             rounded-lg text-#0f3460 p-2
              hover:bg-neutral-50 ${item.Link == extractedWord ?  "bg-neutral-50" : ""} group`}>
               {
@@ -68,7 +68,7 @@ export default function LeftSideBar ({item}) {
       </ul>     
       <div className={  `${sideBar ? ` bg-neutral-200 py-2
         items-center justify-center` : " "} 
-        +  flex items-center px-2 bg-neutral-200 flex justify-center py-2` }>
+        +  flex items-center px-2 bg-neutral-200 justify-center py-2` }>
 
           <button onClick={()=>sideReponse()}>
             <div className="w-6 h-6 ">

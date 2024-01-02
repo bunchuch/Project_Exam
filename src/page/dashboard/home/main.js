@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import Icon  from "../../../components/Icon";
-import {Lines} from "../componet/chart/line"
-import { Card, Result} from "antd";
-import { CiCoinInsert, CiGlass, CiGrid2H, CiGrid2V, CiLocationArrow1,
+import { CiCoinInsert, CiGlass, CiGrid2H, CiLocationArrow1,
      CiUser } from "react-icons/ci";
 import Header from "../../../components/Header";
-
-
+import Meta from "antd/es/card/Meta";
+import Avatar from "../../../components/Avatar";
+import { getUserByName } from "../../../api/user";
+import Cookies from "universal-cookie"
+import { useEffect } from "react";
+import { Card, Result, message, Descriptions, Tag} from "antd";
 
 
 function DashboardCard ({amount , title ,icon}) {
@@ -43,28 +45,53 @@ function DashboardCard ({amount , title ,icon}) {
 
 
 export function Main () {
-const data = false
-const options = {
-    title:{
-        display:true,
-        text: "Chart Title"
-    },
-    scales : {
-        yAxes : [
-            {
-                ticks : {
-                    suggesteMin:0,
-                    suggesteMax : 100,
-                }
-            }
-        ]
+const cookies = new Cookies()
+const [loading ,setLoading] = useState(false)
+const [data ,setData]  = useState()
+const name = cookies.get('Username')
+
+const handleGetUser = async () => {
+    setLoading(true)
+    const response = await getUserByName({name : name})
+    setLoading(false)
+    if(response){
+        setData(response)
+    }else{
+        message.error(response.data)
     }
+    
 }
+
+useEffect(()=>{
+    handleGetUser()
+},[])
 
     return<div> { data ? <>
         <Header icons={<CiGrid2H/>} text="Dashboard"/>
-    <div className="grid lg:grid-cols-4 gap-2 py-2">
-        <Card title="Usrename"></Card>
+    <div className="py-4 mt-3 bg-white rounded-lg
+             px-2 border-[1px] border-neutral-200 ">
+        <Card
+        loading={loading}
+        className="border-none">
+            <Meta
+            avatar={<Avatar name={"Dara"}></Avatar>}
+            title={name}
+            description={
+                <>
+                <Descriptions className="mt-5">
+                <Descriptions.Item label="Telephone">{data?.phone}</Descriptions.Item>
+                <Descriptions.Item label="Live">{data?.address}</Descriptions.Item>
+                 <Descriptions.Item label="Remark"><Tag>
+                 {data?.role} </Tag></Descriptions.Item>
+                </Descriptions>;
+                </>
+            }
+            >
+            </Meta>
+            </Card>        
+
+
+
         </div> </> : <>
         <Result
     title="page are under maintenance"

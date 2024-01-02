@@ -1,41 +1,80 @@
 import { useState } from "react";
 import axios from "axios";
-import { CiCircleChevLeft, CiCirclePlus} from "react-icons/ci";
-import { Link } from "react-router-dom";
-import Icon from "../../../components/Icon"
-import { Button,  Form,Input,  Select,Switch, message,} from 'antd';
+import {CiCirclePlus} from "react-icons/ci";
+import { Button,  Form,Input, Select, message,} from 'antd';
 import Header from "../../../components/Header";
-import { regiseterUser } from "../../../api/user";
+import { regiseterUser, updateUser, userInfo } from "../../../api/user";
 import {loadingAction} from "../../../redux/loaderSlice"
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import {useParams} from "react-router-dom"
 import NavigatorButton from "../../../components/navigatorButton";
+import { useEffect } from "react";
+import { generateRandomNDigits } from "../../../function/generate";
+import { getAddress } from "../../../redux/addressSlice";
 const { TextArea } = Input;
+const options = [{
+  label:"admin",
+  value :"admin",
+},
+{
+  label:"teacher",
+  value : "teacher"
+},
+{
+  label : "staff",
+  value : "staff",
+}
 
+];
 
 export default function RegisterUser () {     
   
     const [name , setName] = useState()
+    const {id} = useParams()
+    const [data ,setData] = useState()
     const [email ,setEmail] = useState()
     const [password ,setPassword] = useState()
     const [role , setRole] = useState([])
+    const [form] = Form.useForm()
     const [errMessage ,setErrorMessage] = useState('')
     const [messageApi, contextHolder] = message.useMessage()
+    const address = useSelector(state => state.address.data)
     const key = 'updatable';
     const dispatch = useDispatch()
-  
-  
-    const handleSubmit = async () => {
-      try {
-        // dispatch(loadingAction.ShowLoading())
-        const respone = await regiseterUser({
-          name : name ,
-          email : email,
-          password : password,
-          role : role
-        })
-        // dispatch(loadingAction.HideLoading())
+    const {Option}  = Select 
 
-        if (respone){
+
+
+    const handleOnGetUser = async () =>{
+      try {
+          const respone = await userInfo(id)
+          if(respone.success){
+             form.setFieldsValue(respone.result)
+          }else{
+              messageApi.open({
+                  key,
+                  type : 'warning',
+                  content : `${respone.message}`
+              })
+          }
+
+      } catch (error) {
+          messageApi.open({
+              key,
+              type : 'warning',
+              content : `${error.message}`
+      })
+  }
+
+}
+  
+    const handleSubmit = async (value) => {
+      try {
+        dispatch(loadingAction.ShowLoading())
+        const respone = await regiseterUser(value)
+        dispatch(loadingAction.HideLoading())
+
+        if (respone.success){
            messageApi.open({
             key,
             type : 'success',
@@ -54,43 +93,63 @@ export default function RegisterUser () {
         messageApi.open({
           key,
           type : 'error',
-          content : `failed ${error.message}`
+          content : `failed ${error}`
         })
       }
     }
      
-    const options = [{
-      label:"admin",
-      value :"admin",
-    },
-    {
-      label:"teacher",
-      value : "teacher"
-    },
-    {
-      label : "staff",
-      value : "staff",
+
+  const handleUpdate = async (value)=>{
+    try {
+        const respone = await updateUser(value, id)
+        if(respone.success) {
+            messageApi.open({
+                key ,
+                type : 'success',
+                content : `${respone.message}`
+            })
+            dispatch(loadingAction.ShowLoading())
+            setTimeout(()=>{
+                dispatch(loadingAction.HideLoading())
+            },1000)
+        }else{
+            messageApi.open({
+                key ,
+                type : 'warning',
+                content : `${respone.message}`
+            })
+        }
+    } catch (error) {
+        messageApi.open({
+            key ,
+            title : 'error',
+            content : `${error.data.message}`
+        })
     }
-  
-  ];
+}
    
   const handleChange = (value) =>{
       setRole(value)
   }
-  
-  
-  
+    
+  useEffect(()=>{
+     dispatch(getAddress())
+    if(id){
+      handleOnGetUser()
+    }
+  },[])
   
   
       return<>
       <NavigatorButton/>
         <div className="bg-white rounded-md border-[1px] border-neutral-200 p-3">
-        <Header icons={<CiCirclePlus/>} text="Add User"></Header>                      
+        <Header icons={<CiCirclePlus/>} text={id ? "update user" : "Add User"}></Header>                      
         <div className="px-3 py-4 ">
-       <Form layout="vertical">
+       <Form onFinish={(value)=> id ? handleUpdate(value) 
+        : handleSubmit(value)} form={form} layout="vertical">
           <div className="grid grid-cols-2 gap-2 my-2">
           <Form.Item
-          name="Username"
+          name="name"
           label="Username"
           rules={[
             {
@@ -121,24 +180,24 @@ export default function RegisterUser () {
         >
           <Input onChange={(e)=> setEmail(e.target.value)} />
         </Form.Item>
-  
+    {
+      id ? <></> : <Form.Item
+      name="password"
+      label="Password"
+      rules={[
+        {
+          required: true,
+          message: 'Please input your password!',
+        },
+      ]}
+      hasFeedback
+    >
+      <Input  defaultValue={["puctak"]} 
+       onChange={(e)=> setPassword(e.target.value)} />
+    </Form.Item> 
+    }  
         <Form.Item
-          name="password"
-          label="Password"
-          rules={[
-            {
-              required: true,
-              message: 'Please input your password!',
-            },
-          ]}
-          hasFeedback
-        >
-          <Input  defaultValue={["puctak"]} 
-           onChange={(e)=> setPassword(e.target.value)} />
-        </Form.Item>
-        
-        <Form.Item
-          name="Phone"
+          name="phone"
           label="Phone number"
         >
           <Input />
@@ -151,7 +210,13 @@ export default function RegisterUser () {
           name="address"
           label="currect address"
         >
-          <Input />
+      <Select>
+        {
+          address.map((a,k)=> <Option key={k} value={a.name}>
+            {a.name}
+          </Option>)
+        }
+      </Select>
         </Form.Item>
 
         <Form.Item 
@@ -169,12 +234,23 @@ export default function RegisterUser () {
         </Form.Item>
           </div>
           {contextHolder}
-          <div className="flex justify-end w-full">
+          <div className="flex justify-end gap-3 w-full">
+            <Form.Item>
+              <Button
+              onClick={()=> {
+                form.setFieldsValue({
+                  password : generateRandomNDigits(3)
+                })
+              }}
+              htmlType="button">
+                generatePassword
+              </Button>
+              </Form.Item>
           <Form.Item>
-             <Button style={{
+             <Button htmlType="submit" style={{
                 background: '#0f3460',
                 color : '#ffff',
-            }} onClick={handleSubmit}>Create</Button>
+            }} > {id ? "Update" : "Create"} </Button>
            </Form.Item>
           </div>
         

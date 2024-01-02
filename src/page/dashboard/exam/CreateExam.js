@@ -1,94 +1,185 @@
-import { Form, Input, Select, message, Tag, Button, InputNumber, TimePicker, DatePicker } from "antd";
+import { Form, Input, Select, message, Tag, Button, InputNumber,
+     TimePicker, DatePicker, ConfigProvider, Modal } from "antd";
 import React, { useState } from "react";
 import { useNavigate, Link, useParams } from "react-router-dom";
-import axios from "axios";
 import Header from "../../../components/Header";
 import { CiCircleChevLeft, CiRuler, CiUser } from "react-icons/ci";
 import Icon from "../../../components/Icon";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import TextArea from "antd/es/input/TextArea";
 import NavigatorButton from "../../../components/navigatorButton";
+import { createExam,examGetById, updateExam } from "../../../api/exam";
+import { useEffect } from "react";
+import { loadingAction } from "../../../redux/loaderSlice";
+import locale from 'antd/es/locale/en_US';
 
 
 
-const types = [{label :"Mqc" ,value : "Mqc"}, 
-{label:"Blank", value: "Blank"},
- {label :"Writing", value : "Writing"}]
+
 
 export default function CreateExam(){
-    
-    const [title ,setTitle] = useState('')
-    const [type , setType] = useState('')
-    const [Id ,setId] = useState('')
-    const [render, setRender] = useState()
-    const [messageApi, contextHolder] = message.useMessage()
     const navigate = useNavigate()
     const courseName = useSelector(state => state.course.courseName)
     const {id} = useParams()
-    const key = 'updatable'
+    const [selectedDate, setSelectedDate] = useState(null)
+    const [isModalOpen, setIsModalOpen] = useState(false)
+    const [time ,setTime] = useState()
+    const [date , setDate] = useState()
+    const [form] = Form.useForm()
+    const dispactch = useDispatch()
+    const dateFormat = "YYYY-MM-DD"
+    const timeFormat = "HH:mm"
     const {Option} = Select
 
+
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  }
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  }
+
+
     const onCreate = async (value)=>{
-        console.log(value)
-        axios.post(`${process.env.REACT_APP_API_KEY}exam/create/`,value)
-        .then(res => {
-            messageApi.open({
-                key,
-                type : 'loading',
-                content : 'Loading...'
-            })
-            setTimeout(()=>{
-                messageApi.open({
-                    key,
-                    type : 'success',
-                    content : `${res.data.message}`,
-                    duration :2
-                })
-
-                setRender(true)
-            } , [1000])
-
-            setId(res.data.e_id)
-        }).catch(error => {
-            messageApi.open({
-                key,
-                type : 'erorr',
-                content : `Failded name ${error.response.data.message}`
-            })
-        })
+        try {
+            dispactch(loadingAction.ShowLoading())
+            const request = id ? await updateExam(id , value) 
+            : await createExam(value)
+            dispactch(loadingAction.HideLoading())
+            if(request.success){
+                message.success(request.message)
+            }else{
+                   
+                    message.error(request.data.message)
+            }
+        } catch (error) {
+            alert(error)
+        }
+       
+    }
+   
+    const onGetExam = async ()=>{
+        dispactch(loadingAction.ShowLoading())
+        const response = await examGetById(id)
+        dispactch(loadingAction.HideLoading())
+        if(response){
+            message.success('fetch data..')
+            if(id){
+                form.setFieldsValue(response.exams)
+            }
+        }else{
+            message.error(response.data.message)
+        }
     }
 
+    const handleOk = async ()  => {
+        try {
+            dispactch(loadingAction.ShowLoading())
+            const response = await updateExam(id ,{
+                date : date,
+                time : time
+            })
+            dispactch(loadingAction.HideLoading())
+            if(response.success){
+                message.loading('loading...')
+                setTimeout(()=>{
+                    message.success(response.message)
+                },2000)
+            }else{
+                message.error(response.data.message)
+            }
+        } catch (error) {
+            message.error(error)
+        }
+      }
+
+
+    const updateDateAndTime = () => {
+        return <Modal onOk={handleOk} okType="default"
+         open={isModalOpen} onCancel={handleCancel} title="update Date & Time">
+                <ConfigProvider locale={locale}>
+                    <Form>
+            <Form.Item name="date">
+          <DatePicker format={`${dateFormat}`} onChange={(date)=> setDate(date)} showTime />
+                </Form.Item>
+                <Form.Item name="time">
+            <TimePicker onChange={(time) => setTime(time)} format={`${timeFormat}`}/>
+            </Form.Item>
+                    </Form>
+                 </ConfigProvider>
+        </Modal> 
+    }
+
+    useEffect(()=>{
+        if(id){
+            onGetExam()
+        }
+    
+    },[])
+   
 
     return <div> 
-    {contextHolder}
    <NavigatorButton/>
     <div className="bg-white rounded-lg
      border-[1px] border-neutral-200 p-4">
-        <Header text={"Create Exam"} icons={<CiRuler/>}/>
+        <Header text={ id ? `update exam ${id}`
+         : `Create Exam`} icons={<CiRuler/>}/>
+
+        
+        {
+            id && <div className="my-3"><button className="bg-variation-500 text-[12px] 
+            py-[1.5px] px-2 active:bg-variation-400
+            rounded-md text-white" 
+            onClick={showModal}>Update date & time</button>
+                    {updateDateAndTime()}
+            </div>
+        }
     <Form
     onFinish={onCreate}
     layout="vertical"
-    className="mt-4"
+    form={form}
+    className="mt-4 "
     >
-            <Form.Item label="name" name="name">
-                <Input onChange={e => setTitle(e.target.value)}></Input>
+        <div className="grid gap-2 grid-cols-2 2xl:grid-cols-1">
+            <Form.Item
+            rules={[
+                {
+                    message :"please assign group",
+                    required : true
+                }
+            ]}
+            label="Title" name="name">
+                <Input></Input>
             </Form.Item>
+            {
+                id ? <></>:
+            
             <div className="flex gap-3">
-            <Form.Item label="start_Date" name="startDate">
-            <DatePicker/>
+            <Form.Item label="Select Date" name="date">
+                
+                <DatePicker 
+            format={`${dateFormat}`}
+            />
+               
             </Form.Item>
-            <Form.Item label="End_Date" name="endDate">
-             <DatePicker/>
+            <Form.Item label="Pick Time" name="time">
+              <TimePicker  format={`${timeFormat}`}/> 
             </Form.Item>
             </div>
-           
-            <Form.Item label="Exam duration" name="time">
+}
+            <Form.Item label="Duration" name="duration">
                 <InputNumber className="w-full"/>
             </Form.Item>
             <Form.Item label="Pass Percentage(%)" name="pass_score">
                 <InputNumber className="w-full"/>
             </Form.Item>
-            <Form.Item label="Assign Groups" name="course">
+            <Form.Item rules={[
+                {
+                    message :"please assign group",
+                    required : true
+                }
+            ]} label="Assign to Groups" name="course">
                 <Select>
                     {
                         courseName.map((i, k) => 
@@ -98,16 +189,17 @@ export default function CreateExam(){
                    
                 </Select>
             </Form.Item>
-
+            </div>
+            <div>
             <Form.Item label="Description" name="description">
                <TextArea></TextArea>
             </Form.Item>
-
+                        </div>
             <Form.Item className="flex justify-end">
                 <Button style={{
                     color : "#ffff"
                 }} className="bg-variation-500 " htmlType="submit">
-                    Create
+                    submit
                 </Button>
             </Form.Item>
          </Form>

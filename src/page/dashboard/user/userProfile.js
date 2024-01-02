@@ -1,42 +1,20 @@
-import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Header from "../../../components/Header";
-import { Button, Tag, message,Modal, Form, Input, Popconfirm, Select, Result } from "antd";
-import Icon from "../../../components/Icon";
-import {CiCircleChevLeft, CiCircleInfo, CiEdit, CiLock, CiTrash } from "react-icons/ci";
+import { Tag, message,Modal, Form, Input, Popconfirm,Descriptions } from "antd";
+import {CiCircleInfo, CiEdit} from "react-icons/ci";
 import { useEffect, useState } from "react";
-import { deleteUser, userInfo, updateUser, resetPassword } from "../../../api/user";
-import { useDispatch } from "react-redux";
+import { deleteUser, userInfo, resetPassword } from "../../../api/user";
+import { useDispatch, useSelector } from "react-redux";
 import { loadingAction } from "../../../redux/loaderSlice";
 import  moment from 'moment'
 import NavigatorButton from "../../../components/navigatorButton";
 
-const options = [{
-    label:"admin",
-    value :"admin",
-    name : 'admin'
-  },
-  {
-    label:"teacher",
-    value : "teacher",
-    name : 'teacher',
-  },
-  {
-    label : "staff",
-    value : "staff",
-    name : 'staff'
-  }
-
-];
-
 
 export default function UserProfile (){
-    
+    const userRole = useSelector(state => state.auth.userRole)[0]
     const [messageApi, contextHolder] = message.useMessage()
     const [data ,setData] = useState({})
-    const [role ,setRole] = useState([])
     const [password ,setPassword] = useState()
-    const [name ,setName] = useState()
-    const [email ,setEmail] = useState()
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [changePassword ,setChangePassword] = useState(false)
     const {id} = useParams()  
@@ -45,70 +23,39 @@ export default function UserProfile (){
     const key = 'updatable'
 
     const handleOnGetUser = async () =>{
-
         try {
             const respone = await userInfo(id)
-
-            if(respone){
-               setData(respone.userId)
-               setRole(respone.userId.role)
+            if(respone.success){
+               setData(respone.result)
             }else{
-                messageApi.open({
-                    key,
-                    type : 'warning',
-                    content : `${respone.message}`
-                })
+               message.error(respone.data.message)
             }
 
         } catch (error) {
-            messageApi.open({
-                key,
-                type : 'warning',
-                content : `${error.message}`
-        })
+            message.error(error)
     }
 
 }
 
     const handleUpdate = async ()=>{
         try {
-            const respone = changePassword ? await resetPassword({
+            const respone = await resetPassword({
                 password : password
-            }, id) : await updateUser({
-                 name : name,
-                 email : email,
-                 role : role,
-
             }, id)
 
-            if(respone) {
-                messageApi.open({
-                    key ,
-                    type : 'success',
-                    content : `${respone.message}`
-                })
-                setIsModalOpen(false);
+            if(respone.success) {
+                message.success(respone.message)
+                setIsModalOpen(false)
                 dispatch(loadingAction.ShowLoading())
                 setTimeout(()=>{
                     handleOnGetUser()
                     dispatch(loadingAction.HideLoading())
                 },1000)
-                
-              
-
             }else{
-                messageApi.open({
-                    key ,
-                    type : 'warning',
-                    content : `${respone.message}`
-                })
+              message.error(respone.data.message)
             }
         } catch (error) {
-            messageApi.open({
-                key ,
-                title : 'error',
-                content : `${error.data.message}`
-            })
+           message.error(error)
         }
     }
 
@@ -119,7 +66,8 @@ export default function UserProfile (){
    const onDelete = async ()=>{
         try {
             const userDelete = await deleteUser(id)
-            if(userDelete){
+            console.log(userDelete)
+            if(userDelete.success){
                 messageApi.open({
                     key : 'updatable',
                     type : 'success',
@@ -134,14 +82,15 @@ export default function UserProfile (){
                 messageApi.open({
                     key : 'updatable',
                     type : 'error',
-                    content : `failded to remove user ${userDelete.name}`
+                    content : `${userDelete.message}`
                 })
             }
         } catch (error) {
+            console.log(error)
             messageApi.open({
                 key : 'updatable',
                 type : 'error',
-                content : `failded to remove user`
+                content : `${error.stautsText}`
             })
         }
    }
@@ -158,12 +107,12 @@ export default function UserProfile (){
 
   const renderRole = (role) =>{
      let color = role.lenght > 5 ? "geekblue" : "green"
-     if (role == "Owner"){
-        color = 'volcano'
+     if (role == "superadmin"){
+          color = 'volcano'
      }else if (role == "teacher"){
         color = "geekblue"
      }else if (role == "staff"){
-        color = 'orange'
+        color = 'yellow'
      }
 
      return (
@@ -183,7 +132,10 @@ export default function UserProfile (){
                 <div className="bg-white rounded-md border-[1px] border-neutral-200 p-3">
                 <div className="flex justify-between items-center">
                 <Header icons={<CiCircleInfo/>} text="User Info"></Header>
-                <div className="flex gap-2">
+
+                {
+                     userRole === 'admin' || userRole
+                     === 'superadmin' ? <div className="flex gap-1">
                            <Popconfirm
                              placement="bottomLeft"
                             title="Delete the User"
@@ -191,107 +143,64 @@ export default function UserProfile (){
                                 okType="default"
                                onConfirm={onDelete}
                                          >
-                                        <Button icon={<CiTrash/>}/>
+                                        <button
+                                        className="bg-rose-500 px-3 rounded-md active:bg-rose-600
+                                        text-[12px] py-0.5 text-white"
+                                        >delete</button>
                                                         </Popconfirm>
-                           <Button icon={<CiEdit/>} 
+                           <button
+                           className="bg-yellow-400 px-3 rounded-md active:bg-yellow-300
+                           text-[12px] py-0.5"
+                           icon={<CiEdit/>} 
                            onClick={()=> {
-                            onShowModel()
-                            setChangePassword(false)
+                              navigator(`/dashboard/user/update/${id}`)
                             }
-                            }></Button>
-                           <Button icon={<CiLock/>}  
+                            }>update</button>
+                           <button className="bg-green-600 px-3 rounded-md
+                            active:bg-green-50
+                             text-[12px] py-0.5 text-white" 
                            onClick={()=>{
                             setChangePassword(true)
                             onShowModel()
                            }
                             }>
-                            reset password</Button>
+                            reset password</button>
                            <Modal 
                            okType="default"
                            okText="Update"
                            onOk={handleUpdate}
-                           title={changePassword ? "Reset Password" : "update user info"} open={isModalOpen} 
+                           title={"Reset Password"} open={isModalOpen} 
                             onCancel={handleCancel}>
                               <Form layout="vertical">
-                                {
-                                    changePassword ?  <>
                                 <Form.Item label="New Password">
                                     <Input.Password 
                                     onChange={e => setPassword(e.target.value)}></Input.Password>
                                 </Form.Item>
-                                    
-                                    </>   : <>
-                                    <Form.Item name="name" label="Username">
-                                    <Input  defaultValue={data.name} 
-                                    onChange={e => setName(e.target.value)}></Input>
-                                </Form.Item>
-                                <Form.Item label="Email" name="email">
-                                    <Input defaultValue={data.email} 
-                                    onChange={e => setEmail(e.target.value)} ></Input>
-                                </Form.Item>      
-                                <Form.Item label="Role">
-                                          <Select
-                                             mode="multiple"
-                                             value={[...role]}
-                                             onChange={value => setRole(value)}
-                                          
-                                         style={{
-                                        width: '100%',
-                                                }}
-                                        
-                                             options={options}
-                                                />
-                                        </Form.Item>
-                                    </>
-                                
-                                }
-                    
                               </Form>
                             </Modal>
+                       </div> : <></>
+                    }
                        </div>
-
-
-
-                       </div>
-
-
                        {/* userInfo */}
-                       <div className="grid grid-cols-3 gap-3 mt-4 px-2 text-[14px]">
-                        <span className="inline-flex">
-                            <label className="font-semibold pr-2 text-gray-600" name="name">Username :  </label>
-                            <p>{
-                            data.name
-                            }</p>
-                        </span>
-                        <span className="inline-flex">
-                            <label className="font-semibold pr-2 text-gray-600" name="name">E-mail :  </label>
-                            <p>{
-                            data.email
-                            }</p>
-                        </span>
+             <Descriptions className="mt-5 py-4" >
+             <Descriptions.Item label="UserName">{data?.name}</Descriptions.Item>
+             <Descriptions.Item label="Telephone">{data?.phone ? data?.phone
+              : "(+000)-000-000"}</Descriptions.Item>
+             <Descriptions.Item label="email">{data?.email}</Descriptions.Item>
+             <Descriptions.Item label="Live">{data?.address ? data?.address : "location"}</Descriptions.Item>
+            <Descriptions.Item label="Remark">{data?.role ? renderRole(data?.role): "none"}</Descriptions.Item>
+            <Descriptions.Item label="Address">
+                <Tag>{data?.address ? data?.address : "default"}</Tag>
+                </Descriptions.Item>
 
-                        <span className="inline-flex">
-                            <label className="font-semibold pr-2 text-gray-600" name="name">Role :  </label>
-                            <p>{renderRole(data.role? data.role : [])}</p>
-                        </span>
-                        
-                        <span className="inline-flex">
-                            <label className="font-semibold pr-2 text-gray-600" name="name">Create :  </label>
-                            <p>{moment(data.createdAt).format('DD/MM/YYYY')}</p>
-                        </span>
-
-                        <span className="inline-flex">
-                            <label className="font-semibold pr-2 text-gray-600" name="name">Last update :  </label>
-                            <p>{moment(data.updatedAt).format('DD/MM/YYYY')}</p>
-                        </span>
-
-                        
-                       
-                           
-                         
-                           </div>
-                         
-
+                <Descriptions.Item label="enroll work">
+                {moment(data.createdAt).format('DD/MM/YYYY')}
+                </Descriptions.Item>
+                <Descriptions.Item label="Last update">
+                {moment(data.updatedAt).format('DD/MM/YYYY')}
+                </Descriptions.Item>
+                </Descriptions>
+                            
 </div>
     
     </>

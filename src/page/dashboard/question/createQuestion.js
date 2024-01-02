@@ -1,10 +1,8 @@
 import {message,
-  Button,Radio,Form,Input,Upload ,Card,Typography, InputNumber} from "antd"
-import { useEffect, useRef, useState } from "react"
-import axios from "axios"
-import { useNavigate, useParams } from "react-router-dom"
-import { CiCircleMinus, CiCirclePlus,
-   CiExport, CiUndo } from "react-icons/ci";
+  Button,Radio,Form,Upload ,Card,Typography, InputNumber} from "antd"
+import { useEffect, useState } from "react"
+import {  useParams } from "react-router-dom"
+import {  CiExport, CiUndo } from "react-icons/ci";
 import Icon from "../../../components/Icon"
 import { useForm } from "antd/es/form/Form"
 import { CiSaveUp1 } from "react-icons/ci"
@@ -13,7 +11,10 @@ import { TitleRender } from "../../../components/Title";
 import { Blank } from "../componet/Blank";
 import { Mqc } from "../componet/Mqc";
 import { WritingForm } from "../componet/WritingForm";
-
+import { createQuestion, updateQuestion } from "../../../api/exam";
+import axiosInstance from "../../../api";
+import {useDispatch , useSelector} from 'react-redux'
+import {loadingAction} from "../../../redux/loaderSlice"
 
 export default function CreateQuestion() {
     const [form] = useForm()
@@ -21,8 +22,10 @@ export default function CreateQuestion() {
     const [check , setCheck] = useState(true)
     const {id, title, qid} = useParams()
     const [questionId , setQuestionId] = useState()
+    const userRole = useSelector(state => state.auth.userRole)[0]
     const [fileList, setFileList] = useState([]);
     const [uploading, setUploading] = useState(false);
+    const dispactch = useDispatch()
     const titles = title.toLocaleLowerCase()
     const [updateData ,setUpdateData] = useState()
  
@@ -42,23 +45,31 @@ export default function CreateQuestion() {
         fileList,
        
       }  
-    const QueryQuestion = () => {
-      axios.post(`${process.env.REACT_APP_API_KEY}question`, {id : qid}).then(res => {
+
+     //questionQuestion from update state 
+    const QueryQuestion = async () => {
+      await axiosInstance.post(`${process.env.REACT_APP_API_KEY}question`,
+       {id : qid}).then(res => {
         setUpdateData(res.data.result)
         form.setFieldsValue(res.data?.result)
+       
+      }).catch((error)=>{
+        message.error(error.res.data.message)
+       
       })
+     
     }   
 
+
+    //hanlde upload first file function
       const handleUpload = async (value) => {
         const formData = new FormData();
-        console.log(fileList)
          fileList.forEach((file) => {
           formData.append('file', file);
-          console.log(file)
         });  
         setUploading(true);
         // You can use any AJAX library you like
-        await axios.post(`${process.env.REACT_APP_API_KEY}question/test/${id}`, 
+        await axiosInstance.post(`${process.env.REACT_APP_API_KEY}question/test/${id}`, 
         formData)
         .then(res => {
           setUploading(false)
@@ -68,11 +79,13 @@ export default function CreateQuestion() {
         }).catch(error =>{
           setUploading(false)
           message.error("upload unsuccessfully")
-          console.log(error)
           setUploading(false)
         } )
         setUploading(false)
       };
+
+      //fill new a question form with section id 
+      //and question id after upload file
       const fillId = ()=>{
         form.setFieldsValue({
           subId : id,
@@ -81,22 +94,26 @@ export default function CreateQuestion() {
       }
 
      
-
+    //update question and create question function handle
     const onFinish = async (value)=>{
-      console.log(value)
-        qid ? alert("helowrold") :
-         await axios
-         .post(`${process.env.REACT_APP_API_KEY}question/create/${id}`,
-           value)
-          .then(res => message.success(res.data.message))
-          .catch(err =>
-                  {
-                  message.error(err.message)
-                  alert(err.data.message)})
-                }
+        try { 
+          const response = qid ? await updateQuestion(qid , value) :
+                            await createQuestion(id , value) 
+          if(response.success){
+            message.success(response.message)
+          }else{
+            message.error(response.data.message)
+          }
+        } catch (error) {
+          message.error(error)
+        }
+        }
             
+
      useEffect(()=>{
+      dispactch(loadingAction.ShowLoading())
       QueryQuestion()
+      dispactch(loadingAction.HideLoading())
       form.setFieldsValue(updateData)
       TitleRender("CreateQuestion")
      }, [])           
@@ -138,6 +155,7 @@ export default function CreateQuestion() {
               size={"small"}
              buttonStyle="solid">
             <Radio.Button
+            onChange={()=> setCheck(true)}
             disabled={title !== "writing"
              ? false : true}
               onClick={()=>setCheck(true)}
@@ -170,18 +188,17 @@ export default function CreateQuestion() {
           name={<CiSaveUp1/>}></Icon>} 
       className="flex  bg-variation-500
        text-white justify-center items-center">
-        save
+        {qid ? "update" : "save"}
           </Button>
             </div>
           </div>
 
     {/* file upload and mark a point */}
-    <div className="flex items-center gap-2">
-          <Form.Item label="Point" name={'markPoint'}>
-                <InputNumber/>
-              </Form.Item>
+    <div className="flex flex-col">
           {/* file upload */}
-       <div className="space-y-2 mt-1 mb-1 ">
+          {
+            qid ? <></> :
+          <div className="space-y-2 mb-1">
       <Upload accept=".png, .jpg, .jpeg, .mp4, .mp3" listType="picture" {...props}>
         <Button icon={<CiExport/>}>Upload file from computer</Button>
       </Upload>
@@ -193,9 +210,13 @@ export default function CreateQuestion() {
         {uploading ? 'Uploading' : 'Start Upload'}
       </Button>
     </div>
+}
     </div>
+    <Form.Item label="Point" name={'point'}>
+                <InputNumber/>
+              </Form.Item>
     {/* file upload and mark a point */}
-
+    
     {/* question operation */}
           {title !== "writing" ? <>
           {/* none writing form */}
@@ -203,25 +224,29 @@ export default function CreateQuestion() {
               {
                 check ? <div className="grid grid-cols-2 gap-2">
 
-                  <Mqc/>
+                  <Mqc form={form}
+                       correctAnswer={form.getFieldsValue().options}
+                  />
                 </div> : <Blank form={form}/>
               }
               </div> 
           </>  : <>
           {/* writing form */}
-        <WritingForm/> 
+        <WritingForm form={form}/> 
           </>
 }
  {/* question operation */}
             </Card>
         </div>
-    <Form.Item noStyle shouldUpdate>
+        {
+          userRole === "developer" ?  <Form.Item noStyle shouldUpdate>
       {() => (
         <Typography className="overflow-y-auto h-32">
           <pre>{JSON.stringify(form.getFieldsValue(), null, 2)}</pre>
         </Typography>
       )}
-    </Form.Item>
+    </Form.Item> : <></>
+      }
   </Form>
     </>
 }

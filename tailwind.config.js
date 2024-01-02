@@ -18,9 +18,13 @@ module.exports = {
       "zinc-50" : "#fafafa",
       'yellow-300' : "#fde047",
       'yellow-400' : "#fcd34d",
+      "rose-50" : "#ffe4e6",
       "rose-600" : "#be123c",
       "rose-500" : "#f43f5e",
       "slate-800" : "#1e293b",
+      "green-50"  : "#d1fae5",
+      "green-600" : "#16a34a",
+      "cyan-50"   : "#ecfeff",
     },
    
     screens: {

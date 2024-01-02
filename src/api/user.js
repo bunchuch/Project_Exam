@@ -7,7 +7,7 @@ export const regiseterUser = async (payload) =>{
         const respone = await axiosInstance.post('user/register', payload)
         return respone.data
     } catch (error) {
-        return error.respone.data
+        return error.response.data
     }
 }
 
@@ -17,7 +17,7 @@ export const login = async (payload)=>{
         const respone = await axiosInstance.post('user/login', payload)
         return respone.data
     } catch (error) {
-            return error.respone
+            return error.response
     }
 }
 
@@ -30,13 +30,21 @@ export const resetPassword = async (payload , id)=>{
     }
 }
 
-
 export const userGet = async () => {
     try {
         const respone = await axiosInstance.get('user')
         return respone.data
     } catch (error) {
-        return error.respone.data
+        return error.response.data
+    }
+}
+
+export const getUserByName = async (payload)=>{
+    try {
+        const response = await axiosInstance.post(`user/username`, payload)
+        return response.data
+    } catch (error) {
+        return error.response
     }
 }
 
@@ -45,7 +53,7 @@ export const userInfo = async (id) =>{
         const respone = await axiosInstance.get(`user/${id}`)
         return respone.data
     } catch (error) {
-        return error.respone.data
+        return error.response.data
     }
 }
 
@@ -54,7 +62,7 @@ export const updateUser = async (paylaod ,id)=>{
         const respone = await axiosInstance.patch(`user/update/${id}`, paylaod)
         return respone.data
     } catch (error) {
-        return error.respone.data
+        return error.response.data
     }
 }
 
@@ -63,6 +71,7 @@ export const deleteUser = async (id) =>{
         const respone = await axiosInstance.delete(`user/${id}`)
         return respone.data
     } catch (error) {
-        return error.respone.data
+        return error.response.data
     }
 }
+

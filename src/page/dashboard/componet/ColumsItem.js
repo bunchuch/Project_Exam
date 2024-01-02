@@ -1,13 +1,6 @@
-import { Tag ,Space, Popconfirm, message, Tooltip, Button } from "antd";
-import axios from "axios";
+import { Tag } from "antd";
 import moment from "moment";
 import { Link } from "react-router-dom";
-import Icon from "../../../components/Icon";
-import { CiCirclePlus, CiEdit, CiRead, CiTrash } from "react-icons/ci";
-import { deteleSubject } from "../../../api/quiz";
-
-
-
 
 
 export const columnsUser = [
@@ -45,10 +38,12 @@ export const columnsUser = [
           <>
             {role.map((role) => {
               let color = role.length >= 6 ? 'geekblue' : 'green';
-              if (role === 'Owner') {
+              if (role === 'superadmin') {
                 color = 'volcano';
               }else if (role === 'staff'){
-                color = 'purple'
+                color = 'yellow'
+              }else if (role === "teacher"){
+                color = "purple"
               }
               return (
                 <Tag color={color} key={role}>
@@ -161,23 +156,6 @@ export const columnsStudent = [
         render : (text, record)=> <>{moment(text).format("YY-MM-DD : HH:mm:ss")}</>
         
     },
-
-    // {
-    //     title: 'status',
-    //     dataIndex: 'status',
-    //     sorter: {
-    //       compare: (a, b) => a.english - b.english,
-    //       multiple: 1,
-    //     }, 
-    //     render: (_, status) => (
-    //       <Space size={[0, 8]} wrap>
-    //        <Tag color={status.status === "pass" ? "success" : "error"}>
-    //       {status.status}
-    //        </Tag>
-    //       </Space>
-    //     ),
-        
-    // }
   ];
 
 
@@ -193,30 +171,25 @@ export const columnsStudent = [
     },
    
     {
-      title : 'start-date',
-      dataIndex: 'startDate',
-      key : 'start-date+1',
-      render : (text ,record)=><a>{moment(text).format("YYYY-MM-DD")}</a>
+      title : 'date',
+      dataIndex: 'date',
+      key : 'date',
+      render : (text ,record)=><a>{moment(text).format("LL")}</a>
     },
     {
-      title : 'end-date',
-      dataIndex: 'endDate',
-      key : "score",
-      render : (text ,record)=><a>{moment(text).format("YYYY-MM-DD")}</a>
-    },
-    {
-      title : "duration",
+      title : "time",
       dataIndex : 'time',
       key : 'time',
+      render : (text ,record)=><a>{moment(text).format("LT")}</a>
     },
     {
-      title : "Pass score",
+      title : "pass score",
       dataIndex : 'pass_score',
       key : 'pass_score',
       
     },
     {
-      title: 'Exam subject',
+      title: 'section',
       dataIndex: 'quiz',
       key : 'quiz+1',
       render : (text, record)=> <a>{text ? text.length : null}</a>
@@ -232,14 +205,23 @@ export const columnsStudent = [
       
     },
     {
-      title : 'create data',
+      title : 'create',
       dataIndex : 'createdAt',
       key: 'createdAt',
       render: (text , record) => (
         <>
-          {moment(text).format('DD-MM-YYYY : h:mm')}
+          {moment(text).format('LL')}
         </>
       ),
+        },
+        {
+          title: 'finish',
+          dataIndex: 'onfinish',
+          key : 'finish',
+          render : (text ,record)=><>{
+            record.onfinish ? <Tag color="green">Progress</Tag> : <Tag color="yellow">progress</Tag>
+          }</>
+      
         },
 
         {

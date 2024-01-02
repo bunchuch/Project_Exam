@@ -9,25 +9,27 @@ export const Blank = ({form}) => {
     const [sentence ,setSentence] = useState('')
     const [addOptions ,setAddOption] = useState([])
     const [disabled ,setDisabled] = useState(false)
+    const [hightlightWord , setHigthligthWord] = useState(null)
 
     // try to splite a sentence fucntion()
     const SentenceString = (sentences) =>{
-      console.log(sentence)
-      const slitString = sentences.split(' ')
+      const slitString = sentences.split(/\W+/)
       setSentence([...slitString])
       }
+
+    
   
       //find dulicate item of key word select
       const handleClickAdd = (value, k) => {
-        console.log( "value click is :" , value)
         const isDuplicate = 
         addOptions.some((item,index)=>
          index !== addOptions.indexOf(item))
         if(isDuplicate){
-         message.error('words is duplicate')
+         message.warning('words is duplicate')
         }else{
           setAddOption([...addOptions ,value])
         }
+      
       }
   
      // remove each of the key word function
@@ -35,14 +37,15 @@ export const Blank = ({form}) => {
           setAddOption(values => {
              return values.filter(i => i !== value)
           })
-  
-        console.log(addOptions , addOptions.length)
       }
-  
+      const getRamdomItem =(arr , count) => {
+        const shuffled = arr.sort(()=> Math.random() - 0.5)
+        return shuffled
+     }
       // fill form for options into db question function()
     const fillForm = ()=>{
           form.setFieldsValue({
-            options : addOptions
+            options : getRamdomItem(addOptions, 1)
             }) 
         }
     return <div className="w-full relative grid grid-cols-1">
@@ -55,7 +58,8 @@ export const Blank = ({form}) => {
                     <Form.Item rules={[
                       {
                         required : true,
-                        message : "Please Enter the Sentence"
+                        message : "Please Enter the Sentence",
+                        whitespace:true,
                       }
                     ]} name={'question'} label="Sentence"> 
                       <TextArea 
@@ -87,9 +91,9 @@ export const Blank = ({form}) => {
                 </ul>
               </Form.Item>
               <div className="grid grid-cols-2 gap-3">
-                <div className="bg-neutral-50 border-[1px] border-neutral-200 p-3 rounded-lg">
+                <div className="bg-neutral-50 p-2 rounded-lg">
                 <div className="flex flex-wrap gap-1 pb-2">
-                <p>📌Key words :</p>
+                <p className="font-semibold">option words :</p>
                 <div>
                   <ul className="flex flex-wrap gap-1  px-2">
                 {addOptions.map((i,k)=><li key={k} className="">
@@ -123,17 +127,26 @@ export const Blank = ({form}) => {
                   }}/>
               </Form.Item> 
                 </div>
-                <div className="p-3 bg-neutral-50 rounded-lg
-                 border-[1px] border-neutral-200">
-                  <p className="mb-3">✅Correct Answer</p>
+                <div className="p-3 bg-neutral-50 rounded-lg">
+                  <p className="mb-3 text-gray-600 text-[12px]">
+                    Please Enter Correct Answer</p>
                   {
                     addOptions ? addOptions.map((item , key)=>(
-                            <Form.Item label={`Box${key+1}`} 
+                            <Form.Item 
+                              rules={[
+                                {
+                                  required:true,
+                                  message : 'correct answer box is missing',
+                                  whitespace:true,
+                                }
+                              ]}
+                            label={`Blank_${key+1}`} 
                             name={['correctAnswer', `blank${key+1}`]}>
                               <Input/>
                             </Form.Item>
                     )) : 0
                   }
+                  
                 </div>
                 
               </div> 

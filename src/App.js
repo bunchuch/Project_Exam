@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import LoginForm from "./page/login/loginForm"
 import {Routes, Route,useLocation, useParams} from 'react-router-dom'
 import ErrorPage from './components/ErrorPage';
@@ -18,22 +18,25 @@ import UserProfile from './page/dashboard/user/userProfile'
 import CreateExam from './page/dashboard/exam/CreateExam'
 import GroupInfo from './page/dashboard/Group/GroupInfo'
 import ExamInfo from './page/dashboard/exam/examInfo'
-import ViewQuestion from './page/dashboard/exam/viewQuestion';
-import CreateGroup from './page/dashboard/exam/CreateGroup';
-import CreateQuestion from './page/dashboard/exam/createQuestion';
+import ViewQuestion from './page/dashboard/question/viewQuestion';
+import CreateGroup from './page/dashboard/Group/CreateGroup';
+import CreateQuestion from './page/dashboard/question/createQuestion';
 import { ReportExam } from './page/dashboard/examReport/examReport';
 import { QuizTable } from './page/dashboard/examReport/quizTable';
-import StudentResult from './page/dashboard/report/studentResult';
+import StudentResult from './page/dashboard/student/studentResult';
 import GroupHeader from './page/dashboard/Group/GroupHeader';
 import Exam from './page/dashboard/exam/Exam';
+import StudentReport from './page/dashboard/examReport/studentReport';
 
 
 const App =()=>{
 const loading = useSelector((state)=> state.loader.loading)
 
+
+
   return <div className='App'>
  { loading ? <Loader/> : null }  
-<Routes>
+    <Routes>
       <Route path='/login' element={<LoginForm/>}/> 
       <Route path='/login/reset-account' element={<GetHelpWithSigning/>}/>
 
@@ -43,6 +46,7 @@ const loading = useSelector((state)=> state.loader.loading)
       <Route path='dashboard/User' element={<User/>}></Route>
       <Route path='/dashboard/User/Add'  element={<ProtectedRoute><RegisterUser/> </ProtectedRoute>}></Route>
       <Route path='/dashboard/User/:id'  element={<ProtectedRoute><UserProfile/> </ProtectedRoute>}></Route>
+      <Route path='/dashboard/User/update/:id'  element={<ProtectedRoute><RegisterUser/> </ProtectedRoute>}></Route>
 
       <Route path='/dashboard/Group' element={<ProtectedRoute><GroupHeader/></ProtectedRoute>}></Route>
       <Route path='/dashboard/Group/:id' element={<ProtectedRoute><GroupInfo/></ProtectedRoute>}> </Route>
@@ -56,11 +60,14 @@ const loading = useSelector((state)=> state.loader.loading)
       <Route path='/dashboard/create-new-group' element={<ProtectedRoute><CreateGroup/></ProtectedRoute>}></Route>
       <Route path='dashboard/Report' element={<ProtectedRoute><Report/></ProtectedRoute>}></Route>
       <Route path='/dashboard/Group/create-exam' element={<ProtectedRoute><CreateExam/></ProtectedRoute>}></Route>
+      <Route path='/dashboard/exam/update/:id' element={<ProtectedRoute><CreateExam/></ProtectedRoute>}></Route>
+      <Route path='/dashboard/group/update/:id' element={<ProtectedRoute><CreateGroup/></ProtectedRoute>}></Route>
       <Route path='/dashboard/Quiz/:id/:title' element={<ProtectedRoute><CreateQuestion/></ProtectedRoute>}></Route>
       <Route path='/dashboard/Question/:qid/:title/update' element={<ProtectedRoute><CreateQuestion/></ProtectedRoute>}></Route>
       <Route path='/dashboard/Question/:id/view' element={<ProtectedRoute><ViewQuestion/></ProtectedRoute>}/>
-
+      <Route path='/dashboard/student/report/:eid' element={<ProtectedRoute><StudentReport/></ProtectedRoute>}/>
       <Route path='/dashboard/student/:id' element={<ProtectedRoute><StudentResult/></ProtectedRoute>}/>
+      <Route path='/dashboard/update-student/:stuid' element={<ProtectedRoute><RegisterStudent/></ProtectedRoute>}></Route>
     </Route>
     
    
@@ -69,9 +76,9 @@ const loading = useSelector((state)=> state.loader.loading)
     <Route path='/*' element={<ErrorPage ></ErrorPage>}/>
      
      {/*tesfile*/}
-    <Route path='/file' element ={<File/>}>
+    {/* <Route path='/file' errorElement={<ErrorPage/>} element ={<File/>}>
     </Route>
-    <Route path='/file/:name' element ={<Render/>}></Route>  
+    <Route path='/file/:name' errorElement={<ErrorPage/>} element ={<Render/>}></Route>   */}
 
    </Routes>
 

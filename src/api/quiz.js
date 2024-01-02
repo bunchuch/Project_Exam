@@ -11,11 +11,20 @@ export const createQuiz = async (paylod ,id)=>{
 }
 
 
+export const queryQuiz = async (payload)=>{
+     try {
+        const response = await axiosInstance.post(`quiz`, payload)
+        return response.data
+     } catch (error) {
+        return error.repsonse.data
+     }
+}
+
 export const deteleSubject = async (id, exam_id)=>{
     try {
-        const respone = await axiosInstance.delete(`quiz/delete/${id}/${exam_id}`)
-        return respone.data
+        const response = await axiosInstance.delete(`quiz/delete/${id}/${exam_id}`)
+        return response.data
     } catch (error) {
-        return error.respone
+        return error.response
     }
 }

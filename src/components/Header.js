@@ -3,7 +3,7 @@ import Icon from "./Icon";
 
 
 export default function Header({text, icons}){
-        return <h1 className="text-lg text-purple-900 flex items-center gap-2">
+        return <h1 className="text-lg text-purple-900 font-roboto flex items-center gap-2">
              <Icon Size={"1.2rem"} name={icons} />
             {text}</h1>
 }

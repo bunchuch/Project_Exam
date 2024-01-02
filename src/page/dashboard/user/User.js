@@ -1,48 +1,34 @@
 import React, {useEffect, useState} from "react";
 import { Link, } from "react-router-dom";
 import { columnsUser } from "../componet/ColumsItem";
-import { CiCirclePlus, CiUndo, CiUser } from "react-icons/ci";
-import Icon from "../../../components/Icon";
-import { Button, Table,Input,message  } from 'antd';
+import { CiUser } from "react-icons/ci";
+import {  Table,message  } from 'antd';
 import Header from "../../../components/Header";
 import { userGet } from "../../../api/user";
 import { useDispatch, useSelector } from "react-redux";
 import { loadingAction } from "../../../redux/loaderSlice";
-import { courseAction } from "../../../redux/courseSlice";
-const role = [ "Admin" , "Teacher", "Staff"]
+
 
 export default function User () {
 
     const [loading, setLoading] = useState(false);
     const [data ,setData] = useState()
-    const [messageApi, contextHolder] = message.useMessage()
+    const userRole = useSelector(state => state.auth.userRole)[0]
     const dispatch = useDispatch()  
 
     const GetUserInof = async () => {
       try {
          dispatch(loadingAction.ShowLoading())
          const response = await userGet()
-         const teachername = response.data ? 
-         response.data.filter(i => i.role[0] == "teacher").map( i => i.name): null
-         dispatch(courseAction.addTeacher({teacher :teachername}))
-         if(response.data.length !== 0){
+         if(response.success){
           setData(response.data)
          }else{
           setData(null)
-          messageApi.open({
-            key : 'update',
-            type : "warning",
-            content : `${response.message}`
-          })
+          message.error(response.data.messageApi)
          }
          dispatch(loadingAction.HideLoading())
       } catch (error) {
-        console.log(error)
-         messageApi.open({
-          key :"updatable",
-          type : 'error',
-          content : `${error}`
-         })
+         message.error(error)
          dispatch(loadingAction.HideLoading())
       }
     }
@@ -57,26 +43,28 @@ export default function User () {
         setTimeout(()=>{
           setLoading(false)
         },[2000])
-     
-      
+ 
       }
 
     return <div className="">
-      {contextHolder}
             <div className="flex gap-3 py-2 justify-between">
               <Header icons={<CiUser/>} text="User"/>
             <div className="gap-2 flex">
-              <Link to={`/dashboard/User/Add`} >
-                <Button icon={
-                     <Icon Size={"1rem"} name={<CiCirclePlus/>}/>
-               }>
+              {
+                 userRole === 'admin' || userRole === 'superadmin' ?
+                  <Link to={`/dashboard/User/Add`} >
+                <button className="bg-variation-500 px-3 
+                rounded-md active:bg-variation-400
+             text-[12px] py-1 text-white">
                  Add user
-        </Button>
-        </Link>
-
-        <Button icon={<CiUndo/>} onClick={start} loading={loading}>
+        </button></Link> : <></>
+            }
+        <button className="bg-yellow-300 px-3 
+        rounded-md active:bg-yellow-400
+             text-[12px] py-1 " 
+           onClick={start} loading={loading}>
         Reload
-        </Button>
+        </button>
             </div>
             </div>
        
