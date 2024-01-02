@@ -71,7 +71,7 @@ const handleCancel = () => {
 
     useEffect(()=> {
         getExamAll()
-        const socketInstance = io()
+        const socketInstance = io(`${process.env.REACT_APP_API_KEY}`)
         setSocket(socketInstance)
         socketInstance.on('countdown', 
         ({minutes , remainingSeconds})=>{
