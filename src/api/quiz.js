@@ -28,3 +28,12 @@ export const deteleSubject = async (id, exam_id)=>{
         return error.response
     }
 }
+
+export const updateQuiz = async (id,payload)=>{
+    try {
+        const response = await axiosInstance.patch(`quiz/update/${id}`, payload)
+        return response.data
+    } catch (error) {
+        return error.response.data
+    }
+}

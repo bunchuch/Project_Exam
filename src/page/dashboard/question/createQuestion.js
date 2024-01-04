@@ -194,6 +194,8 @@ export default function CreateQuestion() {
           </div>
 
     {/* file upload and mark a point */}
+    <p className="text-[12px] pb-1 text-gray-600">✨if question contain file please 
+    upload file first before create question</p>
     <div className="flex flex-col">
           {/* file upload */}
           {

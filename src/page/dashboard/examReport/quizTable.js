@@ -1,7 +1,7 @@
 import {useState , useEffect} from "react"
-import {Table, message, Tag ,Tooltip, Button} from "antd"
+import {Table, message, Tag ,Tooltip, Button,Modal,Form,Input,InputNumber} from "antd"
 import {useParams , Link} from "react-router-dom"
-import { deteleSubject, queryQuiz } from "../../../api/quiz"
+import { deteleSubject, queryQuiz, updateQuiz } from "../../../api/quiz"
 import moment from "moment"
 import {useDispatch} from 'react-redux'
 import axiosInstance from "../../../api"
@@ -12,7 +12,10 @@ export const QuizTable = () => {
     const {id} = useParams()
     const [data ,setData] = useState()
     const [loading, setLoading] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [examId ,setExamId] = useState()
     const dispatch = useDispatch()
+    const [form] = Form.useForm()
     
     const getQuiz = async () => {
       dispatch(loadingAction.ShowLoading())
@@ -35,6 +38,21 @@ export const QuizTable = () => {
         message.error(response.data.message)
       }
     }
+
+    const handleUpdateSection = async (value) => {
+      try {
+        dispatch(loadingAction.ShowLoading())
+        const response = await updateQuiz(examId ,value)
+        dispatch(loadingAction.HideLoading())
+        if(response.success){
+          message.success(response.message)
+        }else{
+          message.error(response.data.message)
+        }
+      } catch (error) {
+        message.error(error)
+      }
+    }
     
     
     const start = () => {
@@ -46,14 +64,27 @@ export const QuizTable = () => {
    
     
     }
+    const showModal = (eid) => {
+      setIsModalOpen(true);
+      setExamId(eid)
+    };
+    const handleCancel = () => {
+      setIsModalOpen(false);
+      
+    };
+
 
     useEffect(()=> {
         getQuiz()
     }, [])
 
+
+
+  
+  
   const columnExam = [
       {
-        title: 'title',
+        title: 'name',
         dataIndex: 'title',
         key : 'title',
         render : (text, record)=> <a className=" 
@@ -65,7 +96,7 @@ export const QuizTable = () => {
       },
      
       {
-        title : 'Type',
+        title : 'type',
         dataIndex: 'type',
         key : 'type',
         render : () => <Tag>none</Tag>
@@ -78,7 +109,7 @@ export const QuizTable = () => {
            : "no question avilable"}</p>
       },
       {
-        title : 'Score',
+        title : 'score',
         dataIndex: 'score',
         key : 'score',
         render : (text ,record)=>
@@ -86,14 +117,14 @@ export const QuizTable = () => {
           {text ? text : "None"}</Tag> 
       },
       {
-      title : 'Create At',
+      title : 'create',
       dataIndex: 'createdAt',
       key : 'createdAt',
       render : (text ,record)=><p>
-        {moment(text).format('YYY-MM-DD h:mm')}</p> 
+        {moment(text).format('LL')}</p> 
     },
     {
-      title: 'Action',
+      title: 'action',
       dataIndex: '',
       key: 'x',
       render: (record) => <div
@@ -109,11 +140,12 @@ export const QuizTable = () => {
   
   
         <Tooltip title="Update">
-        <a className="bg-yellow-300 px-2 py-0.5 text-[12px] rounded-md">
+        <button onClick={()=>showModal(record._id)}
+         className="bg-yellow-300 px-2 py-0.5 text-[12px] rounded-md">
         <Link>
           update
         </Link>
-      </a>
+      </button>
           </Tooltip>
   
        <Tooltip title="Delete Subject">
@@ -128,10 +160,38 @@ export const QuizTable = () => {
     ]
     return <>
      <div className="flex gap-3">
+
+     <Modal okType="default" okText="update" 
+    title="Update Section" 
+    open={isModalOpen} onOk={()=>handleUpdateSection(form.getFieldsValue())} 
+    onCancel={handleCancel}>
+     <Form 
+     layout="vertical"
+     form={form}>
+      <p className="text-[12px] mt-2 text-gray-300">
+             The title should't cotainer space ex : section one
+            </p>
+   <Form.Item
+      rules={[{
+        required : true,
+        message : "Please enter quiz title!"
+                }]}
+            name={"title"} label="title">
+                <Input/>
+            </Form.Item>
+    
+            <Form.Item name={"score"} label="score">
+               <InputNumber
+               
+               className="w-full"></InputNumber>
+            </Form.Item>
+     </Form>
+      </Modal>
             <p className="text-[14px] mt-2 text-gray-300">
              ✨ Click on each subject name for create new question
             </p>
-            <Button onClick={start} loading={loading}>Reload</Button>
+            <button className="bg-variation-500 rounded-md text-white px-2 py-0.5  text-[12px]" 
+            onClick={start}>Reload</button>
           </div>
          
       <Table dataSource={data} bordered className="mt-3" columns={columnExam}/>

@@ -1,7 +1,7 @@
 import React ,{useEffect, useState} from "react";
 import { Button ,Modal, Form, Popconfirm,Input,InputNumber,
-   message, Tabs,Descriptions} from "antd";
-import {CiCircleInfo, CiCirclePlus, CiTrash} from "react-icons/ci";
+   message, Tabs,Descriptions, Select} from "antd";
+import {CiCircleInfo} from "react-icons/ci";
 import Header  from "../../../components/Header";
 import { useParams,Link } from "react-router-dom";
 import moment from "moment";
@@ -9,11 +9,11 @@ import { useDispatch } from "react-redux";
 import { loadingAction } from "../../../redux/loaderSlice";
 import Icon from "../../../components/Icon";
 import NavigatorButton from "../../../components/navigatorButton";
-import {deleteExam, examGetById } from "../../../api/exam";
+import {deleteExam, examGetById,assignExam } from "../../../api/exam";
 import { createQuiz } from "../../../api/quiz";
 import { TitleRender } from "../../../components/Title";
 import { TabExam } from "../componet/TabItems";
-
+import {useSelector} from "react-redux"
 
 
 
@@ -28,7 +28,10 @@ export default function ExamInfo (){
     const [examId ,setExamId] = useState(id)
     const dispatch = useDispatch()
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isModalOpen2, setIsModalOpen2] = useState(false);
     const [form] = Form.useForm();
+    const {Option} = Select
+    const courseName = useSelector(state => state.course.courseName)
    
     const onGetExam = async ()=>{
       try {
@@ -91,6 +94,21 @@ export default function ExamInfo (){
           message.error(`${error}`)
       }
     }
+    
+    const reassignExam = async (value)=> {
+          try {
+            dispatch(loadingAction.ShowLoading())
+              const response = await assignExam(id , value)
+              dispatch(loadingAction.HideLoading())
+              if(response.success){
+                message.success(response.message)
+              }else{
+                message.error(response.data.message)
+              }
+          } catch (error) {
+            message.error(error)
+          }
+    }
 
    
 
@@ -99,12 +117,53 @@ export default function ExamInfo (){
       onGetExam()
     }, [])
 
-    const showModal = () => {
-      setIsModalOpen(true);
+    const showModal = (name) => {
+      if(name == 'create'){
+        setIsModalOpen(true)
+      }else{
+        setIsModalOpen2(true)
+      }
+      ;
     };
     const handleCancel = () => {
       setIsModalOpen(false);
+      setIsModalOpen2(false)
     };
+
+    const assignExamToGroup = () =>{
+      return <Modal 
+      title={"assign exam to group"}
+      okText={'reassign'}
+      okType="default"
+      onOk={()=>reassignExam(form.getFieldsValue())}
+       onCancel={handleCancel}
+       open={isModalOpen2} >
+          <Form
+          form={form}
+          layout="vertical"
+           className="gird grid-cols-2 gap-2">
+          <Form.Item initialValue={data?.course}
+          label="From"
+          name={'oldCourse'}
+          >
+            <Input value={data?.course}/>
+          </Form.Item>
+          <Form.Item
+          label="To"
+          name={'newGroup'}
+          >
+               <Select>
+                    {
+                        courseName.map((i, k) => 
+                        <Option key={k} value={i}>{i}</Option>
+                            )
+                    }
+                   
+                </Select>
+          </Form.Item>
+          </Form>
+      </Modal>
+  }
       
  return <>
  <NavigatorButton/>
@@ -114,11 +173,9 @@ export default function ExamInfo (){
  <div className="flex justify-between pb-5">
     <Header icons={<CiCircleInfo/>} text={"Exam Info"}/>
         <div className="flex justify-end gap-2">
-        <button onClick={showModal}
+        <button onClick={()=>showModal('create')}
          className="px-2 py-[0.5px] text-[12px] border-none rounded-md
-          text-white active:bg-variation-400 bg-variation-500" 
-         icon={<Icon Size="1.2rem"
-          name={<CiCirclePlus/>}/>}>New section</button>
+          text-white active:bg-variation-400 bg-variation-500">New section</button>
     <Modal okType="default" okText="Create" 
     title="Create new Subject" 
     open={isModalOpen} onOk={onCreate} 
@@ -144,13 +201,18 @@ export default function ExamInfo (){
             </Form.Item>
      </Form>
       </Modal>
+
+      {assignExamToGroup()}
       <button className="border-none text-[12px] rounded-md
        active:bg-yellow-300 px-2 py-[0.5px] bg-yellow-400">
         <Link to={`/dashboard/exam/update/${data?._id}`}>
         update
         </Link>
         </button>
-      
+        <button className="bg-green-600 text-[12px] 
+            py-[0.5px] px-2 active:bg-variation-400
+            rounded-md text-white" 
+            onClick={showModal}>reassign exam</button>
           <Popconfirm 
           placement="topLeft"
           description="Are you sure to delete this Exam?" 

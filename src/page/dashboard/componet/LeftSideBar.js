@@ -42,11 +42,12 @@ export default function LeftSideBar ({item}) {
         <ul className="mt-[3.5rem] ">
        
         {
-            LeftSideBarList.map((item , key)=> <li className="p-4" key={key}>
+            LeftSideBarList.map((item , key)=> <li className="py-4" key={key}>
                 <Link to={`/dashboard/${item.Link}`}>
             <a href="" className={`flex items-center font-roboto 
-            rounded-lg text-#0f3460 p-2
-             hover:bg-neutral-50 ${item.Link == extractedWord ?  "bg-neutral-50" : ""} group`}>
+             text-[#0f3460] py-2 px-4
+             hover:bg-neutral-50 ${item.Link == extractedWord ?  
+             "bg-neutral-50 border-r-[4px] border-variation-500" : ""} group`}>
               {
                 sideBar ?  <div  className="w-7 h-7">
                 <Icon color="#0f3460" name={item.icon} ></Icon>

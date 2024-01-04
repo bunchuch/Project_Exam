@@ -1,5 +1,5 @@
 import {useState ,useEffect} from "react"
-import {Table, Tag, message} from "antd"
+import {Table, Tag, message,} from "antd"
 import {useParams , Link} from "react-router-dom"
 import moment from "moment"
 import { CSVLink } from "react-csv"
@@ -31,86 +31,6 @@ export const ReportExam = () => {
         GetReport()
     },[])
 
-
-    
-    
-
-const columnsReport = [
-    {
-        title : 'No',
-        dataIndex : 'number',
-        key : 'No',
-    },
-        {
-          title: 'username',
-          dataIndex: 'username',
-          key : "username",
-          render : (text,record)=> 
-          <Link to= {`/dashboard/student/${record._id}`}>
-            {text}</Link>
-        },
-        {
-          title: 'vocabulary',
-          dataIndex: 'vocabulary',
-          sorter: {
-            compare: (a, b) => a.chinese - b.chinese,
-            multiple: 3,
-          },
-        },
-      
-        {
-            title: 'reading',
-            dataIndex: 'reading',
-            key : 'reading',            
-        },
-        {
-            title: 'GQ',
-            dataIndex: 'general question',
-            key : 'reading',
-            
-        },
-        {
-            title: 'grammar',
-            dataIndex: 'grammar',
-            key : 'reading',
-            
-        },
-        {
-            title: 'wrirting',
-            dataIndex: 'writing',
-            key : 'writing',
-            
-        },
-        {
-            title: 'listenning',
-            dataIndex: 'listenning',
-            key : 'writing',
-            
-        },
-        {
-            title: 'total score',
-            dataIndex: 'total',
-            key : 'total',
-            
-        },
-        {
-            title: 'status',
-            dataIndex: 'status',
-            key : 'status',
-            render : (text)=> <Tag color={text == "pass" ? "green" : "red"}>{text}</Tag>
-            
-        },
-        {
-            title: 'Submit Date',
-            dataIndex: 'createdAt',
-            key : 'createdAt',
-            render : (text, record)=> <>{moment(text).format("LL")}</>
-            
-        },
-    
-      ];
-    
-
 const sortbyTotal = () => {
     data.sort((a,b)=> b.total - a.total)
     data.forEach((item, index)=>{
@@ -122,6 +42,7 @@ const sortbyTotal = () => {
 
     return data
 }
+
 
 const csvData = [
     ["No","username", "vocabulary", "reading", "QA",
@@ -139,8 +60,39 @@ const csvData = [
         status
     ]),
 ];
+    const rearrangedData = sortbyTotal().map(item => {
+        const { number, ...rest } = item;
+        return { number, ...rest };
+      });
+    const datacolumns = rearrangedData.length > 0 ?
+     Object.keys(rearrangedData[0]).map((key)=>({
+      title : key,
+      dataIndex : key ,
+      key : key,
+    })).filter((columns)=> columns.dataIndex !== '_id').map((columns)=> {
+        if(columns.dataIndex == 'username'){
+            return {
+                ...columns,
+                render : (text ,record)=><Link
+                to= {`/dashboard/student/${record._id}`}
+                >
+                {text}
+                </Link>
+            }
 
-
+        }else if(columns.dataIndex === 'status'){
+            return {
+                ...columns,
+                render : (text ,record)=>
+                <Tag color={text == "pass" ? "green" : "red"}>{text}</Tag>
+            }
+        }else{
+            return {
+                ...columns
+            }
+        }
+    }) : []
+//    console.log(datacolumns)
     return <>
     <div className="flex gap-3 items-center">
     <p className="text-[14px] mt-2 text-gray-300">
@@ -152,8 +104,10 @@ const csvData = [
         Export to CSV
       </CSVLink></a>  
     </div>
-   <Table bordered className="mt-3"  
-   columns={columnsReport} dataSource={sortbyTotal()}></Table>
+   <Table
+
+   bordered className="mt-3"  
+   columns={datacolumns} dataSource={rearrangedData}></Table>
     </>
 
 }

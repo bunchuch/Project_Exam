@@ -45,3 +45,12 @@ export const deleteGroup = async (id)=>{
         return error.response
     }
 }
+
+export const removeExamGroup = async (payload) =>{
+    try {
+        const response = await axiosInstance.post(`exam/removeexam`, payload)
+        return response.data
+    } catch (error) {
+        return error.response.data
+    }
+}

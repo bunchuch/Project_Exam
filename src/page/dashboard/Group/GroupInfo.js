@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Popconfirm, Table, Tabs,
+import { Popconfirm, Table, Tabs,Tag,
      message, Descriptions, Tooltip} from "antd";
 import {  useNavigate, useParams,Link } from "react-router-dom";
 import Header from "../../../components/Header";
@@ -8,7 +8,7 @@ import { GroupInfoTab } from "../componet/TabItems";
 import moment from "moment";
 import NavigatorButton from "../../../components/navigatorButton";
 import { useSelector } from "react-redux";
-import { deleteGroup, getGroupById} from "../../../api/group";
+import { deleteGroup, getGroupById, removeExamGroup} from "../../../api/group";
 
 
 
@@ -78,6 +78,115 @@ export default function GroupInfo () {
         }
     }
 
+  const handleRemoveExamFormGoup = async (examId)=>{
+    try {
+       const response = await removeExamGroup({
+        groupId : id,
+        examId : examId
+       })
+       if(response.success){
+        message.success(response.message)
+       }else{
+        message.error(response.message)
+       }
+    } catch (error) {
+        message.error(error)
+    }
+  }
+
+    const columnExam = [
+        {
+          title: 'title',
+          dataIndex: 'name',
+          render : (text, record)=> <a className=" 
+          hover:underline font-semibold">
+            <Link to={`/dashboard/Exam/${record._id}`}>{text}</Link>
+          </a>
+          
+        },
+       
+        {
+          title : 'date',
+          dataIndex: 'date',
+          key : 'date',
+          render : (text ,record)=><a>{moment(text).format("LL")}</a>
+        },
+        {
+          title : "time",
+          dataIndex : 'time',
+          key : 'time',
+          render : (text ,record)=><a>{moment(text).format("LT")}</a>
+        },
+        {
+          title : "pass score",
+          dataIndex : 'pass_score',
+          key : 'pass_score',
+          
+        },
+        {
+          title: 'section',
+          dataIndex: 'quiz',
+          key : 'quiz+1',
+          render : (text, record)=> <a>{text ? text.length : null}</a>
+          
+        },
+        {
+          title: 'Key',
+          dataIndex: 'key',
+          key : 'key',
+          render : (text ,record)=><>{record.key ? text :
+             <Tag color="yellow">{"None"}</Tag>}</>
+    
+          
+        },
+        {
+          title : 'create',
+          dataIndex : 'createdAt',
+          key: 'createdAt',
+          render: (text , record) => (
+            <>
+              {moment(text).format('LL')}
+            </>
+          ),
+            },
+            {
+              title: 'finish',
+              dataIndex: 'onfinish',
+              key : 'finish',
+              render : (text ,record)=><>{
+                record.onfinish ? <Tag color="green">expires</Tag> 
+                : <Tag color="yellow">progress</Tag>
+              }</>
+          
+            },
+    
+            {
+              title : 'description',
+              dataIndex : 'description',
+              key : 'description',
+              render: (text , record) => (
+                <>
+                  {text ? text : <Tag color="yellow">None</Tag>}
+                </>
+              ),
+                },
+                {
+                    title : 'actions',
+                    dataIndex : 'description',
+                    key : 'description',
+                    render: (text , record) => (
+                      <button 
+                        onClick={()=> handleRemoveExamFormGoup(record._id)}
+                      className="bg-rose-500 active:bg-rose-600 
+                      font-roboto text-[12px]
+                      px-2 rounded-md text-white">
+                        remove
+                      </button>
+                    ),
+                      }
+    
+        
+      ];
     
 
     useEffect(()=>{
@@ -170,15 +279,11 @@ export default function GroupInfo () {
    <div className="">
     {
         title === 1 &&
-        <Table indentSize="10px" size="middle" bordered columns={columnCourse} dataSource={exam}/>
+        <Table indentSize="10px" size="middle" bordered columns={columnExam} dataSource={exam}/>
     }
     {
         title === 2 && 
         <Table bordered indentSize={10} size="middle" columns={columnsStudent} dataSource={student}/>
-    }
-    {
-        title === 3 && 
-        <Table bordered columns={columnsReport}/>
     }
    
    </div>

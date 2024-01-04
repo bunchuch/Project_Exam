@@ -34,10 +34,10 @@ export default function ViewQuestion (){
     const handDeleteQuestion = (id , subId) => {
         dispactch(loadingAction.ShowLoading())
         axiosInstance
-        .post(`${process.env.REACT_APP_API_KEY}question/delete/${id}/${subId}`)
+        .delete(`${process.env.REACT_APP_API_KEY}question/delete/${id}/${subId}`)
         .then(res => {
             message.success(res.data.message)
-            getQuestion()
+            // getQuestion()
             dispactch(loadingAction.HideLoading())
         }).catch(error => {
             message.error(error.response.data.message)

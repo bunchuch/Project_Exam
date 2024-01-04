@@ -48,6 +48,15 @@ export const updateExam = async (id , payload)=>{
     }
 }
 
+export const assignExam = async (id , payload) => {
+    try {
+       const response = await axiosInstance.patch(`exam/assign/${id}`,payload)
+       return response.data
+    } catch (error) {
+       return error.response.data
+    }
+   }
+
 export const deleteExam = async (id ,course)=>{
     try {
         const response = await axiosInstance.delete(`exam/delete/${id}/${course}`)
@@ -78,3 +87,4 @@ export const updateQuestion = async (id ,payload)=>{
         return error.response.data
     }
 }
+

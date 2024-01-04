@@ -32,15 +32,6 @@ export default function CreateExam(){
     const {Option} = Select
 
 
-
-  const showModal = () => {
-    setIsModalOpen(true);
-  }
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  }
-
-
     const onCreate = async (value)=>{
         try {
             dispactch(loadingAction.ShowLoading())
@@ -78,7 +69,9 @@ export default function CreateExam(){
             dispactch(loadingAction.ShowLoading())
             const response = await updateExam(id ,{
                 date : date,
-                time : time
+                time : time,
+                onfinish : false,
+                description : 'recover',
             })
             dispactch(loadingAction.HideLoading())
             if(response.success){
@@ -94,7 +87,14 @@ export default function CreateExam(){
         }
       }
 
-
+    
+      const showModal = (name) => {
+        setIsModalOpen(true);
+      }
+      const handleCancel = () => {
+        setIsModalOpen(false);
+      }
+    
     const updateDateAndTime = () => {
         return <Modal onOk={handleOk} okType="default"
          open={isModalOpen} onCancel={handleCancel} title="update Date & Time">
@@ -109,6 +109,18 @@ export default function CreateExam(){
                     </Form>
                  </ConfigProvider>
         </Modal> 
+    }
+
+    const assignExamToGroup = () =>{
+        return <Modal >
+            <Form>
+            <Form.Item>
+                <Select>
+
+                </Select>
+            </Form.Item>
+            </Form>
+        </Modal>
     }
 
     useEffect(()=>{
@@ -128,7 +140,8 @@ export default function CreateExam(){
 
         
         {
-            id && <div className="my-3"><button className="bg-variation-500 text-[12px] 
+            id && <div className="my-3 flex gap-3">
+                <button className="bg-variation-500 text-[12px] 
             py-[1.5px] px-2 active:bg-variation-400
             rounded-md text-white" 
             onClick={showModal}>Update date & time</button>
@@ -174,13 +187,8 @@ export default function CreateExam(){
             <Form.Item label="Pass Percentage(%)" name="pass_score">
                 <InputNumber className="w-full"/>
             </Form.Item>
-            <Form.Item rules={[
-                {
-                    message :"please assign group",
-                    required : true
-                }
-            ]} label="Assign to Groups" name="course">
-                <Select>
+            <Form.Item label="Assign to Groups" name="course">
+                <Select disabled={id ? true : false}>
                     {
                         courseName.map((i, k) => 
                         <Option key={k} value={i}>{i}</Option>

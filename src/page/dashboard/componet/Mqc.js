@@ -23,7 +23,7 @@ export const Mqc = ({form , correctAnswer}) => {
                    },
                 ]} 
                 label="Question" name={'question'}>
-                    <TextArea maxLength={100} showCount />
+                    <TextArea maxLength={300} showCount />
                   </Form.Item>
                   <p className="text-[12px]
                                   text-gray-600
