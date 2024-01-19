@@ -3,8 +3,7 @@ import { Form, Input, Select, message, Tag, Button, InputNumber,
 import React, { useState } from "react";
 import { useNavigate, Link, useParams } from "react-router-dom";
 import Header from "../../../components/Header";
-import { CiCircleChevLeft, CiRuler, CiUser } from "react-icons/ci";
-import Icon from "../../../components/Icon";
+import { CiRuler} from "react-icons/ci";
 import { useSelector, useDispatch } from "react-redux";
 import TextArea from "antd/es/input/TextArea";
 import NavigatorButton from "../../../components/navigatorButton";
@@ -54,10 +53,10 @@ export default function CreateExam(){
         dispactch(loadingAction.ShowLoading())
         const response = await examGetById(id)
         dispactch(loadingAction.HideLoading())
-        if(response){
-            message.success('fetch data..')
+        if(response.success){
+            message.success(response.message)
             if(id){
-                form.setFieldsValue(response.exams)
+                form.setFieldsValue(response.result)
             }
         }else{
             message.error(response.data.message)

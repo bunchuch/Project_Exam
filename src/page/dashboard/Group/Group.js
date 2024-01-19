@@ -55,7 +55,7 @@ const getApi = async () => {
             </div>}
           description={<>
           <h4 className="text-[16px] font-semibold text-variation-500">{course.group}</h4>
-          <p className="">instructor : {course.teacher}</p>
+          <p className="font-semibold text-gray-600">instructor : {course.teacher}</p>
           <p className="">room : {course.class}</p>
           {
             course.level ?
