@@ -1,11 +1,11 @@
 import {useState ,useEffect} from "react"
 import {Table, Tag, message,} from "antd"
 import {useParams , Link} from "react-router-dom"
-import moment from "moment"
-import { CSVLink } from "react-csv"
 import {useDispatch} from 'react-redux'
 import { getGroupReport } from "../../../api/report"
 import { loadingAction } from "../../../redux/loaderSlice"
+import ExportToCSVButton from "../../../components/ExportCsv"
+
 export const ReportExam = () => {
     const [data ,setData] = useState([])
     const {id} = useParams()
@@ -36,7 +36,7 @@ const sortbyTotal = () => {
     data.forEach((item, index)=>{
         item.number = index + 1
         if(item.total > 45){
-            item.status = 'pass'
+            item.status = 'PASS'
         }
     })
 
@@ -44,22 +44,6 @@ const sortbyTotal = () => {
 }
 
 
-const csvData = [
-    ["No","username", "vocabulary", "reading", "QA",
-     'grammar', 'wirting', 'listenning',"total","status"],
-    ...data.map(({username ,vocabulary,reading ,qa, grammar, writing, listenning ,total , status ,number} ,key)=>[
-      number , 
-      username ,
-      vocabulary ,
-       reading ,
-       qa,
-       grammar,
-        writing ,
-        listenning,
-        total ,
-        status
-    ]),
-];
     const rearrangedData = sortbyTotal().map(item => {
         const { number, ...rest } = item;
         return { number, ...rest };
@@ -70,7 +54,7 @@ const csvData = [
       dataIndex : key ,
       key : key,
     })).filter((columns)=> columns.dataIndex !== '_id').map((columns)=> {
-        if(columns.dataIndex == 'username'){
+        if(columns.dataIndex == 'name'){
             return {
                 ...columns,
                 render : (text ,record)=><Link
@@ -84,9 +68,25 @@ const csvData = [
             return {
                 ...columns,
                 render : (text ,record)=>
-                <Tag color={text == "pass" ? "green" : "red"}>{text}</Tag>
+                <Tag color={text == "PASS" ? "green" : "red"}>{text}</Tag>
             }
-        }else{
+        }else if (columns.dataIndex === 'grade'){
+                return {
+                    ...columns,
+                    render : (text ,record)=> <p
+                        className={`
+                        ${text == 'A' && 'text-[#16a34a]'}
+                        ${text === "B" && 'text-[#0284c7]'}
+                        ${text === 'C' && 'text-[#86198f]'}
+                        ${text === 'D' && 'text-[#f97316]'}
+                        ${text === 'E' && 'text-[#fde047]'}
+                        ${text === 'F' && 'text-[#be123c]'}
+                        font-semibold` }
+                    >
+                    {text}
+                    </p>
+                }
+         }else{
             return {
                 ...columns
             }
@@ -97,12 +97,8 @@ const csvData = [
     <div className="flex gap-3 items-center">
     <p className="text-[14px] mt-2 text-gray-300">
      ✨ Click on each id for view result
+     <ExportToCSVButton filename={"studentReport"} data={rearrangedData}/>
         </p>
-<a><CSVLink className="bg-variation-500 
-        text-white rounded-md py-[1px] text-[12px] px-2" 
-        filename="studnetRport.csv" data={csvData}>
-        Export to CSV
-      </CSVLink></a>  
     </div>
    <Table
 

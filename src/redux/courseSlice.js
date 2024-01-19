@@ -30,12 +30,16 @@ export const getTeacher = createAsyncThunk(
     }
 )
 
+
+
+
 const courseSlice = createSlice({
     name : 'course',
     initialState :{
         options : [],
         teacher : [],
-        courseName : []
+        courseName : [],
+        examName : []
     },
 
     reducers : {
@@ -45,6 +49,9 @@ const courseSlice = createSlice({
         addTeacher : (state, action)=>{
             state.teacher = action.payload.teacher
         },
+        addExamName : (state, actions)=>{
+            state.examName = actions.payload.examName
+        }
     },
 
     extraReducers : {

@@ -1,23 +1,25 @@
 import { useNavigate, useParams } from "react-router-dom";
 import Header from "../../../components/Header";
-import { Tag, message,Modal, Form, Input, Popconfirm,Descriptions } from "antd";
-import {CiCircleInfo, CiEdit} from "react-icons/ci";
+import { Tag, message,Modal, Form, Input, Popconfirm,Descriptions,Card } from "antd";
+import {CiCircleInfo, CiEdit, CiUser} from "react-icons/ci";
 import { useEffect, useState } from "react";
 import { deleteUser, userInfo, resetPassword } from "../../../api/user";
 import { useDispatch, useSelector } from "react-redux";
 import { loadingAction } from "../../../redux/loaderSlice";
 import  moment from 'moment'
 import NavigatorButton from "../../../components/navigatorButton";
-
+import Icon from "../../../components/Icon";
 
 export default function UserProfile (){
     const userRole = useSelector(state => state.auth.userRole)[0]
     const [messageApi, contextHolder] = message.useMessage()
     const [data ,setData] = useState({})
+    const [loading ,setLoading] = useState(false)
     const [password ,setPassword] = useState()
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [changePassword ,setChangePassword] = useState(false)
     const {id} = useParams()  
+    const {Meta} = Card
     const navigator = useNavigate()
     const dispatch = useDispatch()
     const key = 'updatable'
@@ -106,21 +108,22 @@ export default function UserProfile (){
 
 
   const renderRole = (role) =>{
-     let color = role.lenght > 5 ? "geekblue" : "green"
-     if (role == "superadmin"){
-          color = 'volcano'
-     }else if (role == "teacher"){
-        color = "geekblue"
-     }else if (role == "staff"){
-        color = 'yellow'
-     }
 
      return (
         <>{
-
-            role.map((i,index) => <Tag color={color} key={index}>
+            role.map((i,index) => <h1 
+            className={`
+                    ${role == 'admin' && 'bg-[#16a34a] text-white'}
+                    ${role == 'superadmin' && 'bg-[#dc2626] text-white' }
+                    ${role == 'teacher' && 'bg-[#0891b2] text-white'}
+                    ${role == 'staff' && 'bg-[#fcd34d]  text-gray-600'}
+                    ${role == 'developer' && 'bg-[#312e81] text-white'}
+            mt-2 inline-block  px-4
+                 
+                rounded-md text-center mx-3 text-[24px]`}
+             key={index}>
                {i.toUpperCase()}
-            </Tag>)
+            </h1>)
         }
        </>
      )
@@ -129,10 +132,32 @@ export default function UserProfile (){
     return <>
     {contextHolder}
           <NavigatorButton/>
-                <div className="bg-white rounded-md border-[1px] border-neutral-200 p-3">
+          <div className="grid gap-4 grid-cols-2">
+          <Card
+        loading={loading}
+        className="border bg-white">
+            <Meta
+            className="flex items-center"
+            avatar={
+                <div 
+                className="w-[10rem] bg-neutral-50
+                 rounded-full p-2 h-[10rem]">
+                <Icon
+                color={"#0f3460"}
+                name={
+                <CiUser/>
+                }                
+                >
+                </Icon>
+                </div>
+            }
+            title={
+                <h1 className="font-semibold text-gray-600 mx-3 text-[34px]">
+                    { data?.name}
+                </h1>
+               }
+            description={
                 <div className="flex justify-between items-center">
-                <Header icons={<CiCircleInfo/>} text="User Info"></Header>
-
                 {
                      userRole === 'admin' || userRole
                      === 'superadmin' ? <div className="flex gap-1">
@@ -149,9 +174,8 @@ export default function UserProfile (){
                                         >delete</button>
                                                         </Popconfirm>
                            <button
-                           className="bg-yellow-400 px-3 rounded-md active:bg-yellow-300
+                           className="bg-yellow-400 text-gray-900 px-3 rounded-md active:bg-yellow-300
                            text-[12px] py-0.5"
-                           icon={<CiEdit/>} 
                            onClick={()=> {
                               navigator(`/dashboard/user/update/${id}`)
                             }
@@ -181,14 +205,37 @@ export default function UserProfile (){
                        </div> : <></>
                     }
                        </div>
+               }
+            >
+            </Meta>
+            </Card>        
+
+          <Card
+        loading={loading}
+        className="border bg-white">
+            <Meta
+            className="flex flex-col  mt-2 items-start"
+            avatar={
+                <div>
+                <h1 className="font-semibold
+                 text-gray-600 mx-3 text-[34px]">Remarks :</h1>
+                </div>
+            }
+            description={
+            <> {data?.role ? renderRole(data?.role): "none"}</>
+               }
+            >
+            </Meta>
+            </Card> 
+               </div>
+                <div className="bg-white rounded-md border-[1px] mt-4 border-neutral-200 p-3">
+                
                        {/* userInfo */}
-             <Descriptions className="mt-5 py-4" >
-             <Descriptions.Item label="UserName">{data?.name}</Descriptions.Item>
+             <Descriptions title='descriptions' className="mt-5 px-3 pb-4" >
              <Descriptions.Item label="Telephone">{data?.phone ? data?.phone
               : "(+000)-000-000"}</Descriptions.Item>
              <Descriptions.Item label="email">{data?.email}</Descriptions.Item>
              <Descriptions.Item label="Live">{data?.address ? data?.address : "location"}</Descriptions.Item>
-            <Descriptions.Item label="Remark">{data?.role ? renderRole(data?.role): "none"}</Descriptions.Item>
             <Descriptions.Item label="Address">
                 <Tag>{data?.address ? data?.address : "default"}</Tag>
                 </Descriptions.Item>

@@ -1,15 +1,13 @@
 import React ,{useEffect, useState} from "react";
-import { Button ,Modal, Form, Popconfirm,Input,InputNumber,
+import { Modal, Form, Popconfirm,Input,InputNumber,
    message, Tabs,Descriptions, Select} from "antd";
-import {CiCircleInfo} from "react-icons/ci";
 import Header  from "../../../components/Header";
 import { useParams,Link } from "react-router-dom";
 import moment from "moment";
 import { useDispatch } from "react-redux";
 import { loadingAction } from "../../../redux/loaderSlice";
-import Icon from "../../../components/Icon";
 import NavigatorButton from "../../../components/navigatorButton";
-import {deleteExam, examGetById,assignExam } from "../../../api/exam";
+import {deleteExam, examGetById } from "../../../api/exam";
 import { createQuiz } from "../../../api/quiz";
 import { TitleRender } from "../../../components/Title";
 import { TabExam } from "../componet/TabItems";
@@ -39,7 +37,7 @@ export default function ExamInfo (){
         const respone = await examGetById(id)
         dispatch(loadingAction.HideLoading())
         if(respone){
-          setData(respone.exams)
+          setData(respone.result)
           setQuiz(respone.exams.quiz)
         }else{
           message.success(respone.data.message)
@@ -95,21 +93,12 @@ export default function ExamInfo (){
       }
     }
     
-    const reassignExam = async (value)=> {
-          try {
-            dispatch(loadingAction.ShowLoading())
-              const response = await assignExam(id , value)
-              dispatch(loadingAction.HideLoading())
-              if(response.success){
-                message.success(response.message)
-              }else{
-                message.error(response.data.message)
-              }
-          } catch (error) {
-            message.error(error)
-          }
-    }
+    
 
+
+    function containSpaceSymbol(str) {
+          return /\s/.test(str) || /[^a-zA-Z0-9\s]/.test(str)
+    }
    
 
     useEffect(()=> {
@@ -118,64 +107,26 @@ export default function ExamInfo (){
     }, [])
 
     const showModal = (name) => {
-      if(name == 'create'){
         setIsModalOpen(true)
-      }else{
-        setIsModalOpen2(true)
-      }
-      ;
     };
     const handleCancel = () => {
       setIsModalOpen(false);
-      setIsModalOpen2(false)
+     
     };
 
-    const assignExamToGroup = () =>{
-      return <Modal 
-      title={"assign exam to group"}
-      okText={'reassign'}
-      okType="default"
-      onOk={()=>reassignExam(form.getFieldsValue())}
-       onCancel={handleCancel}
-       open={isModalOpen2} >
-          <Form
-          form={form}
-          layout="vertical"
-           className="gird grid-cols-2 gap-2">
-          <Form.Item initialValue={data?.course}
-          label="From"
-          name={'oldCourse'}
-          >
-            <Input value={data?.course}/>
-          </Form.Item>
-          <Form.Item
-          label="To"
-          name={'newGroup'}
-          >
-               <Select>
-                    {
-                        courseName.map((i, k) => 
-                        <Option key={k} value={i}>{i}</Option>
-                            )
-                    }
-                   
-                </Select>
-          </Form.Item>
-          </Form>
-      </Modal>
-  }
+  
       
  return <>
  <NavigatorButton/>
  <div className="bg-white rounded-md
   border-neutral-200 border-[1px] p-4">
  <>
- <div className="flex justify-between pb-5">
-    <Header icons={<CiCircleInfo/>} text={"Exam Info"}/>
+ <div className="flex justify-between items-center ">
+    <Header text={"Exam Info"}/>
         <div className="flex justify-end gap-2">
         <button onClick={()=>showModal('create')}
-         className="px-2 py-[0.5px] text-[12px] border-none rounded-md
-          text-white active:bg-variation-400 bg-variation-500">New section</button>
+         className="px-2 py-0.5 text-[12px] border-none rounded-md
+          text-white active:bg-variation-400 bg-variation-500">new section</button>
     <Modal okType="default" okText="Create" 
     title="Create new Subject" 
     open={isModalOpen} onOk={onCreate} 
@@ -184,16 +135,23 @@ export default function ExamInfo (){
      layout="vertical"
      form={form}>
 
-      <Form.Item label={"Exam Id"}>
+      <Form.Item label={"exam id"}>
         <Input disabled value={examId}/>
         </Form.Item>
+        <p className="text-[12px] text-gray-600">
+          noted :
+          section name should not contain space or any symbols</p>
    <Form.Item
       rules={[{
         required : true,
-        message : "Please enter quiz title!"
-                }]}
-            name={"title"} label="title">
-                <Input onChange={(e)=>setTitle(e.target.value)}/>
+        message : "please enter section name!"
+                }
+              ]}
+            name={"title"}
+            label="section name"
+            
+            >
+                <Input onChange={(e)=>setTitle(e.target.value.toLowerCase())}/>
             </Form.Item>
             <Form.Item name={"score"} label="score">
                <InputNumber onChange={(value)=> setScore(value)}
@@ -201,32 +159,26 @@ export default function ExamInfo (){
             </Form.Item>
      </Form>
       </Modal>
-
-      {assignExamToGroup()}
       <button className="border-none text-[12px] rounded-md
-       active:bg-yellow-300 px-2 py-[0.5px] bg-yellow-400">
+       active:bg-yellow-300 px-2 py-0.5 bg-yellow-400">
         <Link to={`/dashboard/exam/update/${data?._id}`}>
         update
         </Link>
         </button>
-        <button className="bg-green-600 text-[12px] 
-            py-[0.5px] px-2 active:bg-variation-400
-            rounded-md text-white" 
-            onClick={showModal}>reassign exam</button>
           <Popconfirm 
           placement="topLeft"
           description="Are you sure to delete this Exam?" 
            title="Delete this Exam"
            okType="default" onConfirm={onDeleteExam} okText="Delete">
           <button className="border-none rounded-md bg-rose-500 active:bg-rose-600
-           px-2 text-white text-[12px] py-[0.5px]">Delete</button>
+           px-3 text-white text-[12px] py-0.5">delete</button>
           </Popconfirm>
         </div>
   </div>
   </>
- <div classNam="px-3 py-4">
+ <div classNam="px-3 py-4 ">
  {/* info list */}
- <Descriptions>
+ <Descriptions className="mt-5">
   <Descriptions.Item label="Title">
             {data?.name}
   </Descriptions.Item>
@@ -237,10 +189,10 @@ export default function ExamInfo (){
   {data.quiz ? data.quiz.length : null}
   </Descriptions.Item>
   <Descriptions.Item label="create">
-  {moment(data.createdAt).format("DD/MM/YYYY")}
+  {moment(data.createdAt).format("LL")}
   </Descriptions.Item>
   <Descriptions.Item label="Exam Date">
-  {moment(data.date).format("YYYY-MM-DD")}
+  {moment(data.date).format("LL")}
   </Descriptions.Item>
   <Descriptions.Item label="Time">
   {moment(data.time).format("LT")}
@@ -252,7 +204,6 @@ export default function ExamInfo (){
       <div>
         <Tabs items={TabExam} defaultActiveKey={1}></Tabs>
       </div>
-            {/* <CreateQuestion title={data.title} render={render}></CreateQuestion> */}
 </>  
 
 

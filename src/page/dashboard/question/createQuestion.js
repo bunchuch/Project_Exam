@@ -1,11 +1,11 @@
 import {message,
-  Button,Radio,Form,Upload ,Card,Typography, InputNumber} from "antd"
+  Button,Radio,Form,Upload ,Card,Typography,Modal, InputNumber} from "antd"
 import { useEffect, useState } from "react"
 import {  useParams } from "react-router-dom"
 import {  CiExport, CiUndo } from "react-icons/ci";
 import Icon from "../../../components/Icon"
 import { useForm } from "antd/es/form/Form"
-import { CiSaveUp1 } from "react-icons/ci"
+import { CiSaveUp1, CiFileOn } from "react-icons/ci"
 import NavigatorButton from "../../../components/navigatorButton";
 import { TitleRender } from "../../../components/Title";
 import { Blank } from "../componet/Blank";
@@ -26,10 +26,21 @@ export default function CreateQuestion() {
     const [fileList, setFileList] = useState([]);
     const [uploading, setUploading] = useState(false);
     const dispactch = useDispatch()
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const titles = title.toLocaleLowerCase()
     const [updateData ,setUpdateData] = useState()
- 
+    const { Dragger } = Upload;
    
+    const showModal = () => {
+      setIsModalOpen(true);
+    };
+    const handleOk = () => {
+      setIsModalOpen(false);
+    };
+    const handleCancel = () => {
+      setIsModalOpen(false);
+    };
+
     
     const props = {
         onRemove: (file) => {
@@ -118,7 +129,40 @@ export default function CreateQuestion() {
       TitleRender("CreateQuestion")
      }, [])           
 
+
+     const uploadForm = () => {
+      return <Modal
+        okType='default'
+        okText="upload"
+       title="upload file"
+      open={isModalOpen}
+       onOk={handleUpload} 
+      onCancel={handleCancel}>
+       <div className="flex flex-col bg-neutral-50 
+       border-dashed border items-center 
+       border-neutral-200
+       justify-center rounded-xl h-[10rem] ">
+          {/* file upload */}
+          {
+            qid ? <></> :
+          <div className="space-y-2 mb-1">
+      <Upload className="flex w-full"
+       accept=".png, .jpg, .jpeg, .mp4, .mp3" listType="picture" {...props}>
+        {
+          fileList.length > 0 ? null :
+          <Button className="border border-dashed"
+          icon={<CiExport/>}>Upload file from computer</Button>
+        }
+      </Upload>
+    </div>
+}
+    </div>
+    </Modal>
+     }
+
+
     return <>
+    {uploadForm()}
     <NavigatorButton/>
     <Form
     layout="vertical"
@@ -142,37 +186,10 @@ export default function CreateQuestion() {
             >
           <div className="flex
            justify-between items-center gap-2"> 
-          <Form.Item name={"name"} rules={[
-            {
-              required: true,
-              message: 'Type is undefine',
-              },
-              ]} 
-              label="Select Type" 
-              valuePropName={values}>
-              <Radio.Group
-              onChange={fillId}
-              size={"small"}
-             buttonStyle="solid">
-            <Radio.Button
-            onChange={()=> setCheck(true)}
-            disabled={title !== "writing"
-             ? false : true}
-              onClick={()=>setCheck(true)}
-              value="Mqc">MQC</Radio.Button>
-            <Radio.Button 
-            disabled={title !==
-             "writing" ? false : true} 
-              onClick={()=>setCheck(false)} 
-              value="Blank">Blank</Radio.Button>
-            <Radio.Button disabled 
-               value="writing">Q&A</Radio.Button>
-                <Radio.Button disabled={title
-               !== "writing" ? true : false}  
-               onClick={()=>setCheck(false)} 
-               value="writing">Writing</Radio.Button>
-        </Radio.Group>
-              </Form.Item>
+<p className="text-[12px] px-2 rounded-md 
+bg-[#fef9c3] font-semibold pb-1 text-rose-600">
+  ✨if question contain file please 
+    upload file first before create question</p>
               <div className="flex items-center gap-3">
     <Form.Item name={"questionId"}>
     </Form.Item>
@@ -180,6 +197,13 @@ export default function CreateQuestion() {
     </Form.Item>
     </div>
            <div className="flex gap-2">
+        <Button
+         className="flex items-center"
+        icon={<Icon Size={"1.2rem"} 
+        name={<CiFileOn/>}></Icon>}
+         onClick={showModal}>
+        upload file
+        </Button>
           <Button icon={<Icon Size={"1.2rem"} 
           name={<CiUndo/>}></Icon>} 
           onClick={()=> form.resetFields()}
@@ -192,39 +216,50 @@ export default function CreateQuestion() {
           </Button>
             </div>
           </div>
+    <div className="border-b mb-2 border-gray-300"></div>
+    <Form.Item name={"name"} rules={[
+            {
+              required: true,
+              message: 'Type is undefine',
+              whitespace : true,
+              },
+              ]} 
+              label="Select Type" 
+              valuePropName={values}>
+              <Radio.Group
+              onChange={fillId}
+              size={"small"}
+             buttonStyle="solid">
+            <Radio.Button
+            onChange={()=> setCheck(true)}
+            disabled={titles !== "writing"
+             ? false : true}
+              onClick={()=>setCheck(true)}
+              value="Mqc">multiple choice</Radio.Button>
+            <Radio.Button 
+            disabled={titles !==
+             "writing" ? false : true} 
+              onClick={()=>setCheck(false)} 
+              value="Blank">fill in blank</Radio.Button>
+            <Radio.Button disabled 
+               value="writing">Q&A</Radio.Button>
+                <Radio.Button disabled={titles
+               !== "writing" ? true : false}  
+               onClick={()=>setCheck(false)} 
+               value="writing">Writing</Radio.Button>
+        </Radio.Group>
+              </Form.Item>
 
-    {/* file upload and mark a point */}
-    <p className="text-[12px] pb-1 text-gray-600">✨if question contain file please 
-    upload file first before create question</p>
-    <div className="flex flex-col">
-          {/* file upload */}
-          {
-            qid ? <></> :
-          <div className="space-y-2 mb-1">
-      <Upload accept=".png, .jpg, .jpeg, .mp4, .mp3" listType="picture" {...props}>
-        <Button icon={<CiExport/>}>Upload file from computer</Button>
-      </Upload>
-      <Button
-      className="float-right"
-        onClick={handleUpload}
-        hidden={fileList.length === 0}
-      >
-        {uploading ? 'Uploading' : 'Start Upload'}
-      </Button>
-    </div>
-}
-    </div>
-    <Form.Item label="Point" name={'point'}>
+    <Form.Item label="score" name={'point'}>
                 <InputNumber/>
               </Form.Item>
     {/* file upload and mark a point */}
-    
     {/* question operation */}
-          {title !== "writing" ? <>
+          {titles !== "writing" ? <>
           {/* none writing form */}
           <div>
               {
-                check ? <div className="grid grid-cols-2 gap-2">
+                check ? <div>
 
                   <Mqc form={form}
                        correctAnswer={form.getFieldsValue().options}

@@ -1,37 +1,38 @@
 import { Tag } from "antd";
 import moment from "moment";
 import { Link } from "react-router-dom";
-
+import Icon from "../../../components/Icon";
+import { IoEllipse } from "react-icons/io5";
 
 export const columnsUser = [
     {
-      title: 'Name',
+      title: 'name',
       dataIndex: 'name',
       key: 'name',
       render: (text, record) =><a className="hover:underline active:underline">
         <Link to={`/dashboard/User/`+ record._id}>{text}</Link></a> ,
       },
     {
-      title: 'email',
+      title: 'e-mail',
       dataIndex: 'email',
       key: 'email',
     },
     {
-    title: 'createAt',
+    title: 'enroll to work',
     dataIndex: 'createdAt',
     key: 'createdAt',
-    render : (text ,record)=> <p>{moment(record.createdAt).format('DD/MM/YYYY')}</p>
+    render : (text ,record)=> <p>{moment(record.createdAt).format('LL')}</p>
    
   },
   {
-    title: 'updateAt',
+    title: 'last update',
     dataIndex: 'updatedAt',
     key: 'updateAt',
-    render : (text ,record)=> <p>{moment(record.updatedAt).format('DD/MM/YYYY')}</p>
+    render : (text ,record)=> <p>{moment(record.updatedAt).format('LL')}</p>
    
   },
       {
-        title: 'Roles',
+        title: 'remarks',
         key: 'role',
         dataIndex: 'role',
         render: (_, { role }) => (
@@ -60,14 +61,16 @@ export const columnsUser = [
 
 export const columnsStudent = [
     {
-      title: 'Username',
+      title: 'username',
       dataIndex: 'username',
       key: 'username',
-      render: (text, record) =><Link to={`/dashboard/student/${record._id}`}>{text}</Link>
+      render: (text, record) =><a className="text-variation-500 
+      font-semibold hover:underline">
+        <Link to={`/dashboard/student/${record._id}`}>{text}</Link></a>
       
     },
     {
-      title: 'Firstname',
+      title: 'firstname',
       dataIndex: 'firstname',
       key : 'firstname' ,
       filters : [
@@ -79,40 +82,40 @@ export const columnsStudent = [
       
     },
     {
-      title: 'Lastname',
+      title: 'lastname',
       dataIndex: 'lastname',
       key : 'lastname',
       
     },
     {
-      title: 'DateBrith',
+      title: 'brithday',
       dataIndex: 'dateBirth',
       key: "dateBirth",
-      render : (text ,record) => <p>{moment(text).format("YYYY/MM/DD")}</p>
+      render : (text ,record) => <p>{moment(text).format("LL")}</p>
       
 
   },
     {
-      title: 'Email',
+      title: 'e-mail',
       dataIndex: 'email',
       key : 'email'
      
       
     },
     {
-        title: 'ParentPhone',
+        title: 'parentphone',
         dataIndex: 'parentPhone',
         key: "parentPhone"
         
 
     },
     {
-      title: 'PersonalPhone',
+      title: 'personalphone',
       dataIndex: 'personalPhone',
       key : 'personalPhone'
     },
     {
-      title: 'Address',
+      title: 'address',
       dataIndex: 'address',
       key : "Address",
       render :(text, record)=> <a>{text}</a>
@@ -120,13 +123,25 @@ export const columnsStudent = [
 
   },
     {
-        title: 'Create',
+        title: 'registered',
         dataIndex: 'createdAt',
         key : 'createdAt',
-        render : (text ,record)=> <a>{moment(text).format("YYYY/MM/DD")}</a>
+        render : (text ,record)=> <a>{moment(text).format("LL")}</a>
+    },
+    {
+      title: "status",
+      dataIndex: 'description',
+      key : "description",
+      render : (text,record)=> 
+      <><Icon
+      color={text ? '#fde047' : '#16a34a'}
+      Size={'0.6rem'}
+        name={<IoEllipse/>}
+      
+      /></>
     },
   {
-    title: "Status",
+    title: "description",
     dataIndex: 'description',
     key : "description"
   }

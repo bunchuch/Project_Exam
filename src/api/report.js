@@ -36,3 +36,13 @@ export const getReportByExamId = async (examId)=>{
         return error.response.data
     }
 }
+
+export const deleteReport = async (id) => {
+    try {
+        const response = await axiosInstance.delete(`report/delete/${id}`)
+        return response.data
+
+    } catch (error) {
+        return error.response
+    }
+}

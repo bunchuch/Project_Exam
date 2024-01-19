@@ -23,10 +23,11 @@ import CreateGroup from './page/dashboard/Group/CreateGroup';
 import CreateQuestion from './page/dashboard/question/createQuestion';
 import { ReportExam } from './page/dashboard/examReport/examReport';
 import { QuizTable } from './page/dashboard/examReport/quizTable';
-import StudentResult from './page/dashboard/student/studentResult';
+import StudentProfile from './page/dashboard/student/studentProfile';
 import GroupHeader from './page/dashboard/Group/GroupHeader';
 import Exam from './page/dashboard/exam/Exam';
 import StudentReport from './page/dashboard/examReport/studentReport';
+import ExamHeader from './page/dashboard/exam/ExamHeader';
 
 
 const App =()=>{
@@ -51,7 +52,7 @@ const loading = useSelector((state)=> state.loader.loading)
       <Route path='/dashboard/Group' element={<ProtectedRoute><GroupHeader/></ProtectedRoute>}></Route>
       <Route path='/dashboard/Group/:id' element={<ProtectedRoute><GroupInfo/></ProtectedRoute>}> </Route>
 
-      <Route path='/dashboard/Exam' element={<ProtectedRoute><Exam/></ProtectedRoute>}>
+      <Route path='/dashboard/Exam' element={<ProtectedRoute><ExamHeader/></ProtectedRoute>}>
         <Route path='/dashboard/Exam/:id/report' element={<ProtectedRoute><h1><ReportExam/></h1></ProtectedRoute>}></Route>
         <Route path='/dashboard/Exam/:id/quiz' element={<ProtectedRoute><QuizTable/></ProtectedRoute>}></Route>
       </Route>
@@ -66,7 +67,7 @@ const loading = useSelector((state)=> state.loader.loading)
       <Route path='/dashboard/Question/:qid/:title/update' element={<ProtectedRoute><CreateQuestion/></ProtectedRoute>}></Route>
       <Route path='/dashboard/Question/:id/view' element={<ProtectedRoute><ViewQuestion/></ProtectedRoute>}/>
       <Route path='/dashboard/student/report/:eid' element={<ProtectedRoute><StudentReport/></ProtectedRoute>}/>
-      <Route path='/dashboard/student/:id' element={<ProtectedRoute><StudentResult/></ProtectedRoute>}/>
+      <Route path='/dashboard/student/:id' element={<ProtectedRoute><StudentProfile/></ProtectedRoute>}/>
       <Route path='/dashboard/update-student/:stuid' element={<ProtectedRoute><RegisterStudent/></ProtectedRoute>}></Route>
     </Route>
     

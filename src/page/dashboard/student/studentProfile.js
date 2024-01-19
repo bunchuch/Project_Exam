@@ -10,11 +10,14 @@ import { useForm } from "antd/es/form/Form"
 import { CSVLink } from "react-csv";
 import { useDispatch } from "react-redux";
 import { loadingAction } from "../../../redux/loaderSlice";
-import { getGroupReport, updateStudentScore } from "../../../api/report";
+import { deleteReport, getGroupReport, updateStudentScore } from "../../../api/report";
 import { getStudent, removeStuent, resetPasswordStudent } from "../../../api/student";
+import Icon from "../../../components/Icon";
+import { CiTrash } from "react-icons/ci";
+import StudentExam from "./studentExam";
+import { studentBoard } from "../componet/TabItems";
 
-
-export default function StudentResult () {
+export default function StudentProfile () {
 
     const {id} = useParams()
     const [user ,setUser] = useState()
@@ -87,6 +90,19 @@ export default function StudentResult () {
         }
    }
 
+   const handleDeleteReport = async (id) => {
+      try {
+        const response = await deleteReport(id)
+        if(response.success){
+          message.success(response.message)
+        }else{
+          message.error(response.data.message)
+        }
+      } catch (error) {
+        message.error(error)
+      }
+   }
+
      const showModal = (name) => {
         setIsModalOpen(true);
       };
@@ -110,54 +126,18 @@ const csvData = [
     ]),
   ];
 
-const items = [
-    {
-      key: '1',
-      label: 'UserName',
-      children: user?.username,
-    },
-    {
-      key: 'classes',
-      label: 'classe',
-      children: user?.class,
-    },
-    {
-      key: '2',
-      label: 'ParentPhone',
-      children: user?.parentPhone ? user?.parentPhone : "###-###-###",
-    },
-    {
-      key: '3',
-      label: 'Live',
-      children: user?.address,
-    },
-    {
-      key: 'course',
-      label: 'course',
-      children: user?.courseName,
-    },
-    {
-      key: '4',
-      label: 'Remark',
-      children: user?.description ? user?.description : "none",
-    },
-    {
-      key: '5',
-      label: 'Personal Phone',
-      children: user?.personalPhone ? user?.personalPhone : "##-###-###",
-    },
-    {
-        key: '6',
-        label: 'Date of Brith',
-        children: <a className="flex gap-2">
-          {moment(user?.dateBirth).format("DD/MM/YYYY")}
-       </a> ,
-      },
-      {
-        
-        key: '7',
-        label: 'actions',
-        children:<div className="flex flex-wrap gap-2">
+ 
+  
+    return <div className="font-roboto">
+        <NavigatorButton/>
+        <div className="mb-3 bg-white rounded-lg
+         border-neutral-200 border-[1px] p-3">
+        <Descriptions title={
+          <div className="flex justify-between">
+          <p>Student Info</p>
+
+
+          <div className="flex flex-wrap gap-2">
         <button disabled className="flex gap-4 p-1 text-[10px]
          bg-variation-500 rounded-md text-white">
           <CSVLink className="disabled
@@ -183,42 +163,47 @@ const items = [
           delete
          </button>
         </div>
-      }
-  ];
 
- 
-
- const tableItem = [
-  {
-    key: '2',
-    label: 'Result',
-    children: <div className="grid grid-cols-4 gap-2">
-    {
-    report ? report?.map((items, key)=>
-    <Link  to={`/dashboard/student/report/${items._id}`}>
-      <Card key={key}>
-       <p className="font-roboto">Exam Date</p>
-        <p> 
-        {moment(items.createdAt).format('LL')}
-        </p>
-      </Card>
-      
-      </Link>) : <Empty className="flex justify-center"></Empty>
-    }
-    </div> 
-  }
- ] 
-  
-    return <div className="font-roboto">
-        <NavigatorButton/>
-        <div className="mb-3 bg-white rounded-lg
-         border-neutral-200 border-[1px] p-3">
-        <Descriptions title={
-          <>
-          <p>User Info</p>
-          </>
+          </div>
           
-          } items={items} />
+          }>
+            <Descriptions.Item label="firstname">
+              {user?.firstname}
+            </Descriptions.Item>
+            <Descriptions.Item label="lastname">
+              {user?.lastname}
+            </Descriptions.Item>
+            <Descriptions.Item label="username">
+              {user?.username}
+            </Descriptions.Item>
+            <Descriptions.Item label="gender">
+              {user?.gender}
+            </Descriptions.Item>
+            <Descriptions.Item label="room">
+              { user?.class}
+            </Descriptions.Item>
+            <Descriptions.Item label="course">
+              { user?.courseName}
+            </Descriptions.Item>
+            <Descriptions.Item label="Parent Phone">
+              {user?.address}
+            </Descriptions.Item>
+            <Descriptions.Item label="Parent Phone">
+              {user?.parentPhone}
+            </Descriptions.Item>
+            <Descriptions.Item label="remarks">
+             {user?.description ? <Tag color="yellow">{ user?.description} </Tag> : "none"}
+            </Descriptions.Item>
+            <Descriptions.Item label="Phone number">
+            { user?.personalPhone ? user?.personalPhone : "##-###-###"}
+            </Descriptions.Item>
+            <Descriptions.Item label="date of birth">
+            {moment(user?.dateBirth).format("LL")}
+            </Descriptions.Item>
+            <Descriptions.Item label="registerd">
+              {moment(user?.createdAt).format('LL')}
+            </Descriptions.Item>
+            </Descriptions>
         </div>
         <div>
         <Modal okText="update" okType="default" title={
@@ -239,6 +224,6 @@ const items = [
         </>
       </Modal>
       </div>
-      <Tabs defaultActiveKey="1" items={tableItem}/> 
+      <Tabs defaultActiveKey="1" items={studentBoard}/> 
     </div>
 }

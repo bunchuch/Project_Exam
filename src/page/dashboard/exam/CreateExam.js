@@ -158,36 +158,44 @@ export default function CreateExam(){
             <Form.Item
             rules={[
                 {
-                    message :"please assign group",
+                    message :"please provide title",
                     required : true
                 }
             ]}
-            label="Title" name="name">
+            label="title" name="name">
                 <Input></Input>
             </Form.Item>
             {
                 id ? <></>:
             
             <div className="flex gap-3">
-            <Form.Item label="Select Date" name="date">
+            <Form.Item label="select date" name="date">
                 
                 <DatePicker 
             format={`${dateFormat}`}
             />
                
             </Form.Item>
-            <Form.Item label="Pick Time" name="time">
+            <Form.Item label="pick time" name="time">
               <TimePicker  format={`${timeFormat}`}/> 
             </Form.Item>
             </div>
 }
-            <Form.Item label="Duration" name="duration">
+            <Form.Item label="duration" name="duration">
                 <InputNumber className="w-full"/>
             </Form.Item>
-            <Form.Item label="Pass Percentage(%)" name="pass_score">
+            <Form.Item label="pass percentage(%)" name="pass_score">
                 <InputNumber className="w-full"/>
             </Form.Item>
-            <Form.Item label="Assign to Groups" name="course">
+            <Form.Item 
+            rules={[
+                {
+                    required :true,
+                    message : 'please provide course name',
+                    whitespace: true,
+                }
+            ]}
+            label="assign to course" name="course">
                 <Select disabled={id ? true : false}>
                     {
                         courseName.map((i, k) => 
@@ -199,7 +207,7 @@ export default function CreateExam(){
             </Form.Item>
             </div>
             <div>
-            <Form.Item label="Description" name="description">
+            <Form.Item label="description" name="description">
                <TextArea></TextArea>
             </Form.Item>
                         </div>

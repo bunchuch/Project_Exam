@@ -48,9 +48,9 @@ export const updateExam = async (id , payload)=>{
     }
 }
 
-export const assignExam = async (id , payload) => {
+export const assignSectionToExam = async (payload) => {
     try {
-       const response = await axiosInstance.patch(`exam/assign/${id}`,payload)
+       const response = await axiosInstance.patch(`exam/assign`,payload)
        return response.data
     } catch (error) {
        return error.response.data

@@ -106,6 +106,17 @@ export default function RegisterStudent (){
                 <Form.Item name="username" label="Username">
                 <Input />
                 </Form.Item>
+
+                <Form.Item name="gender" label="gender">
+                <Select>
+                    {
+                     ['M', 'F', 'optional'].map((gender,key)=> 
+                        <Option value={gender} 
+                        key={key}/>
+                     )
+                    }
+                </Select>
+                </Form.Item>
                 {
                     stuid ? <></> : <Form.Item name="password" label="Password">
                     <Input/>

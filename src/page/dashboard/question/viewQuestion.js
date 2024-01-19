@@ -31,10 +31,10 @@ export default function ViewQuestion (){
         )
     }
 
-    const handDeleteQuestion = (id , subId) => {
+    const handDeleteQuestion = (q_id) => {
         dispactch(loadingAction.ShowLoading())
         axiosInstance
-        .delete(`${process.env.REACT_APP_API_KEY}question/delete/${id}/${subId}`)
+        .delete(`${process.env.REACT_APP_API_KEY}question/delete/${q_id}/${id}`)
         .then(res => {
             message.success(res.data.message)
             // getQuestion()
@@ -89,8 +89,8 @@ export default function ViewQuestion (){
              </Link>
              </Tooltip>
             <Popconfirm 
-            onConfirm={async ()=> await 
-                handDeleteQuestion(items._id ,items.subId)}
+            onConfirm={()=> 
+                handDeleteQuestion(items?._id)}
             okType="default"
             title="Are you sure to this question ?">
             <Button
@@ -104,15 +104,16 @@ export default function ViewQuestion (){
         
         <div className="bg-white">
                      <div className="space-y-4">
-                        <span className="flex my-2">
-                        <Tag>{items.name}</Tag>
-                       <Tag><p  className="font-normal mx-2 break-words">{items.description ? 
-                       items.description : "None"}</p></Tag>
-                       <Tag> <p  className="font-normal break-words flex flex-wrap">
+                        <span className="flex flex-wrap gap-2 my-2">
+                        <Tag color=
+                        {items?.name == 'Mqc' ? 'yellow' : 'purple'}>
+                            {items.name === 'Blank' && 'fill in blank' }
+                            {items.name === 'writing' && 'writing' }
+                            {items.name === 'Mqc' && 'multiple-choice question' }</Tag>
+                       <Tag color={items?.upload?.path ? 'gold' : "red"}> 
+                       <p  className="font-normal break-words flex flex-wrap">
                         {items.upload?.path 
-                            ? "File" : "No File"}</p> </Tag>
-                            <Tag><p className="font-normal mx-2">
-                             { moment(items.createdAt).format("DD-MM-YYYY")}</p></Tag>  
+                            ? "file" : "none"}</p> </Tag> 
                         </span>                     
                         <span className="my-6">                
                             {
@@ -121,16 +122,18 @@ export default function ViewQuestion (){
                                <audio
                                className="h-5"
                                 controls
-                                src={`${process.env.REACT_APP_API_KEY + items.upload?.path}`}>
+                                src={`${process.env.REACT_APP_API_KEY + items?.upload?.path}`}>
 
                                 </audio>
                                </div>
                                
                                 : <Image className="object-cover rounded-md my-2 border
                                  border-neutral-200" height={100}  
-                                width={250} src={items.upload?.path}/> : <></>
+                                width={250} src={process.env.REACT_APP_API_KEY + items?.upload?.path}/> : <></>
                             }
                         </span>
+                        <p  className="font-normal mx-2 my-2 break-words">{items.description ? 
+                       items.description : "None"}</p>
                    <span className="mt-5">{items.name === 'Blank' ?
                     <>{items.options ? items.options.map(i => <Tag>
                     {i}
@@ -142,18 +145,22 @@ export default function ViewQuestion (){
                        </label>
                 </>) :null}</span>
                     </div>
-                    <div className="flex justify-end gap-2">
-                    correctAnswer   
+                    <div className="flex justify-between flex-wrap gap-2">
+                    <p className="font-normal">
+                        create
+                        <Tag color="blue" className="mx-2">{ moment(items.createdAt).format("LL")}</Tag></p>  
+                        <p className="">
+                    correctAnswer :    
                         {
                             items.name === "Blank" ?
-                             items?.correctAnswer?.map((value ,key)=>
-                             <Tag>{JSON.stringify(value)}</Tag>) : <>
+                             null : <>
                             {
                         items?.correctAnswer?.map((value)=>
                          <Tag color="green">{value}</Tag>)
                     }
                             </>
-                        }                  
+                        }   
+                                </p>         
                     </div>
                     </div>
         </div>

@@ -13,6 +13,7 @@ export default function StudentReport (){
   const {eid} = useParams()
   const dispatch = useDispatch()
   const [report ,setReport] = useState()
+  const [sectionScore ,setSectionScore] = useState(0)
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [markPoint , setMarkPoint] = useState(0)
   const [changeForm ,setChangeForm] = useState(false)
@@ -33,9 +34,10 @@ export default function StudentReport (){
             message.error(error)
         }
   }
-  const showModal = (name) => {
+  const showModal = (name, sectionScore) => {
     setIsModalOpen(true);
     setTitle(name)
+    setSectionScore(sectionScore)
   };
   const handleCancel = () => {
     setIsModalOpen(false);
@@ -48,6 +50,14 @@ export default function StudentReport (){
       key: 'subjectName',
       render: (text) => <a 
       className="font-semibold text-variation-500">{text}</a>,
+    },
+    {
+      title: 'section score',
+      dataIndex: 'sectionScore',
+      key: 'sectionScore',
+      render : (text ,record)=>
+       <><Tag color={text === "failed" ? "red" : "green"}>
+        {text}</Tag></>
     },
     {
       title: 'score',
@@ -70,7 +80,7 @@ export default function StudentReport (){
       render : (text ,record)=>
        <><Tag color={text === "failed" ? "red" : "green"}>
         {text}</Tag></>
-    }
+    },
     ,{
       title : 'action',
       key : 'action',
@@ -79,7 +89,7 @@ export default function StudentReport (){
        rounded-md px-2 py-[1px] text-[10px]"
        onClick={()=> {
         setChangeForm(false)
-        showModal(record.subjectName)
+        showModal(record.subjectName , record.sectionScore)
        }}>update Score</button>
       </>
     }
@@ -92,6 +102,7 @@ export default function StudentReport (){
       stuId :  report?.user,
       markPoint : markPoint,
       name : title,
+      sectionScore : sectionScore,
       rid : report?._id
       })
       dispatch(loadingAction.HideLoading())
@@ -136,15 +147,18 @@ export default function StudentReport (){
         "reset password" :"update writing Score"} open={isModalOpen} 
           onOk={handleUpdateScore}
           onCancel={handleCancel}>
-                  <Form>
-          <Form.Item>
+                  <Form layout="vertical" className="grid grid-cols-2 gap-4">
+          <Form.Item label="id">
             <Input disabled value={report?._id}/>
         </Form.Item>
-        <Form.Item>
-            <Input value={title}/>
+        <Form.Item  label="title">
+            <Input disabled value={title}/>
         </Form.Item>
-        <Form.Item name={"markPoint"}>
-        <InputNumber max={25} defaultValue={0} 
+        <Form.Item  label="section markPoint">
+            <Input disabled  value={sectionScore}/>
+        </Form.Item>
+        <Form.Item label="points" name={"markPoint"}>
+        <InputNumber max={50} defaultValue={0} 
         onChange={(value)=> setMarkPoint(value)}  className="w-full"/>
         </Form.Item> 
         </Form>

@@ -1,4 +1,4 @@
-import { Button, Form, Input, message } from "antd";
+import { Button, Form, Input, message,Tag } from "antd";
 import React, { useState } from "react";
 import Icon from "../../../components/Icon";
 import { CiCircleRemove } from "react-icons/ci";
@@ -10,7 +10,8 @@ export const Blank = ({form}) => {
     const [addOptions ,setAddOption] = useState([])
     const [disabled ,setDisabled] = useState(false)
     const [hightlightWord , setHigthligthWord] = useState(null)
-
+    const [selectedTags, setSelectedTags] = useState(['Books']);
+    const { CheckableTag } = Tag;
     // try to splite a sentence fucntion()
     const SentenceString = (sentences) =>{
       const slitString = sentences.split(/\W+/)
@@ -74,18 +75,28 @@ export const Blank = ({form}) => {
                     className="bg-yellow-300"
                     onClick={()=>{
                      SentenceString(form.getFieldValue().question)} }>
-                    Slice Sentence
+                    splite Sentence
                     </Button>
           </div>
                     <div>
               {/* fill in blank */}
+              
+                 
+                <p className="text-[12px] my-2  text-gray-600">
+                ✨please select the words for make blank box</p>
+
               <Form.Item>
               <ul className="flex flex-wrap gap-1 mt-2">
                   {
                     sentence ? sentence.map((i , k)=> <li key={k}>
-                      <Button className={``} htmlType="button" 
+                      <CheckableTag 
+                        key={i}
+                        checked ={addOptions.includes(i)}
+                      className={`text-[14px] p-2 border border-neutral-200`} htmlType="button" 
                       disabled={disabled}
-                       onClick={()=>handleClickAdd(i, k)}>{i}</Button>
+                       onChange={()=>handleClickAdd(i, k)}>
+                        {i}
+                        </CheckableTag>
                       </li>)
                    : <></>}
                 </ul>

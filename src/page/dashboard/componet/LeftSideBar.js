@@ -44,10 +44,10 @@ export default function LeftSideBar ({item}) {
         {
             LeftSideBarList.map((item , key)=> <li className="py-4" key={key}>
                 <Link to={`/dashboard/${item.Link}`}>
-            <a href="" className={`flex items-center font-roboto 
-             text-[#0f3460] py-2 px-4
-             hover:bg-neutral-50 ${item.Link == extractedWord ?  
-             "bg-neutral-50 border-r-[4px] border-variation-500" : ""} group`}>
+            <a href="" className={`inline-flex items-center w-full font-roboto hover:bg-neutral-50
+             text-[#0f3460] ${item.Link === extractedWord ? 'bg-neutral-50 border-r-[4px] border-variation-500' : null} py-2 px-4`}>
+             <div className = {`${item.Link == extractedWord ?  
+             "" : ""} flex w-full`}>
               {
                 sideBar ?  <div  className="w-7 h-7">
                 <Icon color="#0f3460" name={item.icon} ></Icon>
@@ -60,6 +60,9 @@ export default function LeftSideBar ({item}) {
 
                   <span className={ `${sideBar ? "block ml-3" : "hidden" }`}>
                     {item.name}</span>
+                   
+                  
+                    </div>
             </a>
             </Link>
         </li> 

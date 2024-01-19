@@ -1,21 +1,21 @@
 import { Outlet } from "react-router-dom"
 import { Tabs } from "antd"
-import { CourseTabItem} from "../componet/TabItems"
+import { ExamTabBoard, GroupInfoTab } from "../componet/TabItems"
 import Header from "../../../components/Header"
-import { CiStar } from "react-icons/ci"
+import { CiReceipt } from "react-icons/ci"
 
 
 
 
-export default function GroupHeader () {
+export default function ExamHeader () {
    
 
     return<div className="">
-      <Header text="Group and Course" icons={<CiStar/>}/>
+     <Header text={"Exam"} icons={<CiReceipt/>}/>
     <div className=" mt-5">
  <Tabs
     defaultActiveKey="1"
-    items={CourseTabItem}
+    items={ExamTabBoard}
     indicatorSize={(origin) => origin - 16}
   />
 

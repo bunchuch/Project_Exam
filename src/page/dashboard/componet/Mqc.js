@@ -14,20 +14,22 @@ export const Mqc = ({form , correctAnswer}) => {
  
    
 
-    return <> <div className="bg-neutral-50 px-3 py-2 
-                  rounded-lg border-[1px] w-full border-neutral-200">
-                        <Form.Item  rules={[
+    return <> 
+     <Form.Item  rules={[
                      {
                    required: true,
                      message: 'Please input Question!',
                    },
                 ]} 
                 label="Question" name={'question'}>
-                    <TextArea maxLength={300} showCount />
+                    <TextArea rows={10} maxLength={300} showCount />
                   </Form.Item>
-                  <p className="text-[12px]
+                  <div className="grid grid-cols-2 gap-4">
+                <div className="bg-neutral-50 px-3 py-2
+                  rounded-lg w-full">
+                  <p className="text-[12px] font-semibold
                                   text-gray-600
-                    ">✨Please add one more default options before make the correctAnswer</p> 
+                    ">NOTE : Please add one more default options before make the correctAnswer</p> 
                    <Form.Item
                     rules={[
                      {
@@ -50,8 +52,8 @@ export const Mqc = ({form , correctAnswer}) => {
                     <Input />
                   </Form.Item>
                   </div>
-            <div className="bg-neutral-50 px-3 py-1 rounded-lg border-[1px]
-             border-neutral-200 overflow-x-scroll">
+            <div className="bg-neutral-50 px-3 py-1 rounded-lg 
+             ">
                     <Form.List name={'options'}>
                       {(subFields, subOpt) => (
                         <div className="flex flex-col"
@@ -83,8 +85,8 @@ export const Mqc = ({form , correctAnswer}) => {
                               </span>
                             
                               <div className="inline-flex space-x-10 items-center">
-                              <p className="text-[14px] pb-4
-                             text-gray-300">✨Please Check for correctAnswer</p>
+                              <p className="text-[12px] pb-4
+                             text-gray-600 font-semibold">NOTE : Please Check for correctAnswer</p>
                               <Form.Item initialValue={false} className="inline-flex"
                               style={{
                                 width : '5rem'
@@ -130,6 +132,7 @@ export const Mqc = ({form , correctAnswer}) => {
                       )}
                     </Form.List>
     
+       </div>
        </div>
        </>
     }

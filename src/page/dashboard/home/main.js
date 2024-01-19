@@ -4,12 +4,11 @@ import { CiCoinInsert, CiGlass, CiGrid2H, CiLocationArrow1,
      CiUser } from "react-icons/ci";
 import Header from "../../../components/Header";
 import Meta from "antd/es/card/Meta";
-import Avatar from "../../../components/Avatar";
 import { getUserByName } from "../../../api/user";
 import Cookies from "universal-cookie"
 import { useEffect } from "react";
 import { Card, Result, message, Descriptions, Tag} from "antd";
-
+import moment from 'moment'
 
 function DashboardCard ({amount , title ,icon}) {
     
@@ -62,37 +61,105 @@ const handleGetUser = async () => {
     
 }
 
+
+const renderRole = (role) =>{
+
+    return (
+       <>{
+
+           role.map((i,index) => 
+           <h1 className={`
+           ${role == 'admin' && 'bg-[#16a34a] text-white'}
+           ${role == 'superadmin' && 'bg-[#dc2626] text-white' }
+           ${role == 'teacher' && 'bg-[#0891b2] text-white'}
+           ${role == 'staff' && 'bg-[#fcd34d] text-gray-600'}
+           ${role == 'developer' && 'bg-[#312e81] text-white'}
+            mt-2 inline-block  px-4
+                  border 
+                rounded-md text-center mx-3  text-[24px]`}>
+                 {i.toUpperCase()}         
+                </h1>
+           )
+       }
+      </>
+    )
+ }
+
 useEffect(()=>{
     handleGetUser()
 },[])
 
     return<div> { data ? <>
         <Header icons={<CiGrid2H/>} text="Dashboard"/>
-    <div className="py-4 mt-3 bg-white rounded-lg
-             px-2 border-[1px] border-neutral-200 ">
+    <div className="py-4
+             grid grid-cols-2 gap-2 ">
+
         <Card
         loading={loading}
-        className="border-none">
+        className="border bg-white">
             <Meta
-            avatar={<Avatar name={"Dara"}></Avatar>}
-            title={name}
-            description={
-                <>
-                <Descriptions className="mt-5">
-                <Descriptions.Item label="Telephone">{data?.phone}</Descriptions.Item>
-                <Descriptions.Item label="Live">{data?.address}</Descriptions.Item>
-                 <Descriptions.Item label="Remark"><Tag>
-                 {data?.role} </Tag></Descriptions.Item>
-                </Descriptions>;
-                </>
+            className="flex items-center"
+            avatar={
+                <div 
+                className="w-[10rem] bg-neutral-50
+                 rounded-full p-2 h-[10rem]">
+                <Icon
+                color={"#0f3460"}
+                name={
+                <CiUser/>
+                }                
+                >
+                </Icon>
+                </div>
             }
+            description={
+                <h1 className="font-semibold text-gray-600 mx-3 text-[34px]">
+               welcome  {data?.name}
+                </h1>
+               }
             >
             </Meta>
             </Card>        
 
+          <Card
+        loading={loading}
+        className="border bg-white">
+            <Meta
+            className="flex flex-col  mt-2 items-start"
+            avatar={
+                <div>
+                <h1 className="font-semibold
+                 text-gray-600 mx-3 text-[34px]">Remarks :</h1>
+                </div>
+            }
+            description={
+               renderRole(data?.role)
+               }
+            >
+            </Meta>
+            </Card> 
 
+        </div>
+        <Card>
+        <Descriptions title="more info" className="pb-4" >
+             <Descriptions.Item label="Telephone">{data?.phone ? data?.phone
+              : "(+000)-000-000"}</Descriptions.Item>
+             <Descriptions.Item label="email">{data?.email}</Descriptions.Item>
+             <Descriptions.Item label="Live">{data?.address ? data?.address : "location"}</Descriptions.Item>
+            
+            <Descriptions.Item label="Address">
+                <Tag>{data?.address ? data?.address : "default"}</Tag>
+                </Descriptions.Item>
 
-        </div> </> : <>
+                <Descriptions.Item label="enroll work">
+                {moment(data.createdAt).format('DD/MM/YYYY')}
+                </Descriptions.Item>
+                <Descriptions.Item label="Last update">
+                {moment(data.updatedAt).format('DD/MM/YYYY')}
+                </Descriptions.Item>
+                </Descriptions>  
+            </Card>
+         </> : <>
         <Result
     title="page are under maintenance"
   />
