@@ -44,7 +44,6 @@ const { Meta } = Card;
         getExamAll()
     } ,[])
 
-
     return <>
     <div className="flex gap-2">
     <p className="mt-1 text-[14px]  text-gray-300">✨ 
