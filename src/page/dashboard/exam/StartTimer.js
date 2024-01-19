@@ -17,7 +17,6 @@ export default function StartTimer () {
     const [timerLoading ,setLoadingTimer] = useState({
         initialSecond : 0,
         initialminute : 0,
-        initialhours   :0,
      })
 
     const questionStartTimer = async ()=>{
@@ -50,13 +49,11 @@ export default function StartTimer () {
       };
 
       useEffect(()=>{
-        const socketInstance = io()
-        .connect(`${process.env.REACT_APP_API_KEY}`)
+        const socketInstance = io(`${process.env.REACT_APP_API_KEY}`)
         setSocket(socketInstance)
         socketInstance.on('countdown', 
-        ({hours,minutes , remainingSeconds})=>{
+        ({minutes , remainingSeconds})=>{
          setLoadingTimer({
-          initialhours : hours,
           initialSecond : remainingSeconds,
           initialminute :  minutes
          })
@@ -69,7 +66,7 @@ export default function StartTimer () {
         })
 
 
-      },[ ])
+      },[])
 
     return <div className="flex flex-col justify-center items-center">
   <Modal title="start Timer Exam" 
