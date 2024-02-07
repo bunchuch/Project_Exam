@@ -30,6 +30,7 @@ export default function CreateQuestion() {
     const titles = title.toLocaleLowerCase()
     const [updateData ,setUpdateData] = useState()
     const { Dragger } = Upload;
+    const [messageApi, contextHolder] = message.useMessage()
    
     const showModal = () => {
       setIsModalOpen(true);
@@ -65,7 +66,7 @@ export default function CreateQuestion() {
         form.setFieldsValue(res.data?.result)
        
       }).catch((error)=>{
-        message.error(error.res.data.message)
+        messageApi.error(error.res.data.message)
        
       })
      
@@ -85,11 +86,11 @@ export default function CreateQuestion() {
         .then(res => {
           setUploading(false)
           setQuestionId(res.data.questionId)
-          message.success("upload successfully")
+          messageApi.success("upload successfully")
           
         }).catch(error =>{
           setUploading(false)
-          message.error("upload unsuccessfully")
+          messageApi.error("upload unsuccessfully")
           setUploading(false)
         } )
         setUploading(false)
@@ -111,12 +112,12 @@ export default function CreateQuestion() {
           const response = qid ? await updateQuestion(qid , value) :
                             await createQuestion(id , value) 
           if(response.success){
-            message.success(response.message)
+            messageApi.success(response.message)
           }else{
-            message.error(response.data.message)
+            messageApi.error(response.data.message)
           }
         } catch (error) {
-          message.error(error)
+          messageApi.error(error)
         }
         }
             
@@ -162,6 +163,7 @@ export default function CreateQuestion() {
 
 
     return <>
+    {contextHolder}
     {uploadForm()}
     <NavigatorButton/>
     <Form

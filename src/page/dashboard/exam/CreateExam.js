@@ -17,10 +17,8 @@ import locale from 'antd/es/locale/en_US';
 
 
 export default function CreateExam(){
-    const navigate = useNavigate()
     const courseName = useSelector(state => state.course.courseName)
     const {id} = useParams()
-    const [selectedDate, setSelectedDate] = useState(null)
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [time ,setTime] = useState()
     const [date , setDate] = useState()
@@ -29,7 +27,7 @@ export default function CreateExam(){
     const dateFormat = "YYYY-MM-DD"
     const timeFormat = "HH:mm"
     const {Option} = Select
-
+    const [messageApi , contextHolder] = message.useMessage()
 
     const onCreate = async (value)=>{
         try {
@@ -38,13 +36,12 @@ export default function CreateExam(){
             : await createExam(value)
             dispactch(loadingAction.HideLoading())
             if(request.success){
-                message.success(request.message)
-            }else{
-                   
-                    message.error(request.data.message)
+                messageApi.success(request.message) 
+            }else{       
+            messageApi.error(request.data.message) 
             }
         } catch (error) {
-            alert(error)
+           messageApi.info(error)
         }
        
     }
@@ -54,12 +51,12 @@ export default function CreateExam(){
         const response = await examGetById(id)
         dispactch(loadingAction.HideLoading())
         if(response.success){
-            message.success(response.message)
+            messageApi.success(response.message) 
             if(id){
                 form.setFieldsValue(response.result)
             }
         }else{
-            message.error(response.data.message)
+          messageApi.error(response.data.message) 
         }
     }
 
@@ -74,15 +71,12 @@ export default function CreateExam(){
             })
             dispactch(loadingAction.HideLoading())
             if(response.success){
-                message.loading('loading...')
-                setTimeout(()=>{
-                    message.success(response.message)
-                },2000)
+            messageApi.success(response.message) 
             }else{
-                message.error(response.data.message)
+                messageApi.error(response.data.message)
             }
         } catch (error) {
-            message.error(error)
+            messageApi.error(error) 
         }
       }
 
@@ -131,6 +125,7 @@ export default function CreateExam(){
    
 
     return <div> 
+        {contextHolder}
    <NavigatorButton/>
     <div className="bg-white rounded-lg
      border-[1px] border-neutral-200 p-4">

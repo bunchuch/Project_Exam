@@ -30,7 +30,9 @@ export default function ExamInfo (){
     const [form] = Form.useForm();
     const {Option} = Select
     const courseName = useSelector(state => state.course.courseName)
-   
+    const [messageApi , contextHolder] = message.useMessage()
+
+
     const onGetExam = async ()=>{
       try {
         dispatch(loadingAction.ShowLoading())
@@ -40,10 +42,10 @@ export default function ExamInfo (){
           setData(respone.result)
           setQuiz(respone.exams.quiz)
         }else{
-          message.success(respone.data.message)
+          messageApi.success(respone.data.message)
         }
       } catch (error) {
-        message.error(error)
+        messageApi.error(error)
       }
     }
 
@@ -57,16 +59,13 @@ export default function ExamInfo (){
         }, id)
 
         if(response.success){
-          message.loading('loading...')
-        setTimeout(()=>{
-          message.success(response.message)
+          messageApi.success(response.message)
             onGetExam()
-        } , 2000)
         }else{
-          message.error(response.data.message)
+          messageApi.error(response.data.message)
         }
       } catch (error) {
-        message.error(error)
+        messageApi.error(error)
       }
   
       }
@@ -78,18 +77,18 @@ export default function ExamInfo (){
         const request = await deleteExam(id ,course)
         dispatch(loadingAction.HideLoading())
         if(request.success){
-          message.loading('loading')
+          messageApi.loading('loading')
           setTimeout(()=> {
-          message.success(request.message)
+          messageApi.success(request.message)
           navigator(-1 , {replace:true})
           dispatch(loadingAction.HideLoading())
           }, 2000)
           dispatch(loadingAction.HideLoading())
         }else{
-        message.error(request.data.message)
+        messageApi.error(request.data.message)
       }
       } catch (error) {
-          message.error(`${error}`)
+          messageApi.error(`${error}`)
       }
     }
     
@@ -116,7 +115,7 @@ export default function ExamInfo (){
 
   
       
- return <>
+ return <div>
  <NavigatorButton/>
  <div className="bg-white rounded-md
   border-neutral-200 border-[1px] p-4">
@@ -126,7 +125,7 @@ export default function ExamInfo (){
         <div className="flex justify-end gap-2">
         <button onClick={()=>showModal('create')}
          className="px-2 py-0.5 text-[12px] border-none rounded-md
-          text-white active:bg-variation-400 bg-variation-500">new section</button>
+          text-white active:bg-variation-400 bg-variation-500">create section</button>
     <Modal okType="default" okText="Create" 
     title="Create new Subject" 
     open={isModalOpen} onOk={onCreate} 
@@ -204,7 +203,7 @@ export default function ExamInfo (){
       <div>
         <Tabs items={TabExam} defaultActiveKey={1}></Tabs>
       </div>
-</>  
+</div>  
 
 
 

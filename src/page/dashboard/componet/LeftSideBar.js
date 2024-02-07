@@ -4,15 +4,16 @@ import { Link, useLocation } from "react-router-dom";
 import { CiGrid2H, 
   CiUser,
   CiCircleChevLeft, CiCircleChevRight, CiReceipt, CiStar, CiCircleAlert } from "react-icons/ci";
+import {FcOrgUnit, FcManager, FcOrganization, FcNook, FcLeave} from 'react-icons/fc'
 import { Tooltip } from "antd";
 
 
 const LeftSideBarList = [
-    {id : 1 ,name : "Dashboard", icon: <CiGrid2H/>, Link: ""},
-    {id : 2,name:"Users", icon: <CiUser/>, Link:"User"},
-    {id : 3,name:"Groups",icon:<CiStar/>, Link: "Group"},
-    {id : 4 ,name:"Exam",icon:<CiReceipt/>, Link: "Exam"},
-    {id : 5,name:"Report", icon : <CiCircleAlert/>, Link : "Report"}]
+    {id : 1 ,name : "Dashboard", icon: <FcOrgUnit/>, Link: ""},
+    {id : 2,name:"Users", icon: <FcManager/>, Link:"User"},
+    {id : 3,name:"Groups",icon:<FcOrganization/>, Link: "Group"},
+    {id : 4 ,name:"Exam",icon:<FcNook/>, Link: "Exam"},
+    {id : 5,name:"Report", icon : <FcLeave/>, Link : "Report"}]
 
 
 export const DashboardContext = createContext()
@@ -44,7 +45,7 @@ export default function LeftSideBar ({item}) {
         {
             LeftSideBarList.map((item , key)=> <li className="py-4" key={key}>
                 <Link to={`/dashboard/${item.Link}`}>
-            <a href="" className={`inline-flex items-center w-full font-roboto hover:bg-neutral-50
+            <a href="" className={`inline-flex items-center w-full  hover:bg-neutral-50
              text-[#0f3460] ${item.Link === extractedWord ? 'bg-neutral-50 border-r-[4px] border-variation-500' : null} py-2 px-4`}>
              <div className = {`${item.Link == extractedWord ?  
              "" : ""} flex w-full`}>
@@ -69,11 +70,13 @@ export default function LeftSideBar ({item}) {
             )
         }
        
-      </ul>     
-      <div className={  `${sideBar ? ` bg-neutral-200 py-2
+      </ul>
+      <div>
+      <p className="p-2 text-[12px] text-gray-600">v.0.1:Beta</p>     
+      <div className={  `${sideBar ? ` bg-neutral-50 py-2
         items-center justify-center` : " "} 
-        +  flex items-center px-2 bg-neutral-200 justify-center py-2` }>
-
+        +  flex items-center px-2 bg-neutral-50 justify-center py-2` }>
+        
           <button onClick={()=>sideReponse()}>
             <div className="w-6 h-6 ">
               {
@@ -82,6 +85,7 @@ export default function LeftSideBar ({item}) {
               }
         </div>
             </button> 
+         </div>
          </div>
         </div>
       </DashboardContext.Provider>

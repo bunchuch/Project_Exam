@@ -1,8 +1,8 @@
 import React, {useState} from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { CiExport, CiUser } from "react-icons/ci"
+import { CiBag1, CiExport, CiUser } from "react-icons/ci"
 import Icon from "../Icon"
-import { Dropdown, Space } from "antd"
+import { Avatar, Dropdown, Space } from "antd"
 import Cookies from "universal-cookie"
 import { authAction } from "../../redux/authSlice"
 import { useEffect } from "react"
@@ -31,12 +31,32 @@ const Navbar = ({container,  IsLoggIn}) =>{
     const items =  [ {
       key: '1',
       label : (
+        <a className=" flex gap-3 items-center">
+        <Icon Size="1rem" name={<CiUser/>}>    
+        </Icon>
+        {username}</a>
+      )
+    },
+    {
+    key: '2',
+    label : (
+      <a className=" flex gap-3 items-center">
+      <Icon Size="1rem" name={<CiBag1/>}>    
+      </Icon>
+      {userRole}</a>
+    )
+  },
+    {
+      key: '3',
+      label : (
         <a className=" flex gap-3 items-center" onClick={logout}>
         <Icon Size="1rem" name={<CiExport/>}>    
         </Icon>
         Log out</a>
       )
-    }]
+    }
+  
+  ]
     
     useEffect(()=>{
       dispatch(authAction.roleBase({role : role}))
@@ -46,34 +66,28 @@ const Navbar = ({container,  IsLoggIn}) =>{
     <div className={container ? styleNavbar.containerOfnavbar : styleNavbar.dashboard}>
       {/* logo-banner of navbar */}
     <a href="#" className={styleNavbar.bannerImageOfnavBar}>
-    <div className={container ? styleNavbar.conatiner3  : styleNavbar.conatiner3 + 
-      " rounded-md p-[2px] text-white"}>
-              <img src=  "./asset/Puc_logo.png"
-                className="w-9 h-9 mx-2"  alt="logo"/>
-                    {
-                      container ? <>
-                      <span className={IsLoggIn ? 
-                        styleNavbar.bannerName + "text-white mx-3 text-[20px]" 
-                        :styleNavbar.bannerName + "text-[20px] mx-3"}>
-                   </span>
-                      </> : <></>
-                    }             
+    <div className="inline-flex gap-2 items-center">
+              <img src={`${process.env.REACT_APP_API_KEY+"Puc_logo.png"}`}
+                className="w-9 h-9"  alt="logo"/>
+                <p className="text-[16px] font-roboto">Puc.exam</p>    
                </div>
     </a>
     {/* navbar style-list */}
     <div className={styleNavbar.listStyle}>
       {
         IsLoggIn &&
-        <div className="flex space-x-1">
+        <div className="flex items-center space-x-1">
           <>
+          <p className="text-[16px] tracking-wide">{username}</p>
         <Dropdown className="cursor-pointer" menu={{items}}>
           <Space className="text-lg text-variation-500
-           bg-neutral-200 cursor-pointer text-[16px] px-2 py-1 
+         cursor-pointer text-[16px] px-2 
           rounded-lg">
-            <Icon color={"#0f3460"} Size={"1.5rem"} name={<CiUser/>}/>
-          {username} {userRole}
+            <div className="bg-gray-300 flex items-center
+             justify-center w-9 h-9 rounded-full">
+            <CiUser/>
+            </div>
             </Space>
-      
         </Dropdown>
         </>
         </div>
