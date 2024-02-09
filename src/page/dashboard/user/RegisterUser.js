@@ -1,5 +1,4 @@
 import { useState } from "react";
-import axios from "axios";
 import {CiCirclePlus} from "react-icons/ci";
 import { Button,  Form,Input, Select, message,} from 'antd';
 import Header from "../../../components/Header";
@@ -142,8 +141,8 @@ export default function RegisterUser () {
   
       return<>
       <NavigatorButton/>
-        <div className="bg-white rounded-md border-[1px] border-neutral-200 p-3">
-        <Header icons={<CiCirclePlus/>} text={id ? "update user" : "Add User"}></Header>                      
+        <div className="bg-neutral-50 rounded-xl p-3">
+        <Header text={id ? "update user" : "Add User"}></Header>                      
         <div className="px-3 py-4 ">
        <Form onFinish={(value)=> id ? handleUpdate(value) 
         : handleSubmit(value)} form={form} layout="vertical">
@@ -192,7 +191,7 @@ export default function RegisterUser () {
       ]}
       hasFeedback
     >
-      <Input  defaultValue={["puctak"]} 
+      <Input 
        onChange={(e)=> setPassword(e.target.value)} />
     </Form.Item> 
     }  
@@ -237,13 +236,14 @@ export default function RegisterUser () {
           <div className="flex justify-end gap-3 w-full">
             <Form.Item>
               <Button
+              className="bg-white border-none"
               onClick={()=> {
                 form.setFieldsValue({
                   password : generateRandomNDigits(3)
                 })
               }}
               htmlType="button">
-                generatePassword
+                generate password
               </Button>
               </Form.Item>
           <Form.Item>

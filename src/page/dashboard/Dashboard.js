@@ -17,10 +17,12 @@ const IsLogin = useSelector(state => state.auth.isLogIn)
   return <>
   <Navbar IsLoggIn={IsLogin}></Navbar>
   <Container>
-  <div className=" w-full absolute   flex flex-row h-full ">
-  <LeftSideBar></LeftSideBar>
+  <main className=" w-full relative top-0">
+    <div className="flex h-screen">
+    <LeftSideBar></LeftSideBar>
   <Panel></Panel>
-  </div>
+    </div>
+  </main>
   </Container>
  
   

@@ -202,7 +202,7 @@ export default function GroupInfo () {
     return <>
     {contextHolder}
      <NavigatorButton/>
-    <div className="border border-neutral-200 bg-white rounded-lg py-2 px-4">
+    <div className=" bg-neutral-50 rounded-xl py-2 px-4">
       
         <Descriptions title={ <> 
         <div className="flex justify-between items-center mb-3">

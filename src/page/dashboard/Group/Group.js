@@ -40,16 +40,17 @@ const getApi = async () => {
 
     return <>
     <h1 className="text-[16px] font-medium text-variation-500 pb-2">
-      Course : </h1>
+      Course  </h1>
      <Row gutter={[16,16]}>
       { data.length !== 0 ? data.map((course,key)=> <>
       <Col span={6}>
         <Link key={key} to= {`/dashboard/Group/${course._id}`}>
         <Card 
+        className="bg-neutral-50 rounded-xl border-none"
             >
                 <Meta
-          avatar={<div className="bg-neutral-50 p-2
-           border-neutral-200 border-[1px]  rounded-full">
+          avatar={<div className="bg-white p-2
+             rounded-full">
             <Icon color={"#0f3460"}
          Size="1.5rem" name={<CiMemoPad/>}></Icon>
             </div>}
@@ -59,8 +60,8 @@ const getApi = async () => {
           <p className="">room : {course.class}</p>
           {
             course.level ?
-          <Tag color="purple" className="mt-1">{course.level}</Tag>
-           : <Tag color="yellow">none</Tag> }
+          <Tag color="#312e81" className="mt-1">{course.level}</Tag>
+           : <Tag color="#fcd34d">none</Tag> }
           </>
           }
         />

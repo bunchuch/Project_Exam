@@ -7,10 +7,9 @@ import { CiCircleMinus, CiCirclePlus } from "react-icons/ci"
 
 export const WritingForm = ({form}) => {
     return <>
-    <div className="bg-neutral-50
-       rounded-lg border-[1px]
-       p-3
-       border-neutral-200">
+    <div className="bg-white
+       rounded-xl
+       p-3">
         
         <Form.Item name="description" className="text-[12px]" label="Description">
               <Input className="py-2 w-2/3" placeholder="description"/>

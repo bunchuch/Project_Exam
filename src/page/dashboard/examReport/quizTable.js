@@ -264,23 +264,26 @@ export const QuizTable = () => {
       </Modal>
 
       {assignToExam()}
-      <div className="flex items-center gap-2">
+      <div className="flex items-center w-full justify-between">
       <p className="text-[14px] mt-2 text-gray-300">
              ✨ Click on each section name for show question or add new question
             </p>
-            <Button className="bg-neutral-200 rounded-md
+            <div className="flex gap-2">
+            {
+              hasSelectd ? <button 
+              className="bg-green-600 rounded-md
+               text-white px-2 py-0.5  text-[12px]" 
+              onClick={start}>
+                {hasSelectd ? selectedRowKeys.length : 0}
+                </button> : null
+            }
+            <button className="bg-variation-500
+             rounded-md 
              text-white px-2 py-0.5  text-[12px]" 
             onClick={start}>
-              <Icon
-              color={'#0f3460'}
-              Size={"1rem"}
-              name={<CiRedo/>}
-              ></Icon>
-            </Button>
-            {
-              hasSelectd ? <Button className="bg-variation-500 rounded-md text-white px-2 py-0.5  text-[12px]" 
-              onClick={start}>{hasSelectd ? selectedRowKeys.length : 0}</Button> : null
-            }
+             reload
+            </button>
+            </div>
           </div>
       </div>
             

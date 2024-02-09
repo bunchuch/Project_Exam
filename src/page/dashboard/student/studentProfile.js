@@ -130,21 +130,21 @@ const csvData = [
   
     return <div className="font-roboto">
         <NavigatorButton/>
-        <div className="mb-3 bg-white rounded-lg
-         border-neutral-200 border-[1px] p-3">
+        <div className="mb-3 bg-neutral-50 rounded-xl
+          p-3">
         <Descriptions title={
           <div className="flex justify-between">
           <p>Student Info</p>
 
 
           <div className="flex flex-wrap gap-2">
-        <button disabled className="flex gap-4 p-1 text-[10px]
+        {/* <button disabled className="flex  gap-4 p-1 text-[10px]
          bg-variation-500 rounded-md text-white">
           <CSVLink className="disabled
         text-white rounded-md px-2" 
         filename="studnetRport.csv" data={csvData}>
         Export to PDF
-      </CSVLink></button>
+      </CSVLink></button> */}
       <button onClick={()=>{ 
       showModal()
       }
@@ -177,7 +177,9 @@ const csvData = [
               {user?.username}
             </Descriptions.Item>
             <Descriptions.Item label="gender">
-              {user?.gender}
+              {user?.gender == "F" && "female" }
+              {user?.gender == 'M' && "male"}
+              {user?.gender == "optional" && 'optional'}
             </Descriptions.Item>
             <Descriptions.Item label="room">
               { user?.class}

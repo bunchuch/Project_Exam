@@ -4,21 +4,18 @@ import { Navigate } from 'react-router-dom';
 import { ReportExam } from '../examReport/examReport';
 import { QuizTable } from '../examReport/quizTable';
 import Icon from '../../../components/Icon';
-import {CiMemoPad, CiUser, CiEdit
+import {CiMemoPad, CiEdit
    ,CiReceipt, CiDiscount1,
    CiFolderOn,
    CiCreditCard2,
    CiStopwatch ,
    CiViewList,
-  
+  CiUser,
   } from 'react-icons/ci'
 import StudentExam from '../student/studentExam';
 import StartTimer from '../exam/StartTimer';
 import Exam from '../exam/Exam';
 import GroupExamReport from '../Group/GroupExamReport';
-
-
-
 
 export const CourseTabItem =  [
     {

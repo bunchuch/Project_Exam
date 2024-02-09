@@ -68,7 +68,7 @@ const sortbyTotal = () => {
             return {
                 ...columns,
                 render : (text ,record)=>
-                <Tag color={text == "PASS" ? "green" : "red"}>{text}</Tag>
+                <Tag color={text == "PASS" ? "#16a34a" : "#b91c1c"}>{text}</Tag>
             }
         }else if (columns.dataIndex === 'grade'){
                 return {
@@ -94,11 +94,11 @@ const sortbyTotal = () => {
     }) : []
 //    console.log(datacolumns)
     return <>
-    <div className="flex gap-3 items-center">
+    <div className="flex gap-3 items-center justify-between">
     <p className="text-[14px] mt-2 text-gray-300">
      ✨ Click on each id for view result
-     <ExportToCSVButton filename={"studentReport"} data={rearrangedData}/>
         </p>
+        <ExportToCSVButton filename={"studentReport"} data={rearrangedData}/>
     </div>
    <Table
 

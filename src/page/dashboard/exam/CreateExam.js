@@ -127,10 +127,10 @@ export default function CreateExam(){
     return <div> 
         {contextHolder}
    <NavigatorButton/>
-    <div className="bg-white rounded-lg
-     border-[1px] border-neutral-200 p-4">
+    <div className="bg-neutral-50 rounded-lg
+      p-4">
         <Header text={ id ? `update exam ${id}`
-         : `Create Exam`} icons={<CiRuler/>}/>
+         : `Create Exam`}/>
 
         
         {
@@ -206,7 +206,9 @@ export default function CreateExam(){
             </Form.Item>
                         </div>
             <Form.Item className="flex justify-end">
-                <Button style={{
+                <Button
+                classNames="rounded-xl"
+                style={{
                     color : "#ffff"
                 }} className="bg-variation-500 " htmlType="submit">
                     submit

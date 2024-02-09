@@ -77,8 +77,8 @@ export default function RegisterStudent (){
 
     return <>
    <NavigatorButton/>
-    <div className="bg-white border-neutral-200 border rounded-lg p-3">
-    <Header icons={<CiAlignBottom/>} text={stuid ? "update student" : "Register Student"}/>
+    <div className="bg-neutral-50 rounded-xl p-3">
+    <Header  text={stuid ? "update student" : "Register Student"}/>
 
      <div className="px-3 py-4">
      <Form 
@@ -169,15 +169,17 @@ export default function RegisterStudent (){
                 <div className="flex justify-between gap-2">
                     {stuid ? <></> :
                 <Button htmlType="button"
+                className="rounded-xl"
                  onClick={onFill} style={{
                 background: '#f43f5e',
                 color : "#ffff"
             }}>
-                generate username & password
+               auto fill username and password
             </Button>
                 }
             <div className="flex gap-2">
             <Button htmlType="reset"
+            className="rounded-xl"
                  onClick={()=>{
                     form.resetFields()}} style={{
                 background: '#fde047',
@@ -186,6 +188,7 @@ export default function RegisterStudent (){
             </Button>
             <Button 
             htmlType="submit"
+            className="rounded-xl"
             style={{
                 background: '#0f3460',
                 color : '#ffff',

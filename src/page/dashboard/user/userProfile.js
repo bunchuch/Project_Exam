@@ -135,7 +135,7 @@ export default function UserProfile (){
           <div className="grid gap-4 grid-cols-2">
           <Card
         loading={loading}
-        className="border bg-white">
+        className="border-none rounded-xl bg-neutral-50">
             <Meta
             className="flex items-center"
             avatar={
@@ -212,7 +212,7 @@ export default function UserProfile (){
 
           <Card
         loading={loading}
-        className="border bg-white">
+        className="border-none rounded-xl bg-neutral-50">
             <Meta
             className="flex flex-col  mt-2 items-start"
             avatar={
@@ -228,14 +228,15 @@ export default function UserProfile (){
             </Meta>
             </Card> 
                </div>
-                <div className="bg-white rounded-md border-[1px] mt-4 border-neutral-200 p-3">
-                
+                <div className="bg-neutral-50
+                 rounded-xl  mt-4 p-3">
                        {/* userInfo */}
              <Descriptions title='descriptions' className="mt-5 px-3 pb-4" >
              <Descriptions.Item label="Telephone">{data?.phone ? data?.phone
               : "(+000)-000-000"}</Descriptions.Item>
              <Descriptions.Item label="email">{data?.email}</Descriptions.Item>
-             <Descriptions.Item label="Live">{data?.address ? data?.address : "location"}</Descriptions.Item>
+             <Descriptions.Item label="Live">
+                {data?.address ? data?.address : "location"}</Descriptions.Item>
             <Descriptions.Item label="Address">
                 <Tag>{data?.address ? data?.address : "default"}</Tag>
                 </Descriptions.Item>

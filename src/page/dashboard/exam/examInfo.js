@@ -117,8 +117,8 @@ export default function ExamInfo (){
       
  return <div>
  <NavigatorButton/>
- <div className="bg-white rounded-md
-  border-neutral-200 border-[1px] p-4">
+ <div className="bg-neutral-50 rounded-xl
+   p-4">
  <>
  <div className="flex justify-between items-center ">
     <Header text={"Exam Info"}/>

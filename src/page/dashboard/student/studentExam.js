@@ -60,11 +60,12 @@ useEffect(()=> {
     report ? report?.map((items, key)=>
     <>
      <Card
+     className="bg-neutral-50 border-none rounded-xl"
      key={key}>
         <Meta
           title={<div className="flex justify-between">{items?.exam_title}
           <button onClick={()=> handleDeleteReport(items._id)} 
-        className="bg-neutral-50 border border-gray-300 p-1 rounded-full">
+        className="bg-white border border-gray-300 p-1 rounded-full">
           <Icon
           color={"red"}
           Size={"1rem"}

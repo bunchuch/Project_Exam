@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import moment from "moment";
-import { Empty, Button, Popconfirm, message, Tooltip, Descriptions,
-    Card, Tag,Image  } from "antd";
-import { CiEdit, CiTrash } from "react-icons/ci";
+import {  Button, Popconfirm, message, Tooltip, Descriptions,
+    Card, Tag,Image, Input  } from "antd";
+import { CiEdit, CiTrash, CiCirclePlus } from "react-icons/ci";
 import Icon from "../../../components/Icon";
 import { TitleRender } from "../../../components/Title";
 import NavigatorButton from "../../../components/navigatorButton";
@@ -15,7 +15,7 @@ export default function ViewQuestion (){
     const {id} = useParams()
     const [data ,setData] = useState([])
     const name = useLocation()
-    const { Meta } = Card;
+    const { TextArea } = Input;
     const dispactch = useDispatch()
 
 
@@ -56,34 +56,50 @@ export default function ViewQuestion (){
     <NavigatorButton/>
     <div className="mt-2">
     <Descriptions 
-    className="bg-white p-4 rounded-md border border-neutral-200" 
+    className="bg-neutral-50 shadow-sm p-4 rounded-xl" 
     title="question Info">
-  <Descriptions.Item label="question name">{name.state}</Descriptions.Item>
-  <Descriptions.Item label="question amuont">{data?.length}</Descriptions.Item>
+  <Descriptions.Item label="section">{name.state}</Descriptions.Item>
+  <Descriptions.Item label="question length">{data?.length}</Descriptions.Item>
+  <Descriptions.Item label="create">{moment(data?.createdAt).format('LL')}</Descriptions.Item>
+  <Descriptions.Item label="last update">{moment(data?.updatedAt).format('LL')}</Descriptions.Item>
   <Descriptions.Item label="actions">
   <Link to={`/dashboard/Quiz/${id}/${name.state}`}>
-   <button 
-    className="bg-variation-500 px-2 rounded-md text-white mx-3">
-        Create New Question</button>
+   <a
+    className="text-variation-500 
+    cursor-pointer
+    flex gap-2 items-center px-2 ">
+      <Icon Size={"1rem"} name={<CiCirclePlus/>}/>  
+      <p className="font-semibold hover:underline">add question</p></a>
    </Link>
   </Descriptions.Item>
 </Descriptions>
 
 
-<div className="mt-5 grid grid-cols-2 gap-4" accordion>
+<div className="mt-5 grid grid-cols-3 gap-4" accordion>
         {data.map((items, key) => (
-          <Card header={items.question} key={key}>
-           <Meta
-            description={<div>
+          <div className="bg-neutral-50
+          p-4 rounded-xl
+          shadow-sm
+           border-none"
+           key={key}>
+           <div>
              <div className="flex justify-between">
-                <p className="text-[16px] font-semibold text-gray-600">{key+1} 
-                . {items.question}</p>
+                {
+                items.name == 'writing' ? <div></div>
+               : <TextArea 
+                readOnly
+                value={items?.question}
+                className="text-[12px] bg-white rounded-xl
+                 h-10 
+                 p-2 text-gray-600">{key+1} 
+                . {items.question}</TextArea>
+                }
                 <div className="flex float-right ">
                 <Tooltip placement="bottom" title="Update Question">
                  <Link to={`/dashboard/Question/${items._id}/${name.state}/update`}>
                 <Button
                 className="border-none shadow-none"
-                icon={<Icon color={"blue"} Size={"1.2rem"}
+                icon={<Icon color={"blue"} Size={"1rem"}
                 name={<CiEdit/>}></Icon>}
                 />
              </Link>
@@ -95,78 +111,92 @@ export default function ViewQuestion (){
             title="Are you sure to this question ?">
             <Button
         className="border-none shadow-none"
-        icon={<Icon color="red" Size={"1.2rem"}
+        icon={<Icon color="red" Size={"1rem"}
         name={<CiTrash/>}></Icon>}
             />
         </Popconfirm>
         </div>
         </div>
-        
-        <div className="bg-white">
+        <>
                      <div className="space-y-4">
                         <span className="flex flex-wrap gap-2 my-2">
                         <Tag color=
-                        {items?.name == 'Mqc' ? 'yellow' : 'purple'}>
+                            {items?.name == 'Mqc' ? 'yellow' : 'purple'}>
+                                type : 
                             {items.name === 'Blank' && 'fill in blank' }
                             {items.name === 'writing' && 'writing' }
-                            {items.name === 'Mqc' && 'multiple-choice question' }</Tag>
+                            {items.name === 'Mqc' && 'multiple-choice question'}
+                            </Tag>
                        <Tag color={items?.upload?.path ? 'gold' : "red"}> 
-                       <p  className="font-normal break-words flex flex-wrap">
-                        {items.upload?.path 
+                       <p  className=
+                       "font-normal break-words flex flex-wrap">
+                      file : {items.upload?.path 
                             ? "file" : "none"}</p> </Tag> 
+                            <Tag color="blue">{items.point}pt</Tag>
                         </span>                     
-                        <span className="my-6">                
+                        <span>                
                             {
-                               items.upload?.type ? items.upload?.type == "audio/mpeg" ? 
+                               items.upload?.type ? 
+                               items.upload?.type == "audio/mpeg" ? 
                                <div>
                                <audio
                                className="h-5"
                                 controls
-                                src={`${process.env.REACT_APP_API_KEY + items?.upload?.path}`}>
+                                src={`${process.env.REACT_APP_API_KEY 
+                                + items?.upload?.path}`}>
 
                                 </audio>
                                </div>
                                
-                                : <Image className="object-cover rounded-md my-2 border
+                                : <Image className="object-cover
+                                 rounded-md my-2 border
                                  border-neutral-200" height={100}  
-                                width={250} src={process.env.REACT_APP_API_KEY + items?.upload?.path}/> : <></>
+                                width={250} 
+                                src={process.env.REACT_APP_API_KEY
+                                     + items?.upload?.path}/> : null
                             }
                         </span>
-                        <p  className="font-normal mx-2 my-2 break-words">{items.description ? 
+                        <p  className=
+                        "font-normal text-[14px] break-words">
+                            {items.description ? 
                        items.description : "None"}</p>
                    <span className="mt-5">{items.name === 'Blank' ?
                     <>{items.options ? items.options.map(i => <Tag>
                     {i}
                    </Tag>) : [0]}</> 
                     : items.options ? items.options.map((i,k) => <>
-                      <label  className="flex font-medium text-gray-600 break-words"> 
-                      <input type="checkbox"  className="font-normal mx-2 break-words"/>
+                      <label 
+                       className="flex text-[14px]
+                        text-gray-600 break-words"> 
+                      <input type="checkbox" 
+                       className="font-normal mx-2 break-words"/>
                       {i.value}
                        </label>
                 </>) :null}</span>
                     </div>
-                    <div className="flex justify-between flex-wrap gap-2">
-                    <p className="font-normal">
-                        create
-                        <Tag color="blue" className="mx-2">{ moment(items.createdAt).format("LL")}</Tag></p>  
-                        <p className="">
-                    correctAnswer :    
+                    <div className="flex justify-between
+                     flex-wrap gap-2">  
+                        <p className="text-[14px] ml-2">
+                    correctAnswer     
                         {
                             items.name === "Blank" ?
                              null : <>
                             {
                         items?.correctAnswer?.map((value)=>
-                         <Tag color="green">{value}</Tag>)
+                         <p className="
+                         border px-1 text-green-600
+                         text-[12px]
+                         bg-green-50 m-1 
+                         rounded-md border-green-600
+                          truncate w-auto">{value}</p>)
                     }
                             </>
                         }   
                                 </p>         
                     </div>
-                    </div>
+                    </>
         </div>
-           }
-        />
-          </Card>
+          </div>
         ))}
       </div>
     </div>

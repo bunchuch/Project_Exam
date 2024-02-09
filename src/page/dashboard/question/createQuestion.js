@@ -1,5 +1,5 @@
 import {message,
-  Button,Radio,Form,Upload ,Card,Typography,Modal, InputNumber} from "antd"
+  Button,Radio,Form,Upload ,Card,Typography,Modal, InputNumber, Tabs} from "antd"
 import { useEffect, useState } from "react"
 import {  useParams } from "react-router-dom"
 import {  CiExport, CiUndo } from "react-icons/ci";
@@ -15,6 +15,10 @@ import { createQuestion, updateQuestion } from "../../../api/exam";
 import axiosInstance from "../../../api";
 import {useDispatch , useSelector} from 'react-redux'
 import {loadingAction} from "../../../redux/loaderSlice"
+import { RiQuestionAnswerFill, RiCheckDoubleFill} from "react-icons/ri";
+import { BiMessageAltEdit } from "react-icons/bi";
+import { MdOutlineEditNote } from "react-icons/md";
+
 
 export default function CreateQuestion() {
     const [form] = useForm()
@@ -87,6 +91,9 @@ export default function CreateQuestion() {
           setUploading(false)
           setQuestionId(res.data.questionId)
           messageApi.success("upload successfully")
+          form.setFieldsValue({
+            questionId : res.data.questionId
+          })
           
         }).catch(error =>{
           setUploading(false)
@@ -101,7 +108,6 @@ export default function CreateQuestion() {
       const fillId = ()=>{
         form.setFieldsValue({
           subId : id,
-          questionId : questionId,
         })
       }
 
@@ -161,7 +167,6 @@ export default function CreateQuestion() {
     </Modal>
      }
 
-
     return <>
     {contextHolder}
     {uploadForm()}
@@ -177,12 +182,80 @@ export default function CreateQuestion() {
     onFinish={onFinish}
     name="dynamic_form_complex"
     autoComplete="off">
-    <div
-      style={{
-            display: 'flex',
-            flexDirection: 'column',
-            rowGap : 10 }} >
+    <div className="flex flex-col gap-2">
+          <Form.Item
+    className="mt-4 border-b border-neutral-200 pb-2"
+    name={"name"} rules={[
+            {
+              required: true,
+              message: 'Type is undefine',
+              whitespace : true,
+              },
+              ]} 
+              valuePropName={values}>
+              <Radio.Group
+              style={{
+                border: 'none'
+              }}
+              onChange={fillId}
+             >
+            <Radio.Button
+            style={{
+              border: 'none',
+            }}
+            onChange={()=> setCheck(true)}
+            disabled={titles !== "writing"
+             ? false : true}
+              onClick={()=>setCheck(true)}
+              value="Mqc">
+                <span className="flex gap-1 items-center">
+                <Icon Size={"1.2rem"} name={<RiCheckDoubleFill />}/>
+               <p> multiple choice</p>
+               </span>
+              </Radio.Button>
+            <Radio.Button
+             style={{
+              border: 'none',
+            }} 
+            disabled={titles !==
+             "writing" ? false : true} 
+              onClick={()=>setCheck(false)} 
+              value="Blank">
+                <span className="flex items-center gap-2">
+                <Icon Size={"1.2rem"} name={<BiMessageAltEdit />}/>
+                <p>fill in blank </p>
+                </span>
+               </Radio.Button>
+            <Radio.Button
+             style={{
+              border: 'none',
+              
+            }} 
+            disabled 
+               value="Q&A">
+                <span className="flex items-center gap-2">
+                <Icon Size={"1.2rem"} name={<RiQuestionAnswerFill/>}/>
+                <p>Q&A </p>
+                </span>
+               </Radio.Button>
+                <Radio.Button 
+                 style={{
+                  border: 'none',
+                  borderRadius : '0px'
+                }}
+                disabled={titles
+               !== "writing" ? true : false}  
+               onClick={()=>setCheck(false)} 
+               value="writing">
+                <span className="flex items-center gap-2">
+                <Icon Size={"1.2rem"} name={<MdOutlineEditNote/>}/>
+                <p>writing</p>
+                </span>
+                </Radio.Button>
+        </Radio.Group>
+              </Form.Item>
             <Card
+            className="bg-neutral-50 border-none"
               size="small"
               title={` ${qid ? "Update" : "Create"} ${title} Question `}
             >
@@ -200,7 +273,7 @@ bg-[#fef9c3] font-semibold pb-1 text-rose-600">
     </div>
            <div className="flex gap-2">
         <Button
-         className="flex items-center"
+         className="flex rounded-xl items-center"
         icon={<Icon Size={"1.2rem"} 
         name={<CiFileOn/>}></Icon>}
          onClick={showModal}>
@@ -209,48 +282,16 @@ bg-[#fef9c3] font-semibold pb-1 text-rose-600">
           <Button icon={<Icon Size={"1.2rem"} 
           name={<CiUndo/>}></Icon>} 
           onClick={()=> form.resetFields()}
-           className="bg-yellow-300 flex items-center">reset</Button>
+           className="bg-yellow-300 rounded-xl flex items-center">reset</Button>
           <Button htmlType="submit" icon={<Icon Size={"1.2rem"} 
           name={<CiSaveUp1/>}></Icon>} 
-      className="flex  bg-variation-500
+      className="flex rounded-xl  bg-variation-500
        text-white justify-center items-center">
         {qid ? "update" : "save"}
           </Button>
             </div>
           </div>
     <div className="border-b mb-2 border-gray-300"></div>
-    <Form.Item name={"name"} rules={[
-            {
-              required: true,
-              message: 'Type is undefine',
-              whitespace : true,
-              },
-              ]} 
-              label="Select Type" 
-              valuePropName={values}>
-              <Radio.Group
-              onChange={fillId}
-              size={"small"}
-             buttonStyle="solid">
-            <Radio.Button
-            onChange={()=> setCheck(true)}
-            disabled={titles !== "writing"
-             ? false : true}
-              onClick={()=>setCheck(true)}
-              value="Mqc">multiple choice</Radio.Button>
-            <Radio.Button 
-            disabled={titles !==
-             "writing" ? false : true} 
-              onClick={()=>setCheck(false)} 
-              value="Blank">fill in blank</Radio.Button>
-            <Radio.Button disabled 
-               value="writing">Q&A</Radio.Button>
-                <Radio.Button disabled={titles
-               !== "writing" ? true : false}  
-               onClick={()=>setCheck(false)} 
-               value="writing">Writing</Radio.Button>
-        </Radio.Group>
-              </Form.Item>
 
     <Form.Item label="score" name={'point'}>
                 <InputNumber/>
@@ -264,7 +305,7 @@ bg-[#fef9c3] font-semibold pb-1 text-rose-600">
                 check ? <div>
 
                   <Mqc form={form}
-                       correctAnswer={form.getFieldsValue().options}
+                  correctAnswer={form.getFieldsValue().options}
                   />
                 </div> : <Blank form={form}/>
               }

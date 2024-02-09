@@ -18,6 +18,7 @@ export default function StudentReport (){
   const [markPoint , setMarkPoint] = useState(0)
   const [changeForm ,setChangeForm] = useState(false)
   const [title ,setTitle] = useState('')
+  const [messageApi , contextHolder] = message.useMessage()
 
 
   const getReport = async () =>{
@@ -25,10 +26,11 @@ export default function StudentReport (){
             dispatch(loadingAction.ShowLoading())
             const response = await getReportByExamId(eid)
             dispatch(loadingAction.HideLoading())
+            console.log(response)
             if(response.success){
                 setReport(response.result)
             }else{
-                message.error(response.data.message)
+                messageApi.error(response.data.message)
             }
         } catch (error) {
             message.error(error)
@@ -43,42 +45,65 @@ export default function StudentReport (){
     setIsModalOpen(false);
   };
 
-  const columns = [
+  const findGrade = (currentScore , sectionScore) => {
+    if(currentScore > sectionScore){
+      return "B"
+    }else if (currentScore === sectionScore) {
+      return "A"
+    }else {
+      return "F"
+    }
+
+
+
+
+
+  }
+
+  
+  
+  const columns =[
     {
       title: 'section name',
       dataIndex: 'subjectName',
       key: 'subjectName',
       render: (text) => <a 
-      className="font-semibold text-variation-500">{text}</a>,
+      className=" text-variation-500">{text}</a>,
     },
     {
       title: 'section score',
       dataIndex: 'sectionScore',
       key: 'sectionScore',
+      width : '120px',
       render : (text ,record)=>
-       <><Tag color={text === "failed" ? "red" : "green"}>
-        {text}</Tag></>
+       <><p>
+        {text}</p></>
     },
     {
-      title: 'score',
+      title: 'exam score',
       dataIndex: 'markPoint',
       key: 'markPoint',
+      width : '120px',
     },
-    {
-        title : "formData",
-        dataIndex : 'formData',
-        key : "formData",
-        render : (text)=><a
-         onClick={()=>window.open(`${process.env.REACT_APP_API_KEY + text}`, 'blank')}>
-          <p className="break-all w-[10rem]">{text}</p>
-         </a>
+{
+  title : "grade",
+  dataIndex : 'grade',
+  key : "formData",
+  width : '50px',
+  render : (text,record)=><a>
+    <p>{
+      findGrade(record?.sectionScore , record?.markPoint)
+    
+    }</p>
+   </a>
 },
     {
       title: 'status',
       dataIndex: 'status',
       key: 'status',
+      width : '20px',
       render : (text ,record)=>
-       <><Tag color={text === "failed" ? "red" : "green"}>
+       <><Tag color={text === "failed" ? "#b91c1c" : "#22c55e"}>
         {text}</Tag></>
     },
     ,{
@@ -92,7 +117,17 @@ export default function StudentReport (){
         showModal(record.subjectName , record.sectionScore)
        }}>update Score</button>
       </>
-    }
+    },
+    {
+      title : "file",
+      dataIndex : 'formData',
+      key : "formData",
+      width : '20rem',
+      render : (text)=><a
+       onClick={()=>window.open(`${process.env.REACT_APP_API_KEY + text}`, 'blank')}>
+        <p className="break-all ">{text}</p>
+       </a>
+},
   ]
   
   const handleUpdateScore = async ()=>{
@@ -109,15 +144,15 @@ export default function StudentReport (){
       if(response.success){
             message.loading('patch...')
             setTimeout(()=>{
-                message.success(response.message)
+                messageApi.success(response.message)
             },5000)
          
         getReport()
       }else{
-        message.error(response.data.message)
+        messageApi.error(response.data.message)
       }
     } catch (error) {
-      message.error(error) 
+      messageApi.error(error) 
     }
 }
     useEffect(()=>{
@@ -125,15 +160,18 @@ export default function StudentReport (){
     },[])
 
     return <>
+    {contextHolder}
     <NavigatorButton></NavigatorButton>
-    <Descriptions className="bg-white border
-     border-neutral-200
-     rounded-lg mb-4 p-5" title="Student Result">
-        <Descriptions.Item label='student id'>
-    {report?.user}
+    <Descriptions className="bg-neutral-50 border-none
+     rounded-xl mb-4 p-5" title="Student Result">
+        <Descriptions.Item label='student name'>
+    {report?.students?.firstname} {report?.students?.lastname}
     </Descriptions.Item>
-    <Descriptions.Item label='exam id'>
-    {report?.exam}
+    <Descriptions.Item label='course'>
+    {report?.students?.course}
+    </Descriptions.Item>
+    <Descriptions.Item label='exam name'>
+    {report?.exam.title}
     </Descriptions.Item>
     <Descriptions.Item label='submit time'>
     {moment(report?.createdAt).format('LL')}

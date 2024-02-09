@@ -72,7 +72,7 @@ export const Blank = ({form}) => {
                       </TextArea>
                     </Form.Item> 
                     <Button 
-                    className="bg-yellow-300"
+                    className="bg-yellow-300 rounded-xl"
                     onClick={()=>{
                      SentenceString(form.getFieldValue().question)} }>
                     splite Sentence
@@ -92,7 +92,9 @@ export const Blank = ({form}) => {
                       <CheckableTag 
                         key={i}
                         checked ={addOptions.includes(i)}
-                      className={`text-[14px] p-2 border border-neutral-200`} htmlType="button" 
+                      className=
+                      {`text-[14px] p-2 border rounded-xl border-neutral-200`} 
+                      htmlType="button" 
                       disabled={disabled}
                        onChange={()=>handleClickAdd(i, k)}>
                         {i}
@@ -102,7 +104,7 @@ export const Blank = ({form}) => {
                 </ul>
               </Form.Item>
               <div className="grid grid-cols-2 gap-3">
-                <div className="bg-neutral-50 p-2 rounded-lg">
+                <div className="bg-white p-2 rounded-xl">
                 <div className="flex flex-wrap gap-1 pb-2">
                 <p className="font-semibold">option words :</p>
                 <div>
@@ -110,7 +112,7 @@ export const Blank = ({form}) => {
                 {addOptions.map((i,k)=><li key={k} className="">
                   <Button type="button"
                 onClick={()=> handleClickDelete(i) }
-                className="flex gap-2 bg-neutral-200 border-none
+                className="flex gap-2 rounded-xl bg-neutral-200 border-none
                  px-2 items-center p-0 " key={k}>
                  <p>{i}</p> 
                  <div className=" justify-center">
@@ -123,7 +125,7 @@ export const Blank = ({form}) => {
                 </div>
                 {
                   addOptions.length > 0 ? <>
-                    <Button className="bg-rose-500"
+                    <Button className="bg-variation-500 rounded-xl"
                   style={{
                     color:"#ffff"
                   }} 
@@ -138,11 +140,13 @@ export const Blank = ({form}) => {
                   }}/>
               </Form.Item> 
                 </div>
-                <div className="p-3 bg-neutral-50 rounded-lg">
+                <div className="p-3 bg-white rounded-xl">
                   <p className="mb-3 text-gray-600 text-[12px]">
                     Please Enter Correct Answer</p>
+                    <ul className="grid grid-cols-4 gap-2">
                   {
                     addOptions ? addOptions.map((item , key)=>(
+                      <li>
                             <Form.Item 
                               rules={[
                                 {
@@ -155,8 +159,10 @@ export const Blank = ({form}) => {
                             name={['correctAnswer', `blank${key+1}`]}>
                               <Input/>
                             </Form.Item>
+                            </li>
                     )) : 0
                   }
+                  </ul>
                   
                 </div>
                 

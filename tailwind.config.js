@@ -25,6 +25,9 @@ module.exports = {
       "green-50"  : "#d1fae5",
       "green-600" : "#16a34a",
       "cyan-50"   : "#ecfeff",
+      "cyan-400" : "#22d3ee",
+      "cyan-500" : "#06b6d4",
+      "cyan-600" : "#0891b2",
     },
    
     screens: {

@@ -56,11 +56,14 @@ const { Meta } = Card;
        data ? data.map((item ,key)=> (
             <div key={key}>
             <Link to={`/dashboard/Exam/${item._id}`}>
-            <Card loading={loading}
+            <Card
+            className=
+            "bg-neutral-50 border-none rounded-xl"
+            loading={loading}
             >
                 <Meta
-          avatar={<div className="bg-neutral-50 p-2
-           border-neutral-200 border-[1px]  rounded-full">
+          avatar={<div className="bg-white p-2
+             rounded-full">
             <Icon color={"#0f3460"}
          Size="1.6rem" name={<CiCreditCard2/>}></Icon>
             </div>}

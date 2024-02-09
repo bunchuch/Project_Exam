@@ -110,8 +110,8 @@ const handleCreate = async (value) => {
 
     return <>
      <NavigatorButton/>
-    <div className="bg-white p-4  rounded-lg border border-neutral-200">
-     <Header icons={<CiViewBoard/>} text={id ? `update Course ${id}` :" Create new Course"}></Header>
+    <div className="bg-neutral-50 p-4  rounded-xl ">
+     <Header  text={id ? `update Course ${id}` :" Create new Course"}></Header>
      {
         id && <>
         <button className="bg-variation-500 active:bg-variation-400 px-2 py-[1.5px] text-[12px]
@@ -170,8 +170,9 @@ const handleCreate = async (value) => {
             <Button htmlType="submit" style={{
                 background: '#0f3460',
                 color : '#ffff',
+                borderRadius : '10px'
             }} >
-              {id ? "update" : "Create" }
+              {id ? "update" : "create" }
             </Button>
         </Form.Item>
         </div>

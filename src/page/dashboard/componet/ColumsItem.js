@@ -18,6 +18,13 @@ export const columnsUser = [
       key: 'email',
     },
     {
+      title: 'address',
+      dataIndex: 'address',
+      key: 'address',
+      render: (text)=> <p className={text ? "" 
+      :"text-rose-500 font-semibold"}>{text ? text : 'default'}</p>
+    },
+    {
     title: 'enroll to work',
     dataIndex: 'createdAt',
     key: 'createdAt',
@@ -38,17 +45,17 @@ export const columnsUser = [
         render: (_, { role }) => (
           <>
             {role.map((role) => {
-              let color = role.length >= 6 ? 'geekblue' : 'green';
+              let color = role.length >= 6 ? '#312e81' : '#16a34a';
               if (role === 'superadmin') {
-                color = 'volcano';
+                color = '#d43f3f';
               }else if (role === 'staff'){
-                color = 'yellow'
+                color = '#fcd34d'
               }else if (role === "teacher"){
-                color = "purple"
+                color = "#0891b2"
               }
               return (
                 <Tag color={color} key={role}>
-                  {role.toUpperCase()}
+                  {role.toLowerCase()}
                 </Tag>
               );
             })}
@@ -73,18 +80,17 @@ export const columnsStudent = [
       title: 'firstname',
       dataIndex: 'firstname',
       key : 'firstname' ,
-      filters : [
-        {
-          text : "jonh",
-          value : 'jonh'
-        }
-      ]
-      
     },
     {
       title: 'lastname',
       dataIndex: 'lastname',
       key : 'lastname',
+      
+    },
+    {
+      title: 'gender',
+      dataIndex: 'gender',
+      key : 'gender',
       
     },
     {

@@ -6,14 +6,13 @@ import {CiTrash} from "react-icons/ci"
 
 
 
-export const Mqc = ({form , correctAnswer}) => {
+export const Mqc = ({form}) => {
     const [check ,setCheck] = useState(0)
     const {TextArea} = Input
     const {Option} = Select
     var filterValue =""
  
    
-
     return <> 
      <Form.Item  rules={[
                      {
@@ -25,11 +24,12 @@ export const Mqc = ({form , correctAnswer}) => {
                     <TextArea rows={10} maxLength={300} showCount />
                   </Form.Item>
                   <div className="grid grid-cols-2 gap-4">
-                <div className="bg-neutral-50 px-3 py-2
-                  rounded-lg w-full">
+                <div className="bg-white px-3 py-2
+                  rounded-xl w-full">
                   <p className="text-[12px] font-semibold
                                   text-gray-600
-                    ">NOTE : Please add one more default options before make the correctAnswer</p> 
+                    ">NOTE : Please add one more default options before
+                     make the correctAnswer</p> 
                    <Form.Item
                     rules={[
                      {
@@ -52,7 +52,7 @@ export const Mqc = ({form , correctAnswer}) => {
                     <Input />
                   </Form.Item>
                   </div>
-            <div className="bg-neutral-50 px-3 py-1 rounded-lg 
+            <div className="bg-white px-3 py-1 rounded-xl 
              ">
                     <Form.List name={'options'}>
                       {(subFields, subOpt) => (
@@ -119,7 +119,7 @@ export const Mqc = ({form , correctAnswer}) => {
                           ))}
                           {
                             subFields.length  >= 10 ? null
-                             : <Button type="dashed" onClick={() => {
+                             : <Button className="rounded-xl" type="dashed" onClick={() => {
                               setCheck(subFields.length + 1)
                               subOpt.add()}
                               

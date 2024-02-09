@@ -1,19 +1,19 @@
 import React, {useState, createContext} from "react";
 import Icon from "../../../components/Icon";
 import { Link, useLocation } from "react-router-dom";
-import { CiGrid2H, 
-  CiUser,
-  CiCircleChevLeft, CiCircleChevRight, CiReceipt, CiStar, CiCircleAlert } from "react-icons/ci";
-import {FcOrgUnit, FcManager, FcOrganization, FcNook, FcLeave} from 'react-icons/fc'
+import { 
+  CiCircleChevLeft, CiCircleChevRight,CiUser , CiReceipt} from "react-icons/ci";
+import { MdOutlineDashboard,  MdOutlineReport } from "react-icons/md";
+import {FiLayers} from "react-icons/fi"
 import { Tooltip } from "antd";
 
 
 const LeftSideBarList = [
-    {id : 1 ,name : "Dashboard", icon: <FcOrgUnit/>, Link: ""},
-    {id : 2,name:"Users", icon: <FcManager/>, Link:"User"},
-    {id : 3,name:"Groups",icon:<FcOrganization/>, Link: "Group"},
-    {id : 4 ,name:"Exam",icon:<FcNook/>, Link: "Exam"},
-    {id : 5,name:"Report", icon : <FcLeave/>, Link : "Report"}]
+    {id : 1 ,name : "Dashboard", icon: <MdOutlineDashboard/>, Link: ""},
+    {id : 2,name:"Users", icon: <CiUser/>, Link:"User"},
+    {id : 3,name:"Groups",icon:<FiLayers/>, Link: "Group"},
+    {id : 4 ,name:"Exam",icon:<CiReceipt/>, Link: "Exam"},
+    {id : 5,name:"Report", icon : <MdOutlineReport/>, Link : "Report"}]
 
 
 export const DashboardContext = createContext()
@@ -32,7 +32,7 @@ export default function LeftSideBar ({item}) {
         setDurations(document.getElementById(''))
     }
     const normal = "w-full flex flex-col "
-    +" justify-between bg-white font-roboto border-[1px] border-neutral-200 overflow-auto h-full"
+    +" justify-between bg-neutural-50  overflow-auto h-full"
 
       return <>
       <DashboardContext.Provider value={sideReponse}>
@@ -40,26 +40,27 @@ export default function LeftSideBar ({item}) {
           durations : '3s'
         }} className={  `${ sideBar ? `basis-[20%] 2xl:basis-[15%] relative h-full`
         : `md:basis-[5%] 2xl:basis-[3.5%] basis-[10%] relative h-full`} `+ normal}>
-        <ul className="mt-[3.5rem] ">
+        <ul className="mt-[3.5rem]">
        
         {
             LeftSideBarList.map((item , key)=> <li className="py-4" key={key}>
                 <Link to={`/dashboard/${item.Link}`}>
-            <a href="" className={`inline-flex items-center w-full  hover:bg-neutral-50
-             text-[#0f3460] ${item.Link === extractedWord ? 'bg-neutral-50 border-r-[4px] border-variation-500' : null} py-2 px-4`}>
+            <a href="" className={`inline-flex items-center w-full  hover:bg-neutral-200
+             text-[#0f3460] ${item.Link === extractedWord ? 'bg-neutral-200 border-r-[4px] border-variation-500'
+              : null} py-2 px-4`}>
              <div className = {`${item.Link == extractedWord ?  
-             "" : ""} flex w-full`}>
+             "" : ""} flex w-full items-center`}>
+              <div className="w-8 h-8 p-2 
+              bg-gradient-to-br from-white to-gray-300 rounded-full">
               {
-                sideBar ?  <div  className="w-7 h-7">
+                sideBar ? 
                 <Icon color="#0f3460" name={item.icon} ></Icon>
-                </div> :  <Tooltip placement="right" title={item.name}>
-                <div  className="w-7 h-7">
+               :  <Tooltip placement="right" title={item.name}>
                 <Icon color="#0f3460" name={item.icon} ></Icon>
-                </div>
                 </Tooltip>
               }
-
-                  <span className={ `${sideBar ? "block ml-3" : "hidden" }`}>
+              </div>
+                  <span className={ `${sideBar ? "block ml-3 mx-3" : "hidden" }`}>
                     {item.name}</span>
                    
                   
@@ -72,10 +73,9 @@ export default function LeftSideBar ({item}) {
        
       </ul>
       <div>
-      <p className="p-2 text-[12px] text-gray-600">v.0.1:Beta</p>     
-      <div className={  `${sideBar ? ` bg-neutral-50 py-2
+      <div className={  `${sideBar ? ` bg-white py-2
         items-center justify-center` : " "} 
-        +  flex items-center px-2 bg-neutral-50 justify-center py-2` }>
+        +  flex items-center px-2 bg-white justify-center py-2` }>
         
           <button onClick={()=>sideReponse()}>
             <div className="w-6 h-6 ">

@@ -12,16 +12,17 @@ export default function Report() {
     <div className="flex w-full justify-between items-center ">
     <Header text="Report" icons={<CiCalculator1/>}></Header>
     </div>
-    <Result
+    <div className="bg-neutral-50 my-2 shadow-sm rounded-xl p-4">
+         <Result
     status="500"
     title="There are some problems with your operation."
     extra={
-      <Button className="bg-variation-500 text-white">
+      <Button className="bg-gradient-to-tr from-variation-500 to-variation-400 rounded-xl text-white">
           Please contact provider for feedback
       </Button>
     }
   />
-    
+    </div>
     
     
     </>
