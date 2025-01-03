@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import Icon  from "../../../components/Icon";
-import {CiGrid2H
+import {CiCircleInfo, CiGrid2H
  } from "react-icons/ci";
 import {RiUserLine} from "react-icons/ri"
 import Header from "../../../components/Header";
-import Meta from "antd/es/card/Meta";
 import { getUserByName } from "../../../api/user";
 import Cookies from "universal-cookie"
 import { useEffect } from "react";
-import { Card, Result, message, Descriptions, Tag} from "antd";
+import { Result, message} from "antd";
 import moment from 'moment'
+import { MdOutlineDashboard } from "react-icons/md";
 
 
 export function Main () {
@@ -31,105 +31,50 @@ const handleGetUser = async () => {
 }
 
 
-const renderRole = (role) =>{
-
-    return (
-       <>{
-
-           role.map((i,index) => 
-           <h1 className={`
-           ${role == 'admin' && 'bg-[#16a34a] text-white'}
-           ${role == 'superadmin' && 'bg-[#d43f3f] text-white' }
-           ${role == 'teacher' && 'bg-[#0891b2] text-white'}
-           ${role == 'staff' && 'bg-[#fcd34d] text-gray-600'}
-           ${role == 'developer' && 'bg-[#312e81] text-white'}
-            mt-2 inline-block  px-4
-                  border 
-                rounded-xl text-center mx-3  text-[24px]`}>
-                 {i.toUpperCase()}         
-                </h1>
-           )
-       }
-      </>
-    )
- }
 
 useEffect(()=>{
     handleGetUser()
 },[])
 
-    return<div> { data ? <>
-        <Header icons={<CiGrid2H/>} text="Dashboard"/>
-    <div className="py-4
-             grid grid-cols-2 gap-2 ">
-
-        <Card
-        loading={loading}
-        className="border-none rounded-xl bg-neutral-50">
-            <Meta
-            className="flex items-center"
-            avatar={
-                <div 
-                className="w-[9rem] bg-gradinet-b
-                bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600
-                 rounded-full p-2 h-[9rem]">
-                <Icon
-                color={"#ffff"}
-                name={
-                <RiUserLine/>
-                }                
-                >
-                </Icon>
-                </div>
-            }
-            description={
-                <h1 className="font-semibold text-gray-600 mx-3 text-[34px]">
-               welcome  {data?.name}
-                </h1>
-               }
-            >
-            </Meta>
-            </Card>        
-
-          <Card
-        loading={loading}
-        className="border-none rounded-xl bg-neutral-50">
-            <Meta
-            className="flex flex-col  mt-2 items-start"
-            avatar={
-                <div>
-                <h1 className="font-semibold
-                 text-gray-600 mx-3 text-[34px]">Remarks :</h1>
-                </div>
-            }
-            description={
-               renderRole(data?.role)
-               }
-            >
-            </Meta>
-            </Card> 
-
+    return<div className="font-ubuntu mt-3"> { data ? <>
+        <Header icons={<MdOutlineDashboard/>} text="Dashboard"/>
+        <div className="my-4 flex w-full text-[14px] justify-between items-center flex-wrap gap-3 mx-2">
+            <div className="flex gap-3 flex-wrap items-center">
+            <div  className="w-[3rem] bg-neutral-50 border-gray-300 my-2 rounded-full p-2 h-[3rem]">
+              <Icon color={"#d1d5db"} name={<RiUserLine/>}></Icon>    
+            </div>
+            <p className="font-semibold">Welcome 🙌💕 {data?.name}</p>
+            </div>
+        <div className="flex items-center gap-2">
+            Remarks :
+        <p className="font-semibold text-end">  
+            {data?.role}
+            </p>
+</div>
         </div>
-        <Card className="border-none 
-        rounded-xl bg-neutral-50">
-        <Descriptions title="more info" className="pb-4" >
-             <Descriptions.Item label="Telephone">{data?.phone ? data?.phone
-              : "(+000)-000-000"}</Descriptions.Item>
-             <Descriptions.Item label="email">{data?.email}</Descriptions.Item>
-             <Descriptions.Item label="Live">{data?.address ? data?.address : "location"}</Descriptions.Item>
-            
-            <Descriptions.Item label="Address">
-                <Tag>{data?.address ? data?.address : "default"}</Tag>
-                </Descriptions.Item>
+     <div className="border-[1px] font-ubuntu border-gray-50"></div>
+        <h1 className="text-gray-600 mt-4 inline-flex gap-2 items-center">
+            <Icon Size={20} name={<CiCircleInfo/>}></Icon>
+            User Info</h1>
 
-                <Descriptions.Item label="enroll work">
-                {moment(data.createdAt).format('DD/MM/YYYY')}
-                </Descriptions.Item>
-                <Descriptions.Item label="Last update">
-                {moment(data.updatedAt).format('DD/MM/YYYY')}
-                </Descriptions.Item>
-                </Descriptions>  
-            </Card>
+            <div className="bg-neutral-50 gap-2 flex flex-col p-4 mt-4 text-[14px] border-neutral-200 rounded-md">
+                <span className="inline-flex tracking-wide text-slate-400 gap-2 "> 
+                    Telephone : <p className="text-gray-600">{data?.phone ? data?.phone
+              : "(+000)-000-000"}</p> </span>
+
+                <span className="inline-flex tracking-wide text-slate-400 gap-2 "> 
+                    E-mail : <p className="text-gray-600">{data?.email ? data?.email
+              : "none"}</p> </span>
+                 <span className="inline-flex tracking-wide text-slate-400 gap-2 "> 
+                    Current Address : <p className="text-gray-600">{data?.email ? data?.email
+              : "none"}</p> </span>
+                 <span className="inline-flex tracking-wide text-slate-400 gap-2 "> 
+                    Address : <p className="text-gray-600">{data?.address ? data?.address : "default"} </p> </span>
+                <span className="inline-flex tracking-wide text-slate-400 gap-2 "> 
+                    Enroll Work : <p className="text-gray-600"> {moment(data.createdAt).format('DD/MM/YYYY')}</p> </span>
+                <span className="inline-flex tracking-wide   text-slate-400 gap-2 "> 
+                    Last Update : <p className="text-gray-600"> {moment(data.updatedAt).format('DD/MM/YYYY')}</p></span>
+            </div>
          </> : <>
         <Result
     title="page are under maintenance"

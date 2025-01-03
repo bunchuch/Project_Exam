@@ -169,30 +169,21 @@ export default function RegisterStudent (){
                 <div className="flex justify-between gap-2">
                     {stuid ? <></> :
                 <Button htmlType="button"
-                className="rounded-xl"
-                 onClick={onFill} style={{
-                background: '#f43f5e',
-                color : "#ffff"
-            }}>
+                className="rounded-lg bg-gray-900 text-gray-50"
+                 onClick={onFill}>
                auto fill username and password
             </Button>
                 }
             <div className="flex gap-2">
             <Button htmlType="reset"
-            className="rounded-xl"
+            className="rounded-lg bg-gray-300 "
                  onClick={()=>{
-                    form.resetFields()}} style={{
-                background: '#fde047',
-            }}>
+                    form.resetFields()}}>
                 Reset
             </Button>
             <Button 
             htmlType="submit"
-            className="rounded-xl"
-            style={{
-                background: '#0f3460',
-                color : '#ffff',
-            }}>
+            className="rounded-lg text-gray-50 bg-gray-900">
                 Submit
             </Button>
             </div>

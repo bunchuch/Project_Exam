@@ -9,6 +9,7 @@ import { loadingAction } from "../../../redux/loaderSlice";
 import  moment from 'moment'
 import NavigatorButton from "../../../components/navigatorButton";
 import Icon from "../../../components/Icon";
+import { FiUser } from "react-icons/fi";
 
 export default function UserProfile (){
     const userRole = useSelector(state => state.auth.userRole)[0]
@@ -131,32 +132,22 @@ export default function UserProfile (){
  
     return <>
     {contextHolder}
-          <NavigatorButton/>
-          <div className="grid gap-4 grid-cols-2">
-          <Card
-        loading={loading}
-        className="border-none rounded-xl bg-neutral-50">
-            <Meta
-            className="flex items-center"
-            avatar={
-                <div 
-                className="w-[10rem] bg-neutral-50
-                 rounded-full p-2 h-[10rem]">
-                <Icon
-                color={"#0f3460"}
-                name={
-                <CiUser/>
-                }                
-                >
-                </Icon>
+     <NavigatorButton/>
+     <div className="my-4 font-ubuntu flex w-full text-[14px] justify-between items-center flex-wrap gap-3 mx-2">
+                <div className="flex gap-3 flex-wrap items-center">
+                <div  className="w-[3rem] bg-neutral-50 border-gray-300 my-2 rounded-full p-2 h-[3rem]">
+                  <Icon color={"#d1d5db"} name={<FiUser/>}></Icon>    
                 </div>
-            }
-            title={
-                <h1 className="font-semibold text-gray-600 mx-3 text-[34px]">
-                    { data?.name}
-                </h1>
-               }
-            description={
+                <div>
+                <p className="font-semibold">{data?.name}</p>
+                <div className="flex items-center gap-2">
+                Remarks :
+            <p className="font-semibold text-end">  
+                {data?.role}
+                </p>
+         </div>
+                </div>
+                </div>
                 <div className="flex justify-between items-center">
                 {
                      userRole === 'admin' || userRole
@@ -171,24 +162,25 @@ export default function UserProfile (){
                                         <button
                                         className="bg-rose-500 px-3 rounded-md active:bg-rose-600
                                         text-[12px] py-0.5 text-white"
-                                        >delete</button>
+                                        >Delete</button>
                                                         </Popconfirm>
                            <button
-                           className="bg-yellow-400 text-gray-900 px-3 rounded-md active:bg-yellow-300
+                           className="bg-gray-900 text-gray-50 px-3 rounded-md active:bg-gray-300
                            text-[12px] py-0.5"
                            onClick={()=> {
                               navigator(`/dashboard/user/update/${id}`)
                             }
-                            }>update</button>
-                           <button className="bg-green-600 px-3 rounded-md
-                            active:bg-green-50
-                             text-[12px] py-0.5 text-white" 
+                            }>Edit</button>
+                           <button className="bg-gray-50 border
+                            border-gray-50 text-gray-900 px-3 rounded-md
+                            active:bg-gray-300
+                             text-[12px] py-0.5 "
                            onClick={()=>{
                             setChangePassword(true)
                             onShowModel()
                            }
                             }>
-                            reset password</button>
+                            Reset Password</button>
                            <Modal 
                            okType="default"
                            okText="Update"
@@ -205,51 +197,31 @@ export default function UserProfile (){
                        </div> : <></>
                     }
                        </div>
-               }
-            >
-            </Meta>
-            </Card>        
-
-          <Card
-        loading={loading}
-        className="border-none rounded-xl bg-neutral-50">
-            <Meta
-            className="flex flex-col  mt-2 items-start"
-            avatar={
-                <div>
-                <h1 className="font-semibold
-                 text-gray-600 mx-3 text-[34px]">Remarks :</h1>
-                </div>
-            }
-            description={
-            <> {data?.role ? renderRole(data?.role): "none"}</>
-               }
-            >
-            </Meta>
-            </Card> 
-               </div>
-                <div className="bg-neutral-50
-                 rounded-xl  mt-4 p-3">
-                       {/* userInfo */}
-             <Descriptions title='descriptions' className="mt-5 px-3 pb-4" >
-             <Descriptions.Item label="Telephone">{data?.phone ? data?.phone
-              : "(+000)-000-000"}</Descriptions.Item>
-             <Descriptions.Item label="email">{data?.email}</Descriptions.Item>
-             <Descriptions.Item label="Live">
-                {data?.address ? data?.address : "location"}</Descriptions.Item>
-            <Descriptions.Item label="Address">
-                <Tag>{data?.address ? data?.address : "default"}</Tag>
-                </Descriptions.Item>
-
-                <Descriptions.Item label="enroll work">
-                {moment(data.createdAt).format('DD/MM/YYYY')}
-                </Descriptions.Item>
-                <Descriptions.Item label="Last update">
-                {moment(data.updatedAt).format('DD/MM/YYYY')}
-                </Descriptions.Item>
-                </Descriptions>
-                            
-</div>
+            </div>
+            <div className="border-[1px] border-gray-50"></div>
+       
+          <h1 className="text-gray-600 mt-4 inline-flex gap-2 items-center">
+                     <Icon Size={20} name={<CiCircleInfo/>}></Icon>
+                     User Info</h1>
+         
+                     <div className="bg-neutral-50 gap-2 flex flex-col p-4 mt-4 text-[14px] border-neutral-200 rounded-md">
+                         <span className="inline-flex tracking-wide text-slate-400 gap-2 "> 
+                             Telephone : <p className="text-gray-600">{data?.phone ? data?.phone
+                       : "(+000)-000-000"}</p> </span>
+         
+                         <span className="inline-flex tracking-wide text-slate-400 gap-2 "> 
+                             E-mail : <p className="text-gray-600">{data?.email ? data?.email
+                       : "none"}</p> </span>
+                          <span className="inline-flex tracking-wide text-slate-400 gap-2 "> 
+                             Current Address : <p className="text-gray-600">{data?.email ? data?.email
+                       : "none"}</p> </span>
+                          <span className="inline-flex tracking-wide text-slate-400 gap-2 "> 
+                             Address : <p className="text-gray-600">{data?.address ? data?.address : "default"} </p> </span>
+                         <span className="inline-flex tracking-wide text-slate-400 gap-2 "> 
+                             Enroll Work : <p className="text-gray-600"> {moment(data.createdAt).format('DD/MM/YYYY')}</p> </span>
+                         <span className="inline-flex tracking-wide   text-slate-400 gap-2 "> 
+                             Last Update : <p className="text-gray-600"> {moment(data.updatedAt).format('DD/MM/YYYY')}</p></span>
+                     </div>
     
     </>
 

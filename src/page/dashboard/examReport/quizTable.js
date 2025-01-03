@@ -143,7 +143,7 @@ export const QuizTable = () => {
         dataIndex: 'title',
         key : 'title',
         render : (text, record)=> <a className=" 
-        hover:underline font-semibold text-variation-500">
+        hover:underline  text-variation-500">
           <Link state={text} 
           to={`/dashboard/Question/${record._id}/view`}>{text}</Link>
         </a>
@@ -154,7 +154,7 @@ export const QuizTable = () => {
         title : 'type',
         dataIndex: 'type',
         key : 'type',
-        render : () => <Tag>none</Tag>
+        render : () => <p>none</p>
       },
       {
         title : 'question',
@@ -183,10 +183,10 @@ export const QuizTable = () => {
       dataIndex: '',
       key: 'x',
       render: (record) => <div
-       className="flex gap-2 items-center">
+       className="flex gap-2 items-center font-ubuntu">
   
         <Tooltip title="Create a question">
-        <button className="text-variation-500 font-semibold  text-[14px]">
+        <button className="text-variation-500 text-[14px]">
         <Link  to={`/dashboard/Quiz/${record._id}/${record.title}`}>
             add question
         </Link>
@@ -197,7 +197,7 @@ export const QuizTable = () => {
         <button disabled onClick={()=>{
           showModal(record._id ,'assign')
         }}
-         className="text-green-600 font-semibold   py-0.5 text-[14px]">
+         className="text-green-600    py-0.5 text-[14px]">
         <Link>
           clone
         </Link>
@@ -206,7 +206,7 @@ export const QuizTable = () => {
   
         <Tooltip title="Update">
         <button onClick={()=>showModal(record._id, 'update')}
-         className="text-yellow-300 font-semibold py-0.5 text-[14px]">
+         className="text-yellow-300  py-0.5 text-[14px]">
         <Link>
           update
         </Link>
@@ -216,7 +216,7 @@ export const QuizTable = () => {
        <Tooltip title="Delete Subject">
         <button  onClick={()=> { 
         handledeleteSubject(record._id)
-        }} className="text-red-500 font-semibold text-[14px]">
+        }} className="text-red-500  text-[14px]">
           delete
       </button>
           </Tooltip>
@@ -265,8 +265,8 @@ export const QuizTable = () => {
 
       {assignToExam()}
       <div className="flex items-center w-full justify-between">
-      <p className="text-[14px] mt-2 text-gray-300">
-             ✨ Click on each section name for show question or add new question
+      <p className="text-[12px] mt-2 text-gray-300">
+              Click on each section name for show question or add new question
             </p>
             <div className="flex gap-2">
             {
@@ -277,18 +277,19 @@ export const QuizTable = () => {
                 {hasSelectd ? selectedRowKeys.length : 0}
                 </button> : null
             }
-            <button className="bg-variation-500
+            <button className="bg-gray-900
              rounded-md 
              text-white px-2 py-0.5  text-[12px]" 
             onClick={start}>
              reload
+             
             </button>
             </div>
           </div>
       </div>
             
-      <Table rowSelection={rowSelection}
-       dataSource={data}  bordered className="mt-3" columns={columnExam}/>
+      <Table  rowSelection={rowSelection}
+       dataSource={data} className="mt-3 font-ubuntu" columns={columnExam}/>
     
     </>
   }

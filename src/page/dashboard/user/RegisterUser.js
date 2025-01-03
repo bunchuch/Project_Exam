@@ -141,13 +141,14 @@ export default function RegisterUser () {
   
       return<>
       <NavigatorButton/>
-        <div className="bg-neutral-50 rounded-xl p-3">
+        <div className="bg-neutral-50 font-ubuntu rounded-md p-3">
         <Header text={id ? "update user" : "Add User"}></Header>                      
         <div className="px-3 py-4 ">
-       <Form onFinish={(value)=> id ? handleUpdate(value) 
+       <Form className="font-ubuntu" onFinish={(value)=> id ? handleUpdate(value) 
         : handleSubmit(value)} form={form} layout="vertical">
-          <div className="grid grid-cols-2 gap-2 my-2">
+          <div className="grid font-ubuntu grid-cols-2 gap-2 my-2">
           <Form.Item
+          className="font-ubuntu"
           name="name"
           label="Username"
           rules={[
@@ -198,8 +199,9 @@ export default function RegisterUser () {
         <Form.Item
           name="phone"
           label="Phone number"
+          type="number"
         >
-          <Input />
+          <Input/>
         </Form.Item>
         <Form.Item
         rules={[{
@@ -234,6 +236,8 @@ export default function RegisterUser () {
           </div>
           {contextHolder}
           <div className="flex justify-end gap-3 w-full">
+            {
+              id ? <></> :
             <Form.Item>
               <Button
               className="bg-white border-none"
@@ -243,14 +247,13 @@ export default function RegisterUser () {
                 })
               }}
               htmlType="button">
-                generate password
+                Generate Password
               </Button>
               </Form.Item>
+}
           <Form.Item>
-             <Button htmlType="submit" style={{
-                background: '#0f3460',
-                color : '#ffff',
-            }} > {id ? "Update" : "Create"} </Button>
+             <Button htmlType="submit" className="bg-gray-900 text-gray-50 rounded-lg"
+            > {id ? "Update" : "Create"} </Button>
            </Form.Item>
           </div>
         

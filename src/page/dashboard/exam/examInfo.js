@@ -117,15 +117,14 @@ export default function ExamInfo (){
       
  return <div>
  <NavigatorButton/>
- <div className="bg-neutral-50 rounded-xl
-   p-4">
+ <div className="">
  <>
  <div className="flex justify-between items-center ">
     <Header text={"Exam Info"}/>
         <div className="flex justify-end gap-2">
         <button onClick={()=>showModal('create')}
          className="px-2 py-0.5 text-[12px] border-none rounded-md
-          text-white active:bg-variation-400 bg-variation-500">create section</button>
+          text-white bg-gray-900">Create Section</button>
     <Modal okType="default" okText="Create" 
     title="Create new Subject" 
     open={isModalOpen} onOk={onCreate} 
@@ -159,9 +158,9 @@ export default function ExamInfo (){
      </Form>
       </Modal>
       <button className="border-none text-[12px] rounded-md
-       active:bg-yellow-300 px-2 py-0.5 bg-yellow-400">
+       text-gray-900 px-2 py-0.5 bg-gray-50">
         <Link to={`/dashboard/exam/update/${data?._id}`}>
-        update
+        Update
         </Link>
         </button>
           <Popconfirm 
@@ -169,8 +168,8 @@ export default function ExamInfo (){
           description="Are you sure to delete this Exam?" 
            title="Delete this Exam"
            okType="default" onConfirm={onDeleteExam} okText="Delete">
-          <button className="border-none rounded-md bg-rose-500 active:bg-rose-600
-           px-3 text-white text-[12px] py-0.5">delete</button>
+          <button className="border-none rounded-md bg-gray-50 text-gray-900
+           px-3 text-[12px] py-0.5">Delete</button>
           </Popconfirm>
         </div>
   </div>

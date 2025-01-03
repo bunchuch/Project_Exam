@@ -1,6 +1,6 @@
 import React from "react";
 import Icon from "./Icon";
-import {CiUser} from "react-icons/ci"
+import { FiUser } from "react-icons/fi";
 
 
 export default function Avatar({image , name}){
@@ -8,9 +8,9 @@ export default function Avatar({image , name}){
     {
         image ?    <img class="w-10 h-10 rounded-full" src={image} alt="Rounded avatar"/> :
         <div class="relative inline-flex items-center justify-center
-         w-8 h-8 p-2 overflow-hidden bg-gradient-to-r from-yellow-300 to-yellow-400 rounded-full ">
+         w-8 h-8 p-2 overflow-hidden bg-gray-50 border border-gray-300  rounded-full ">
     <span class="font-medium text-gray-600 ">{name ? name.slice(0 ,2).toUpperCase() : 
-    <Icon Size={"1.5rem"} name={<CiUser/>}/>
+    <Icon Size={"1.5rem"}  name={<FiUser/>}/>
     
     }</span>
 </div>

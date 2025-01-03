@@ -202,32 +202,31 @@ export default function GroupInfo () {
     return <>
     {contextHolder}
      <NavigatorButton/>
-    <div className=" bg-neutral-50 rounded-xl py-2 px-4">
-      
-        <Descriptions title={ <> 
+    <div className="">
+        <Descriptions className="font-ubuntu" title={ <> 
         <div className="flex justify-between items-center mb-3">
             <Header text={"Course Info"}></Header>
-        <div className="flex items-center gap-1 mb-3">
+        <div className="flex items-center font-normal gap-1 mb-3">
             <Tooltip title="Create Exam">
-            <button className="bg-green-600 px-3 rounded-md
-             active:bg-variation-400 text-[12px] py-0.5 text-white"
-            onClick={()=> navigate(`/dashboard/Group/create-exam`)} >create exam</button>
+            <button className="bg-gray-900 px-3 rounded-md
+              text-[12px] py-0.5 text-white"
+            onClick={()=> navigate(`/dashboard/Group/create-exam`)} >Create Exam</button>
             </Tooltip>  
 
             <Tooltip title="Create Student">
             <button 
-            className="bg-variation-500 px-3 rounded-md active:bg-variation-400
+            className="bg-gray-900 px-3 rounded-md 
              text-[12px] py-0.5 text-white"
             onClick={()=>
              navigate("/dashboard/Create-New-Student")}
-             >new student</button>
+             >Add Student</button>
         </Tooltip>
             <Tooltip title="Update Course">
-            <button className="bg-yellow-400 px-3 
-            rounded-md active:bg-yellow-300 text-[12px] py-0.5" 
+            <button className="bg-gray-50 px-3 
+            rounded-md  text-[12px] py-0.5" 
            > 
            <Link to={`/dashboard/group/update/${id}`}>
-           update
+           Update
            </Link>
             </button>
                 </Tooltip>  
@@ -240,8 +239,8 @@ export default function GroupInfo () {
         title="Delete Group"
         description="Are you sure to delete this Group ?"
       >
-      <button className="bg-rose-500 px-3 rounded-md
-       active:bg-rose-600 text-[12px] py-0.5 text-white">delete</button>
+      <button className="bg-gray-50 text-gray-900 px-3 rounded-md
+        text-[12px] py-0.5">Delete</button>
       </Popconfirm>
         </div>
         </div>

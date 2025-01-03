@@ -1,4 +1,4 @@
-import {Card,Col,Row, message, Tag ,Empty} from "antd";
+import {Card,Col,Row, message, Tag ,Empty, Form, Input} from "antd";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {useDispatch} from "react-redux"
@@ -7,12 +7,13 @@ import { getGroup } from "../../../api/group";
 import { loadingAction } from "../../../redux/loaderSlice";
 import Icon from "../../../components/Icon";
 import { CiMemoPad } from "react-icons/ci";
+import moment from "moment";
 
 
 export default function Group () {
 const [data ,setData] = useState([])
 const dispatch = useDispatch()
-const {Meta} = Card
+
 
 
 const getApi = async () => {
@@ -38,34 +39,31 @@ const getApi = async () => {
 
 
 
-    return <>
-    <h1 className="text-[16px] font-medium text-variation-500 pb-2">
-      Course  </h1>
+    return <div className="font-ubuntu text-slate-600 text-[14px]">
+      {/* <Form>
+        <Form.Item>
+          <Input placeholder="filter"/>
+        </Form.Item>
+      </Form> */}
      <Row gutter={[16,16]}>
       { data.length !== 0 ? data.map((course,key)=> <>
       <Col span={6}>
         <Link key={key} to= {`/dashboard/Group/${course._id}`}>
-        <Card 
-        className="bg-neutral-50 rounded-xl border-none"
-            >
-                <Meta
-          avatar={<div className="bg-white p-2
-             rounded-full">
-            <Icon color={"#0f3460"}
-         Size="1.5rem" name={<CiMemoPad/>}></Icon>
-            </div>}
-          description={<>
-          <h4 className="text-[16px] font-semibold text-variation-500">{course.group}</h4>
-          <p className="font-semibold text-gray-600">instructor : {course.teacher}</p>
-          <p className="">room : {course.class}</p>
-          {
-            course.level ?
-          <Tag color="#312e81" className="mt-1">{course.level}</Tag>
-           : <Tag color="#fcd34d">none</Tag> }
-          </>
-          }
-        />
-            </Card>
+      <div className="bg-neutral-50 font-ubuntu border border-neutral-50 rounded-lg px-4 py-3">
+        <div className="flex items-center gap-3 justify-between">
+        <p className="font-medium text-[14px]">{course?.group}</p>
+        <div>
+        <p>{course?.teacher}</p>
+        <p className="text-[12px]">{moment(course?.time[0]).format("LT")} 
+        - {moment(course?.time[1]).format("LT")}</p>
+          </div>
+      
+        </div>
+       
+        <p className="text-variation-400">{course?.level}</p>
+
+        
+      </div>
 </Link>
      
     </Col> 
@@ -75,7 +73,7 @@ const getApi = async () => {
   />
       </div> }
   </Row>
-    </>
+    </div>
     
    
 }

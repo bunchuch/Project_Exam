@@ -7,6 +7,7 @@ import Header from "../../../components/Header";
 import { userGet } from "../../../api/user";
 import { useDispatch, useSelector } from "react-redux";
 import { loadingAction } from "../../../redux/loaderSlice";
+import { FiUser } from "react-icons/fi";
 
 
 export default function User () {
@@ -48,19 +49,19 @@ export default function User () {
 
     return <div className="">
             <div className="flex gap-3 py-2 justify-between">
-              <Header icons={<CiUser/>} text="User"/>
+              <Header icons={<FiUser/>} text="User"/>
             <div className="gap-2 flex">
               {
                  userRole === 'admin' || userRole === 'superadmin' ?
                   <Link to={`/dashboard/User/Add`} >
-                <button className="bg-variation-500 px-3 
-                rounded-md active:bg-variation-400
-             text-[12px] py-1 text-white">
+                <button className="text-gray-50 px-3 bg-gray-900  
+                rounded-md 
+             text-[12px] py-1">
                  Add user
         </button></Link> : <></>
             }
-        <button className="bg-yellow-300 px-3 
-        rounded-md active:bg-yellow-400
+        <button className=" px-3 
+        rounded-md border-none border-1 bg-neutral-50 active:bg-neutral-200
              text-[12px] py-1 " 
            onClick={start} loading={loading}>
         Reload
@@ -68,7 +69,7 @@ export default function User () {
             </div>
             </div>
        
-        <Table bordered
+        <Table 
          columns={columnsUser}
           dataSource={data} />
     </div>

@@ -17,7 +17,7 @@ const IsLogin = useSelector(state => state.auth.isLogIn)
   return <>
   <Navbar IsLoggIn={IsLogin}></Navbar>
   <Container>
-  <main className=" w-full relative top-0">
+  <main className=" w-full font-ubuntu relative top-0">
     <div className="flex h-screen">
     <LeftSideBar></LeftSideBar>
   <Panel></Panel>

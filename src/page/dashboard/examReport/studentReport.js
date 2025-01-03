@@ -64,14 +64,14 @@ export default function StudentReport (){
   
   const columns =[
     {
-      title: 'section name',
+      title: 'Section Name',
       dataIndex: 'subjectName',
       key: 'subjectName',
       render: (text) => <a 
       className=" text-variation-500">{text}</a>,
     },
     {
-      title: 'section score',
+      title: 'Section score',
       dataIndex: 'sectionScore',
       key: 'sectionScore',
       width : '120px',
@@ -80,13 +80,13 @@ export default function StudentReport (){
         {text}</p></>
     },
     {
-      title: 'exam score',
+      title: 'Exam Score',
       dataIndex: 'markPoint',
       key: 'markPoint',
       width : '120px',
     },
 {
-  title : "grade",
+  title : "Grade",
   dataIndex : 'grade',
   key : "formData",
   width : '50px',
@@ -98,28 +98,28 @@ export default function StudentReport (){
    </a>
 },
     {
-      title: 'status',
+      title: 'Status',
       dataIndex: 'status',
       key: 'status',
       width : '20px',
       render : (text ,record)=>
-       <><Tag color={text === "failed" ? "#b91c1c" : "#22c55e"}>
-        {text}</Tag></>
+       <><p className={`${text === "failed" ? "text-rose-600" 
+       : "text-green-600 "} uppercase font-ubuntu font-semibold text-[14px]`}>
+        {text}</p></>
     },
     ,{
-      title : 'action',
+      title : 'Action',
       key : 'action',
       render : (text , record)=> <>
-      <button className="bg-yellow-400 active:bg-yellow-300
-       rounded-md px-2 py-[1px] text-[10px]"
+      <button className="text-green-600 hover:underline hover:text-green-50"
        onClick={()=> {
         setChangeForm(false)
         showModal(record.subjectName , record.sectionScore)
-       }}>update Score</button>
+       }}>Correct Score</button>
       </>
     },
     {
-      title : "file",
+      title : "File",
       dataIndex : 'formData',
       key : "formData",
       width : '20rem',
@@ -162,22 +162,24 @@ export default function StudentReport (){
     return <>
     {contextHolder}
     <NavigatorButton></NavigatorButton>
-    <Descriptions className="bg-neutral-50 border-none
-     rounded-xl mb-4 p-5" title="Student Result">
+    <Descriptions className="font-ubuntu" title="Student Result">
         <Descriptions.Item label='student name'>
     {report?.students?.firstname} {report?.students?.lastname}
     </Descriptions.Item>
-    <Descriptions.Item label='course'>
+    <Descriptions.Item label='Course'>
     {report?.students?.course}
     </Descriptions.Item>
-    <Descriptions.Item label='exam name'>
+    <Descriptions.Item label='Exam Name'>
     {report?.exam.title}
     </Descriptions.Item>
-    <Descriptions.Item label='submit time'>
-    {moment(report?.createdAt).format('LL')}
+    <Descriptions.Item label='Submit Date'>
+    {moment(report?.createdAt).format('LLL')}
     </Descriptions.Item>
     </Descriptions>
-    <Table bordered columns={columns} dataSource={report?.result}></Table>
+
+    <div className="border-1 border-b border-neutral-50"></div>
+
+    <Table className="font-ubuntu mt-4" columns={columns} dataSource={report?.result}></Table>
 
 
     {/* modal */}

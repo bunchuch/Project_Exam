@@ -69,10 +69,10 @@ const Navbar = ({container,  IsLoggIn}) =>{
     <a href="#" className={styleNavbar.bannerImageOfnavBar}>
     <div className="inline-flex gap-2 items-center">
               <img src={`${process.env.REACT_APP_API_KEY+"Puc_logo.png"}`}
-                className="w-9 h-9"  alt="logo"/>
-                <p className="text-[16px] border-l px-2 font-semibold font-roboto">Puc exam</p>   
-                <Tag className="text-[12px]"
-                 color="purple">✨ Beta</Tag>    
+                className="w-7 h-7"  alt="logo"/>
+                <p className="text-[14px] font-semibold font-roboto">Puc exam</p>   
+                <Tag className="text-[10px]"
+                 color="purple">Beta</Tag>    
                </div>           
     </a>
     {/* navbar style-list */}
@@ -82,9 +82,7 @@ const Navbar = ({container,  IsLoggIn}) =>{
         <div className="flex items-center ">
           <>
           <p className="text-[14px] 
-           text-white
-          bg-gradient-to-r from-cyan-400 
-          via-cyan-500 to-cyan-600 
+           text-slate-500
            rounded-md px-2 tracking-wide">{username}</p>
         <Dropdown className="cursor-pointer" menu={{items}}>
           <Space className="text-lg text-variation-500
@@ -103,9 +101,9 @@ const Navbar = ({container,  IsLoggIn}) =>{
 
 
 const styleNavbar = {
-    "authNav": "fixed z-10 bg-white top-0 text-gray-600 w-full border-b border-neutral-200 py-2 px-2 lg:px-0 md:py-2",
+    "authNav": "fixed z-10 bg-white border-b border-gray-50 font-ubuntu top-0 text-gray-600 w-full py-3 px-2 lg:px-0 md:py-2",
     "containerOfnavbar" : "container flex flex-wrap items-center justify-between mx-auto ",
-    "dashboard" : "flex flex-wrap items-center justify-between mx-auto mx-3",
+    "dashboard" : "flex container mx-auto justify-between",
     "bannerImageOfnavBar" : "flex justify-between ", 
     "bannerName" : "self-center text-[20px] font-semibold font-mono whitespace-nowrap dark:text-white mx-2",
     "conatiner3" : " flex flex-row justify-between ", 

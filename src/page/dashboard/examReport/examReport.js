@@ -68,7 +68,9 @@ const sortbyTotal = () => {
             return {
                 ...columns,
                 render : (text ,record)=>
-                <Tag color={text == "PASS" ? "#16a34a" : "#b91c1c"}>{text}</Tag>
+                <p className={text === "PASS" ? "text-[##16a34a] font-ubuntu font-semibold"
+                     : "text-[#b91c1c] font-sans font-semibold"}>{text}</p>
+              
             }
         }else if (columns.dataIndex === 'grade'){
                 return {

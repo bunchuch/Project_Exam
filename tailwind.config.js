@@ -28,6 +28,8 @@ module.exports = {
       "cyan-400" : "#22d3ee",
       "cyan-500" : "#06b6d4",
       "cyan-600" : "#0891b2",
+      "slate-400" : "#94a3b8",
+      "slate-600" : "#475569",
     },
    
     screens: {

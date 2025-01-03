@@ -28,6 +28,8 @@ import GroupHeader from './page/dashboard/Group/GroupHeader';
 import Exam from './page/dashboard/exam/Exam';
 import StudentReport from './page/dashboard/examReport/studentReport';
 import ExamHeader from './page/dashboard/exam/ExamHeader';
+import { About } from './page/dashboard/about/about';
+import { Help } from './page/dashboard/Help/Hepl';
 
 
 const App =()=>{
@@ -69,6 +71,8 @@ const loading = useSelector((state)=> state.loader.loading)
       <Route path='/dashboard/student/report/:eid' element={<ProtectedRoute><StudentReport/></ProtectedRoute>}/>
       <Route path='/dashboard/student/:id' element={<ProtectedRoute><StudentProfile/></ProtectedRoute>}/>
       <Route path='/dashboard/update-student/:stuid' element={<ProtectedRoute><RegisterStudent/></ProtectedRoute>}></Route>
+      <Route path='/dashboard/About' element={<ProtectedRoute><About/></ProtectedRoute>}></Route>
+      <Route path='/dashboard/Help' element={<ProtectedRoute><Help/></ProtectedRoute>}></Route>
     </Route>
     
    

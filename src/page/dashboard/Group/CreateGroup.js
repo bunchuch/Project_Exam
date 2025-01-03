@@ -156,7 +156,7 @@ const handleCreate = async (value) => {
            ></Select>
         </Form.Item>
  {
-    id ? <></> :<Form.Item name="time" label="Pick Time">
+    id ? <></> :<Form.Item required name="time" label="Pick Time">
             <TimePicker.RangePicker
              value={time}
              placement="bottomRight" 
@@ -167,12 +167,8 @@ const handleCreate = async (value) => {
 
         <div className="flex justify-end">
         <Form.Item>
-            <Button htmlType="submit" style={{
-                background: '#0f3460',
-                color : '#ffff',
-                borderRadius : '10px'
-            }} >
-              {id ? "update" : "create" }
+            <Button htmlType="submit" className="bg-gray-900 text-gray-50 tracking-wide rounded-lg"  >
+              {id ? "Update" : "Create" }
             </Button>
         </Form.Item>
         </div>

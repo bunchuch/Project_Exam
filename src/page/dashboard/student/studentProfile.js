@@ -128,11 +128,11 @@ const csvData = [
 
  
   
-    return <div className="font-roboto">
+    return <div className="font-ubuntu">
         <NavigatorButton/>
-        <div className="mb-3 bg-neutral-50 rounded-xl
-          p-3">
-        <Descriptions title={
+        <div className="mb-3
+          py-3">
+        <Descriptions className="font-ubuntu" title={
           <div className="flex justify-between">
           <p>Student Info</p>
 
@@ -150,59 +150,59 @@ const csvData = [
       }
     }  className="flex 
       gap-2 py-1 px-2 rounded-md text-[10px]
-         bg-green-600 text-white">
-        resetPassword
+         bg-gray-900 text-white">
+         Rest Student Password
          </button>
          <button className="flex gap-2 py-1 px-2 rounded-md text-[10px]
-         bg-yellow-300 ">
-          <Link to={`/dashboard/update-student/${id}`}>update</Link>
+         bg-gray-50 border-gray-300 text-gray-900 ">
+          <Link to={`/dashboard/update-student/${id}`}>Edit</Link>
          </button>
          <button onClick={()=> handleDeleteStudent(id)}  className
          ="flex gap-2 py-1 px-2 rounded-md text-[10px]
-         bg-rose-500 text-white">
-          delete
+         bg-gray-50 border-gray-300 text-gray-900 ">
+          Delete
          </button>
         </div>
 
           </div>
           
           }>
-            <Descriptions.Item label="firstname">
+            <Descriptions.Item label="Firstname">
               {user?.firstname}
             </Descriptions.Item>
-            <Descriptions.Item label="lastname">
+            <Descriptions.Item label="Lastname">
               {user?.lastname}
             </Descriptions.Item>
-            <Descriptions.Item label="username">
+            <Descriptions.Item label="Username">
               {user?.username}
             </Descriptions.Item>
-            <Descriptions.Item label="gender">
-              {user?.gender == "F" && "female" }
-              {user?.gender == 'M' && "male"}
-              {user?.gender == "optional" && 'optional'}
+            <Descriptions.Item label="Gender">
+              {user?.gender == "F" && "Female" }
+              {user?.gender == 'M' && "Male"}
+              {user?.gender == "optional" && 'Optional'}
             </Descriptions.Item>
-            <Descriptions.Item label="room">
+            <Descriptions.Item label="Room">
               { user?.class}
             </Descriptions.Item>
-            <Descriptions.Item label="course">
+            <Descriptions.Item label="Course">
               { user?.courseName}
             </Descriptions.Item>
-            <Descriptions.Item label="Parent Phone">
+            <Descriptions.Item label="Address">
               {user?.address}
             </Descriptions.Item>
             <Descriptions.Item label="Parent Phone">
               {user?.parentPhone}
             </Descriptions.Item>
-            <Descriptions.Item label="remarks">
-             {user?.description ? <Tag color="yellow">{ user?.description} </Tag> : "none"}
+            <Descriptions.Item label="Remarks">
+             {user?.description ?  user?.description : "none"}
             </Descriptions.Item>
             <Descriptions.Item label="Phone number">
-            { user?.personalPhone ? user?.personalPhone : "##-###-###"}
+            { user?.personalPhone ? user?.personalPhone : "+855-000-000"}
             </Descriptions.Item>
-            <Descriptions.Item label="date of birth">
+            <Descriptions.Item label="Date Of Birth">
             {moment(user?.dateBirth).format("LL")}
             </Descriptions.Item>
-            <Descriptions.Item label="registerd">
+            <Descriptions.Item label="Registerd">
               {moment(user?.createdAt).format('LL')}
             </Descriptions.Item>
             </Descriptions>

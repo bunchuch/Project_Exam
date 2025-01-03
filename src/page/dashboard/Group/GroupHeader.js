@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom"
 import { Tabs } from "antd"
 import { CourseTabItem} from "../componet/TabItems"
 import Header from "../../../components/Header"
-import { CiStar } from "react-icons/ci"
+import { FiLayers } from "react-icons/fi"
 
 
 
@@ -10,8 +10,8 @@ import { CiStar } from "react-icons/ci"
 export default function GroupHeader () {
    
 
-    return<div className="">
-      <Header text="Group and Course" icons={<CiStar/>}/>
+    return<div className="mt-4">
+      <Header text="Group and Course" icons={<FiLayers/>}/>
     <div className=" mt-5">
  <Tabs
     defaultActiveKey="1"

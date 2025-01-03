@@ -8,6 +8,7 @@ import { loadingAction } from "../../../redux/loaderSlice";
 import { examGet, requestStarExam } from "../../../api/exam";
 import moment from "moment";
 import { courseAction } from "../../../redux/courseSlice";
+import { FiArrowRight } from "react-icons/fi";
 
 
 export default function Exam () {
@@ -46,8 +47,6 @@ const { Meta } = Card;
 
     return <>
     <div className="flex gap-2">
-    <p className="mt-1 text-[14px]  text-gray-300">✨ 
-    click on box for Navigate to exam info</p>
     </div>
     <div className="my-3  border-neutral-200 py-3
      grid 2xl:grid-cols-4 grid-cols-3 gap-4">
@@ -58,24 +57,15 @@ const { Meta } = Card;
             <Link to={`/dashboard/Exam/${item._id}`}>
             <Card
             className=
-            "bg-neutral-50 border-none rounded-xl"
+            "bg-neutral-50 font-ubuntu border-none rounded-xl"
             loading={loading}
             >
                 <Meta
-          avatar={<div className="bg-white p-2
-             rounded-full">
-            <Icon color={"#0f3460"}
-         Size="1.6rem" name={<CiCreditCard2/>}></Icon>
-            </div>}
-          title={<div className="flex justify-between"><p>{item.name}</p></div>}
+          title={<div className="flex font-ubuntu justify-between">
+            <p className="text-[14px] font-medium">{item.name}</p></div>}
           description={ <> <div className="flex flex-wrap">
-            {/* <>
-            {
-              item.course ? <Tag color="purple">{item.course}</Tag> :"none course"
-            }
-        </> */}
         <p className="text-[12px] px-1
-         text-variation-500 font-bold font-roboto">{item?.course}</p> 
+         text-gray-600 font-medium font-roboto">{item?.course}</p> 
           <p className="text-[12px] px-1">section : {item?.quiz?.length}</p> 
           <p  className="text-[12px] px-1" >{moment(item?.time).format('LT')}</p>
           </div>
@@ -83,9 +73,11 @@ const { Meta } = Card;
           <p  className="text-[12px] px-1">duration : {item.duration}</p>
           <p className="text-[12px]
            text-yellow-400 font-roboto font-semibold">
-            {item.description ? item.description : "none"}</p>
+            {item.description ? item.description : ""}</p>    
           </div>
-          
+          <div className="text-end flex justify-end text-gray-900 w-full">
+            <Icon Size={14} name={<FiArrowRight/>}></Icon>
+            </div>
           </>
           }
         />

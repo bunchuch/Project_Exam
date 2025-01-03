@@ -6,40 +6,40 @@ import { IoEllipse } from "react-icons/io5";
 
 export const columnsUser = [
     {
-      title: 'name',
+      title: 'Username',
       dataIndex: 'name',
       key: 'name',
       render: (text, record) =><a className="hover:underline active:underline">
         <Link to={`/dashboard/User/`+ record._id}>{text}</Link></a> ,
       },
     {
-      title: 'e-mail',
+      title: 'E-mail',
       dataIndex: 'email',
       key: 'email',
     },
     {
-      title: 'address',
+      title: 'Address',
       dataIndex: 'address',
       key: 'address',
       render: (text)=> <p className={text ? "" 
-      :"text-rose-500 font-semibold"}>{text ? text : 'default'}</p>
+      :"text-rose-500"}>{text ? text : 'Default'}</p>
     },
     {
-    title: 'enroll to work',
+    title: 'Enroll to work',
     dataIndex: 'createdAt',
     key: 'createdAt',
     render : (text ,record)=> <p>{moment(record.createdAt).format('LL')}</p>
    
   },
   {
-    title: 'last update',
+    title: 'Last Update',
     dataIndex: 'updatedAt',
     key: 'updateAt',
     render : (text ,record)=> <p>{moment(record.updatedAt).format('LL')}</p>
    
   },
       {
-        title: 'remarks',
+        title: 'Role',
         key: 'role',
         dataIndex: 'role',
         render: (_, { role }) => (
@@ -54,9 +54,9 @@ export const columnsUser = [
                 color = "#0891b2"
               }
               return (
-                <Tag color={color} key={role}>
+                <p style={{color : `${color}`}} key={role}>
                   {role.toLowerCase()}
-                </Tag>
+                </p>
               );
             })}
           </>

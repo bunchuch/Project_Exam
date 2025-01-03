@@ -56,40 +56,43 @@ export default function ViewQuestion (){
     <NavigatorButton/>
     <div className="mt-2">
     <Descriptions 
-    className="bg-neutral-50 shadow-sm p-4 rounded-xl" 
-    title="question Info">
-  <Descriptions.Item label="section">{name.state}</Descriptions.Item>
-  <Descriptions.Item label="question length">{data?.length}</Descriptions.Item>
-  <Descriptions.Item label="create">{moment(data?.createdAt).format('LL')}</Descriptions.Item>
-  <Descriptions.Item label="last update">{moment(data?.updatedAt).format('LL')}</Descriptions.Item>
-  <Descriptions.Item label="actions">
+    className="font-ubuntu" 
+    title="Question Info">
+  <Descriptions.Item label="Section Name">{name.state}</Descriptions.Item>
+  <Descriptions.Item label="Questions">{data?.length}</Descriptions.Item>
+  <Descriptions.Item label="Create Time">{moment(data?.createdAt).format('LL')}</Descriptions.Item>
+  <Descriptions.Item label="Last Update">{moment(data?.updatedAt).format('LL')}</Descriptions.Item>
+  <Descriptions.Item label="Actions">
   <Link to={`/dashboard/Quiz/${id}/${name.state}`}>
    <a
-    className="text-variation-500 
+    className="bg-gray-900 
     cursor-pointer
-    flex gap-2 items-center px-2 ">
-      <Icon Size={"1rem"} name={<CiCirclePlus/>}/>  
-      <p className="font-semibold hover:underline">add question</p></a>
+    text-white text-[12px] font-medium rounded-md 
+    flex gap-2 items-center px-2 "> 
+      <p>New Question</p></a>
    </Link>
   </Descriptions.Item>
 </Descriptions>
 
+<div className="border border-gray-50"></div>
 
-<div className="mt-5 grid grid-cols-3 gap-4" accordion>
+<div className="mt-5" accordion>
         {data.map((items, key) => (
           <div className="bg-neutral-50
           p-4 rounded-xl
           shadow-sm
+          my-2
            border-none"
            key={key}>
            <div>
              <div className="flex justify-between">
+             <p>{key+1}</p>-
                 {
                 items.name == 'writing' ? <div></div>
                : <TextArea 
                 readOnly
                 value={items?.question}
-                className="text-[12px] bg-white rounded-xl
+                className="text-[14px] border-none bg-white rounded-xl
                  h-10 
                  p-2 text-gray-600">{key+1} 
                 . {items.question}</TextArea>

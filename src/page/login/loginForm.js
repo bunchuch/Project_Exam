@@ -49,11 +49,11 @@ const LoginForm = () => {
         }
     }
 
-return <section className="bg-neutral-50 font-roboto inset-0">
+return <section className="bg-neutral-50 font-ubuntu inset-0">
         <div className="flex items-center justify-center 
          h-screen">
             <div className="w-full  md:mx-auto md:max-w-[22rem] max-w-full
-            rounded-lg md:shadow-sm text-gray-600  shadow-neutral-200 md:bg-white md:border-[1px]
+            rounded-xl md:shadow-sm text-gray-600  shadow-neutral-200 md:bg-white md:border-[1px]
              border-neutral-50   ">{ 
                 <div> 
                
@@ -92,21 +92,21 @@ return <section className="bg-neutral-50 font-roboto inset-0">
                                 className="block text-sm font-medium  ">
                               Username</label>
                        <Input 
-                       className="py-3" 
+                       className="py-2" 
                          type={null} 
                         onChange={e => setUsername(e.target.value)}></Input>
                         <label htmlFor="Username"
                                 className="block mb-2 text-sm font-medium  ">
                              Password</label>
-                             <Input.Password  className="py-3"
+                             <Input.Password  className="py-2"
                              onChange={e => setPassword(e.target.value)}/>
                         <div className="mt-5">
                           {erorr ? <p className="text-sm font-medium text-red-500">Invaild credentails</p> : null}
                         </div>
                         <input type="submit" value="Login"
-                        className="w-full bg-[#0f3460]  text-white rounded-md
+                        className="w-full bg-gray-900  text-white rounded-lg
                                     focus:ring-4 focus:outline-none 
-                                    font-medium text-sm px-5 py-3  md:text-[16px] text-center"/>
+                                    font-medium text-sm px-5 py-2.5  md:text-[16px] text-center"/>
                                     
                         <p className="text-center">
                             <Link to={"/login/reset-account"}>

@@ -163,22 +163,22 @@ export default function CreateExam(){
                 id ? <></>:
             
             <div className="flex gap-3">
-            <Form.Item label="select date" name="date">
+            <Form.Item required label="select date" name="date">
                 
                 <DatePicker 
             format={`${dateFormat}`}
             />
                
             </Form.Item>
-            <Form.Item label="pick time" name="time">
+            <Form.Item required label="pick time" name="time">
               <TimePicker  format={`${timeFormat}`}/> 
             </Form.Item>
             </div>
 }
-            <Form.Item label="duration" name="duration">
+            <Form.Item required label="duration" name="duration">
                 <InputNumber className="w-full"/>
             </Form.Item>
-            <Form.Item label="pass percentage(%)" name="pass_score">
+            <Form.Item required label="pass percentage(%)" name="pass_score">
                 <InputNumber className="w-full"/>
             </Form.Item>
             <Form.Item 
@@ -202,15 +202,13 @@ export default function CreateExam(){
             </div>
             <div>
             <Form.Item label="description" name="description">
-               <TextArea></TextArea>
+               <TextArea rows={6}></TextArea>
             </Form.Item>
                         </div>
             <Form.Item className="flex justify-end">
                 <Button
-                classNames="rounded-xl"
-                style={{
-                    color : "#ffff"
-                }} className="bg-variation-500 " htmlType="submit">
+                className="rounded-lg bg-gray-900 text-gray-50"
+                htmlType="submit">
                     submit
                 </Button>
             </Form.Item>
