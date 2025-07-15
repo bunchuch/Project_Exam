@@ -27,11 +27,9 @@ export const GetHelpWithSigning = () =>{
                <p className="paraStyle text-center">
                 <Link to={"/login"}>
                 <a href=""
-                             className="font-thin-[150px] active:bg-variation-600 bg-gray-900 px-3 py-2 rounded-md
-                               text-gray-50">
-                                I remember the password back</a>
-                </Link>
-                           
-                        </p>
+                className="font-thin-[150px] active:bg-variation-600 bg-gray-900 px-3 py-2 rounded-md text-gray-50">
+                I remember the password back</a>
+                </Link>    
+                 </p>
                 </div>
 }
