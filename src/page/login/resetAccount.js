@@ -34,7 +34,4 @@ export const GetHelpWithSigning = () =>{
                            
                         </p>
                 </div>
-    
-    
-
 }
